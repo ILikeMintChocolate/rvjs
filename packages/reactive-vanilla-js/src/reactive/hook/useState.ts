@@ -1,0 +1,96 @@
+import { isElementBlock } from '../../dom/elementBlock.ts'
+import { isFunction } from '../../type/guard.ts'
+import { Observer } from '../../util/observer.ts'
+import { DynamicRender } from './dynamic.ts'
+import {
+  ElementContext,
+  subscribeStateContext,
+} from '../../dom/executionContext.ts'
+import { Queue } from '../../util/queue.ts'
+import { AnyBlock } from '../../type/dom'
+import { isComponentBlock } from '../../dom/componentBlock.ts'
+import { setProperty } from '../../dom/property.ts'
+
+export type GetState<State = unknown> = () => State
+export type SetState<State = unknown> = (
+  newState: State | SetStateCallback<State>,
+) => void
+type SetStateCallback<State = unknown> = (oldState: State) => void
+
+export const useState = <State>(
+  initialState: State,
+): [GetState<State>, SetState<State>] => {
+  let state = initialState
+  const subscribers = new StateObserver()
+  let isNotifying = false
+  const lazySubscribeQueue = new Queue<ElementContext>()
+
+  const getState: GetState<State> = () => {
+    if (subscribeStateContext.has()) {
+      const { block, property, value } = subscribeStateContext.get()!
+      if (isNotifying) {
+        lazySubscribeQueue.push({ block, property, value })
+      } else {
+        subscribers.subscribe(block, [property, value])
+      }
+    }
+    return state
+  }
+
+  const setState: SetState<State> = (
+    newState: State | SetStateCallback<State>,
+  ) => {
+    if (isFunction(newState)) {
+      state = newState(state) as State
+    } else {
+      state = newState
+    }
+    isNotifying = true
+    subscribers.notify((block, values) => {
+      Object.entries(values).forEach(([property, value]) => {
+        if (
+          property === null ||
+          (isComponentBlock(block) && property === 'useEffect')
+        ) {
+          value()
+        } else if (isElementBlock(block)) {
+          setProperty(block, property as string, value)
+        }
+      })
+    })
+    isNotifying = false
+    lazySubscribeQueue.popAll(({ block, property, value }) => {
+      subscribers.subscribe(block, [property, value])
+    })
+  }
+
+  return [getState, setState]
+}
+
+type StateObserverValue = [string | null, DynamicRender | Function]
+
+class StateObserver extends Observer<AnyBlock, Record<string, any>> {
+  constructor() {
+    super()
+  }
+
+  subscribe(subscriber: AnyBlock, value: StateObserverValue) {
+    if (!this.hasValueBySubscriber(subscriber)) {
+      super.subscribe(subscriber, {
+        [value[0] as string]: value[1],
+      })
+      if (isElementBlock(subscriber)) {
+        subscriber.appendStateUnsubscribeHandler(this.unsubscribe.bind(this))
+      }
+    } else {
+      const values = this.getValueBySubscriber(subscriber)!
+      if (!values[value[0] as string]) {
+        values[value[0] as string] = value[1]
+      }
+    }
+  }
+}
+
+export const isGetState = (value: unknown): value is GetState => {
+  return isFunction(value) && value.name === 'getState'
+}

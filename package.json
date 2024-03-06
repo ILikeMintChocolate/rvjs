@@ -1,0 +1,13 @@
+{
+  "name": "reactive-vanilla-js-monorepo",
+  "version": "1.0.0",
+  "description": "monorepo for reactive-vanilla-js",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "author": "Beomseok Gwak",
+  "dependencies": {
+    "prettier": "^3.2.5",
+    "vite-plugin-dts": "^3.7.3"
+  }
+}
