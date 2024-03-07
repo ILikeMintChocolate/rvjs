@@ -50,7 +50,7 @@ export const useState = <State>(
       Object.entries(values).forEach(([property, value]) => {
         if (
           property === null ||
-          (isComponentBlock(block) && property === 'useEffect')
+          exceptionProperties[property as string]?.(block)
         ) {
           value()
         } else if (isElementBlock(block)) {
@@ -65,6 +65,10 @@ export const useState = <State>(
   }
 
   return [getState, setState]
+}
+
+export const isGetState = (value: unknown): value is GetState => {
+  return isFunction(value) && value.name === 'getState'
 }
 
 type StateObserverValue = [string | null, DynamicRender | Function]
@@ -91,6 +95,8 @@ class StateObserver extends Observer<AnyBlock, Record<string, any>> {
   }
 }
 
-export const isGetState = (value: unknown): value is GetState => {
-  return isFunction(value) && value.name === 'getState'
+const exceptionProperties: Record<string, Function> = {
+  useEffect: (block: AnyBlock) => isComponentBlock(block),
+  forRender: (block: AnyBlock) => isElementBlock(block),
+  switchRender: (block: AnyBlock) => isElementBlock(block),
 }
