@@ -2,8 +2,13 @@ import { CustomProperties, setProperty } from './property'
 import { AddTypeToValues } from '../type/util'
 import { ElementBlock } from './elementBlock.ts'
 
+type FilteredHTMLAttributes<TagName extends keyof HTMLElementTagNameMap> = Omit<
+  HTMLElementTagNameMap[TagName],
+  'style'
+>
+
 type Attributes<TagName extends keyof HTMLElementTagNameMap> = Partial<
-  AddTypeToValues<HTMLElementTagNameMap[TagName], any> & CustomProperties
+  CustomProperties & AddTypeToValues<FilteredHTMLAttributes<TagName>, any>
 >
 
 const createElement = <TagName extends keyof HTMLElementTagNameMap>(

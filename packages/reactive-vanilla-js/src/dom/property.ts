@@ -33,6 +33,7 @@ export const setProperty = (
 export interface CustomProperties {
   ref: RefObject<HTMLElement>
   children: Children
+  style: Partial<CSSStyleDeclaration>
 }
 
 const customProperties = {
@@ -41,5 +42,11 @@ const customProperties = {
   },
   children: (parent: ElementBlock, children: Children) => {
     parent.appendChildren(children)
+  },
+  style: (parent: ElementBlock, style: Partial<CSSStyleDeclaration>) => {
+    for (const key in style) {
+      // @ts-ignore
+      parent.element.style[key] = style[key]
+    }
   },
 }
