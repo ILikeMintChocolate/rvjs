@@ -91,7 +91,7 @@ export class ElementBlock {
     if (isForRender(childrenFn)) {
       subscribeStateContext.set({
         block: this,
-        property: null,
+        property: 'forRender',
         value: () => {
           const elements = this.#diffingDynamicChildren(childrenFn)
           this.#commitChildren(elements)
@@ -105,7 +105,7 @@ export class ElementBlock {
     } else if (isSwitchRender(childrenFn)) {
       subscribeStateContext.set({
         block: this,
-        property: null,
+        property: 'switchRender',
         value: () => {
           const elements = this.#diffingDynamicChildren(childrenFn)
           this.#commitChildren(elements)
@@ -208,6 +208,24 @@ export class ElementBlock {
     }
     this.#children.flat().forEach((child) => {
       child.traverseChildren(callback, child)
+    })
+    callback(block)
+  }
+
+  traverseChildrenUntilComponent(
+    callback: (child: AnyBlock) => void,
+    block: AnyBlock = this,
+  ) {
+    if (this.#children.length === 0) {
+      callback(block)
+      return
+    }
+    this.#children.flat().forEach((child) => {
+      if (isComponentBlock(child)) {
+        callback(child)
+        return
+      }
+      child.traverseChildrenUntilComponent(callback, child)
     })
     callback(block)
   }
