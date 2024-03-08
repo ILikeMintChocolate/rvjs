@@ -158,7 +158,6 @@ export class ElementBlock {
       const { getBlock, context } = childrenFn()
       const { index: currentIndex } = context.get()!
       const newChildBlock = getBlock()
-
       const newChildElements: HTMLElement[] = []
       const oldChildElementSize = (this.#children[currentIndex] as AnyBlock[])
         .length
@@ -170,6 +169,8 @@ export class ElementBlock {
           newChildElements.push(...newChildBlock.getChildElements())
         }
         this.#children[currentIndex] = [newChildBlock]
+      } else {
+        this.#children[currentIndex] = []
       }
       const currentChildren = Array.from(
         this.#element.children,
