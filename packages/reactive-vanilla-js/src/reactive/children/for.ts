@@ -3,6 +3,7 @@ import { IndexedMap } from '../../util/indexedMap.ts'
 import { isFunction } from '../../type/guard.ts'
 import { GetState, isGetState } from '../hook/useState.ts'
 import { AnyBlock } from '../../type/dom'
+import { componentContext } from '../../dom/executionContext.ts'
 
 export type ForRender = () => {
   getBlocks: () => AnyBlock[]
@@ -19,6 +20,7 @@ export const For = <Item>(
 ) => {
   const itemsMap = new IndexedMap<Item, AnyBlock>()
   const context = new Context<ForContext>()
+  const thisComponent = componentContext.get()!
 
   return function forRender() {
     const newItems = isGetState(items) ? items() : items
@@ -29,7 +31,10 @@ export const For = <Item>(
         itemsMap.changeIndex(item, index)
         deletable.delete(item)
       } else {
-        itemsMap.set(item, render(item, index), index)
+        componentContext.set(thisComponent)
+        const newBlock = render(item, index)
+        componentContext.set(null)
+        itemsMap.set(item, newBlock, index)
       }
     })
 
