@@ -2,8 +2,11 @@ import { Context } from '../../util/context.ts'
 import { GetState, isGetState } from '../hook/useState.ts'
 import { AnyBlock } from '../../type/dom'
 import { isFunction } from '../../type/guard.ts'
+import { componentContext } from '../../dom/executionContext.ts'
+import { ComponentBlock } from '../../dom/componentBlock.ts'
 
 export type SwitchRender = () => {
+  thisComponent: ComponentBlock
   getBlock: () => AnyBlock
   context: Context<SwitchContext>
 }
@@ -19,6 +22,7 @@ export const Switch = <Value>(
   let currentValue: Value | null = null
   let currentBlock: AnyBlock | null = null
   const context = new Context<SwitchContext>()
+  const thisComponent = componentContext.get()!
 
   return function switchRender() {
     const newValue = isGetState(value) ? value() : value
@@ -34,9 +38,12 @@ export const Switch = <Value>(
       })
     }
 
+    componentContext.set(thisComponent)
     currentBlock = render(newValue)
+    componentContext.set(null)
 
     return {
+      thisComponent,
       getBlock: () => currentBlock,
       context,
     }
