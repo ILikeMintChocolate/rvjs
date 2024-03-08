@@ -1,6 +1,8 @@
-export type ChildrenRender<Result = unknown> = () => () => Result
+import { AnyBlock } from '../../type/dom.ts'
 
-export const children = <Result>(resultFn: () => Result) => {
+export type ChildrenRender = () => AnyBlock[]
+
+export const children = (resultFn: () => AnyBlock[]) => {
   return function childrenRender() {
     return resultFn()
   } as ChildrenRender

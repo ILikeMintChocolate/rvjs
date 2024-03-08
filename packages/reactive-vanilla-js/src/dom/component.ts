@@ -1,9 +1,10 @@
 import { ElementBlock } from './elementBlock.ts'
 import { ComponentBlock } from './componentBlock.ts'
 import { componentContext } from './executionContext.ts'
+import { ChildrenRender } from '../reactive/hook/children.ts'
 
 export interface ReceivableProps {
-  children?: any
+  children?: ChildrenRender
   key?: string
 }
 
