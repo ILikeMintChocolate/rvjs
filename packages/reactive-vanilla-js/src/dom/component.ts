@@ -47,17 +47,3 @@ export const component = <Props>(render: ComponentFunction<Props>) => {
     return componentBlock
   }
 }
-
-
-// export const component = <Props = undefined>(
-//   render: (props: Props & DefaultProps) => ElementBlock | ElementBlock[],
-// ) => {
-//   return function componentRender(props?: Props & DefaultProps) {
-//     const componentBlock = new ComponentBlock();
-//     componentContext.set(componentBlock);
-//     componentBlock.children = render(props!);
-//     componentContext.set(null);
-//
-//     return componentBlock;
-//   };
-// };
