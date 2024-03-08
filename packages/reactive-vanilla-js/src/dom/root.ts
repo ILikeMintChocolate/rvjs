@@ -13,6 +13,7 @@ export const root = (
 ) => {
   const rootComponentBlock = new ComponentBlock()
   const rootElementBlock = new ElementBlock({ element })
+  rootComponentBlock.key = 'root'
 
   componentContext.set(rootComponentBlock)
   const { children } = propertiesFn()

@@ -1,6 +1,6 @@
 // dom
-export { root } from "./dom/root.ts";
-export { component } from "./dom/component.ts";
+export { root } from './dom/root.ts'
+export { component } from './dom/component.ts'
 export {
   a,
   abbr,
@@ -113,19 +113,19 @@ export {
   ul,
   video,
   wbr,
-} from "./dom/element.ts";
+} from './dom/element.ts'
 
 // reactive - children
-export { For } from "./reactive/children/for.ts";
-export { Switch } from "./reactive/children/switch.ts";
+export { For } from './reactive/children/for.ts'
+export { Switch } from './reactive/children/switch.ts'
 
 // reactive - hook
-export { createContext } from "./reactive/hook/createContext.ts";
-export { dynamic } from "./reactive/hook/dynamic.ts";
-export { useEffect } from "./reactive/hook/useEffect.ts";
-export { useRef } from "./reactive/hook/useRef.ts";
-export { useState } from "./reactive/hook/useState.ts";
+export { createContext } from './reactive/hook/createContext.ts'
+export { dynamic } from './reactive/hook/dynamic.ts'
+export { useEffect } from './reactive/hook/useEffect.ts'
+export { useRef } from './reactive/hook/useRef.ts'
+export { useState } from './reactive/hook/useState.ts'
 
 // reactive - lifecycle
-export { onMount } from "./reactive/lifecycle/onMount.ts";
-export { onDestroy } from "./reactive/lifecycle/onDestroy.ts";
+export { onMount } from './reactive/lifecycle/onMount.ts'
+export { onDestroy } from './reactive/lifecycle/onDestroy.ts'
