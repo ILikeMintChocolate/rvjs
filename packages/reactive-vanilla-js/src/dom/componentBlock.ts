@@ -81,6 +81,12 @@ export class ComponentBlock {
     return this.#children.map((child) => child.element)
   }
 
+  onCommit() {
+    this.traverseShortcutChildComponents((childComponentBlock) => {
+      childComponentBlock.onMount()
+    })
+  }
+
   onMount() {
     if (this.#onMountHandler) {
       this.#onMountHandler()
@@ -109,13 +115,8 @@ export class ComponentBlock {
     callback(block)
   }
 
-  // traverse and stop when meet component block
-  traverseChildrenUntilComponent(
-    callback: (child: AnyBlock) => void,
-    block: AnyBlock = this,
-  ) {
+  traverseChildrenUntilComponent(callback: (child: ComponentBlock) => void) {
     if (this.#children.length === 0) {
-      callback(block)
       return
     }
     this.#children.flat().forEach((child) => {
@@ -123,9 +124,15 @@ export class ComponentBlock {
         callback(child)
         return
       }
-      child.traverseChildrenUntilComponent(callback, child)
+      child.traverseChildrenUntilComponent(callback)
     })
-    callback(block)
+  }
+
+  traverseShortcutChildComponents(callback: (child: ComponentBlock) => void) {
+    callback(this)
+    this.#shortcut.childComponents.forEach((child) => {
+      child.traverseShortcutChildComponents(callback)
+    })
   }
 }
 
