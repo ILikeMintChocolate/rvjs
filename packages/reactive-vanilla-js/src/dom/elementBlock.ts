@@ -1,13 +1,10 @@
 import { AnyBlock, Children } from '../type/dom'
 import { Observer } from '../util/observer.ts'
 import { ForRender, isForRender } from '../reactive/children/for.ts'
-import { isComponentBlock } from './componentBlock.ts'
+import { ComponentBlock, isComponentBlock } from './componentBlock.ts'
 import { isSwitchRender, SwitchRender } from '../reactive/children/switch.ts'
 import { findFlatIndex, swapSomeParts } from '../util/array.ts'
-import {
-  onMountHandlerQueueContext,
-  subscribeStateContext,
-} from './executionContext.ts'
+import { subscribeStateContext } from './executionContext.ts'
 
 type DynamicChildren = ForRender | SwitchRender
 
@@ -45,9 +42,6 @@ export class ElementBlock {
   appendChildren(children: Children) {
     const elements = this.#renderChildren(children)
     this.#commitChildren(elements)
-    onMountHandlerQueueContext.popAll((handler) => {
-      handler()
-    })
   }
 
   #renderChildren(children: Children) {
@@ -91,10 +85,13 @@ export class ElementBlock {
     if (isForRender(childrenFn)) {
       subscribeStateContext.set({
         block: this,
-        property: null,
+        property: 'forRender',
         value: () => {
-          const elements = this.#diffingDynamicChildren(childrenFn)
+          const { blocks, elements } = this.#diffingDynamicChildren(childrenFn)
           this.#commitChildren(elements)
+          blocks.forEach((block) => {
+            block.onCommit()
+          })
         },
       })
       const { getBlocks, context } = childrenFn()
@@ -105,10 +102,13 @@ export class ElementBlock {
     } else if (isSwitchRender(childrenFn)) {
       subscribeStateContext.set({
         block: this,
-        property: null,
+        property: 'switchRender',
         value: () => {
-          const elements = this.#diffingDynamicChildren(childrenFn)
+          const { blocks, elements } = this.#diffingDynamicChildren(childrenFn)
           this.#commitChildren(elements)
+          blocks.forEach((block) => {
+            block.onCommit()
+          })
         },
       })
       const { getBlock, context } = childrenFn()
@@ -121,6 +121,7 @@ export class ElementBlock {
   }
 
   #diffingDynamicChildren(childrenFn: DynamicChildren) {
+    const newBlocks: AnyBlock[] = []
     const elements: (HTMLElement | HTMLElement[])[] = []
 
     if (isForRender(childrenFn)) {
@@ -140,6 +141,7 @@ export class ElementBlock {
         } else if (isComponentBlock(childBlock)) {
           newChildElements.push(...childBlock.getChildElements())
         }
+        newBlocks.push(childBlock)
       })
       this.#children[currentIndex] = newChildBlocks
       const currentChildren = Array.from(
@@ -178,10 +180,13 @@ export class ElementBlock {
         oldChildElementSize,
         newChildElements,
       )
+      if (newChildBlock) {
+        newBlocks.push(newChildBlock)
+      }
       elements.push(...swappedChildElements)
     }
 
-    return elements
+    return { blocks: newBlocks, elements }
   }
 
   #commitChildren(elements: (HTMLElement | HTMLElement[])[]) {
@@ -190,6 +195,16 @@ export class ElementBlock {
 
   appendStateUnsubscribeHandler(unsubscribeHandler: Observer['unsubscribe']) {
     this.#stateUnsubscribeHandlers.push(unsubscribeHandler)
+  }
+
+  onCommit() {
+    this.traverseChildrenUntilComponent((childComponentBlock) => {
+      childComponentBlock.traverseShortcutChildComponents(
+        (childComponentBlock) => {
+          childComponentBlock.onMount()
+        },
+      )
+    })
   }
 
   cleanUp() {
@@ -210,6 +225,19 @@ export class ElementBlock {
       child.traverseChildren(callback, child)
     })
     callback(block)
+  }
+
+  traverseChildrenUntilComponent(callback: (child: ComponentBlock) => void) {
+    if (this.#children.length === 0) {
+      return
+    }
+    this.#children.flat().forEach((child) => {
+      if (isComponentBlock(child)) {
+        callback(child)
+        return
+      }
+      child.traverseChildrenUntilComponent(callback)
+    })
   }
 }
 
