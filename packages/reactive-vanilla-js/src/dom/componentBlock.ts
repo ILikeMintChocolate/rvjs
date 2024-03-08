@@ -1,6 +1,7 @@
 import { AnyBlock } from '../type/dom'
 import { ElementBlock } from './elementBlock.ts'
 import { isArray } from '../type/guard.ts'
+import { DeleteProvider } from '../reactive/hook/createContext.ts'
 
 export class ComponentBlock {
   #key: string | null
@@ -12,6 +13,8 @@ export class ComponentBlock {
     parentComponent: ComponentBlock | null
     childComponents: ComponentBlock[]
   }
+  #contextProvider: Object | null
+  #deleteContextProviderHandler: DeleteProvider | null
 
   constructor() {
     this.#key = null
@@ -23,6 +26,8 @@ export class ComponentBlock {
       parentComponent: null,
       childComponents: [],
     }
+    this.#contextProvider = null
+    this.#deleteContextProviderHandler = null
   }
 
   set key(value: string | null) {
@@ -77,6 +82,18 @@ export class ComponentBlock {
     this.#onDestoryHandler = value
   }
 
+  set contextProvider(value: Object) {
+    this.#contextProvider = value
+  }
+
+  get contextProvider(): Object | null {
+    return this.#contextProvider
+  }
+
+  set deleteContextProviderHandler(deleteHandler: DeleteProvider) {
+    this.#deleteContextProviderHandler = deleteHandler
+  }
+
   getChildElements() {
     return this.#children.map((child) => child.element)
   }
@@ -97,6 +114,9 @@ export class ComponentBlock {
   cleanUp() {
     if (this.#onDestoryHandler) {
       this.#onDestoryHandler()
+    }
+    if (this.#deleteContextProviderHandler) {
+      this.#deleteContextProviderHandler(this)
     }
   }
 
@@ -133,6 +153,17 @@ export class ComponentBlock {
     this.#shortcut.childComponents.forEach((child) => {
       child.traverseShortcutChildComponents(callback)
     })
+  }
+
+  traverseShortcutParentComponent(
+    callback: (parent: ComponentBlock) => boolean | undefined,
+  ) {
+    if (this.#shortcut.parentComponent) {
+      const isStop = callback(this.#shortcut.parentComponent) ?? false
+      if (!isStop) {
+        this.#shortcut.parentComponent.traverseShortcutParentComponent(callback)
+      }
+    }
   }
 }
 
