@@ -38,6 +38,10 @@ export class ElementBlock {
   set parent(value: AnyBlock | null) {
     this.#parent = value
   }
+  
+  get children() {
+    return this.#children
+  }
 
   appendChildren(children: Children) {
     const elements = this.#renderChildren(children)
