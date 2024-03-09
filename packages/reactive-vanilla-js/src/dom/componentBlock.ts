@@ -11,7 +11,7 @@ export class ComponentBlock {
   #onDestoryHandler: Function | null
   #shortcut: {
     parentComponent: ComponentBlock | null
-    childComponents: ComponentBlock[]
+    childComponents: Set<ComponentBlock>
   }
   #contextProvider: Object | null
   #deleteContextProviderHandler: DeleteProvider | null
@@ -24,7 +24,7 @@ export class ComponentBlock {
     this.#onDestoryHandler = null
     this.#shortcut = {
       parentComponent: null,
-      childComponents: [],
+      childComponents: new Set(),
     }
     this.#contextProvider = null
     this.#deleteContextProviderHandler = null
@@ -67,7 +67,7 @@ export class ComponentBlock {
   }
 
   appendShortcutChildComponent(value: ComponentBlock) {
-    this.#shortcut.childComponents.push(value)
+    this.#shortcut.childComponents.add(value)
   }
 
   get shortcutChildComponents() {
@@ -117,6 +117,9 @@ export class ComponentBlock {
     }
     if (this.#deleteContextProviderHandler) {
       this.#deleteContextProviderHandler(this)
+    }
+    if (this.#shortcut.parentComponent) {
+      this.#shortcut.parentComponent.shortcutChildComponents.delete(this)
     }
   }
 
