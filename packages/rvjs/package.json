@@ -1,19 +1,22 @@
 {
-  "name": "reactive-vanilla-js-ui",
+  "name": "rvjs",
+  "description": "Javascript library for building reactive web applications",
   "private": true,
-  "version": "0.0.1",
+  "version": "0.1.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc --p ./tsconfig-build.json && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest"
   },
   "devDependencies": {
+    "@vitest/coverage-istanbul": "^1.3.1",
+    "@vitest/coverage-v8": "^1.3.1",
+    "jsdom": "^24.0.0",
     "typescript": "^5.2.2",
-    "vite": "^5.1.4"
-  },
-  "dependencies": {
-    "reactive-vanilla-js": "workspace:^"
+    "vite": "^5.1.4",
+    "vitest": "^1.3.1"
   },
   "main": "dist/index.es.js",
   "types": "dist/index.d.ts",
