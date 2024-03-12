@@ -1,7 +1,7 @@
 {
-  "name": "reactive-vanilla-js-monorepo",
+  "name": "rvjs-monorepo",
   "version": "1.0.0",
-  "description": "monorepo for reactive-vanilla-js",
+  "description": "monorepo for rvjs",
   "private": true,
   "type": "module",
   "license": "MIT",
