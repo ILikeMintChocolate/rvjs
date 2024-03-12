@@ -3,7 +3,7 @@ import { IndexedMap } from '../../util/indexedMap.ts'
 import { isFunction } from '../../type/guard.ts'
 import { GetState, isGetState } from '../hook/useState.ts'
 import { AnyBlock } from '../../type/dom'
-import { componentContext } from '../../dom/executionContext.ts'
+import { componentContext } from '../context/executionContext.ts'
 
 export type ForRender = () => {
   getBlocks: () => AnyBlock[]
@@ -41,11 +41,7 @@ export const For = <Item>(
     if (deletable.size) {
       deletable.forEach((key) => {
         const block = itemsMap.getItemByKey(key)?.value
-        if (block) {
-          block.traverseChildren((child) => {
-            child.cleanUp()
-          })
-        }
+        block?.destroy()
         itemsMap.deleteByKey(key)
       })
     }

@@ -1,15 +1,15 @@
-import { isElementBlock } from '../../dom/elementBlock.ts'
+import { isElementBlock } from '../../element/elementBlock.ts'
 import { isFunction } from '../../type/guard.ts'
 import { Observer } from '../../util/observer.ts'
 import { DynamicRender } from './dynamic.ts'
 import {
   ElementContext,
   subscribeStateContext,
-} from '../../dom/executionContext.ts'
+} from '../context/executionContext.ts'
 import { Queue } from '../../util/queue.ts'
 import { AnyBlock } from '../../type/dom'
-import { isComponentBlock } from '../../dom/componentBlock.ts'
-import { setProperty } from '../../dom/property.ts'
+import { isComponentBlock } from '../../component/componentBlock.ts'
+import { setProperty } from '../../element/property.ts'
 
 export type GetState<State = unknown> = () => State
 export type SetState<State = unknown> = (
@@ -40,6 +40,9 @@ export const useState = <State>(
   const setState: SetState<State> = (
     newState: State | SetStateCallback<State>,
   ) => {
+    if (newState === state) {
+      return
+    }
     if (isFunction(newState)) {
       state = newState(state) as State
     } else {
@@ -99,4 +102,5 @@ const exceptionProperties: Record<string, Function> = {
   useEffect: (block: AnyBlock) => isComponentBlock(block),
   forRender: (block: AnyBlock) => isElementBlock(block),
   switchRender: (block: AnyBlock) => isElementBlock(block),
+  toggleRender: (block: AnyBlock) => isElementBlock(block),
 }

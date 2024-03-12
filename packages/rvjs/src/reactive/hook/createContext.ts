@@ -1,5 +1,5 @@
-import { componentContext } from '../../dom/executionContext.ts'
-import { ComponentBlock } from '../../dom/componentBlock.ts'
+import { componentContext } from '../context/executionContext.ts'
+import { ComponentBlock } from '../../component/componentBlock.ts'
 
 export type DeleteProvider = (component: ComponentBlock) => void
 
@@ -21,6 +21,7 @@ export const createContext = <Value>() => {
   }
 
   const setContext = (value: Value) => {
+    setProvider()
     const component = componentContext.get()!
     providersMap.set(component, value)
   }
@@ -44,7 +45,6 @@ export const createContext = <Value>() => {
 
   return {
     size: () => providersMap.size,
-    setProvider,
     setContext,
     getContext,
     deleteProvider,
