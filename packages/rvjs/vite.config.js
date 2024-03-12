@@ -5,10 +5,16 @@ import dts from 'vite-plugin-dts'
 export default defineConfig({
   plugins: [dts()],
   build: {
+    minify: 'terser',
     lib: {
-      entry: resolve(__dirname, 'src/index.ts'),
-      name: 'reactive-vanilla-js',
-      fileName: (format) => `index.${format}.js`,
+      entry: {
+        component: resolve(__dirname, 'src/component'),
+        element: resolve(__dirname, 'src/element'),
+        children: resolve(__dirname, 'src/reactive/children'),
+        hook: resolve(__dirname, 'src/reactive/hook'),
+        lifecycle: resolve(__dirname, 'src/reactive/lifecycle'),
+      },
+      formats: ['cjs', 'es'],
     },
   },
   test: {
