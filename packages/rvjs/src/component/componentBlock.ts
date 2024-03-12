@@ -1,7 +1,7 @@
-import { AnyBlock } from '../type/dom'
-import { ElementBlock } from './elementBlock.ts'
-import { isArray } from '../type/guard.ts'
+import { ElementBlock, isElementBlock } from '../element/elementBlock.ts'
+import { AnyBlock } from '../type/dom.ts'
 import { DeleteProvider } from '../reactive/hook/createContext.ts'
+import { isArray } from '../type/guard.ts'
 
 export class ComponentBlock {
   #key: string | null
@@ -16,6 +16,10 @@ export class ComponentBlock {
   #contextProvider: Object | null
   #deleteContextProviderHandler: DeleteProvider | null
 
+  #outletRender: Function | null
+  #onOutletChangeHandler: Function | null
+  #isDestroyed: boolean
+
   constructor() {
     this.#key = null
     this.#children = []
@@ -28,6 +32,9 @@ export class ComponentBlock {
     }
     this.#contextProvider = null
     this.#deleteContextProviderHandler = null
+    this.#outletRender = null
+    this.#onOutletChangeHandler = null
+    this.#isDestroyed = false
   }
 
   set key(value: string | null) {
@@ -42,7 +49,7 @@ export class ComponentBlock {
     return this.#children
   }
 
-  set children(children: ElementBlock | ElementBlock[]) {
+  pushChildren(children: ElementBlock | ElementBlock[]) {
     if (isArray(children)) {
       this.#children.push(...children)
     } else {
@@ -94,6 +101,19 @@ export class ComponentBlock {
     this.#deleteContextProviderHandler = deleteHandler
   }
 
+  get outletRender() {
+    return this.#outletRender
+  }
+
+  set outletRender(outletRender: Function | null) {
+    this.#outletRender = outletRender
+    this.#onOutletChangeHandler?.()
+  }
+
+  set onOutletChangeHandler(value: Function | null) {
+    this.#onOutletChangeHandler = value
+  }
+
   getChildElements() {
     return this.#children.map((child) => child.element)
   }
@@ -109,6 +129,23 @@ export class ComponentBlock {
       this.#onMountHandler()
       this.#onMountHandler = null
     }
+  }
+
+  destroy() {
+    if (this.#isDestroyed) {
+      return
+    }
+    this.traverseChildren((child) => {
+      child.cleanUp()
+    })
+  }
+
+  selfDestroy() {
+    if (isElementBlock(this.parent)) {
+      this.parent.deleteChild(this)
+    }
+    this.destroy()
+    this.#isDestroyed = true
   }
 
   cleanUp() {
@@ -171,5 +208,8 @@ export class ComponentBlock {
 }
 
 export const isComponentBlock = (value: unknown): value is ComponentBlock => {
+  if (!value) {
+    return false
+  }
   return value instanceof ComponentBlock
 }

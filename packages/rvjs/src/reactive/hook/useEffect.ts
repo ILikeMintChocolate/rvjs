@@ -1,7 +1,7 @@
 import {
   componentContext,
   subscribeStateContext,
-} from '../../dom/executionContext.ts'
+} from '../context/executionContext.ts'
 import { GetState } from './useState.ts'
 
 export const useEffect = (callback: () => void, dependencies: GetState[]) => {

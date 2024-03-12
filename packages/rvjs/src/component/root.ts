@@ -1,7 +1,7 @@
-import { ElementBlock, isElementBlock } from './elementBlock.ts'
-import { Children } from '../type/dom'
+import { Children } from '../type/dom.ts'
 import { ComponentBlock, isComponentBlock } from './componentBlock.ts'
-import { componentContext } from './executionContext.ts'
+import { ElementBlock, isElementBlock } from '../element/elementBlock.ts'
+import { componentContext } from '../reactive/context/executionContext.ts'
 
 interface RootProperties {
   children: Children
@@ -23,6 +23,6 @@ export const root = (
       childBlock.onCommit()
     }
   })
-  rootComponentBlock.children = rootElementBlock
+  rootComponentBlock.pushChildren(rootElementBlock)
   componentContext.set(null)
 }

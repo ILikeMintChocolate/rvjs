@@ -1,11 +1,13 @@
-import { ElementBlock } from './elementBlock.ts'
-import { ComponentBlock } from './componentBlock.ts'
-import { componentContext } from './executionContext.ts'
 import { ChildrenRender } from '../reactive/hook/children.ts'
+import { OutletRender } from '../router/hook/outlet.ts'
+import { ComponentBlock } from './componentBlock.ts'
+import { ElementBlock } from '../element/elementBlock.ts'
+import { componentContext } from '../reactive/context/executionContext.ts'
 
 export interface ReceivableProps {
   children?: ChildrenRender
   key?: string
+  outlet?: OutletRender
 }
 
 export interface ProvideProps {
@@ -19,10 +21,12 @@ type ComponentFunction<Props> = (
 
 export const component = <Props>(render: ComponentFunction<Props>) => {
   return function componentRender(props?: Props & ReceivableProps) {
-    const { key, children, ...restProps } = props ?? {}
+    const { key, children, outlet, ...restProps } = props ?? {}
     const componentBlock = new ComponentBlock()
-    componentBlock.key = key ?? null
     let previousComponent: ComponentBlock | null = null
+
+    componentBlock.key = key ?? null
+    componentBlock.outletRender = outlet ?? null
 
     if (componentContext.has()) {
       const parentComponent = componentContext.get()!
@@ -41,7 +45,8 @@ export const component = <Props>(render: ComponentFunction<Props>) => {
         caller: componentBlock,
       } as ProvideProps,
     )
-    componentBlock.children = renderedElements
+
+    componentBlock.pushChildren(renderedElements)
     renderedElements.parent = componentBlock
     componentContext.set(previousComponent)
 

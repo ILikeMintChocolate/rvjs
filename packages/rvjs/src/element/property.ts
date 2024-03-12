@@ -1,8 +1,8 @@
-import { isDynamicRender } from '../reactive/hook/dynamic.ts'
 import { ElementBlock } from './elementBlock.ts'
-import { Children } from '../type/dom'
-import { subscribeStateContext } from './executionContext.ts'
+import { isDynamicRender } from '../reactive/hook/dynamic.ts'
+import { subscribeStateContext } from '../reactive/context/executionContext.ts'
 import { RefObject } from '../reactive/hook/useRef.ts'
+import { Children } from '../type/dom.ts'
 
 export const setProperty = (
   elementBlock: ElementBlock,

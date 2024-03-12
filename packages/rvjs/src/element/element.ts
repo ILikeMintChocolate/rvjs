@@ -1,5 +1,5 @@
-import { CustomProperties, setProperty } from './property'
-import { AddTypeToValues } from '../type/util'
+import { CustomProperties, setProperty } from './property.ts'
+import { AddTypeToValues } from '../type/util.ts'
 import { ElementBlock } from './elementBlock.ts'
 
 type FilteredHTMLAttributes<TagName extends keyof HTMLElementTagNameMap> = Omit<

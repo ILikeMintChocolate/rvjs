@@ -1,12 +1,16 @@
-import { AnyBlock, Children } from '../type/dom'
-import { Observer } from '../util/observer.ts'
 import { ForRender, isForRender } from '../reactive/children/for.ts'
-import { ComponentBlock, isComponentBlock } from './componentBlock.ts'
 import { isSwitchRender, SwitchRender } from '../reactive/children/switch.ts'
+import { isToggleRender, ToggleRender } from '../reactive/children/toggle.ts'
+import { AnyBlock, Children } from '../type/dom.ts'
+import { Observer } from '../util/observer.ts'
+import {
+  ComponentBlock,
+  isComponentBlock,
+} from '../component/componentBlock.ts'
+import { subscribeStateContext } from '../reactive/context/executionContext.ts'
 import { findFlatIndex, swapSomeParts } from '../util/array.ts'
-import { subscribeStateContext } from './executionContext.ts'
 
-type DynamicChildren = ForRender | SwitchRender
+type DynamicChildren = ForRender | SwitchRender | ToggleRender
 
 interface ElementBlockProps {
   element: HTMLElement
@@ -38,7 +42,7 @@ export class ElementBlock {
   set parent(value: AnyBlock | null) {
     this.#parent = value
   }
-  
+
   get children() {
     return this.#children
   }
@@ -81,7 +85,6 @@ export class ElementBlock {
         elements.push(tempElements)
       }
     })
-
     return elements
   }
 
@@ -116,6 +119,23 @@ export class ElementBlock {
         },
       })
       const { getBlock, context } = childrenFn()
+      const childBlock = getBlock()
+      context.set({ index })
+      subscribeStateContext.set(null)
+      return childBlock ? [childBlock] : []
+    } else if (isToggleRender(childrenFn)) {
+      subscribeStateContext.set({
+        block: this,
+        property: 'toggleRender',
+        value: () => {
+          const { blocks, elements } = this.#diffingDynamicChildren(childrenFn)
+          this.#commitChildren(elements)
+          blocks.forEach((block) => {
+            block.onCommit()
+          })
+        },
+      })
+      const { getBlock, context } = (childrenFn as ToggleRender)()
       const childBlock = getBlock()
       context.set({ index })
       subscribeStateContext.set(null)
@@ -189,6 +209,37 @@ export class ElementBlock {
         newBlocks.push(newChildBlock)
       }
       elements.push(...swappedChildElements)
+    } else if (isToggleRender(childrenFn)) {
+      const { getBlock, context } = (childrenFn as ToggleRender)()
+      const { index: currentIndex } = context.get()!
+      const newChildBlock = getBlock()
+      const newChildElements: HTMLElement[] = []
+      const oldChildElementSize = (this.#children[currentIndex] as AnyBlock[])
+        .length
+      if (newChildBlock) {
+        newChildBlock.parent = this
+        if (isElementBlock(newChildBlock)) {
+          newChildElements.push(newChildBlock.element)
+        } else if (isComponentBlock(newChildBlock)) {
+          newChildElements.push(...newChildBlock.getChildElements())
+        }
+        this.#children[currentIndex] = [newChildBlock]
+      } else {
+        this.#children[currentIndex] = []
+      }
+      const currentChildren = Array.from(
+        this.#element.children,
+      ) as HTMLElement[]
+      const swappedChildElements = swapSomeParts<HTMLElement>(
+        currentChildren,
+        findFlatIndex(this.#children, currentIndex),
+        oldChildElementSize,
+        newChildElements,
+      )
+      if (newChildBlock) {
+        newBlocks.push(newChildBlock)
+      }
+      elements.push(...swappedChildElements)
     }
 
     return { blocks: newBlocks, elements }
@@ -209,6 +260,33 @@ export class ElementBlock {
           childComponentBlock.onMount()
         },
       )
+    })
+  }
+
+  deleteChild(child: AnyBlock) {
+    const newChildren: (AnyBlock | AnyBlock[])[] = []
+    this.#children.forEach((children) => {
+      if (Array.isArray(children)) {
+        newChildren.push(children.filter((c) => c !== child))
+      } else {
+        if (children !== child) {
+          newChildren.push(children)
+        }
+      }
+    })
+    this.#children = newChildren
+    if (isElementBlock(child)) {
+      child.element.remove()
+    } else if (isComponentBlock(child)) {
+      child.getChildElements().forEach((element) => {
+        element.remove()
+      })
+    }
+  }
+
+  destroy() {
+    this.traverseChildren((child) => {
+      child.cleanUp()
     })
   }
 
@@ -247,5 +325,8 @@ export class ElementBlock {
 }
 
 export const isElementBlock = (value: unknown): value is ElementBlock => {
+  if (!value) {
+    return false
+  }
   return value instanceof ElementBlock
 }
