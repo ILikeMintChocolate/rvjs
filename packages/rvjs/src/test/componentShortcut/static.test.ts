@@ -1,8 +1,8 @@
 // @ts-nocheck
 
 import { describe, expect, test } from 'vitest'
-import { component } from '../../dom/component.ts'
-import { div } from '../../dom/element.ts'
+import { component } from '../../component'
+import { div } from '../../element'
 
 describe('check component is traversing in order using children shortcuts', () => {
   test('basic structure 1', () => {

@@ -1,10 +1,10 @@
 // @ts-nocheck
 
 import { describe, expect, test } from 'vitest'
-import { component } from '../../dom/component.ts'
-import { useState } from '../../reactive/hook/useState.ts'
-import { button, div } from '../../dom/element.ts'
-import { For } from '../../reactive/children/for.ts'
+import { component } from '../../component'
+import { useState } from '../../reactive/hook'
+import { button, div } from '../../element'
+import { For } from '../../reactive/children'
 
 describe('check component is traversing in order using children shortcuts', () => {
   test('dynamic structure with For (root is component)', () => {

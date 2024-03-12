@@ -1,11 +1,12 @@
 // @ts-nocheck
 
 import { describe, expect, test } from 'vitest'
-import { component } from '../../dom/component.ts'
-import { useState } from '../../reactive/hook/useState.ts'
-import { button, div } from '../../dom/element.ts'
-import { Switch } from '../../reactive/children/switch.ts'
-import { ComponentBlock } from '../../dom/componentBlock.ts'
+
+import { component } from '../../component'
+import { useState } from '../../reactive/hook'
+import { button, div } from '../../element'
+import { Switch } from '../../reactive/children'
+import { ComponentBlock } from '../../component/componentBlock.ts'
 
 describe('check component is traversing in order using children shortcuts', () => {
   test('dynamic structure with switch (root is element)', () => {
