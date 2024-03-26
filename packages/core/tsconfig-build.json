@@ -1,0 +1,73 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "lib": [
+      "ESNext",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "skipLibCheck": true,
+    "moduleResolution": "Node",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "outDir": "./dist",
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "declaration": true,
+    "declarationMap": true,
+    "declarationDir": "./dist",
+    "baseUrl": "src",
+    "paths": {
+      "@children/*": [
+        "dom/children/*"
+      ],
+      "@component/*": [
+        "dom/component/*"
+      ],
+      "@element/*": [
+        "dom/element/*"
+      ],
+      "@context/*": [
+        "reactive/context/*"
+      ],
+      "@hook/*": [
+        "reactive/hook/*"
+      ],
+      "@lifecycle/*": [
+        "reactive/lifecycle/*"
+      ],
+      "@type/*": [
+        "type/*"
+      ],
+      "@util/*": [
+        "util/*"
+      ],
+      "@dom/*": [
+        "dom/*"
+      ],
+      "@reactive/*": [
+        "reactive/*"
+      ],
+      "@router/*": [
+        "router/*"
+      ]
+    }
+  },
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "dist",
+    "src/main.ts",
+    "src/example",
+    "src/test"
+  ]
+}
