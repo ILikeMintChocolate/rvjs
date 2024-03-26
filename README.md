@@ -13,7 +13,7 @@ Only rerender elements that actually depend on the state.
 > This library is still in development and is not ready for production use.
 
 ```bash
-npm i @rvjs/rvjs
+npm i @rvjs/core
 ```
 
 # Example
