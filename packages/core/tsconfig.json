@@ -1,0 +1,44 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "@children/*": [
+        "dom/children/*"
+      ],
+      "@component/*": [
+        "dom/component/*"
+      ],
+      "@element/*": [
+        "dom/element/*"
+      ],
+      "@context/*": [
+        "reactive/context/*"
+      ],
+      "@hook/*": [
+        "reactive/hook/*"
+      ],
+      "@lifecycle/*": [
+        "reactive/lifecycle/*"
+      ],
+      "@type/*": [
+        "type/*"
+      ],
+      "@util/*": [
+        "util/*"
+      ],
+      "@dom/*": [
+        "dom/*"
+      ],
+      "@reactive/*": [
+        "reactive/*"
+      ],
+      "@router/*": [
+        "router/*"
+      ]
+    }
+  },
+  "include": [
+    "./src"
+  ]
+}
