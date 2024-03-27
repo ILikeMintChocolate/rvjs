@@ -45,8 +45,22 @@ const customProperties = {
   },
   style: (parent: ElementBlock, style: Partial<CSSStyleDeclaration>) => {
     for (const key in style) {
-      // @ts-ignore
-      parent.element.style[key] = style[key]
+      if (isDynamicRender(style[key])) {
+        subscribeStateContext.set({
+          block: parent,
+          property: 'style',
+          value: () => {
+            // @ts-ignore
+            parent.element.style[key] = style[key]()
+          },
+        })
+        // @ts-ignore
+        parent.element.style[key] = style[key]()
+        subscribeStateContext.set(null)
+      } else {
+        // @ts-ignore
+        parent.element.style[key] = style[key]
+      }
     }
   },
 }
