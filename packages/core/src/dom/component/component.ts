@@ -17,7 +17,7 @@ export interface ProvideProps {
 type ComponentFunction<Props> = (
   props: Props & ReceivableProps,
   context: ProvideProps,
-) => ElementBlock
+) => ElementBlock | ComponentBlock
 
 export const component = <Props>(render: ComponentFunction<Props>) => {
   return function componentRender(props?: Props & ReceivableProps) {
@@ -36,7 +36,7 @@ export const component = <Props>(render: ComponentFunction<Props>) => {
     }
 
     componentContext.set(componentBlock)
-    const renderedElements = render(
+    const renderedChild = render(
       {
         children,
         ...restProps,
@@ -46,8 +46,8 @@ export const component = <Props>(render: ComponentFunction<Props>) => {
       } as ProvideProps,
     )
 
-    componentBlock.pushChildren(renderedElements)
-    renderedElements.parent = componentBlock
+    componentBlock.pushChildren(renderedChild)
+    renderedChild.parent = componentBlock
     componentContext.set(previousComponent)
 
     return componentBlock

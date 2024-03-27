@@ -5,7 +5,7 @@ import { ElementBlock, isElementBlock } from '../element/elementBlock.ts'
 
 export class ComponentBlock {
   #key: string | null
-  #children: ElementBlock[]
+  #children: AnyBlock[]
   #parent: AnyBlock | null
   #onMountHandler: Function | null
   #onDestoryHandler: Function | null
@@ -49,7 +49,9 @@ export class ComponentBlock {
     return this.#children
   }
 
-  pushChildren(children: ElementBlock | ElementBlock[]) {
+  pushChildren(
+    children: ElementBlock | ComponentBlock | ElementBlock[] | ComponentBlock[],
+  ) {
     if (isArray(children)) {
       this.#children.push(...children)
     } else {
@@ -115,7 +117,20 @@ export class ComponentBlock {
   }
 
   getChildElements() {
-    return this.#children.map((child) => child.element)
+    return this.#children.map((child) => {
+      if (isElementBlock(child)) {
+        return child.element
+      } else {
+        let element: HTMLElement | null = null
+        child.traverseChildren((block) => {
+          if (isElementBlock(block)) {
+            element = block.element
+          }
+        })
+        // @ts-ignore
+        return element as HTMLElement
+      }
+    })
   }
 
   onCommit() {
