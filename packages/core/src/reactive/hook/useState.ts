@@ -103,4 +103,5 @@ const exceptionProperties: Record<string, Function> = {
   forRender: (block: AnyBlock) => isElementBlock(block),
   switchRender: (block: AnyBlock) => isElementBlock(block),
   toggleRender: (block: AnyBlock) => isElementBlock(block),
+  style: (block: AnyBlock) => isElementBlock(block),
 }
