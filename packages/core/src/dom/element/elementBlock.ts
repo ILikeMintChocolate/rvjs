@@ -87,6 +87,7 @@ export class ElementBlock {
     if (isForRender(childrenFn)) {
       subscribeStateContext.set({
         block: this,
+        type: 'childrenRender',
         property: 'forRender',
         value: () => {
           const { blocks, elements } = this.#diffingDynamicChildren(childrenFn)
@@ -104,6 +105,7 @@ export class ElementBlock {
     } else if (isSwitchRender(childrenFn)) {
       subscribeStateContext.set({
         block: this,
+        type: 'childrenRender',
         property: 'switchRender',
         value: () => {
           const { blocks, elements } = this.#diffingDynamicChildren(childrenFn)
@@ -121,6 +123,7 @@ export class ElementBlock {
     } else if (isToggleRender(childrenFn)) {
       subscribeStateContext.set({
         block: this,
+        type: 'childrenRender',
         property: 'toggleRender',
         value: () => {
           const { blocks, elements } = this.#diffingDynamicChildren(childrenFn)

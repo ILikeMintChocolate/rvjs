@@ -1,13 +1,11 @@
-import { isComponentBlock } from '@component/componentBlock.ts'
 import {
-  ElementContext,
+  StateContext,
   subscribeStateContext,
 } from '@context/executionContext.ts'
 import { AnyBlock } from '@dom/type.ts'
 import { isElementBlock } from '@element/elementBlock.ts'
-import { setProperty } from '@element/property.ts'
-import { DynamicRender } from '@hook/dynamic.ts'
-import { isFunction } from '@type/guard.ts'
+import { setProperty, setStyleProperty } from '@element/property.ts'
+import { isArray, isFunction } from '@type/guard.ts'
 import { Observer } from '@util/observer.ts'
 import { Queue } from '@util/queue.ts'
 
@@ -23,15 +21,15 @@ export const useState = <State>(
   let state = initialState
   const subscribers = new StateObserver()
   let isNotifying = false
-  const lazySubscribeQueue = new Queue<ElementContext>()
+  const lazySubscribeQueue = new Queue<StateContext>()
 
   const getState: GetState<State> = () => {
     if (subscribeStateContext.has()) {
-      const { block, property, value } = subscribeStateContext.get()!
+      const stateContext = subscribeStateContext.get()!
       if (isNotifying) {
-        lazySubscribeQueue.push({ block, property, value })
+        lazySubscribeQueue.push(stateContext)
       } else {
-        subscribers.subscribe(block, [property, value])
+        subscribers.subscribeState(stateContext)
       }
     }
     return state
@@ -49,59 +47,74 @@ export const useState = <State>(
       state = newState
     }
     isNotifying = true
-    subscribers.notify((block, values) => {
-      Object.entries(values).forEach(([property, value]) => {
-        if (
-          property === null ||
-          exceptionProperties[property as string]?.(block)
-        ) {
-          value()
-        } else if (isElementBlock(block)) {
-          setProperty(block, property as string, value)
-        }
-      })
-    })
+    notifyWhenStateChange(subscribers)
     isNotifying = false
-    lazySubscribeQueue.popAll(({ block, property, value }) => {
-      subscribers.subscribe(block, [property, value])
+    lazySubscribeQueue.popAll((stateContext) => {
+      subscribers.subscribeState(stateContext)
     })
   }
 
   return [getState, setState]
 }
 
+const notifyWhenStateChange = (subscribers: StateObserver) => {
+  const lazyUseEffectQueue: Function[][] = []
+  subscribers.notify((block, values) => {
+    Object.entries(values.domProperty).forEach(([property, value]) => {
+      if (isElementBlock(block)) {
+        setProperty(block, property as string, value)
+      }
+    })
+    Object.entries(values.styleProperty).forEach(([property, value]) => {
+      if (isElementBlock(block)) {
+        setStyleProperty(block, property as string, value)
+      }
+    })
+    values.childrenRender.forEach((render) => {
+      render()
+    })
+    lazyUseEffectQueue.push(values.useEffect)
+  })
+  lazyUseEffectQueue.flat().forEach((useEffect) => {
+    useEffect()
+  })
+}
+
 export const isGetState = (value: unknown): value is GetState => {
   return isFunction(value) && value.name === 'getState'
 }
 
-type StateObserverValue = [string | null, DynamicRender | Function]
+interface StateObserverValue {
+  useEffect: Function[]
+  childrenRender: Function[]
+  domProperty: Record<string, Function>
+  styleProperty: Record<string, Function>
+}
 
-class StateObserver extends Observer<AnyBlock, Record<string, any>> {
+class StateObserver extends Observer<AnyBlock, StateObserverValue> {
   constructor() {
     super()
   }
 
-  subscribe(subscriber: AnyBlock, value: StateObserverValue) {
-    if (!this.hasValueBySubscriber(subscriber)) {
-      super.subscribe(subscriber, {
-        [value[0] as string]: value[1],
-      })
-      if (isElementBlock(subscriber)) {
-        subscriber.appendStateUnsubscribeHandler(this.unsubscribe.bind(this))
-      }
-    } else {
-      const values = this.getValueBySubscriber(subscriber)!
-      if (!values[value[0] as string]) {
-        values[value[0] as string] = value[1]
+  subscribeState(stateContext: StateContext) {
+    const { block, type, property, value } = stateContext
+    if (!this.hasValueBySubscriber(block)) {
+      super.createEmptyValue(block, {
+        useEffect: [],
+        childrenRender: [],
+        domProperty: {},
+        styleProperty: {},
+      } as StateObserverValue)
+      if (isElementBlock(block)) {
+        block.appendStateUnsubscribeHandler(this.unsubscribe.bind(this))
       }
     }
+    const subscriberValue = this.getValueBySubscriber(block)!
+    if (isArray(subscriberValue[type])) {
+      subscriberValue[type].push(value)
+    } else {
+      // @ts-ignore
+      subscriberValue[type][property] = value
+    }
   }
-}
-
-const exceptionProperties: Record<string, Function> = {
-  useEffect: (block: AnyBlock) => isComponentBlock(block),
-  forRender: (block: AnyBlock) => isElementBlock(block),
-  switchRender: (block: AnyBlock) => isElementBlock(block),
-  toggleRender: (block: AnyBlock) => isElementBlock(block),
-  style: (block: AnyBlock) => isElementBlock(block),
 }

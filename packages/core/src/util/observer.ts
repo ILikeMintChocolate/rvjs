@@ -13,6 +13,10 @@ export class Observer<Subscriber = unknown, Value = unknown> {
     return this.#subscribers.get(subscriber)
   }
 
+  createEmptyValue(subscriber: Subscriber, value: Value) {
+    this.#subscribers.set(subscriber, value)
+  }
+
   subscribe(subscriber: Subscriber, value: Value) {
     this.#subscribers.set(subscriber, value)
   }

@@ -11,6 +11,7 @@ export const useEffect = (callback: () => void, dependencies: GetState[]) => {
     dependencies.forEach((dependency) => {
       subscribeStateContext.set({
         block: componentBlock,
+        type: 'useEffect',
         property: 'useEffect',
         value: callback,
       })
