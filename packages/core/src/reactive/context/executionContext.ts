@@ -3,11 +3,12 @@ import { AnyBlock } from '@dom/type.ts'
 import { DynamicRender } from '@hook/dynamic.ts'
 import { Context } from '@util/context.ts'
 
-export interface ElementContext {
+export interface StateContext {
   block: AnyBlock
-  property: string | null
+  type: 'useEffect' | 'childrenRender' | 'domProperty' | 'styleProperty'
+  property: string
   value: DynamicRender | any
 }
 
-export const subscribeStateContext = new Context<ElementContext>()
+export const subscribeStateContext = new Context<StateContext>()
 export const componentContext = new Context<ComponentBlock>()
