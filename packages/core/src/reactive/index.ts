@@ -5,5 +5,7 @@ export { useEffect } from '@hook/useEffect'
 export { useRef } from '@hook/useRef'
 export { useState } from '@hook/useState'
 export type { GetState, SetState } from '@hook/useState'
+export type { DynamicRender } from '@hook/dynamic'
+
 export { onMount } from '@lifecycle/onMount'
 export { onDestroy } from '@lifecycle/onDestroy'

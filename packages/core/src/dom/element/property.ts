@@ -3,6 +3,8 @@ import { Children } from '@dom/type.ts'
 import { ElementBlock } from '@element/elementBlock.ts'
 import { isDynamicRender } from '@hook/dynamic.ts'
 import { RefObject } from '@hook/useRef.ts'
+import { AddTypeToValues } from '@type/util.ts'
+import { Properties } from 'csstype'
 
 export const setProperty = (
   elementBlock: ElementBlock,
@@ -12,6 +14,7 @@ export const setProperty = (
   if (isDynamicRender(value)) {
     subscribeStateContext.set({
       block: elementBlock,
+      type: 'domProperty',
       property: key,
       value,
     })
@@ -33,7 +36,13 @@ export const setProperty = (
 export interface CustomProperties {
   ref: RefObject<HTMLElement>
   children: Children
-  style: Partial<CSSStyleDeclaration>
+  style: AddTypeToValues<Properties, any>
+  animation: AnimationProps
+}
+
+interface AnimationProps {
+  keyframes: Keyframe[] | PropertyIndexedKeyframes | null
+  options?: number | KeyframeAnimationOptions
 }
 
 const customProperties = {
@@ -43,24 +52,41 @@ const customProperties = {
   children: (parent: ElementBlock, children: Children) => {
     parent.appendChildren(children)
   },
-  style: (parent: ElementBlock, style: Partial<CSSStyleDeclaration>) => {
-    for (const key in style) {
-      if (isDynamicRender(style[key])) {
+  style: (parent: ElementBlock, style: AddTypeToValues<Properties, any>) => {
+    for (const property in style) {
+      // @ts-ignore
+      if (isDynamicRender(style[property])) {
         subscribeStateContext.set({
           block: parent,
-          property: 'style',
-          value: () => {
-            // @ts-ignore
-            parent.element.style[key] = style[key]()
-          },
+          type: 'styleProperty',
+          property: property,
+          // @ts-ignore
+          value: style[property],
         })
         // @ts-ignore
-        parent.element.style[key] = style[key]()
+        parent.element.style[property] = style[property]()
         subscribeStateContext.set(null)
       } else {
         // @ts-ignore
-        parent.element.style[key] = style[key]
+        parent.element.style[property] = style[property]
       }
     }
   },
+  animation: (parent: ElementBlock, animation: AnimationProps) => {
+    parent.element.animate(animation.keyframes, animation.options)
+  },
+}
+
+export const setStyleProperty = (
+  elementBlock: ElementBlock,
+  property: string,
+  value: unknown,
+) => {
+  if (isDynamicRender(value)) {
+    // @ts-ignore
+    elementBlock.element.style[property] = value()
+  } else {
+    // @ts-ignore
+    elementBlock.element.style[property] = value
+  }
 }
