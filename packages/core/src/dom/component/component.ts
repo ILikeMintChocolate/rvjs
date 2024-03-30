@@ -38,9 +38,9 @@ export const component = <Props>(render: ComponentFunction<Props>) => {
     componentContext.set(componentBlock)
     const renderedChild = render(
       {
-        children,
+        ...(children ? { children } : {}),
         ...restProps,
-      } as Props & ReceivableProps,
+      } as Props & Partial<ReceivableProps>,
       {
         caller: componentBlock,
       } as ProvideProps,
