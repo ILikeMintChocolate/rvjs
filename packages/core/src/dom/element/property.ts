@@ -33,11 +33,15 @@ export const setProperty = (
   }
 }
 
+export type ExtendedHTMLElement<T extends keyof HTMLElementTagNameMap> =
+  HTMLElementTagNameMap[T] & CustomProperties
+
 export interface CustomProperties {
   ref: RefObject<HTMLElement>
   children: Children
   style: AddTypeToValues<Properties, any>
   animation: AnimationProps
+  className: string
 }
 
 interface AnimationProps {
@@ -74,6 +78,9 @@ const customProperties = {
   },
   animation: (parent: ElementBlock, animation: AnimationProps) => {
     parent.element.animate(animation.keyframes, animation.options)
+  },
+  className: (parent: ElementBlock, className: string) => {
+    parent.element.className = className
   },
 }
 
