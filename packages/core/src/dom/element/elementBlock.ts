@@ -4,6 +4,7 @@ import { isToggleRender, ToggleRender } from '@children/toggle.ts'
 import { ComponentBlock, isComponentBlock } from '@component/componentBlock.ts'
 import { subscribeStateContext } from '@context/executionContext.ts'
 import { AnyBlock, Children, DynamicChildren } from '@dom/type.ts'
+import { isArray } from '@type/guard.ts'
 import { findFlatIndex, swapSomeParts } from '@util/array.ts'
 import { Observer } from '@util/observer.ts'
 
@@ -84,62 +85,24 @@ export class ElementBlock {
   }
 
   #diffingChildren(childrenFn: DynamicChildren, index: number) {
-    if (isForRender(childrenFn)) {
-      subscribeStateContext.set({
-        block: this,
-        type: 'childrenRender',
-        property: 'forRender',
-        value: () => {
-          const { blocks, elements } = this.#diffingDynamicChildren(childrenFn)
-          this.#commitChildren(elements)
-          blocks.forEach((block) => {
-            block.onCommit()
-          })
-        },
-      })
-      const { getBlocks, context } = childrenFn()
-      const childBlocks = getBlocks()
-      context.set({ index })
-      subscribeStateContext.set(null)
-      return childBlocks
-    } else if (isSwitchRender(childrenFn)) {
-      subscribeStateContext.set({
-        block: this,
-        type: 'childrenRender',
-        property: 'switchRender',
-        value: () => {
-          const { blocks, elements } = this.#diffingDynamicChildren(childrenFn)
-          this.#commitChildren(elements)
-          blocks.forEach((block) => {
-            block.onCommit()
-          })
-        },
-      })
-      const { getBlock, context } = childrenFn()
-      const childBlock = getBlock()
-      context.set({ index })
-      subscribeStateContext.set(null)
-      return childBlock ? [childBlock] : []
-    } else if (isToggleRender(childrenFn)) {
-      subscribeStateContext.set({
-        block: this,
-        type: 'childrenRender',
-        property: 'toggleRender',
-        value: () => {
-          const { blocks, elements } = this.#diffingDynamicChildren(childrenFn)
-          this.#commitChildren(elements)
-          blocks.forEach((block) => {
-            block.onCommit()
-          })
-        },
-      })
-      const { getBlock, context } = (childrenFn as ToggleRender)()
-      const childBlock = getBlock()
-      context.set({ index })
-      subscribeStateContext.set(null)
-      return childBlock ? [childBlock] : []
-    }
-    return []
+    subscribeStateContext.set({
+      block: this,
+      type: 'childrenRender',
+      property: 'childrenRender',
+      value: () => {
+        const { blocks, elements } = this.#diffingDynamicChildren(childrenFn)
+        this.#commitChildren(elements)
+        blocks.forEach((block) => {
+          block.onCommit()
+        })
+      },
+    })
+    const { getBlock, context } = childrenFn()
+    const childBlock = getBlock()
+    context.set({ index })
+    subscribeStateContext.set(null)
+
+    return isArray(childBlock) ? childBlock : childBlock ? [childBlock] : []
   }
 
   #diffingDynamicChildren(childrenFn: DynamicChildren) {
@@ -147,9 +110,9 @@ export class ElementBlock {
     const elements: (HTMLElement | HTMLElement[])[] = []
 
     if (isForRender(childrenFn)) {
-      const { getBlocks, context } = childrenFn()
+      const { getBlock, context } = childrenFn()
       const { index: currentIndex } = context.get()!
-      const newChildBlocks = getBlocks()
+      const newChildBlocks = getBlock()
       const newChildElements: HTMLElement[] = []
       const oldChildElementSize = (this.#children[currentIndex] as AnyBlock[])
         .length

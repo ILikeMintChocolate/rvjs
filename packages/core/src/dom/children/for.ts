@@ -6,7 +6,7 @@ import { Context } from '@util/context.ts'
 import { IndexedMap } from '@util/indexedMap.ts'
 
 export type ForRender = () => {
-  getBlocks: () => AnyBlock[]
+  getBlock: () => AnyBlock[]
   context: Context<ForContext>
 }
 
@@ -47,7 +47,7 @@ export const For = <Item>(
     }
 
     return {
-      getBlocks: () => {
+      getBlock: () => {
         return itemsMap.getSortedValues()
       },
       context,

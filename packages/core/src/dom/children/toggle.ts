@@ -27,7 +27,11 @@ export const Toggle = (
   return function toggleRender() {
     const newValue = isGetState(value) ? value() : value
 
-    if (newValue !== currentValue) {
+    if (!newValue) {
+      currentValue = newValue
+      currentBlock?.destroy()
+      currentBlock = null
+    } else if (newValue !== currentValue) {
       currentValue = newValue
       currentBlock?.destroy()
       componentContext.set(thisComponent)
