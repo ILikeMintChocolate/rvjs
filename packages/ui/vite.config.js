@@ -19,4 +19,28 @@ export default defineConfig({
   },
   sourcemap: true,
   emptyOutDir: true,
+  resolve: {
+    alias: [
+      {
+        find: '@util',
+        replacement: resolve(__dirname, 'src/util'),
+      },
+      {
+        find: '@type',
+        replacement: resolve(__dirname, 'src/type'),
+      },
+      {
+        find: '@theme',
+        replacement: resolve(__dirname, 'src/theme'),
+      },
+      {
+        find: '@layout',
+        replacement: resolve(__dirname, 'src/component/layout'),
+      },
+      {
+        find: '@typography',
+        replacement: resolve(__dirname, 'src/component/typography'),
+      },
+    ],
+  },
 })

@@ -1,4 +1,52 @@
 {
-  "extends": "./tsconfig-build.json",
-  "include": ["./src", "./test"]
+  "compilerOptions": {
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "lib": [
+      "ESNext",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "skipLibCheck": true,
+    "moduleResolution": "Node16",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "outDir": "./dist",
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "declaration": true,
+    "declarationMap": true,
+    "declarationDir": "./dist",
+    "baseUrl": "src",
+    "paths": {
+      "@rvjs/core/*": [
+        "../../core/dist/*"
+      ],
+      "@util/*": [
+        "util/*"
+      ],
+      "@type/*": [
+        "type/*"
+      ],
+      "@theme/*": [
+        "theme/*"
+      ],
+      "@layout/*": [
+        "component/layout/*"
+      ],
+      "@typography/*": [
+        "component/typography/*"
+      ]
+    }
+  },
+  "include": [
+    "./src"
+  ]
 }

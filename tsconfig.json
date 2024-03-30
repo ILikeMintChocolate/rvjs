@@ -9,7 +9,7 @@
       "DOM.Iterable"
     ],
     "skipLibCheck": true,
-    "moduleResolution": "Node",
+    "moduleResolution": "node16",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
