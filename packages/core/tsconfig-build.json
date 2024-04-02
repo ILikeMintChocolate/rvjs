@@ -24,40 +24,43 @@
     "declaration": true,
     "declarationMap": true,
     "declarationDir": "./dist",
-    "baseUrl": "src",
+    "baseUrl": ".",
     "paths": {
+      "@src/*": [
+        "src/*"
+      ],
       "@children/*": [
-        "dom/children/*"
+        "src/dom/children/*"
       ],
       "@component/*": [
-        "dom/component/*"
+        "src/dom/component/*"
       ],
       "@element/*": [
-        "dom/element/*"
+        "src/dom/element/*"
       ],
       "@context/*": [
-        "reactive/context/*"
+        "src/reactive/context/*"
       ],
       "@hook/*": [
-        "reactive/hook/*"
+        "src/reactive/hook/*"
       ],
       "@lifecycle/*": [
-        "reactive/lifecycle/*"
+        "src/reactive/lifecycle/*"
       ],
       "@type/*": [
-        "type/*"
+        "src/type/*"
       ],
       "@util/*": [
-        "util/*"
+        "src/util/*"
       ],
       "@dom/*": [
-        "dom/*"
+        "src/dom/*"
       ],
       "@reactive/*": [
-        "reactive/*"
+        "src/reactive/*"
       ],
       "@router/*": [
-        "router/*"
+        "src/router/*"
       ]
     }
   },

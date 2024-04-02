@@ -1,4 +1,47 @@
 {
-  "extends": "./tsconfig-build.json",
-  "include": ["./src", "./test"]
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "@rvjs/core/*": [
+        "../../core/dist/*"
+      ],
+      "@util/*": [
+        "util/*"
+      ],
+      "@type/*": [
+        "type/*"
+      ],
+      "@theme/*": [
+        "theme/*"
+      ],
+      "@layout/*": [
+        "component/layout/*"
+      ],
+      "@typography/*": [
+        "component/typography/*"
+      ],
+      "@media/*": [
+        "component/media/*"
+      ],
+      "@system/*": [
+        "system/*"
+      ],
+      "@form/*": [
+        "component/form/*"
+      ],
+      "@style/*": [
+        "style/*"
+      ],
+      "@source/*": [
+        "source/*"
+      ],
+      "@component/*": [
+        "component/*"
+      ]
+    }
+  },
+  "include": [
+    "./src"
+  ]
 }

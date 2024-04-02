@@ -1,8 +1,78 @@
 {
-  "extends": "../../tsconfig.json",
   "compilerOptions": {
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "module": "Node16",
+    "lib": [
+      "ESNext",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "skipLibCheck": true,
+    "moduleResolution": "Node16",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "outDir": "./dist",
+    "sourceMap": true,
+    "esModuleInterop": true,
     "declaration": true,
-    "allowSyntheticDefaultImports": true
+    "declarationMap": true,
+    "declarationDir": "./dist",
+    "baseUrl": ".",
+    "paths": {
+      "@rvjs/core/*": [
+        "node_modules/@rvjs/core/dist/*"
+      ],
+      "@src/*": [
+        "src/*"
+      ],
+      "@util/*": [
+        "src/util/*"
+      ],
+      "@type/*": [
+        "src/type/*"
+      ],
+      "@theme/*": [
+        "src/theme/*"
+      ],
+      "@layout/*": [
+        "src/component/layout/*"
+      ],
+      "@typography/*": [
+        "src/component/typography/*"
+      ],
+      "@media/*": [
+        "src/component/media/*"
+      ],
+      "@system/*": [
+        "src/system/*"
+      ],
+      "@form/*": [
+        "src/component/form/*"
+      ],
+      "@style/*": [
+        "src/style/*"
+      ],
+      "@source/*": [
+        "src/source/*"
+      ],
+      "@component/*": [
+        "src/component/*"
+      ]
+    }
   },
-  "include": ["./src"]
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "dist",
+    "src/main.ts",
+    "src/example"
+  ]
 }
