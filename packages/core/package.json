@@ -4,7 +4,8 @@
   "version": "0.1.2",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ILikeMintChocolate/rvjs/tree/main/packages/core"
+    "url": "https://github.com/ILikeMintChocolate/rvjs.git",
+    "directory": "packages/core"
   },
   "publishConfig": {
     "access": "public"

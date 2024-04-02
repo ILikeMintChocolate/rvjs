@@ -1,29 +1,6 @@
 {
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "target": "ESNext",
-    "useDefineForClassFields": true,
-    "module": "ESNext",
-    "lib": [
-      "ESNext",
-      "DOM",
-      "DOM.Iterable"
-    ],
-    "skipLibCheck": true,
-    "moduleResolution": "Node16",
-    "allowImportingTsExtensions": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
-    "outDir": "./dist",
-    "sourceMap": true,
-    "esModuleInterop": true,
-    "declaration": true,
-    "declarationMap": true,
-    "declarationDir": "./dist",
     "baseUrl": "src",
     "paths": {
       "@rvjs/core/*": [
@@ -43,6 +20,24 @@
       ],
       "@typography/*": [
         "component/typography/*"
+      ],
+      "@media/*": [
+        "component/media/*"
+      ],
+      "@system/*": [
+        "system/*"
+      ],
+      "@form/*": [
+        "component/form/*"
+      ],
+      "@style/*": [
+        "style/*"
+      ],
+      "@source/*": [
+        "source/*"
+      ],
+      "@component/*": [
+        "component/*"
       ]
     }
   },
