@@ -34,6 +34,7 @@ export const abbreviatedStyleProperty = {
   fw: 'fontWeight',
   lh: 'lineHeight',
   textAlign: 'textAlign',
+  textDecoration: 'textDecoration',
   // Flex
   direction: 'flexDirection',
   justify: 'justifyContent',
