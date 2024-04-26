@@ -15,6 +15,7 @@ export default defineConfig({
       entry: {
         dom: resolve(__dirname, 'src/dom/index.ts'),
         reactive: resolve(__dirname, 'src/reactive/index.ts'),
+        util: resolve(__dirname, 'src/util/index.ts'),
       },
       name: '@rvjs/core',
       fileName: (format, entryName) => `${entryName}/${entryName}.${format}.js`,
