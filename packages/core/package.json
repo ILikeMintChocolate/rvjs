@@ -1,7 +1,7 @@
 {
   "name": "@rvjs/core",
   "description": "Javascript library for building reactive web applications",
-  "version": "0.1.2",
+  "version": "0.1.5",
   "repository": {
     "type": "git",
     "url": "https://github.com/ILikeMintChocolate/rvjs.git",
@@ -27,6 +27,11 @@
       "import": "./dist/reactive/reactive.es.js",
       "require": "./dist/reactive/reactive.cjs.js",
       "types": "./dist/reactive/index.d.ts"
+    },
+    "./util": {
+      "import": "./dist/util/util.es.js",
+      "require": "./dist/util/util.cjs.js",
+      "types": "./dist/util/index.d.ts"
     }
   },
   "files": [
