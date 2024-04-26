@@ -1,13 +1,13 @@
-import { ComponentBlock } from '@component/componentBlock.ts'
+import { Component } from '@component/componentBlock.ts'
 import { componentContext } from '@context/executionContext.ts'
-import { AnyBlock } from '@dom/type.ts'
+import { Block } from '@dom/type.ts'
 import { GetState, isGetState } from '@hook/useState.ts'
 import { isFunction } from '@type/guard.ts'
 import { Context } from '@util/context.ts'
 
 export type SwitchRender = () => {
-  thisComponent: ComponentBlock
-  getBlock: () => AnyBlock
+  thisComponent: Component
+  getBlock: () => Block
   context: Context<SwitchContext>
 }
 
@@ -17,10 +17,10 @@ interface SwitchContext {
 
 export const Switch = <Value>(
   value: Value | GetState<Value>,
-  render: (item: Value) => AnyBlock | null,
+  render: (item: Value) => Block | null,
 ) => {
   let currentValue: Value | null = null
-  let currentBlock: AnyBlock | null = null
+  let currentBlock: Block | null = null
   const context = new Context<SwitchContext>()
   const thisComponent = componentContext.get()!
 

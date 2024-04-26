@@ -2,8 +2,8 @@ import {
   StateContext,
   subscribeStateContext,
 } from '@context/executionContext.ts'
-import { AnyBlock } from '@dom/type.ts'
-import { isElementBlock } from '@element/elementBlock.ts'
+import { Block } from '@dom/type.ts'
+import { isElement } from '@element/elementBlock.ts'
 import { setProperty, setStyleProperty } from '@element/property.ts'
 import { isArray, isFunction } from '@type/guard.ts'
 import { Observer } from '@util/observer.ts'
@@ -61,12 +61,12 @@ const notifyWhenStateChange = (subscribers: StateObserver) => {
   const lazyUseEffectQueue: Function[][] = []
   subscribers.notify((block, values) => {
     Object.entries(values.domProperty).forEach(([property, value]) => {
-      if (isElementBlock(block)) {
+      if (isElement(block)) {
         setProperty(block, property as string, value)
       }
     })
     Object.entries(values.styleProperty).forEach(([property, value]) => {
-      if (isElementBlock(block)) {
+      if (isElement(block)) {
         setStyleProperty(block, property as string, value)
       }
     })
@@ -91,7 +91,7 @@ interface StateObserverValue {
   styleProperty: Record<string, Function>
 }
 
-class StateObserver extends Observer<AnyBlock, StateObserverValue> {
+class StateObserver extends Observer<Block, StateObserverValue> {
   constructor() {
     super()
   }
@@ -105,7 +105,7 @@ class StateObserver extends Observer<AnyBlock, StateObserverValue> {
         domProperty: {},
         styleProperty: {},
       } as StateObserverValue)
-      if (isElementBlock(block)) {
+      if (isElement(block)) {
         block.appendStateUnsubscribeHandler(this.unsubscribe.bind(this))
       }
     }

@@ -1,11 +1,11 @@
-import { ComponentBlock } from '@component/componentBlock.ts'
+import { Component } from '@component/componentBlock.ts'
 import { componentContext } from '@context/executionContext.ts'
 
-export type DeleteProvider = (component: ComponentBlock) => void
+export type DeleteProvider = (component: Component) => void
 
 export const createContext = <Value>() => {
   const ref = {}
-  const providersMap = new Map<ComponentBlock, Value>()
+  const providersMap = new Map<Component, Value>()
 
   const setProvider = () => {
     if (!componentContext.has()) {
@@ -13,7 +13,7 @@ export const createContext = <Value>() => {
     }
     const providerComponent = componentContext.get()!
     providerComponent.contextProvider = ref
-    providerComponent.deleteContextProviderHandler = deleteProvider
+    providerComponent.addCleanUpHandler(deleteProvider)
   }
 
   const deleteProvider: DeleteProvider = (component) => {
@@ -28,7 +28,7 @@ export const createContext = <Value>() => {
 
   const getContext = () => {
     const component = componentContext.get()!
-    let providerComponent: ComponentBlock | null = null
+    let providerComponent: Component | null = null
     component.traverseShortcutParentComponent((parentComponent) => {
       if (parentComponent.contextProvider === ref) {
         providerComponent = parentComponent
