@@ -1,21 +1,24 @@
-import { AnyBlock } from '@dom/type.ts'
-import { DeleteProvider } from '@hook/createContext.ts'
+import { Block } from '@dom/type.ts'
 import { isArray } from '@type/guard.ts'
-import { ElementBlock, isElementBlock } from '../element/elementBlock.ts'
+import { RVJS_COMPONENT } from '@util/symbol.ts'
+import { Element, isElement } from '../element/elementBlock.ts'
 
-export class ComponentBlock {
+export class Component {
+  $$typeof = RVJS_COMPONENT
+  
   #key: string | null
-  #children: AnyBlock[]
-  #parent: AnyBlock | null
-  #onMountHandler: Function | null
-  #onDestoryHandler: Function | null
+  #children: Block[]
+  #parent: Block | null
   #shortcut: {
-    parentComponent: ComponentBlock | null
-    childComponents: Set<ComponentBlock>
+    parentComponent: Component | null
+    childComponents: Set<Component>
+  }
+  #handlers: {
+    onMount: Function | null
+    onDestroy: Function | null
+    cleanUps: Function[]
   }
   #contextProvider: Object | null
-  #deleteContextProviderHandler: DeleteProvider | null
-
   #outletRender: Function | null
   #onOutletChangeHandler: Function | null
   #isDestroyed: boolean
@@ -24,14 +27,16 @@ export class ComponentBlock {
     this.#key = null
     this.#children = []
     this.#parent = null
-    this.#onMountHandler = null
-    this.#onDestoryHandler = null
     this.#shortcut = {
       parentComponent: null,
       childComponents: new Set(),
     }
+    this.#handlers = {
+      onMount: null,
+      onDestroy: null,
+      cleanUps: [],
+    }
     this.#contextProvider = null
-    this.#deleteContextProviderHandler = null
     this.#outletRender = null
     this.#onOutletChangeHandler = null
     this.#isDestroyed = false
@@ -49,9 +54,7 @@ export class ComponentBlock {
     return this.#children
   }
 
-  pushChildren(
-    children: ElementBlock | ComponentBlock | ElementBlock[] | ComponentBlock[],
-  ) {
+  pushChildren(children: Element | Component | Element[] | Component[]) {
     if (isArray(children)) {
       this.#children.push(...children)
     } else {
@@ -63,11 +66,11 @@ export class ComponentBlock {
     return this.#parent
   }
 
-  set parent(value: AnyBlock | null) {
+  set parent(value: Block | null) {
     this.#parent = value
   }
 
-  set shortcutParentComponent(value: ComponentBlock | null) {
+  set shortcutParentComponent(value: Component | null) {
     this.#shortcut.parentComponent = value
   }
 
@@ -75,7 +78,7 @@ export class ComponentBlock {
     return this.#shortcut.parentComponent
   }
 
-  appendShortcutChildComponent(value: ComponentBlock) {
+  appendShortcutChildComponent(value: Component) {
     this.#shortcut.childComponents.add(value)
   }
 
@@ -83,12 +86,12 @@ export class ComponentBlock {
     return this.#shortcut.childComponents
   }
 
-  set onMountHandler(value: Function | null) {
-    this.#onMountHandler = value
+  set onMountHandler(value: Function) {
+    this.#handlers.onMount = value
   }
 
-  set onDestoryHandler(value: Function | null) {
-    this.#onDestoryHandler = value
+  set onDestoryHandler(value: Function) {
+    this.#handlers.onDestroy = value
   }
 
   set contextProvider(value: Object) {
@@ -97,10 +100,6 @@ export class ComponentBlock {
 
   get contextProvider(): Object | null {
     return this.#contextProvider
-  }
-
-  set deleteContextProviderHandler(deleteHandler: DeleteProvider) {
-    this.#deleteContextProviderHandler = deleteHandler
   }
 
   get outletRender() {
@@ -118,12 +117,12 @@ export class ComponentBlock {
 
   getChildElements() {
     return this.#children.map((child) => {
-      if (isElementBlock(child)) {
+      if (isElement(child)) {
         return child.element
       } else {
         let element: HTMLElement | null = null
         child.traverseChildren((block) => {
-          if (isElementBlock(block)) {
+          if (isElement(block)) {
             element = block.element
           }
         })
@@ -134,15 +133,19 @@ export class ComponentBlock {
   }
 
   onCommit() {
-    this.traverseShortcutChildComponents((childComponentBlock) => {
-      childComponentBlock.onMount()
+    this.traverseShortcutChildComponents((childComponent) => {
+      childComponent.onMount()
     })
   }
 
+  addCleanUpHandler(handler: Function) {
+    this.#handlers.cleanUps.push(handler)
+  }
+
   onMount() {
-    if (this.#onMountHandler) {
-      this.#onMountHandler()
-      this.#onMountHandler = null
+    if (this.#handlers.onMount) {
+      this.#handlers.onMount()
+      this.#handlers.onMount = null
     }
   }
 
@@ -156,7 +159,7 @@ export class ComponentBlock {
   }
 
   selfDestroy() {
-    if (isElementBlock(this.parent)) {
+    if (isElement(this.parent)) {
       this.parent.deleteChild(this)
     }
     this.destroy()
@@ -164,22 +167,19 @@ export class ComponentBlock {
   }
 
   cleanUp() {
-    if (this.#onDestoryHandler) {
-      this.#onDestoryHandler()
+    if (this.#handlers.onDestroy) {
+      this.#handlers.onDestroy()
     }
-    if (this.#deleteContextProviderHandler) {
-      this.#deleteContextProviderHandler(this)
-    }
+    this.#handlers.cleanUps.forEach((handler) => {
+      handler(this)
+    })
     if (this.#shortcut.parentComponent) {
       this.#shortcut.parentComponent.shortcutChildComponents.delete(this)
     }
   }
 
   // @ts-ignore
-  traverseChildren(
-    callback: (child: AnyBlock) => void,
-    block: AnyBlock = this,
-  ) {
+  traverseChildren(callback: (child: Block) => void, block: Block = this) {
     if (this.#children.length === 0) {
       callback(block)
       return
@@ -190,12 +190,12 @@ export class ComponentBlock {
     callback(block)
   }
 
-  traverseChildrenUntilComponent(callback: (child: ComponentBlock) => void) {
+  traverseChildrenUntilComponent(callback: (child: Component) => void) {
     if (this.#children.length === 0) {
       return
     }
     this.#children.flat().forEach((child) => {
-      if (isComponentBlock(child)) {
+      if (isComponent(child)) {
         callback(child)
         return
       }
@@ -203,7 +203,7 @@ export class ComponentBlock {
     })
   }
 
-  traverseShortcutChildComponents(callback: (child: ComponentBlock) => void) {
+  traverseShortcutChildComponents(callback: (child: Component) => void) {
     callback(this)
     this.#shortcut.childComponents.forEach((child) => {
       child.traverseShortcutChildComponents(callback)
@@ -211,7 +211,7 @@ export class ComponentBlock {
   }
 
   traverseShortcutParentComponent(
-    callback: (parent: ComponentBlock) => boolean | undefined,
+    callback: (parent: Component) => boolean | undefined,
   ) {
     if (this.#shortcut.parentComponent) {
       const isStop = callback(this.#shortcut.parentComponent) ?? false
@@ -220,11 +220,20 @@ export class ComponentBlock {
       }
     }
   }
+
+  static isComponent(value: unknown): value is Component {
+    if (!value) {
+      return false
+    }
+
+    return value instanceof Component
+  }
 }
 
-export const isComponentBlock = (value: unknown): value is ComponentBlock => {
+export const isComponent = (value: unknown): value is Component => {
   if (!value) {
     return false
   }
-  return value instanceof ComponentBlock
+
+  return value instanceof Component
 }

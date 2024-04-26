@@ -1,13 +1,13 @@
-import { ComponentBlock } from '@component/componentBlock.ts'
+import { Component } from '@component/componentBlock.ts'
 import { componentContext } from '@context/executionContext.ts'
-import { AnyBlock } from '@dom/type.ts'
+import { Block } from '@dom/type.ts'
 import { GetState, isGetState } from '@hook/useState.ts'
 import { isFunction } from '@type/guard.ts'
 import { Context } from '@util/context.ts'
 
 export type ToggleRender = () => {
-  thisComponent: ComponentBlock
-  getBlock: () => AnyBlock
+  thisComponent: Component
+  getBlock: () => Block
   context: Context<ToggleContext>
 }
 
@@ -17,10 +17,10 @@ interface ToggleContext {
 
 export const Toggle = (
   value: boolean | GetState<boolean>,
-  render: (isToggle: boolean) => AnyBlock | null,
+  render: (isToggle: boolean) => Block | null,
 ) => {
   let currentValue: boolean | null = null
-  let currentBlock: AnyBlock | null = null
+  let currentBlock: Block | null = null
   const context = new Context<ToggleContext>()
   const thisComponent = componentContext.get()!
 

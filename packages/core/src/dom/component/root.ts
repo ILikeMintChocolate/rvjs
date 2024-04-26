@@ -1,7 +1,7 @@
 import { componentContext } from '@context/executionContext.ts'
 import { Children } from '@dom/type.ts'
-import { ElementBlock, isElementBlock } from '../element/elementBlock.ts'
-import { ComponentBlock, isComponentBlock } from './componentBlock.ts'
+import { Element, isElement } from '../element/elementBlock.ts'
+import { Component, isComponent } from './componentBlock.ts'
 
 interface RootProperties {
   children: Children
@@ -11,18 +11,18 @@ export const root = (
   element: HTMLElement,
   propertiesFn: () => RootProperties,
 ) => {
-  const rootComponentBlock = new ComponentBlock()
-  const rootElementBlock = new ElementBlock({ element })
-  rootComponentBlock.key = 'root'
+  const rootComponent = new Component()
+  const rootElement = new Element({ element })
+  rootComponent.key = 'root'
 
-  componentContext.set(rootComponentBlock)
+  componentContext.set(rootComponent)
   const { children } = propertiesFn()
-  rootElementBlock.appendChildren(children)
+  rootElement.appendChildren(children)
   children.forEach((childBlock) => {
-    if (isComponentBlock(childBlock) || isElementBlock(childBlock)) {
+    if (isComponent(childBlock) || isElement(childBlock)) {
       childBlock.onCommit()
     }
   })
-  rootComponentBlock.pushChildren(rootElementBlock)
+  rootComponent.pushChildren(rootElement)
   componentContext.set(null)
 }

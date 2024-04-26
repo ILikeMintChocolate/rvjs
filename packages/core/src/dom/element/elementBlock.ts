@@ -1,24 +1,27 @@
 import { isForRender } from '@children/for.ts'
 import { isSwitchRender } from '@children/switch.ts'
 import { isToggleRender, ToggleRender } from '@children/toggle.ts'
-import { ComponentBlock, isComponentBlock } from '@component/componentBlock.ts'
+import { Component, isComponent } from '@component/componentBlock.ts'
 import { subscribeStateContext } from '@context/executionContext.ts'
-import { AnyBlock, Children, DynamicChildren } from '@dom/type.ts'
+import { Block, Children, Render } from '@dom/type.ts'
 import { isArray } from '@type/guard.ts'
 import { findFlatIndex, swapSomeParts } from '@util/array.ts'
 import { Observer } from '@util/observer.ts'
+import { RVJS_ELEMENT } from '@util/symbol.ts'
 
-interface ElementBlockProps {
+interface ElementProps {
   element: HTMLElement
 }
 
-export class ElementBlock {
+export class Element {
+  $$typeof = RVJS_ELEMENT
+
   #element: HTMLElement
-  #children: (AnyBlock | AnyBlock[])[]
-  #parent: AnyBlock | null
+  #children: (Block | Block[])[]
+  #parent: Block | null
   #stateUnsubscribeHandlers: Observer['unsubscribe'][]
 
-  constructor(props: ElementBlockProps) {
+  constructor(props: ElementProps) {
     const { element } = props
 
     this.#element = element
@@ -31,11 +34,15 @@ export class ElementBlock {
     return this.#element
   }
 
+  set element(value: HTMLElement) {
+    this.#element = value
+  }
+
   get parent() {
     return this.#parent
   }
 
-  set parent(value: AnyBlock | null) {
+  set parent(value: Block | null) {
     this.#parent = value
   }
 
@@ -55,26 +62,26 @@ export class ElementBlock {
       if (!child) {
         return
       }
-      if (isComponentBlock(child) || isElementBlock(child)) {
+      if (isComponent(child) || isElement(child)) {
         child.parent = this
         this.#children.push(child)
-        if (isElementBlock(child)) {
+        if (isElement(child)) {
           elements.push(child.element)
-        } else if (isComponentBlock(child)) {
+        } else if (isComponent(child)) {
           elements.push(child.getChildElements())
         }
       } else {
         const childBlocks = this.#diffingChildren(child, elements.length)
         this.#children.push(childBlocks)
         const tempElements: HTMLElement[] = []
-        childBlocks.forEach((childBlock: AnyBlock) => {
+        childBlocks.forEach((childBlock: Block) => {
           if (!childBlock) {
             return
           }
           childBlock.parent = this
-          if (isElementBlock(childBlock)) {
+          if (isElement(childBlock)) {
             tempElements.push(childBlock.element)
-          } else if (isComponentBlock(childBlock)) {
+          } else if (isComponent(childBlock)) {
             tempElements.push(...childBlock.getChildElements())
           }
         })
@@ -84,7 +91,7 @@ export class ElementBlock {
     return elements
   }
 
-  #diffingChildren(childrenFn: DynamicChildren, index: number) {
+  #diffingChildren(childrenFn: Render, index: number) {
     subscribeStateContext.set({
       block: this,
       type: 'childrenRender',
@@ -105,8 +112,8 @@ export class ElementBlock {
     return isArray(childBlock) ? childBlock : childBlock ? [childBlock] : []
   }
 
-  #diffingDynamicChildren(childrenFn: DynamicChildren) {
-    const newBlocks: AnyBlock[] = []
+  #diffingDynamicChildren(childrenFn: Render) {
+    const newBlocks: Block[] = []
     const elements: (HTMLElement | HTMLElement[])[] = []
 
     if (isForRender(childrenFn)) {
@@ -114,16 +121,16 @@ export class ElementBlock {
       const { index: currentIndex } = context.get()!
       const newChildBlocks = getBlock()
       const newChildElements: HTMLElement[] = []
-      const oldChildElementSize = (this.#children[currentIndex] as AnyBlock[])
+      const oldChildElementSize = (this.#children[currentIndex] as Block[])
         .length
-      newChildBlocks.forEach((childBlock: AnyBlock) => {
+      newChildBlocks.forEach((childBlock: Block) => {
         if (!childBlock) {
           return
         }
         childBlock.parent = this
-        if (isElementBlock(childBlock)) {
+        if (isElement(childBlock)) {
           newChildElements.push(childBlock.element)
-        } else if (isComponentBlock(childBlock)) {
+        } else if (isComponent(childBlock)) {
           newChildElements.push(...childBlock.getChildElements())
         }
         newBlocks.push(childBlock)
@@ -144,13 +151,13 @@ export class ElementBlock {
       const { index: currentIndex } = context.get()!
       const newChildBlock = getBlock()
       const newChildElements: HTMLElement[] = []
-      const oldChildElementSize = (this.#children[currentIndex] as AnyBlock[])
+      const oldChildElementSize = (this.#children[currentIndex] as Block[])
         .length
       if (newChildBlock) {
         newChildBlock.parent = this
-        if (isElementBlock(newChildBlock)) {
+        if (isElement(newChildBlock)) {
           newChildElements.push(newChildBlock.element)
-        } else if (isComponentBlock(newChildBlock)) {
+        } else if (isComponent(newChildBlock)) {
           newChildElements.push(...newChildBlock.getChildElements())
         }
         this.#children[currentIndex] = [newChildBlock]
@@ -175,13 +182,13 @@ export class ElementBlock {
       const { index: currentIndex } = context.get()!
       const newChildBlock = getBlock()
       const newChildElements: HTMLElement[] = []
-      const oldChildElementSize = (this.#children[currentIndex] as AnyBlock[])
+      const oldChildElementSize = (this.#children[currentIndex] as Block[])
         .length
       if (newChildBlock) {
         newChildBlock.parent = this
-        if (isElementBlock(newChildBlock)) {
+        if (isElement(newChildBlock)) {
           newChildElements.push(newChildBlock.element)
-        } else if (isComponentBlock(newChildBlock)) {
+        } else if (isComponent(newChildBlock)) {
           newChildElements.push(...newChildBlock.getChildElements())
         }
         this.#children[currentIndex] = [newChildBlock]
@@ -215,17 +222,15 @@ export class ElementBlock {
   }
 
   onCommit() {
-    this.traverseChildrenUntilComponent((childComponentBlock) => {
-      childComponentBlock.traverseShortcutChildComponents(
-        (childComponentBlock) => {
-          childComponentBlock.onMount()
-        },
-      )
+    this.traverseChildrenUntilComponent((childComponent) => {
+      childComponent.traverseShortcutChildComponents((childComponent) => {
+        childComponent.onMount()
+      })
     })
   }
 
-  deleteChild(child: AnyBlock) {
-    const newChildren: (AnyBlock | AnyBlock[])[] = []
+  deleteChild(child: Block) {
+    const newChildren: (Block | Block[])[] = []
     this.#children.forEach((children) => {
       if (Array.isArray(children)) {
         newChildren.push(children.filter((c) => c !== child))
@@ -236,9 +241,9 @@ export class ElementBlock {
       }
     })
     this.#children = newChildren
-    if (isElementBlock(child)) {
+    if (isElement(child)) {
       child.element.remove()
-    } else if (isComponentBlock(child)) {
+    } else if (isComponent(child)) {
       child.getChildElements().forEach((element) => {
         element.remove()
       })
@@ -257,10 +262,7 @@ export class ElementBlock {
     })
   }
 
-  traverseChildren(
-    callback: (child: AnyBlock) => void,
-    block: AnyBlock = this,
-  ) {
+  traverseChildren(callback: (child: Block) => void, block: Block = this) {
     if (this.#children.length === 0) {
       callback(block)
       return
@@ -271,23 +273,32 @@ export class ElementBlock {
     callback(block)
   }
 
-  traverseChildrenUntilComponent(callback: (child: ComponentBlock) => void) {
+  traverseChildrenUntilComponent(callback: (child: Component) => void) {
     if (this.#children.length === 0) {
       return
     }
     this.#children.flat().forEach((child) => {
-      if (isComponentBlock(child)) {
+      if (isComponent(child)) {
         callback(child)
         return
       }
       child.traverseChildrenUntilComponent(callback)
     })
   }
+
+  static isElement(value: unknown): value is Element {
+    if (!value) {
+      return false
+    }
+
+    return value instanceof Element
+  }
 }
 
-export const isElementBlock = (value: unknown): value is ElementBlock => {
+export const isElement = (value: unknown): value is Element => {
   if (!value) {
     return false
   }
-  return value instanceof ElementBlock
+
+  return value instanceof Element
 }

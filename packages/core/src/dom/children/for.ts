@@ -1,12 +1,12 @@
 import { componentContext } from '@context/executionContext.ts'
-import { AnyBlock } from '@dom/type.ts'
+import { Block } from '@dom/type.ts'
 import { GetState, isGetState } from '@hook/useState.ts'
 import { isFunction } from '@type/guard.ts'
 import { Context } from '@util/context.ts'
 import { IndexedMap } from '@util/indexedMap.ts'
 
 export type ForRender = () => {
-  getBlock: () => AnyBlock[]
+  getBlock: () => Block[]
   context: Context<ForContext>
 }
 
@@ -16,9 +16,9 @@ interface ForContext {
 
 export const For = <Item>(
   items: Item[] | GetState<Item[]>,
-  render: (item: Item, index: number) => AnyBlock,
+  render: (item: Item, index: number) => Block,
 ) => {
-  const itemsMap = new IndexedMap<Item, AnyBlock>()
+  const itemsMap = new IndexedMap<Item, Block>()
   const context = new Context<ForContext>()
   const thisComponent = componentContext.get()!
 

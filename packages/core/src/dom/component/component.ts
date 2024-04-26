@@ -1,6 +1,6 @@
-import { ComponentBlock } from '@component/componentBlock.ts'
+import { Component } from '@component/componentBlock.ts'
 import { componentContext } from '@context/executionContext.ts'
-import { ElementBlock } from '@element/elementBlock.ts'
+import { Element } from '@element/elementBlock.ts'
 import { ChildrenRender } from '@hook/children.ts'
 import { OutletRender } from '@router/hook/outlet.ts'
 
@@ -11,19 +11,19 @@ export interface ReceivableProps {
 }
 
 export interface ProvideProps {
-  caller: ComponentBlock
+  caller: Component
 }
 
 type ComponentFunction<Props> = (
   props: Props & ReceivableProps,
   context: ProvideProps,
-) => ElementBlock | ComponentBlock
+) => Element | Component
 
 export const component = <Props>(render: ComponentFunction<Props>) => {
   return function componentRender(props?: Props & ReceivableProps) {
     const { key, children, outlet, ...restProps } = props ?? {}
-    const componentBlock = new ComponentBlock()
-    let previousComponent: ComponentBlock | null = null
+    const componentBlock = new Component()
+    let previousComponent: Component | null = null
 
     componentBlock.key = key ?? null
     componentBlock.outletRender = outlet ?? null

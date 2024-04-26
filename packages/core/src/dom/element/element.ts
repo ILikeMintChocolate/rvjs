@@ -1,4 +1,4 @@
-import { ElementBlock } from '@element/elementBlock.ts'
+import { Element } from '@element/elementBlock.ts'
 import { CustomProperties, setProperty } from '@element/property.ts'
 import { AddTypeToValues } from '@type/util.ts'
 
@@ -15,7 +15,7 @@ const createElement = <TagName extends keyof HTMLElementTagNameMap>(
   tagName: TagName,
   attributes: Attributes<TagName> = {},
 ) => {
-  const elementBlock = new ElementBlock({
+  const elementBlock = new Element({
     element: document.createElement(tagName),
   })
 
@@ -25,6 +25,11 @@ const createElement = <TagName extends keyof HTMLElementTagNameMap>(
 
   return elementBlock
 }
+
+export const element = <TagName extends keyof HTMLElementTagNameMap>(
+  tagName: TagName,
+  properties?: Attributes<TagName>,
+) => createElement(tagName, properties)
 
 export const a = (properties?: Attributes<'a'>) =>
   createElement('a', properties)
