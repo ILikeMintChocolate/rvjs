@@ -30,7 +30,8 @@
     "typescript": "^5.2.2",
     "vite": "^5.2.0"
   },
-  "dependencies": {
-    "@rvjs/core": "^0.1.5"
+  "peerDependencies": {
+    "@rvjs/core": "^0.1.5",
+    "@types/node": "^20.11.26"
   }
 }
