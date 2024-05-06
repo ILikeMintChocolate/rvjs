@@ -29,11 +29,11 @@ export const Toggle = (
 
     if (!newValue) {
       currentValue = newValue
-      currentBlock?.destroy()
+      currentBlock?.triggerDestroy()
       currentBlock = null
     } else if (newValue !== currentValue) {
       currentValue = newValue
-      currentBlock?.destroy()
+      currentBlock?.triggerDestroy()
       componentContext.set(thisComponent)
       currentBlock = render(newValue)
       componentContext.set(null)

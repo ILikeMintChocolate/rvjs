@@ -29,7 +29,7 @@ export const Switch = <Value>(
 
     if (newValue !== currentValue) {
       currentValue = newValue
-      currentBlock?.destroy()
+      currentBlock?.triggerDestroy()
       componentContext.set(thisComponent)
       currentBlock = render(newValue)
       componentContext.set(null)
