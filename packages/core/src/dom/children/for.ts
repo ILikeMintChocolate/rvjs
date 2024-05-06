@@ -41,7 +41,7 @@ export const For = <Item>(
     if (deletable.size) {
       deletable.forEach((key) => {
         const block = itemsMap.getItemByKey(key)?.value
-        block?.destroy()
+        block?.triggerDestroy()
         itemsMap.deleteByKey(key)
       })
     }

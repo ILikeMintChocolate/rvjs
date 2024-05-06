@@ -1,7 +1,7 @@
 import { isForRender } from '@children/for.ts'
 import { isSwitchRender } from '@children/switch.ts'
 import { isToggleRender, ToggleRender } from '@children/toggle.ts'
-import { Component, isComponent } from '@component/componentBlock.ts'
+import { isComponent } from '@component/componentBlock.ts'
 import { subscribeStateContext } from '@context/executionContext.ts'
 import { Block, Children, Render } from '@dom/type.ts'
 import { isArray } from '@type/guard.ts'
@@ -52,7 +52,7 @@ export class Element {
 
   appendChildren(children: Children) {
     const elements = this.#renderChildren(children)
-    this.#commitChildren(elements)
+    this.#updateDOM(elements)
   }
 
   #renderChildren(children: Children) {
@@ -68,7 +68,7 @@ export class Element {
         if (isElement(child)) {
           elements.push(child.element)
         } else if (isComponent(child)) {
-          elements.push(child.getChildElements())
+          elements.push(child.childElement)
         }
       } else {
         const childBlocks = this.#diffingChildren(child, elements.length)
@@ -82,7 +82,7 @@ export class Element {
           if (isElement(childBlock)) {
             tempElements.push(childBlock.element)
           } else if (isComponent(childBlock)) {
-            tempElements.push(...childBlock.getChildElements())
+            tempElements.push(childBlock.childElement)
           }
         })
         elements.push(tempElements)
@@ -98,9 +98,9 @@ export class Element {
       property: 'childrenRender',
       value: () => {
         const { blocks, elements } = this.#diffingDynamicChildren(childrenFn)
-        this.#commitChildren(elements)
+        this.#updateDOM(elements)
         blocks.forEach((block) => {
-          block.onCommit()
+          block.triggerCommit()
         })
       },
     })
@@ -131,7 +131,7 @@ export class Element {
         if (isElement(childBlock)) {
           newChildElements.push(childBlock.element)
         } else if (isComponent(childBlock)) {
-          newChildElements.push(...childBlock.getChildElements())
+          newChildElements.push(childBlock.childElement)
         }
         newBlocks.push(childBlock)
       })
@@ -158,7 +158,7 @@ export class Element {
         if (isElement(newChildBlock)) {
           newChildElements.push(newChildBlock.element)
         } else if (isComponent(newChildBlock)) {
-          newChildElements.push(...newChildBlock.getChildElements())
+          newChildElements.push(newChildBlock.childElement)
         }
         this.#children[currentIndex] = [newChildBlock]
       } else {
@@ -189,7 +189,7 @@ export class Element {
         if (isElement(newChildBlock)) {
           newChildElements.push(newChildBlock.element)
         } else if (isComponent(newChildBlock)) {
-          newChildElements.push(...newChildBlock.getChildElements())
+          newChildElements.push(newChildBlock.childElement)
         }
         this.#children[currentIndex] = [newChildBlock]
       } else {
@@ -213,20 +213,12 @@ export class Element {
     return { blocks: newBlocks, elements }
   }
 
-  #commitChildren(elements: (HTMLElement | HTMLElement[])[]) {
+  #updateDOM(elements: (HTMLElement | HTMLElement[])[]) {
     this.#element.replaceChildren(...elements.flat())
   }
 
   appendStateUnsubscribeHandler(unsubscribeHandler: Observer['unsubscribe']) {
     this.#stateUnsubscribeHandlers.push(unsubscribeHandler)
-  }
-
-  onCommit() {
-    this.traverseChildrenUntilComponent((childComponent) => {
-      childComponent.traverseShortcutChildComponents((childComponent) => {
-        childComponent.onMount()
-      })
-    })
   }
 
   deleteChild(child: Block) {
@@ -244,54 +236,51 @@ export class Element {
     if (isElement(child)) {
       child.element.remove()
     } else if (isComponent(child)) {
-      child.getChildElements().forEach((element) => {
-        element.remove()
-      })
+      child.childElement.remove()
     }
   }
 
-  destroy() {
-    this.traverseChildren((child) => {
-      child.cleanUp()
+  #commit() {
+    this.traverseChildren(this, (child) => {
+      if (isComponent(child)) {
+        child.triggerOnMount()
+      }
     })
   }
 
-  cleanUp() {
+  #cleanUp() {
     this.#stateUnsubscribeHandlers.forEach((unsubscribeHandler) => {
       unsubscribeHandler(this)
     })
   }
 
-  traverseChildren(callback: (child: Block) => void, block: Block = this) {
-    if (this.#children.length === 0) {
-      callback(block)
-      return
-    }
-    this.#children.flat().forEach((child) => {
-      child.traverseChildren(callback, child)
+  #destroy() {
+    this.traverseChildren(this, (child) => {
+      child.triggerCleanUp()
     })
+  }
+
+  triggerCommit() {
+    this.#commit()
+  }
+
+  triggerDestroy() {
+    this.#destroy()
+  }
+
+  triggerCleanUp() {
+    this.#cleanUp()
+  }
+
+  traverseChildren(block: Block, callback: (child: Block) => void) {
     callback(block)
-  }
-
-  traverseChildrenUntilComponent(callback: (child: Component) => void) {
-    if (this.#children.length === 0) {
-      return
+    if (isComponent(block)) {
+      block.child.traverseChildren(block.child, callback)
+    } else if (isElement(block)) {
+      block.children.flat().forEach((child) => {
+        child.traverseChildren(child, callback)
+      })
     }
-    this.#children.flat().forEach((child) => {
-      if (isComponent(child)) {
-        callback(child)
-        return
-      }
-      child.traverseChildrenUntilComponent(callback)
-    })
-  }
-
-  static isElement(value: unknown): value is Element {
-    if (!value) {
-      return false
-    }
-
-    return value instanceof Element
   }
 }
 

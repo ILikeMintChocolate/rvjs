@@ -29,9 +29,6 @@ export const component = <Props>(render: ComponentFunction<Props>) => {
     componentBlock.outletRender = outlet ?? null
 
     if (componentContext.has()) {
-      const parentComponent = componentContext.get()!
-      componentBlock.shortcutParentComponent = parentComponent
-      parentComponent.appendShortcutChildComponent(componentBlock)
       previousComponent = componentContext.get()
     }
 
@@ -46,7 +43,7 @@ export const component = <Props>(render: ComponentFunction<Props>) => {
       } as ProvideProps,
     )
 
-    componentBlock.pushChildren(renderedChild)
+    componentBlock.child = renderedChild
     renderedChild.parent = componentBlock
     componentContext.set(previousComponent)
 
