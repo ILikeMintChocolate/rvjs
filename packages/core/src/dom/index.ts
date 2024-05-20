@@ -7,5 +7,4 @@ export * from '@element/element'
 export type { ExtendedHTMLElement } from '@element/property'
 export { Component } from '@component/componentBlock.ts'
 export { Element } from '@element/elementBlock.ts'
-
 export * from '@dom/type.ts'
