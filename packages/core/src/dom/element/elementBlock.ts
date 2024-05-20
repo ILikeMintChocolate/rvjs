@@ -245,6 +245,8 @@ export class Element {
       if (isComponent(child)) {
         child.triggerOnMount()
       }
+
+      return true
     })
   }
 
@@ -257,6 +259,8 @@ export class Element {
   #destroy() {
     this.traverseChildren(this, (child) => {
       child.triggerCleanUp()
+
+      return true
     })
   }
 
@@ -272,14 +276,32 @@ export class Element {
     this.#cleanUp()
   }
 
-  traverseChildren(block: Block, callback: (child: Block) => void) {
-    callback(block)
+  traverseChildren(block: Block, callback: (child: Block) => boolean) {
+    const isContinue = callback(block)
+
+    if (!isContinue) {
+      return
+    }
     if (isComponent(block)) {
       block.child.traverseChildren(block.child, callback)
     } else if (isElement(block)) {
       block.children.flat().forEach((child) => {
         child.traverseChildren(child, callback)
       })
+    }
+  }
+
+  traverseParent(block: Block, callback: (parent: Block) => boolean) {
+    const parent = block.parent
+    if (!parent) {
+      return
+    }
+    const isContinue = callback(parent)
+    if (!isContinue) {
+      return
+    }
+    while (parent) {
+      parent.traverseParent(parent, callback)
     }
   }
 }
