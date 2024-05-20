@@ -5,7 +5,7 @@ export type Dynamic<Result = unknown> = () => () => Result
 export const dynamic = <Result>(resultFn: () => Result) => {
   return function dynamicRender() {
     return resultFn()
-  } as Dynamic
+  } as Dynamic<Result>
 }
 
 export const isDynamic = (value: unknown): value is Dynamic => {
