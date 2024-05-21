@@ -18,3 +18,7 @@ export const findFlatIndex = (array: any[], index: number): number => {
   }
   return flatIndex
 }
+
+export const popAllIndex = <Value>(array: Value[], index: number) => {
+  return array.slice(0, index)
+}
