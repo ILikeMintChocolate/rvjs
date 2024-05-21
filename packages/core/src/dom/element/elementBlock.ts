@@ -214,7 +214,25 @@ export class Element {
   }
 
   #updateDOM(elements: (HTMLElement | HTMLElement[])[]) {
-    this.#element.replaceChildren(...elements.flat())
+    const existElementsSet = new Set<HTMLElement>()
+
+    for (const child of this.#element.children) {
+      existElementsSet.add(child as HTMLElement)
+    }
+
+    for (const newElement of elements.flat()) {
+      const existElement = existElementsSet.has(newElement)
+
+      if (existElement) {
+        existElementsSet.delete(newElement)
+      } else {
+        this.#element.appendChild(newElement)
+      }
+    }
+
+    existElementsSet.forEach((element) => {
+      this.#element.removeChild(element)
+    })
   }
 
   appendStateUnsubscribeHandler(unsubscribeHandler: Observer['unsubscribe']) {
