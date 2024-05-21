@@ -43,7 +43,7 @@ const createSvgElement = (
 
   Object.entries(attributes).forEach(([key, value]) => {
     if (key === 'className') {
-      svgElement.classList.add(value as string)
+      elementBlock.element.classList.add(value as string)
     } else {
       setProperty(elementBlock, key, value)
     }
