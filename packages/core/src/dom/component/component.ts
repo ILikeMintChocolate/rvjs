@@ -1,13 +1,13 @@
 import { Component } from '@component/componentBlock.ts'
 import { componentContext } from '@context/executionContext.ts'
+import { Child } from '@dom/type.ts'
 import { Element } from '@element/elementBlock.ts'
 import { ChildrenRender } from '@hook/children.ts'
-import { OutletRender } from '@router/hook/outlet.ts'
 
 export interface ReceivableProps {
   children?: ChildrenRender
   key?: string
-  outlet?: OutletRender
+  outlet?: Child
 }
 
 export interface ProvideProps {
@@ -26,7 +26,6 @@ export const component = <Props>(render: ComponentFunction<Props>) => {
     let previousComponent: Component | null = null
 
     componentBlock.key = key ?? null
-    componentBlock.outletRender = outlet ?? null
 
     if (componentContext.has()) {
       previousComponent = componentContext.get()
@@ -36,6 +35,7 @@ export const component = <Props>(render: ComponentFunction<Props>) => {
     const renderedChild = render(
       {
         ...(children ? { children } : {}),
+        outlet,
         ...restProps,
       } as Props & Partial<ReceivableProps>,
       {
