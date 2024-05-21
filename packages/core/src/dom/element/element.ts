@@ -11,6 +11,10 @@ type Attributes<TagName extends keyof HTMLElementTagNameMap> = Partial<
   CustomProperties & AddTypeToValues<FilteredHTMLAttributes<TagName>, any>
 >
 
+type SvgAttributes = Partial<
+  CustomProperties & AddTypeToValues<SVGElement, any>
+>
+
 const createElement = <TagName extends keyof HTMLElementTagNameMap>(
   tagName: TagName,
   attributes: Attributes<TagName> = {},
@@ -23,6 +27,27 @@ const createElement = <TagName extends keyof HTMLElementTagNameMap>(
     setProperty(elementBlock, key, value)
   })
 
+  return elementBlock
+}
+
+const createSvgElement = (
+  svgElement: SVGElement,
+  attributes: SvgAttributes = {},
+) => {
+  const elementBlock = new Element({
+    element: document.createElement('div'),
+  })
+
+  // @ts-ignore
+  elementBlock.element = svgElement.cloneNode(true)
+
+  Object.entries(attributes).forEach(([key, value]) => {
+    if (key === 'className') {
+      svgElement.classList.add(value as string)
+    } else {
+      setProperty(elementBlock, key, value)
+    }
+  })
   return elementBlock
 }
 
@@ -221,6 +246,8 @@ export const summary = (properties?: Attributes<'summary'>) =>
   createElement('summary', properties)
 export const sup = (properties?: Attributes<'sup'>) =>
   createElement('sup', properties)
+export const svg = (element: SVGElement, properties?: SvgAttributes) =>
+  createSvgElement(element, properties)
 export const table = (properties?: Attributes<'table'>) =>
   createElement('table', properties)
 export const tbody = (properties?: Attributes<'tbody'>) =>
