@@ -62,12 +62,12 @@ const notifyWhenStateChange = (subscribers: StateObserver) => {
   subscribers.notify((block, values) => {
     Object.entries(values.domProperty).forEach(([property, value]) => {
       if (isElement(block)) {
-        setProperty(block, property as string, value)
+        setProperty(block, property as string, value())
       }
     })
     Object.entries(values.styleProperty).forEach(([property, value]) => {
       if (isElement(block)) {
-        setStyleProperty(block, property as string, value)
+        setStyleProperty(block, property as string, value())
       }
     })
     values.childrenRender.forEach((render) => {
