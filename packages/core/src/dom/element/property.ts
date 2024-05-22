@@ -3,6 +3,8 @@ import { Children } from '@dom/type.ts'
 import { Element } from '@element/elementBlock.ts'
 import { isDynamic } from '@hook/dynamic.ts'
 import { RefObject } from '@hook/useRef.ts'
+import { isString } from '@type/guard.ts'
+import { Reactive } from '@type/props.ts'
 import { AddTypeToValues } from '@type/util.ts'
 import { Properties } from 'csstype'
 
@@ -42,6 +44,7 @@ export interface CustomProperties {
   style: AddTypeToValues<Properties, any>
   animation: AnimationProps
   className: string
+  classes: Reactive<string>[]
 }
 
 interface AnimationProps {
@@ -81,6 +84,31 @@ const customProperties = {
   },
   className: (parent: Element, className: string) => {
     parent.element.className = className
+  },
+  classes: (parent: Element, classes: Reactive<string>[]) => {
+    classes.forEach((cls) => {
+      if (isDynamic(cls)) {
+        // @ts-ignore
+        const className: string = cls()
+        subscribeStateContext.set({
+          block: parent,
+          type: 'classesProperty',
+          property: 'classes',
+          value: {
+            classFn: cls,
+            removePrevClassFn: () => {
+              // @ts-ignore
+              parent.element.classList.remove(className)
+            },
+          },
+        })
+        // @ts-ignore
+        parent.element.classList.add(cls())
+        subscribeStateContext.set(null)
+      } else if (isString(cls)) {
+        parent.element.classList.add(cls)
+      }
+    })
   },
 }
 
