@@ -62,16 +62,30 @@ const notifyWhenStateChange = (subscribers: StateObserver) => {
   subscribers.notify((block, values) => {
     Object.entries(values.domProperty).forEach(([property, value]) => {
       if (isElement(block)) {
-        setProperty(block, property as string, value)
+        setProperty(block, property as string, value())
       }
     })
     Object.entries(values.styleProperty).forEach(([property, value]) => {
       if (isElement(block)) {
-        setStyleProperty(block, property as string, value)
+        setStyleProperty(block, property as string, value())
       }
     })
     values.childrenRender.forEach((render) => {
       render()
+    })
+    values.classesProperty.forEach((classes) => {
+      const { classFn, removePrevClassFn } = classes
+      const className = classFn()
+
+      removePrevClassFn()
+      if (isElement(block)) {
+        block.element.classList.add(className)
+      }
+      classes.removePrevClassFn = () => {
+        if (isElement(block)) {
+          block.element.classList.remove(className)
+        }
+      }
     })
     lazyUseEffectQueue.push(values.useEffect)
   })
@@ -89,6 +103,10 @@ interface StateObserverValue {
   childrenRender: Function[]
   domProperty: Record<string, Function>
   styleProperty: Record<string, Function>
+  classesProperty: {
+    classFn: Function
+    removePrevClassFn: Function
+  }[]
 }
 
 class StateObserver extends Observer<Block, StateObserverValue> {
@@ -98,12 +116,14 @@ class StateObserver extends Observer<Block, StateObserverValue> {
 
   subscribeState(stateContext: StateContext) {
     const { block, type, property, value } = stateContext
+
     if (!this.hasValueBySubscriber(block)) {
       super.createEmptyValue(block, {
         useEffect: [],
         childrenRender: [],
         domProperty: {},
         styleProperty: {},
+        classesProperty: [],
       } as StateObserverValue)
       if (isElement(block)) {
         block.appendStateUnsubscribeHandler(this.unsubscribe.bind(this))
@@ -111,6 +131,7 @@ class StateObserver extends Observer<Block, StateObserverValue> {
     }
     const subscriberValue = this.getValueBySubscriber(block)!
     if (isArray(subscriberValue[type])) {
+      // @ts-ignore
       subscriberValue[type].push(value)
     } else {
       // @ts-ignore
