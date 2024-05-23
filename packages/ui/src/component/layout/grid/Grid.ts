@@ -1,22 +1,22 @@
-import { boxSprinkles, BoxStyleProps } from '@layout/box/Box.css.ts'
+import { boxSprinkles } from '@layout/box/Box.css.ts'
+import { GridStyleProps } from '@layout/grid/Grid.css.ts'
 import { Children, element, ElementType } from '@rvjs/core/dom'
 import { mergeClass } from '@util/class.js'
 import { Properties } from 'csstype'
 
-interface BoxProps extends BoxStyleProps {
+interface BoxProps extends GridStyleProps {
   as?: ElementType
   children?: Children
   className?: string
   style?: Partial<Properties>
 }
 
-const Box = (props: BoxProps) => {
+const Grid = (props: BoxProps) => {
   const {
     as = 'div',
     children = [],
     className = '',
     style = {},
-    display,
     position,
     top,
     bottom,
@@ -33,12 +33,6 @@ const Box = (props: BoxProps) => {
     marginLeft,
     marginRight,
     zIndex,
-    alignItems,
-    justifyContent,
-    flexDirection,
-    flexWrap,
-    flexGrow,
-    flexShrink,
     gap,
     color,
     backgroundColor,
@@ -72,7 +66,7 @@ const Box = (props: BoxProps) => {
   return element(as, {
     className: mergeClass([
       boxSprinkles({
-        display,
+        display: 'grid',
         position,
         top,
         bottom,
@@ -89,12 +83,6 @@ const Box = (props: BoxProps) => {
         marginLeft,
         marginRight,
         zIndex,
-        alignItems,
-        justifyContent,
-        flexDirection,
-        flexWrap,
-        flexGrow,
-        flexShrink,
         gap,
         color,
         backgroundColor,
@@ -131,4 +119,4 @@ const Box = (props: BoxProps) => {
   })
 }
 
-export default Box
+export default Grid
