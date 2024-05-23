@@ -1,12 +1,12 @@
 import { boxSprinkles, BoxStyleProps } from '@layout/box/Box.css.ts'
 import { Children, element, ElementType } from '@rvjs/core/dom'
-import { mergeClass } from '@util/class.js'
+import { Reactive } from '@rvjs/core/reactive'
 import { Properties } from 'csstype'
 
 interface BoxProps extends BoxStyleProps {
   as?: ElementType
   children?: Children
-  className?: string
+  classes?: Reactive<string>[]
   style?: Partial<Properties>
 }
 
@@ -14,7 +14,7 @@ const Box = (props: BoxProps) => {
   const {
     as = 'div',
     children = [],
-    className = '',
+    classes = [],
     style = {},
     display,
     position,
@@ -70,7 +70,7 @@ const Box = (props: BoxProps) => {
   } = props
 
   return element(as, {
-    className: mergeClass([
+    classes: [
       boxSprinkles({
         display,
         position,
@@ -124,8 +124,8 @@ const Box = (props: BoxProps) => {
         py,
         bgColor,
       }),
-      className,
-    ]),
+      ...classes,
+    ],
     children,
     style,
   })

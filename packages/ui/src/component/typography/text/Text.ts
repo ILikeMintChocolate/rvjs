@@ -1,50 +1,37 @@
-import { element, ExtendedHTMLElement } from '@rvjs/core/dom'
-import { classifyProperty } from '@system/property/property.ts'
-import { StyleProperty } from '@system/property/styleProperty.ts'
-import { PickProps } from '@system/property/type.js'
-import { UtilProperty } from '@system/property/utilProperty.ts'
+import { element, ElementType } from '@rvjs/core/dom'
+import { Reactive } from '@rvjs/core/reactive'
 import {
-  FONT_SIZE_VARIANT,
-  FONT_WEIGHT_VARIANT,
-  LINE_HEIGHT_VARIANT,
-} from '@typography/text/variant.js'
+  textRecipe,
+  textSprinkles,
+  TextStyleProps,
+} from '@typography/text/Text.css.ts'
 
-type TextProps = CustomTextProps &
-  PickProps<
-    StyleProperty,
-    | 'color'
-    | 'bgColor'
-    | 'fontFamily'
-    | 'fs'
-    | 'fw'
-    | 'lh'
-    | 'textAlign'
-    | 'textDecoration'
-    | 'style'
-  > &
-  PickProps<UtilProperty, 'as'> &
-  Partial<Omit<ExtendedHTMLElement<'span'>, 'children' | 'style'>>
-
-interface CustomTextProps {
-  text: string
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'
-  weight?: 'light' | 'regular' | 'medium' | 'bold'
+interface TextProps extends TextStyleProps {
+  as?: ElementType
+  classes?: Reactive<string>[]
+  text: Reactive<string>
 }
 
 const Text = (props: TextProps) => {
-  const { as = 'span', text, size = 'md', weight = 'regular', ...rest } = props
-  const { styleProps, domProps, restProps } = classifyProperty(rest)
+  const {
+    as = 'p',
+    classes = [],
+    text,
+    kind = 'body-01',
+    color = 'textPrimary',
+  } = props
 
   return element(as, {
+    classes: [
+      textRecipe({
+        kind,
+      }),
+      textSprinkles({
+        color,
+      }),
+      ...classes,
+    ],
     textContent: text,
-    style: {
-      fontSize: FONT_SIZE_VARIANT[size],
-      lineHeight: LINE_HEIGHT_VARIANT[size],
-      fontWeight: FONT_WEIGHT_VARIANT[weight],
-      ...styleProps,
-    },
-    ...domProps,
-    ...restProps,
   })
 }
 
