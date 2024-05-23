@@ -1,75 +1,75 @@
-import { button, ExtendedHTMLElement } from '@rvjs/core/dom'
-import { ElementBlock } from '@rvjs/core/dom/element/elementBlock.js'
-import { classifyProperty } from '@system/property/property.ts'
-import { StyleProperty } from '@system/property/styleProperty.ts'
-import { PickProps } from '@system/property/type.js'
-import Text from '@typography/text/Text.js'
-import { mergeClass } from '@util/class.js'
-import buttonStyle from './Button.module.less'
+import { buttonRecipe, ButtonStyleProps } from '@form/button/Button.css.ts'
+import { element, ElementType } from '@rvjs/core/dom'
+import { isGetState, Reactive, useEffect, useRef } from '@rvjs/core/reactive'
 
-type ButtonProps = CustomButtonProps &
-  PickProps<
-    StyleProperty,
-    | 'w'
-    | 'h'
-    | 'minW'
-    | 'maxW'
-    | 'minH'
-    | 'maxH'
-    | 'color'
-    | 'bg'
-    | 'bgColor'
-    | 'style'
-  > &
-  Partial<Omit<ExtendedHTMLElement<'button'>, 'children' | 'style'>>
-
-interface CustomButtonProps {
+interface ButtonProps extends ButtonStyleProps {
+  as?: ElementType
+  classes?: Reactive<string>[]
+  disabled?: Reactive<boolean>
+  href?: Reactive<string>
+  onBlur?: GlobalEventHandlers['onblur']
+  onClick?: GlobalEventHandlers['onclick']
+  onFocus?: GlobalEventHandlers['onfocus']
+  onMouseEnter?: GlobalEventHandlers['onmouseenter']
+  onMouseLeave?: GlobalEventHandlers['onmouseleave']
+  role?: Reactive<string>
+  tabIndex?: Reactive<number>
   text: string
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'
-  variant?: 'solid' | 'outline' | 'ghost' | 'link'
-  leftIcon?: ElementBlock
-  rightIcon?: ElementBlock
-}
-
-const SIZE_STYLE_CLASS = {
-  xs: 'xs',
-  sm: 'sm',
-  md: 'md',
-  lg: 'lg',
-  xl: 'xl',
-  '2xl': 'twoXl',
+  type?: 'button' | 'reset' | 'submit'
 }
 
 const Button = (props: ButtonProps) => {
   const {
-    text,
+    as = 'button',
+    classes = [],
+    disabled = false,
+    href,
+    kind = 'primary',
+    onBlur,
+    onClick,
+    onFocus,
+    onMouseEnter,
+    onMouseLeave,
+    role,
     size = 'md',
-    variant = 'solid',
-    leftIcon,
-    rightIcon,
-    className = '',
-    ...rest
+    tabIndex,
+    text,
+    type,
+    ...restProps
   } = props
-  const { styleProps, domProps, restProps } = classifyProperty(rest)
+  const buttonRef = useRef<HTMLButtonElement>()
 
-  return button({
-    className: mergeClass([
-      buttonStyle.button,
-      buttonStyle[variant],
-      buttonStyle[SIZE_STYLE_CLASS[size]],
-      ...className,
-    ]),
-    style: styleProps,
-    children: [
-      leftIcon,
-      Text({
-        text,
+  useEffect(() => {
+    if (buttonRef.current) {
+      if (isGetState(disabled) && disabled()) {
+        buttonRef.current.setAttribute('disabled', 'disabled')
+      } else {
+        buttonRef.current.removeAttribute('disabled')
+      }
+    }
+  }, [disabled])
+
+  return element(as, {
+    ref: buttonRef,
+    classes: [
+      buttonRecipe({
         size,
-        weight: 'bold',
+        kind,
       }),
-      rightIcon,
+      ...classes,
     ],
-    ...domProps,
+    // @ts-ignore
+    href,
+    onblur: onBlur,
+    onclick: onClick,
+    onfocus: onFocus,
+    onmouseenter: onMouseEnter,
+    onmouseleave: onMouseLeave,
+    role,
+    tabIndex,
+    textContent: text,
+    // @ts-ignore
+    type,
     ...restProps,
   })
 }
