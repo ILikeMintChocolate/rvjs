@@ -1,13 +1,13 @@
 import { boxSprinkles } from '@layout/box/Box.css.ts'
 import { FlexStyleProps } from '@layout/flex/Flex.css.ts'
 import { Children, element, ElementType } from '@rvjs/core/dom'
-import { mergeClass } from '@util/class.js'
+import { Reactive } from '@rvjs/core/reactive'
 import { Properties } from 'csstype'
 
 interface FlexProps extends FlexStyleProps {
   as?: ElementType
   children?: Children
-  className?: string
+  classes?: Reactive<string>[]
   style?: Partial<Properties>
 }
 
@@ -15,7 +15,7 @@ const Flex = (props: FlexProps) => {
   const {
     as = 'div',
     children = [],
-    className = '',
+    classes = [],
     style = {},
     position,
     top,
@@ -74,7 +74,7 @@ const Flex = (props: FlexProps) => {
   } = props
 
   return element(as, {
-    className: mergeClass([
+    classes: [
       boxSprinkles({
         display: 'flex',
         position,
@@ -128,8 +128,8 @@ const Flex = (props: FlexProps) => {
         py,
         bgColor,
       }),
-      className,
-    ]),
+      ...classes,
+    ],
     children,
     style,
   })
