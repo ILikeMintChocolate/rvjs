@@ -1,17 +1,19 @@
+import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin'
 import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
-import svgr from 'vite-plugin-svgr'
+import importSvg from 'vite-plugin-import-svg'
 import tsconfigPaths from 'vite-tsconfig-paths'
 
 export default defineConfig({
   plugins: [
+    vanillaExtractPlugin(),
+    importSvg(),
     tsconfigPaths(),
     dts({
       insertTypesEntry: true,
       exclude: ['src/main.ts', 'src/example'],
     }),
-    svgr(),
   ],
   build: {
     minify: 'terser',
