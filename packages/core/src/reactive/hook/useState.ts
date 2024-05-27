@@ -75,15 +75,19 @@ const notifyWhenStateChange = (subscribers: StateObserver) => {
     })
     values.classesProperty.forEach((classes) => {
       const { classFn, removePrevClassFn } = classes
-      const className = classFn()
+      const className = classFn() as string
 
       removePrevClassFn()
       if (isElement(block)) {
-        block.element.classList.add(className)
+        className.split(' ').forEach((classString) => {
+          block.element.classList.add(classString)
+        })
       }
       classes.removePrevClassFn = () => {
         if (isElement(block)) {
-          block.element.classList.remove(className)
+          className.split(' ').forEach((classString) => {
+            block.element.classList.remove(classString)
+          })
         }
       }
     })
