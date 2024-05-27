@@ -5,7 +5,7 @@ import { isComponent } from '@component/componentBlock.ts'
 import { subscribeStateContext } from '@context/executionContext.ts'
 import { Block, Children, Render } from '@dom/type.ts'
 import { isArray } from '@type/guard.ts'
-import { findFlatIndex, swapSomeParts } from '@util/array.ts'
+import { insertChildrenAtIndex } from '@util/dom.ts'
 import { Observer } from '@util/observer.ts'
 import { RVJS_ELEMENT } from '@util/symbol.ts'
 
@@ -97,8 +97,9 @@ export class Element {
       type: 'childrenRender',
       property: 'childrenRender',
       value: () => {
-        const { blocks, elements } = this.#diffingDynamicChildren(childrenFn)
-        this.#updateDOM(elements)
+        const { blocks, elements, index, size } =
+          this.#diffingDynamicChildren(childrenFn)!
+        this.#updateDOM(elements, index, size)
         blocks.forEach((block) => {
           block.triggerCommit()
         })
@@ -114,7 +115,6 @@ export class Element {
 
   #diffingDynamicChildren(childrenFn: Render) {
     const newBlocks: Block[] = []
-    const elements: (HTMLElement | HTMLElement[])[] = []
 
     if (isForRender(childrenFn)) {
       const { getBlock, context } = childrenFn()
@@ -136,16 +136,13 @@ export class Element {
         newBlocks.push(childBlock)
       })
       this.#children[currentIndex] = newChildBlocks
-      const currentChildren = Array.from(
-        this.#element.children,
-      ) as HTMLElement[]
-      const swappedChildElements = swapSomeParts<HTMLElement>(
-        currentChildren,
-        findFlatIndex(this.#children, currentIndex),
-        oldChildElementSize,
-        newChildElements,
-      )
-      elements.push(...swappedChildElements)
+
+      return {
+        blocks: newBlocks,
+        elements: newChildElements,
+        index: currentIndex,
+        size: oldChildElementSize,
+      }
     } else if (isSwitchRender(childrenFn)) {
       const { getBlock, context } = childrenFn()
       const { index: currentIndex } = context.get()!
@@ -164,19 +161,16 @@ export class Element {
       } else {
         this.#children[currentIndex] = []
       }
-      const currentChildren = Array.from(
-        this.#element.children,
-      ) as HTMLElement[]
-      const swappedChildElements = swapSomeParts<HTMLElement>(
-        currentChildren,
-        findFlatIndex(this.#children, currentIndex),
-        oldChildElementSize,
-        newChildElements,
-      )
       if (newChildBlock) {
         newBlocks.push(newChildBlock)
       }
-      elements.push(...swappedChildElements)
+
+      return {
+        blocks: newBlocks,
+        elements: newChildElements,
+        index: currentIndex,
+        size: oldChildElementSize,
+      }
     } else if (isToggleRender(childrenFn)) {
       const { getBlock, context } = (childrenFn as ToggleRender)()
       const { index: currentIndex } = context.get()!
@@ -195,44 +189,36 @@ export class Element {
       } else {
         this.#children[currentIndex] = []
       }
-      const currentChildren = Array.from(
-        this.#element.children,
-      ) as HTMLElement[]
-      const swappedChildElements = swapSomeParts<HTMLElement>(
-        currentChildren,
-        findFlatIndex(this.#children, currentIndex),
-        oldChildElementSize,
-        newChildElements,
-      )
       if (newChildBlock) {
         newBlocks.push(newChildBlock)
       }
-      elements.push(...swappedChildElements)
-    }
 
-    return { blocks: newBlocks, elements }
-  }
-
-  #updateDOM(elements: (HTMLElement | HTMLElement[])[]) {
-    const existElementsSet = new Set<HTMLElement>()
-
-    for (const child of this.#element.children) {
-      existElementsSet.add(child as HTMLElement)
-    }
-
-    for (const newElement of elements.flat()) {
-      const existElement = existElementsSet.has(newElement)
-
-      if (existElement) {
-        existElementsSet.delete(newElement)
-      } else {
-        this.#element.appendChild(newElement)
+      return {
+        blocks: newBlocks,
+        elements: newChildElements,
+        index: currentIndex,
+        size: oldChildElementSize,
       }
     }
+  }
 
-    existElementsSet.forEach((element) => {
-      this.#element.removeChild(element)
-    })
+  #updateDOM(
+    newElements: (HTMLElement | HTMLElement[])[],
+    index?: number,
+    size?: number,
+  ) {
+    if (index === undefined && size === undefined) {
+      this.#element.replaceChildren(...newElements.flat())
+    } else {
+      const removeElements = [...this.#element.children].slice(
+        index,
+        index! + size!,
+      )
+      removeElements.forEach((element) => {
+        this.#element.removeChild(element)
+      })
+      insertChildrenAtIndex(this.#element, index!, newElements.flat())
+    }
   }
 
   appendStateUnsubscribeHandler(unsubscribeHandler: Observer['unsubscribe']) {
