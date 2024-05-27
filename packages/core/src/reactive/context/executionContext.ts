@@ -5,7 +5,12 @@ import { Context } from '@util/context.ts'
 
 export interface StateContext {
   block: Block
-  type: 'useEffect' | 'childrenRender' | 'domProperty' | 'styleProperty'
+  type:
+    | 'useEffect'
+    | 'childrenRender'
+    | 'domProperty'
+    | 'styleProperty'
+    | 'classesProperty'
   property: string
   value: Dynamic | any
 }
