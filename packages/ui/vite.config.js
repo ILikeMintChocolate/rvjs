@@ -85,6 +85,10 @@ export default defineConfig({
         find: '@component',
         replacement: resolve(__dirname, 'src/component'),
       },
+      {
+        find: '@icon',
+        replacement: resolve(__dirname, 'src/asset/icon'),
+      },
     ],
   },
 })

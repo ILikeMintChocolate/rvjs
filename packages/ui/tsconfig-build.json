@@ -64,6 +64,9 @@
       ],
       "@component/*": [
         "src/component/*"
+      ],
+      "@icon/*": [
+        "src/asset/icon/*"
       ]
     }
   },

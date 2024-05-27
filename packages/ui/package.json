@@ -15,6 +15,7 @@
     "build": "tsc --p ./tsconfig-build.json && vite build",
     "preview": "vite preview"
   },
+  "type": "module",
   "types": "dist/index.d.ts",
   "exports": {
     "./component": {
