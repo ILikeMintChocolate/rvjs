@@ -106,7 +106,9 @@ const customProperties = {
         parent.element.classList.add(cls())
         subscribeStateContext.set(null)
       } else if (isString(cls)) {
-        parent.element.classList.add(cls)
+        cls.split(' ').forEach((cls) => {
+          parent.element.classList.add(cls)
+        })
       }
     })
   },
