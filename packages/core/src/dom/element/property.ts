@@ -89,7 +89,7 @@ const customProperties = {
     classes.forEach((cls) => {
       if (isDynamic(cls)) {
         // @ts-ignore
-        const className: string = cls()
+        const clsString = cls() as string
         subscribeStateContext.set({
           block: parent,
           type: 'classesProperty',
@@ -98,12 +98,17 @@ const customProperties = {
             classFn: cls,
             removePrevClassFn: () => {
               // @ts-ignore
-              parent.element.classList.remove(className)
+              clsString.split(' ').forEach((classString) => {
+                parent.element.classList.remove(classString)
+              })
             },
           },
         })
         // @ts-ignore
-        parent.element.classList.add(cls())
+        const classesString = cls() as string
+        classesString.split(' ').forEach((classString) => {
+          parent.element.classList.add(classString)
+        })
         subscribeStateContext.set(null)
       } else if (isString(cls)) {
         cls.split(' ').forEach((cls) => {
