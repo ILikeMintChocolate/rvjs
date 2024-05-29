@@ -1,5 +1,5 @@
 import { element, ElementType } from '@rvjs/core/dom'
-import { Reactive } from '@rvjs/core/reactive'
+import { Reactive, useStatable } from '@rvjs/core/reactive'
 import {
   textRecipe,
   textSprinkles,
@@ -23,12 +23,18 @@ const Text = (props: TextProps) => {
 
   return element(as, {
     classes: [
-      textRecipe({
+      useStatable(
         kind,
-      }),
-      textSprinkles({
+        (kind) => textRecipe({ kind: kind() }),
+        (kind) => textRecipe({ kind }),
+      ),
+      useStatable(
         color,
-      }),
+        // @ts-ignore
+        (color) => textSprinkles({ color: color() }),
+        // @ts-ignore
+        (color) => textSprinkles({ color }),
+      ),
       ...classes,
     ],
     textContent: text,
