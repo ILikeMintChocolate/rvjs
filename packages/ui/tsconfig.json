@@ -3,8 +3,11 @@
   "compilerOptions": {
     "baseUrl": "src",
     "paths": {
-      "@rvjs/core/*": [
-        "../../core/dist/*"
+      "@rvjs/core/dom": [
+        "../../core/dist/dom"
+      ],
+      "@rvjs/core/reactive": [
+        "../../core/dist/reactive"
       ],
       "@util/*": [
         "util/*"
