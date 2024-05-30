@@ -6,7 +6,7 @@ interface LinkProps {
   a: Element
 }
 
-const Link = (props: LinkProps) => {
+export const link = (props: LinkProps) => {
   const { to, a } = props
   const aElement = a.element as HTMLAnchorElement
 
@@ -18,5 +18,3 @@ const Link = (props: LinkProps) => {
 
   return a
 }
-
-export default Link

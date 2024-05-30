@@ -32,11 +32,6 @@
       "import": "./dist/util/util.es.js",
       "require": "./dist/util/util.cjs.js",
       "types": "./dist/util/index.d.ts"
-    },
-    "./router": {
-      "import": "./dist/router/router.es.js",
-      "require": "./dist/router/router.cjs.js",
-      "types": "./dist/router/index.d.ts"
     }
   },
   "files": [
