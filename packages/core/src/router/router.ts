@@ -13,15 +13,13 @@ interface Router {
 }
 
 interface Route {
-  componentFn: ComponentFn
   router?: Router
+  componentFn: ComponentFn
 }
 
 interface RouteContext {
   outlet?: Child
 }
-
-export type ComponentFn = (context: RouteContext) => Component
 
 interface MatchedRoute {
   path: string
@@ -34,11 +32,13 @@ interface CachedRoute {
   setSwitchable: (newBlock: Block | null) => void
 }
 
+type ComponentFn = (context: RouteContext) => Component
+
 const ErrorComponent = component(() => {
   return h1({ textContent: '404' })
 })
 
-export const Router = (router: Router) => {
+const Router = (router: Router) => {
   let cachedRoutes: CachedRoute[] = []
 
   pathEvent.onPathChange((prePaths, newPaths) => {
@@ -158,3 +158,5 @@ export const Router = (router: Router) => {
 
   return cachedRoutes[0].switchable
 }
+
+export default Router
