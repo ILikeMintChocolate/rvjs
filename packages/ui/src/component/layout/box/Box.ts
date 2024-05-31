@@ -72,7 +72,7 @@ const Box = (props: BoxProps) => {
   return element(as, {
     classes: [
       boxSprinkles({
-        display,
+        display: 'block',
         position,
         top,
         bottom,
