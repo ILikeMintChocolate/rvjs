@@ -1,10 +1,10 @@
-import { Statable } from '@rvjs/core/reactive'
+import { Prop } from '@rvjs/core/reactive'
 import vars from '@theme/variable/vars.css.ts'
 import { recipe } from '@vanilla-extract/recipes'
 import { createSprinkles, defineProperties } from '@vanilla-extract/sprinkles'
 
 export interface TextStyleProps {
-  kind?: Statable<
+  kind?: Prop<
     | 'body-compact-01'
     | 'body-compact-02'
     | 'body-01'
@@ -27,10 +27,10 @@ export interface TextStyleProps {
     | 'heading-06'
     | 'heading-07'
   >
-  color?: Statable<keyof typeof vars.color>
+  color?: Prop<keyof typeof vars.color>
 }
 
-export const textRecipe = recipe({
+export const text_recipe = recipe({
   base: {
     fontFamily: vars.font.family,
   },

@@ -1,9 +1,10 @@
+import { Prop } from '@rvjs/core/reactive'
 import vars from '@theme/variable/vars.css.ts'
 import { recipe } from '@vanilla-extract/recipes'
 
 export interface ButtonStyleProps {
-  size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl'
-  kind?:
+  size?: Prop<'sm' | 'md' | 'lg' | 'xl' | '2xl'>
+  kind?: Prop<
     | 'primary'
     | 'secondary'
     | 'tertiary'
@@ -11,9 +12,10 @@ export interface ButtonStyleProps {
     | 'dangerPrimary'
     | 'dangerGhost'
     | 'dangerTertiary'
+  >
 }
 
-export const buttonRecipe = recipe({
+export const button_recipe = recipe({
   base: {
     width: 'fit-content',
     height: 'fit-content',

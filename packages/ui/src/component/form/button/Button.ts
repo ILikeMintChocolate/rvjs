@@ -1,40 +1,43 @@
-import { buttonRecipe, ButtonStyleProps } from '@form/button/Button.css.ts'
+import { button_recipe, ButtonStyleProps } from '@form/button/Button.css.ts'
 import { element, ElementType } from '@rvjs/core/dom'
-import { isGetState, Reactive, useEffect, useRef } from '@rvjs/core/reactive'
+import {
+  dynamic,
+  isGetState,
+  Prop,
+  prop,
+  useEffect,
+  useRef,
+} from '@rvjs/core/reactive'
 
 interface ButtonProps extends ButtonStyleProps {
+  text: Prop<string>
   as?: ElementType
-  classes?: Reactive<string>[]
-  disabled?: Reactive<boolean>
-  href?: Reactive<string>
+  classes?: Prop<string>[]
+  disabled?: Prop<boolean>
+  tabIndex?: Prop<number>
+  type?: Prop<'button' | 'reset' | 'submit'>
   onBlur?: GlobalEventHandlers['onblur']
   onClick?: GlobalEventHandlers['onclick']
   onFocus?: GlobalEventHandlers['onfocus']
   onMouseEnter?: GlobalEventHandlers['onmouseenter']
   onMouseLeave?: GlobalEventHandlers['onmouseleave']
-  role?: Reactive<string>
-  tabIndex?: Reactive<number>
-  text: string
-  type?: 'button' | 'reset' | 'submit'
 }
 
 const Button = (props: ButtonProps) => {
   const {
+    text,
     as = 'button',
     classes = [],
-    disabled = false,
-    href,
-    kind = 'primary',
+    disabled = prop(() => false),
+    kind = prop(() => 'primary'),
+    size = prop(() => 'md'),
+    tabIndex = prop(() => 0),
+    type = prop(() => 'button'),
     onBlur,
     onClick,
     onFocus,
     onMouseEnter,
     onMouseLeave,
-    role,
-    size = 'md',
-    tabIndex,
-    text,
-    type,
     ...restProps
   } = props
   const buttonRef = useRef<HTMLButtonElement>()
@@ -52,22 +55,21 @@ const Button = (props: ButtonProps) => {
   return element(as, {
     ref: buttonRef,
     classes: [
-      buttonRecipe({
-        size,
-        kind,
-      }),
-      ...classes,
+      dynamic(() =>
+        button_recipe({
+          size: size(),
+          kind: kind(),
+        }),
+      ),
+      ...classes.map((cls) => dynamic(() => cls())),
     ],
-    // @ts-ignore
-    href,
     onblur: onBlur,
     onclick: onClick,
     onfocus: onFocus,
     onmouseenter: onMouseEnter,
     onmouseleave: onMouseLeave,
-    role,
     tabIndex,
-    textContent: text,
+    textContent: dynamic(() => text()),
     // @ts-ignore
     type,
     ...restProps,
