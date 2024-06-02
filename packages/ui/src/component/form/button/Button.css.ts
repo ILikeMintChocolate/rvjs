@@ -21,7 +21,7 @@ export const button_recipe = recipe({
     height: 'fit-content',
     boxSizing: 'border-box',
     border: '1px solid transparent',
-    transition: 'all 0.1s ease-in-out',
+    transition: `all ${vars.motion.productive}`,
     cursor: 'pointer',
     display: 'flex',
   },
