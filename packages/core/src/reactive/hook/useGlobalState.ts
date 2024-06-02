@@ -3,7 +3,7 @@ import { GetState, SetState, useState } from '@hook/useState.ts'
 
 const stateStore = new Map()
 
-const useGlobalState = <State>(
+export const useGlobalState = <State>(
   key: string,
   initialState: State,
 ): [GetState<State>, SetState<State>] => {
@@ -36,5 +36,3 @@ const useGlobalState = <State>(
 
   return [getState, setState]
 }
-
-export default useGlobalState
