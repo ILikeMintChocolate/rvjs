@@ -19,7 +19,7 @@ export class Element {
   #element: HTMLElement
   #children: (Block | Block[])[]
   #parent: Block | null
-  #stateUnsubscribeHandlers: Observer['unsubscribe'][]
+  #unsubscribeStateHandlers: Observer['unsubscribe'][]
 
   constructor(props: ElementProps) {
     const { element } = props
@@ -27,7 +27,7 @@ export class Element {
     this.#element = element
     this.#children = []
     this.#parent = null
-    this.#stateUnsubscribeHandlers = []
+    this.#unsubscribeStateHandlers = []
   }
 
   get element() {
@@ -222,7 +222,7 @@ export class Element {
   }
 
   appendStateUnsubscribeHandler(unsubscribeHandler: Observer['unsubscribe']) {
-    this.#stateUnsubscribeHandlers.push(unsubscribeHandler)
+    this.#unsubscribeStateHandlers.push(unsubscribeHandler)
   }
 
   deleteChild(child: Block) {
@@ -255,7 +255,7 @@ export class Element {
   }
 
   #cleanUp() {
-    this.#stateUnsubscribeHandlers.forEach((unsubscribeHandler) => {
+    this.#unsubscribeStateHandlers.forEach((unsubscribeHandler) => {
       unsubscribeHandler(this)
     })
   }

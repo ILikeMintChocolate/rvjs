@@ -11,8 +11,8 @@ export class Component {
   #handlers: {
     onMount: Function | null
     onDestroy: Function | null
-    cleanUps: Function[]
   }
+  #unsubscribeGlobalStateHandlers: Function[]
   #contextProvider: Object | null
   #outletRender: Function | null
   #onOutletChangeHandler: Function | null
@@ -25,8 +25,8 @@ export class Component {
     this.#handlers = {
       onMount: null,
       onDestroy: null,
-      cleanUps: [],
     }
+    this.#unsubscribeGlobalStateHandlers = []
     this.#contextProvider = null
     this.#outletRender = null
     this.#onOutletChangeHandler = null
@@ -104,8 +104,8 @@ export class Component {
     this.#onOutletChangeHandler = value
   }
 
-  addCleanUpHandler(handler: Function) {
-    this.#handlers.cleanUps.push(handler)
+  addUnsubscribeGlobalStateHandler(handler: Function) {
+    this.#unsubscribeGlobalStateHandlers.push(handler)
   }
 
   #commit() {
@@ -128,7 +128,7 @@ export class Component {
     if (this.#handlers.onDestroy) {
       this.#handlers.onDestroy()
     }
-    this.#handlers.cleanUps.forEach((handler) => {
+    this.#unsubscribeGlobalStateHandlers.forEach((handler) => {
       handler(this)
     })
   }
