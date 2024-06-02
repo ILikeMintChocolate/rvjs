@@ -9,6 +9,9 @@
       "@rvjs/core/reactive": [
         "../../core/dist/reactive"
       ],
+      "@rvjs/core/router": [
+        "../../core/dist/router"
+      ],
       "@util/*": [
         "util/*"
       ],
@@ -44,7 +47,10 @@
       ],
       "@icon/*": [
         "asset/icon/*"
-      ]
+      ],
+      "@shell/*": [
+        "component/shell/*"
+      ],
     }
   },
   "include": [

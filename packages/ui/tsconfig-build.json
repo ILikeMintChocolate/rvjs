@@ -67,6 +67,9 @@
       ],
       "@icon/*": [
         "src/asset/icon/*"
+      ],
+      "@shell/*": [
+        "src/component/shell/*"
       ]
     }
   },

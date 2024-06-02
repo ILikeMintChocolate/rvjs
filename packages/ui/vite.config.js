@@ -74,6 +74,10 @@ export default defineConfig({
         replacement: resolve(__dirname, 'src/component/form'),
       },
       {
+        find: '@shell',
+        replacement: resolve(__dirname, 'src/component/shell'),
+      },
+      {
         find: '@style',
         replacement: resolve(__dirname, 'src/style'),
       },
