@@ -54,7 +54,9 @@ interface AnimationProps {
 
 const customProperties = {
   ref: (parent: Element, refObject: RefObject<HTMLElement>) => {
-    refObject.current = parent.element
+    if (refObject !== undefined) {
+      refObject.current = parent.element
+    }
   },
   children: (parent: Element, children: Children) => {
     parent.appendChildren(children)

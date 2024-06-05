@@ -2,10 +2,8 @@ import { Component } from '@component/componentBlock.ts'
 import { componentContext } from '@context/executionContext.ts'
 import { Child } from '@dom/type.ts'
 import { Element } from '@element/elementBlock.ts'
-import { ChildrenRender } from '@hook/children.ts'
 
 export interface ReceivableProps {
-  children?: ChildrenRender
   key?: string
   outlet?: Child
 }
@@ -21,7 +19,7 @@ type ComponentFunction<Props> = (
 
 export const component = <Props>(render: ComponentFunction<Props>) => {
   return function componentRender(props?: Props & ReceivableProps) {
-    const { key, children, outlet, ...restProps } = props ?? {}
+    const { key, outlet, ...restProps } = props ?? {}
     const componentBlock = new Component()
     let previousComponent: Component | null = null
 
@@ -34,7 +32,6 @@ export const component = <Props>(render: ComponentFunction<Props>) => {
     componentContext.set(componentBlock)
     const renderedChild = render(
       {
-        ...(children ? { children } : {}),
         outlet,
         ...restProps,
       } as Props & Partial<ReceivableProps>,
