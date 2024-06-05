@@ -5,7 +5,12 @@ import { Block, Child } from '@dom/type.ts'
 import { h1 } from '@element/element.ts'
 import useSwitchable from '@router/hook/useSwitchable.ts'
 import { pathEvent } from '@router/util/event.ts'
-import { getCurrentPath, splitPath } from '@router/util/path.ts'
+import {
+  getCurrentPath,
+  isPathDeepEqual,
+  Paths,
+  tokenizePath,
+} from '@router/util/path.ts'
 import { popAllIndex } from '@util/array.ts'
 
 interface Router {
@@ -41,26 +46,33 @@ const ErrorComponent = component(() => {
 const Router = (router: Router) => {
   let cachedRoutes: CachedRoute[] = []
 
-  pathEvent.onPathChange((prePaths, newPaths) => {
+  pathEvent.onPathChange((state) => {
+    if (!state) {
+      return
+    }
+
+    const { prevPath, newPath } = state
+    const prePaths = tokenizePath(prevPath)
+    const newPaths = tokenizePath(newPath)
     let currentRouter = router
 
     for (let i = 0; i < newPaths.length; i++) {
       const prePath = prePaths?.[i]
       const newPath = newPaths[i]
 
-      if (prePath !== newPath) {
+      if (!isPathDeepEqual(prePath, newPath)) {
         const matchedRoutes = diffingPath(newPaths.slice(i), currentRouter)
         const { component, cachedRoutes: newCachedRoutes } =
           makeComponent(matchedRoutes)
 
         cachedRoutes = popAllIndex(cachedRoutes, i + 1)
         cachedRoutes[cachedRoutes.length - 1].setSwitchable(component as Block)
-        cachedRoutes[cachedRoutes.length - 1].path = newPath
+        cachedRoutes[cachedRoutes.length - 1].path = newPath.pathname
         cachedRoutes = [...cachedRoutes, ...newCachedRoutes]
 
         break
       } else {
-        currentRouter = currentRouter[newPath].router!
+        currentRouter = currentRouter[newPath.pathname].router!
       }
 
       if (i === newPaths.length - 1) {
@@ -88,22 +100,22 @@ const Router = (router: Router) => {
     return newCachedRoutes
   }
 
-  const diffingPath = (paths: string[], currentRouter: Router) => {
+  const diffingPath = (paths: Paths, currentRouter: Router) => {
     const matchedRoutes: MatchedRoute[] = []
 
-    for (const p of paths) {
-      if (!currentRouter || !currentRouter[p]) {
+    for (const path of paths) {
+      if (!currentRouter || !currentRouter[path.pathname]) {
         matchedRoutes.push({
-          path: p,
+          path: path.pathname,
           componentFn: () => ErrorComponent(),
         })
       }
 
       matchedRoutes.push({
-        path: p,
-        componentFn: currentRouter[p].componentFn,
+        path: path.pathname,
+        componentFn: currentRouter[path.pathname].componentFn,
       })
-      currentRouter = currentRouter[p].router!
+      currentRouter = currentRouter[path.pathname].router!
     }
 
     return matchedRoutes
@@ -143,15 +155,21 @@ const Router = (router: Router) => {
   }
 
   const init = (currentPath: string) => {
-    const paths = splitPath(currentPath)
+    const paths = tokenizePath(currentPath)
     const matchedRoutes = diffingPath(paths, router)
     const { component, cachedRoutes: newCachedRoutes } =
       makeComponent(matchedRoutes)
 
     cachedRoutes = pushEmptySwitchable(cachedRoutes, '/')
     cachedRoutes[cachedRoutes.length - 1].setSwitchable(component as Block)
-    cachedRoutes[cachedRoutes.length - 1].path = paths[0]
+    cachedRoutes[cachedRoutes.length - 1].path = paths[0].pathname
     cachedRoutes = [...cachedRoutes, ...newCachedRoutes]
+
+    window.history.pushState(
+      { prevPath: currentPath, newPath: currentPath },
+      '',
+      currentPath,
+    )
   }
 
   init(getCurrentPath())
