@@ -13,7 +13,7 @@ const Link = (props: LinkProps) => {
   aElement.href = to
   aElement.onclick = (event: Event) => {
     event.preventDefault()
-    pathEvent.changePath(to)
+    pathEvent.navigate(to)
   }
 
   return a
