@@ -1,35 +1,53 @@
-import { getCurrentPath, splitPath } from '@router/util/path.ts'
+import { getCurrentPath, isPathnameEqual } from '@router/util/path.ts'
+
+export interface HistoryState {
+  prevPath: string
+  newPath: string
+}
 
 export const pathEvent = (() => {
-  const pathChangeEvent = new Event('pathChange')
-  let currentPath = getCurrentPath()
-  let currentPaths = splitPath(currentPath)
-  let previousPaths = splitPath(currentPath)
+  const historyState = { prevPath: '', newPath: '' }
 
-  const dispatchPathChange = () => {
-    window.dispatchEvent(pathChangeEvent)
+  window.addEventListener('popstate', () => {
+    const newPath = getCurrentPath()
+
+    historyState.prevPath = historyState.newPath
+    historyState.newPath = newPath
+
+    window.dispatchEvent(new Event('navigate'))
+  })
+
+  const navigate = (newPath: string) => {
+    const prevPath = getCurrentPath()
+
+    if (isPathnameEqual(prevPath, newPath)) {
+      return
+    }
+
+    historyState.prevPath = prevPath
+    historyState.newPath = newPath
+
+    try {
+      const newPathUrl = new URL(newPath)
+
+      if (newPathUrl.origin !== window.location.origin) {
+        window.open(newPath, '_blank')
+      } else {
+        window.history.pushState({ prevPath, newPath }, '', newPath)
+        window.dispatchEvent(new Event('navigate'))
+      }
+    } catch {
+      window.history.pushState({ prevPath, newPath }, '', newPath)
+      window.dispatchEvent(new Event('navigate'))
+    }
   }
 
-  const changePath = (path: string) => {
-    window.history.pushState({}, '', path)
-    currentPath = path
-    currentPaths = splitPath(path)
-    dispatchPathChange()
-    previousPaths = currentPaths
-  }
-
-  const onPathChange = (
-    callback: (prePaths: string[], newPaths: string[]) => void,
-  ) => {
-    window.addEventListener('pathChange', () =>
-      callback(previousPaths, currentPaths),
-    )
+  const onPathChange = (callback: (state: HistoryState) => void) => {
+    window.addEventListener('navigate', () => callback(historyState))
   }
 
   return {
-    currentPath: () => currentPath,
-    currentPaths: () => currentPaths,
-    changePath,
+    navigate,
     onPathChange,
   }
 })()
