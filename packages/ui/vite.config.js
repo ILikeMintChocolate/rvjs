@@ -20,7 +20,6 @@ export default defineConfig({
     lib: {
       entry: {
         component: resolve(__dirname, 'src/component/index.ts'),
-        util: resolve(__dirname, 'src/util/index.ts'),
       },
       name: '@rvjs/ui',
       fileName: (format, entryName) => `${entryName}/${entryName}.${format}.js`,

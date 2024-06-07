@@ -22,11 +22,6 @@
       "import": "./dist/component/component.es.js",
       "require": "./dist/component/component.cjs.js",
       "types": "./dist/component/index.d.ts"
-    },
-    "./util": {
-      "import": "./dist/util/util.es.js",
-      "require": "./dist/util/util.cjs.js",
-      "types": "./dist/util/index.d.ts"
     }
   },
   "files": [
