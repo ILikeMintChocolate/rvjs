@@ -2,6 +2,7 @@ import { Component } from '@component/componentBlock.ts'
 import { componentContext } from '@context/executionContext.ts'
 import { Child } from '@dom/type.ts'
 import { Element } from '@element/elementBlock.ts'
+import { routeContext } from '@router/context/routerContext.ts'
 
 export interface ReceivableProps {
   key?: string
@@ -30,6 +31,13 @@ export const component = <Props>(render: ComponentFunction<Props>) => {
     }
 
     componentContext.set(componentBlock)
+    const { pathname, query, dynamicKey } = routeContext.get()!
+    componentBlock.pathname = pathname
+    componentBlock.queryParams = query
+    if (dynamicKey) {
+      componentBlock.pathParam = { key: dynamicKey, value: pathname }
+    }
+
     const renderedChild = render(
       {
         outlet,
