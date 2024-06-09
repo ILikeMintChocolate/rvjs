@@ -31,11 +31,13 @@ export const component = <Props>(render: ComponentFunction<Props>) => {
     }
 
     componentContext.set(componentBlock)
-    const { pathname, query, dynamicKey } = routeContext.get()!
-    componentBlock.pathname = pathname
-    componentBlock.queryParams = query
-    if (dynamicKey) {
-      componentBlock.pathParam = { key: dynamicKey, value: pathname }
+    if (routeContext.get()) {
+      const { pathname, query, dynamicKey } = routeContext.get()!
+      componentBlock.pathname = pathname
+      componentBlock.queryParams = query
+      if (dynamicKey) {
+        componentBlock.pathParam = { key: dynamicKey, value: pathname }
+      }
     }
 
     const renderedChild = render(
