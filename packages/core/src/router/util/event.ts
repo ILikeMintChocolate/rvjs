@@ -1,3 +1,5 @@
+import { Component } from '@component/componentBlock.ts'
+import { useState } from '@hook/useState.ts'
 import { getCurrentPath, isPathnameEqual } from '@router/util/path.ts'
 
 export interface HistoryState {
@@ -5,8 +7,18 @@ export interface HistoryState {
   newPath: string
 }
 
+export interface Route {
+  pathType: 'static' | 'dynamic' | 'error'
+  pathname: string
+  dynamicKey?: string
+  query: Record<string, string>
+  component: Component
+}
+
 export const pathEvent = (() => {
   const historyState = { prevPath: '', newPath: '' }
+  const [getRoutes, setRoutes] = useState<Route[]>([])
+  const [getPathname, setPathname] = useState<string>('')
 
   window.addEventListener('popstate', () => {
     const newPath = getCurrentPath()
@@ -43,11 +55,18 @@ export const pathEvent = (() => {
   }
 
   const onPathChange = (callback: (state: HistoryState) => void) => {
-    window.addEventListener('navigate', () => callback(historyState))
+    setPathname(getCurrentPath())
+    window.addEventListener('navigate', () => {
+      callback(historyState)
+      setPathname(getCurrentPath())
+    })
   }
 
   return {
     navigate,
     onPathChange,
+    getPathname,
+    getRoutes,
+    setRoutes,
   }
 })()

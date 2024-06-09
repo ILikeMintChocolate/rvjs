@@ -1,180 +1,186 @@
-import { SwitchRender } from '@children/switch.ts'
+import { Switch } from '@children/switch.ts'
 import { component } from '@component/component.ts'
 import { Component } from '@component/componentBlock.ts'
-import { Block, Child } from '@dom/type.ts'
+import { Block } from '@dom/type.ts'
 import { h1 } from '@element/element.ts'
-import useSwitchable from '@router/hook/useSwitchable.ts'
-import { pathEvent } from '@router/util/event.ts'
+import { useState } from '@hook/useState.ts'
+import { routeContext } from '@router/context/routerContext.ts'
+import { pathEvent, Route } from '@router/util/event.ts'
 import {
   getCurrentPath,
   isPathDeepEqual,
-  Paths,
+  PathToken,
   tokenizePath,
 } from '@router/util/path.ts'
-import { popAllIndex } from '@util/array.ts'
+import { normalizeRouter } from '@router/util/router.ts'
 
-interface Router {
-  [key: string]: Route
+export interface RouterProps {
+  [key: string]: RouteProps
 }
 
-interface Route {
-  router?: Router
+interface RouteProps {
+  router?: RouterProps
   componentFn: ComponentFn
 }
 
-interface RouteContext {
-  outlet?: Child
+export interface Router {
+  dynamic?: {
+    dynamicKey: string
+    pathname: string
+    componentFn: ComponentFn
+    router?: Router
+  }
+  static: {
+    [key: string]: {
+      pathname: string
+      componentFn: ComponentFn
+      router?: Router
+    }
+  }
 }
 
-interface MatchedRoute {
-  path: string
+interface MatchedRouteFn {
+  pathType: 'static' | 'dynamic' | 'error'
+  dynamicKey?: string
+  pathname: string
+  query: Record<string, string>
   componentFn: ComponentFn
 }
 
-interface CachedRoute {
-  path: string
-  switchable: SwitchRender
-  setSwitchable: (newBlock: Block | null) => void
-}
-
-type ComponentFn = (context: RouteContext) => Component
+type ComponentFn = () => Component
 
 const ErrorComponent = component(() => {
   return h1({ textContent: '404' })
 })
 
-const Router = (router: Router) => {
-  let cachedRoutes: CachedRoute[] = []
+const Router = (routerProps: RouterProps) => {
+  const router = normalizeRouter(routerProps)
+  const [routerOutlet, setRouterOutlet] = useState<Block | null>(null)
+  const { getRoutes, setRoutes, onPathChange } = pathEvent
 
-  pathEvent.onPathChange((state) => {
+  onPathChange((state) => {
     if (!state) {
       return
     }
 
     const { prevPath, newPath } = state
-    const prePaths = tokenizePath(prevPath)
-    const newPaths = tokenizePath(newPath)
-    let currentRouter = router
+    const prePathTokens = tokenizePath(prevPath)
+    const newPathTokens = tokenizePath(newPath)
+    const matchedRoutes = findRoutes(newPathTokens, router)
 
-    for (let i = 0; i < newPaths.length; i++) {
-      const prePath = prePaths?.[i]
-      const newPath = newPaths[i]
+    for (let i = 0; i < newPathTokens.length; i++) {
+      const prePath = prePathTokens?.[i]
+      const newPath = newPathTokens[i]
 
       if (!isPathDeepEqual(prePath, newPath)) {
-        const matchedRoutes = diffingPath(newPaths.slice(i), currentRouter)
-        const { component, cachedRoutes: newCachedRoutes } =
-          makeComponent(matchedRoutes)
+        if (i === 0) {
+          const { rootComponent, currentRoutes: currRoutes } =
+            renderComponent(matchedRoutes)
 
-        cachedRoutes = popAllIndex(cachedRoutes, i + 1)
-        cachedRoutes[cachedRoutes.length - 1].setSwitchable(component as Block)
-        cachedRoutes[cachedRoutes.length - 1].path = newPath.pathname
-        cachedRoutes = [...cachedRoutes, ...newCachedRoutes]
+          setRoutes([...currRoutes])
+          setRouterOutlet(rootComponent)
+          break
+        } else {
+          const { rootComponent, currentRoutes: currRoutes } = renderComponent(
+            matchedRoutes.slice(i),
+          )
 
-        break
-      } else {
-        currentRouter = currentRouter[newPath.pathname].router!
+          const currentRoutes = getRoutes()
+          currentRoutes[i - 1].component.setOutlet(rootComponent)
+          setRoutes([...currentRoutes.slice(0, i), ...currRoutes])
+          break
+        }
       }
 
-      if (i === newPaths.length - 1) {
-        cachedRoutes = popAllIndex(cachedRoutes, i + 2)
-        cachedRoutes[cachedRoutes.length - 1].setSwitchable(null)
-        cachedRoutes[cachedRoutes.length - 1].path = '/'
+      if (i === newPathTokens.length - 1) {
+        const currentRoutes = getRoutes()
+        currentRoutes[i].component.setOutlet(null)
+        setRoutes([...currentRoutes.slice(0, i + 1)])
       }
     }
   })
 
-  const pushEmptySwitchable = (
-    cachedRoutes: CachedRoute[],
-    path: string = '/',
-  ) => {
-    const [emptySwitchable, setEmptySwitchable] = useSwitchable(null)
-    const newCachedRoutes = [
-      ...cachedRoutes,
-      {
-        path,
-        switchable: emptySwitchable(),
-        setSwitchable: setEmptySwitchable,
-      },
-    ]
-
-    return newCachedRoutes
-  }
-
-  const diffingPath = (paths: Paths, currentRouter: Router) => {
-    const matchedRoutes: MatchedRoute[] = []
+  const findRoutes = (paths: PathToken[], router: Router) => {
+    const matchedRoutes: MatchedRouteFn[] = []
 
     for (const path of paths) {
-      if (!currentRouter || !currentRouter[path.pathname]) {
+      const { pathname, query } = path
+
+      if (router.static[pathname]) {
         matchedRoutes.push({
-          path: path.pathname,
+          pathType: 'static',
+          pathname,
+          query,
+          componentFn: router.static[pathname].componentFn,
+        })
+        router = router.static[pathname].router!
+      } else if (router.dynamic) {
+        matchedRoutes.push({
+          pathType: 'dynamic',
+          dynamicKey: router.dynamic.dynamicKey,
+          pathname,
+          query,
+          componentFn: router.dynamic.componentFn,
+        })
+        router = router.dynamic.router!
+      } else {
+        matchedRoutes.push({
+          pathType: 'error',
+          pathname,
+          query,
           componentFn: () => ErrorComponent(),
         })
+        break
       }
-
-      matchedRoutes.push({
-        path: path.pathname,
-        componentFn: currentRouter[path.pathname].componentFn,
-      })
-      currentRouter = currentRouter[path.pathname].router!
     }
 
     return matchedRoutes
   }
 
-  const makeComponent = (routes: MatchedRoute[]) => {
-    let cachedRoutes: CachedRoute[] = []
+  const renderComponent = (routes: MatchedRouteFn[]) => {
+    let currentComponent: Component | null = null
+    let currRoutes: Route[] = []
 
-    cachedRoutes = pushEmptySwitchable(cachedRoutes, '/')
+    routes.reverse().forEach((route) => {
+      const { pathType, pathname, query, componentFn, dynamicKey } = route
 
-    const component = routes
-      .reverse()
-      .reduce((renderedChild: SwitchRender | Block | null, route, i) => {
-        const { path, componentFn } = route
-        const isLast = i === routes.length - 1
+      if (pathType === 'dynamic') {
+        routeContext.set({ pathType, pathname, query, dynamicKey })
+      } else {
+        routeContext.set({ pathType, pathname, query })
+      }
 
-        if (isLast) {
-          return componentFn({
-            outlet: renderedChild ?? cachedRoutes[0].switchable,
-          })
-        } else {
-          const component = componentFn({
-            outlet: renderedChild ?? cachedRoutes[0].switchable,
-          })
-          const [switchable, setSwitchable] = useSwitchable(component)
+      const component = componentFn()
+      routeContext.set(null)
 
-          cachedRoutes = [
-            ...cachedRoutes,
-            { path, switchable: switchable(), setSwitchable },
-          ]
+      if (currentComponent) {
+        component.setOutlet(currentComponent)
+      }
+      currentComponent = component
+      currRoutes.push({ pathType, pathname, query, component })
+    })
 
-          return switchable()
-        }
-      }, null)
-
-    return { component, cachedRoutes: cachedRoutes.reverse() }
+    return {
+      rootComponent: currentComponent,
+      currentRoutes: currRoutes.reverse(),
+    }
   }
 
   const init = (currentPath: string) => {
-    const paths = tokenizePath(currentPath)
-    const matchedRoutes = diffingPath(paths, router)
-    const { component, cachedRoutes: newCachedRoutes } =
-      makeComponent(matchedRoutes)
+    const pathTokens = tokenizePath(currentPath)
+    const matchedRoutes = findRoutes(pathTokens, router)
+    const { rootComponent, currentRoutes: currRoutes } =
+      renderComponent(matchedRoutes)
 
-    cachedRoutes = pushEmptySwitchable(cachedRoutes, '/')
-    cachedRoutes[cachedRoutes.length - 1].setSwitchable(component as Block)
-    cachedRoutes[cachedRoutes.length - 1].path = paths[0].pathname
-    cachedRoutes = [...cachedRoutes, ...newCachedRoutes]
-
-    window.history.pushState(
-      { prevPath: currentPath, newPath: currentPath },
-      '',
-      currentPath,
-    )
+    setRoutes([...currRoutes])
+    setRouterOutlet(rootComponent)
   }
 
   init(getCurrentPath())
 
-  return cachedRoutes[0].switchable
+  return Switch(routerOutlet, () => {
+    return routerOutlet()
+  })
 }
 
 export default Router
