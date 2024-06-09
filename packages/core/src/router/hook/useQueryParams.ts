@@ -1,7 +1,7 @@
 import { componentContext } from '@context/executionContext.ts'
 
-const useQueryParam = () => {
+const useQueryParams = () => {
   return componentContext.get()!.queryParams
 }
 
-export default useQueryParam
+export default useQueryParams
