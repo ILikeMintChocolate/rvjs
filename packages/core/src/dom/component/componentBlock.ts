@@ -1,4 +1,5 @@
 import { Block } from '@dom/type.ts'
+import { SetState } from '@hook/useState.ts'
 import { RVJS_COMPONENT } from '@util/symbol.ts'
 import { isElement } from '../element/elementBlock.ts'
 
@@ -13,10 +14,13 @@ export class Component {
     onDestroy: Function | null
   }
   #unsubscribeGlobalStateHandlers: Function[]
-  #contextProvider: Object | null
-  #outletRender: Function | null
-  #onOutletChangeHandler: Function | null
   #isDestroyed: boolean
+  #setOutlet: SetState<Block | null> | null
+  #router: {
+    pathname: string
+    queryParams: Record<string, string>
+    pathParam: { key: string; value: string } | null
+  }
 
   constructor() {
     this.#key = null
@@ -27,10 +31,13 @@ export class Component {
       onDestroy: null,
     }
     this.#unsubscribeGlobalStateHandlers = []
-    this.#contextProvider = null
-    this.#outletRender = null
-    this.#onOutletChangeHandler = null
     this.#isDestroyed = false
+    this.#setOutlet = null
+    this.#router = {
+      pathname: '',
+      queryParams: {},
+      pathParam: null,
+    }
   }
 
   set key(value: string | null) {
@@ -83,25 +90,36 @@ export class Component {
     this.#handlers.onDestroy = value
   }
 
-  set contextProvider(value: Object) {
-    this.#contextProvider = value
+  get setOutlet() {
+    return this.#setOutlet as SetState<Block | null>
   }
 
-  get contextProvider(): Object | null {
-    return this.#contextProvider
+  set setOutlet(setOutlet: SetState<Block | null>) {
+    this.#setOutlet = setOutlet
   }
 
-  get outletRender() {
-    return this.#outletRender
+  get pathname() {
+    return this.#router.pathname
   }
 
-  set outletRender(outletRender: Function | null) {
-    this.#outletRender = outletRender
-    this.#onOutletChangeHandler?.()
+  set pathname(value: string) {
+    this.#router.pathname = value
   }
 
-  set onOutletChangeHandler(value: Function | null) {
-    this.#onOutletChangeHandler = value
+  get queryParams() {
+    return this.#router.queryParams
+  }
+
+  set queryParams(value: Record<string, string>) {
+    this.#router.queryParams = value
+  }
+
+  get pathParam() {
+    return this.#router.pathParam
+  }
+
+  set pathParam(value: { key: string; value: string } | null) {
+    this.#router.pathParam = value
   }
 
   addUnsubscribeGlobalStateHandler(handler: Function) {

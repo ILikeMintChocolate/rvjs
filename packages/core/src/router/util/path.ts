@@ -1,10 +1,8 @@
 export const getCurrentPath = () => {
-  return window.location.pathname
+  return window.history.state?.newPath || window.location.pathname
 }
 
-export type Paths = Path[]
-
-export interface Path {
+export interface PathToken {
   pathname: string
   query: Record<string, string>
 }
@@ -58,7 +56,7 @@ export const isPathnameEqual = (pathname1: string, pathname2: string) => {
   return true
 }
 
-export const isPathEqual = (path1?: Path, path2?: Path) => {
+export const isPathEqual = (path1?: PathToken, path2?: PathToken) => {
   if (path1 === undefined && path2 === undefined) {
     return true
   }
@@ -70,7 +68,7 @@ export const isPathEqual = (path1?: Path, path2?: Path) => {
   return path1.pathname === path2.pathname
 }
 
-export const isPathDeepEqual = (path1: Path, path2: Path) => {
+export const isPathDeepEqual = (path1: PathToken, path2: PathToken) => {
   if (path1 === undefined && path2 === undefined) {
     return true
   }
