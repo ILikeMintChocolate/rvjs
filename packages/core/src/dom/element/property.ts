@@ -1,8 +1,7 @@
 import { subscribeStateContext } from '@context/executionContext.ts'
 import { Children } from '@dom/type.ts'
 import { Element } from '@element/elementBlock.ts'
-import { isDynamic } from '@hook/dynamic.ts'
-import { Reactive } from '@hook/useReactive.ts'
+import { Dynamic, isDynamic } from '@hook/dynamic.ts'
 import { RefObject } from '@hook/useRef.ts'
 import { isString } from '@type/guard.ts'
 import { AddTypeToValues } from '@type/util.ts'
@@ -41,10 +40,10 @@ export type ExtendedHTMLElement<T extends keyof HTMLElementTagNameMap> =
 export interface CustomProperties {
   ref: RefObject<HTMLElement>
   children: Children
-  style: AddTypeToValues<Properties, Reactive<any>>
+  style: AddTypeToValues<Properties, Dynamic<any>>
   animation: AnimationProps
   className: string
-  classes: Reactive<string>[]
+  classes: (string | Dynamic<string>)[]
 }
 
 interface AnimationProps {
@@ -87,7 +86,7 @@ const customProperties = {
   className: (parent: Element, className: string) => {
     parent.element.className = className
   },
-  classes: (parent: Element, classes: Reactive<string>[]) => {
+  classes: (parent: Element, classes: (string | Dynamic<string>)[]) => {
     classes.forEach((cls) => {
       if (isDynamic(cls)) {
         // @ts-ignore
