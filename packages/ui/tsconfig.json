@@ -12,6 +12,9 @@
       "@rvjs/core/router": [
         "../../core/dist/router"
       ],
+      "@rvjs/is": [
+        "../../core/dist"
+      ],
       "@util/*": [
         "util/*"
       ],
@@ -50,7 +53,7 @@
       ],
       "@shell/*": [
         "component/shell/*"
-      ],
+      ]
     }
   },
   "include": [
