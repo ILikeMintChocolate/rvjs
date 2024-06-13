@@ -1,15 +1,15 @@
 import { element, ElementType } from '@rvjs/core/dom'
-import { Reactive } from '@rvjs/core/reactive'
+import { dynamic, Prop, prop } from '@rvjs/core/reactive'
 import {
-  textRecipe,
+  text_recipe,
   textSprinkles,
   TextStyleProps,
 } from '@typography/text/Text.css.ts'
 
 interface TextProps extends TextStyleProps {
   as?: ElementType
-  classes?: Reactive<string>[]
-  text: Reactive<string>
+  classes?: Prop<string>[]
+  text: Prop<string>
 }
 
 const Text = (props: TextProps) => {
@@ -17,21 +17,17 @@ const Text = (props: TextProps) => {
     as = 'p',
     classes = [],
     text,
-    kind = 'body-01',
-    color = 'textPrimary',
+    kind = prop(() => 'body-01'),
+    color = prop(() => 'textPrimary'),
   } = props
 
   return element(as, {
     classes: [
-      textRecipe({
-        kind,
-      }),
-      textSprinkles({
-        color,
-      }),
-      ...classes,
+      dynamic(() => text_recipe({ kind: kind() })),
+      dynamic(() => textSprinkles({ color: color() })),
+      ...classes.map((cls) => dynamic(() => cls())),
     ],
-    textContent: text,
+    textContent: dynamic(() => text()),
   })
 }
 

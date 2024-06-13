@@ -1,14 +1,17 @@
 import { boxSprinkles } from '@layout/box/Box.css.ts'
 import { FlexStyleProps } from '@layout/flex/Flex.css.ts'
 import { Children, element, ElementType } from '@rvjs/core/dom'
-import { Reactive } from '@rvjs/core/reactive'
+import { dynamic, Prop, RefObject } from '@rvjs/core/reactive'
+import { HTMLDivType } from '@type/element.ts'
+import { AddTypeToValues } from '@util/type.ts'
 import { Properties } from 'csstype'
 
-interface FlexProps extends FlexStyleProps {
+interface FlexProps extends FlexStyleProps, HTMLDivType {
   as?: ElementType
   children?: Children
-  classes?: Reactive<string>[]
-  style?: Partial<Properties>
+  classes?: Prop<string>[]
+  style?: AddTypeToValues<Partial<Properties>, Prop<any>>
+  ref?: RefObject<HTMLDivElement>
 }
 
 const Flex = (props: FlexProps) => {
@@ -17,6 +20,7 @@ const Flex = (props: FlexProps) => {
     children = [],
     classes = [],
     style = {},
+    ref,
     position,
     top,
     bottom,
@@ -71,9 +75,11 @@ const Flex = (props: FlexProps) => {
     justify,
     wrap,
     direction,
+    ...restProps
   } = props
 
   return element(as, {
+    ref,
     classes: [
       boxSprinkles({
         display: 'flex',
@@ -128,10 +134,11 @@ const Flex = (props: FlexProps) => {
         py,
         bgColor,
       }),
-      ...classes,
+      ...classes.map((cls) => dynamic(() => cls())),
     ],
     children,
     style,
+    ...restProps,
   })
 }
 

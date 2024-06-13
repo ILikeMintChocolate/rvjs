@@ -1,13 +1,16 @@
 import { boxSprinkles, BoxStyleProps } from '@layout/box/Box.css.ts'
 import { Children, element, ElementType } from '@rvjs/core/dom'
-import { Reactive } from '@rvjs/core/reactive'
+import { dynamic, Prop, RefObject } from '@rvjs/core/reactive'
+import { HTMLDivType } from '@type/element.ts'
+import { AddTypeToValues } from '@util/type.ts'
 import { Properties } from 'csstype'
 
-interface BoxProps extends BoxStyleProps {
+interface BoxProps extends BoxStyleProps, HTMLDivType {
   as?: ElementType
   children?: Children
-  classes?: Reactive<string>[]
-  style?: Partial<Properties>
+  classes?: Prop<string>[]
+  style?: AddTypeToValues<Partial<Properties>, Prop<any>>
+  ref?: RefObject<HTMLDivElement>
 }
 
 const Box = (props: BoxProps) => {
@@ -16,6 +19,7 @@ const Box = (props: BoxProps) => {
     children = [],
     classes = [],
     style = {},
+    ref,
     display,
     position,
     top,
@@ -67,12 +71,14 @@ const Box = (props: BoxProps) => {
     px,
     py,
     bgColor,
+    ...restProps
   } = props
 
   return element(as, {
+    ref,
     classes: [
       boxSprinkles({
-        display,
+        display: 'block',
         position,
         top,
         bottom,
@@ -124,10 +130,11 @@ const Box = (props: BoxProps) => {
         py,
         bgColor,
       }),
-      ...classes,
+      ...classes.map((cls) => dynamic(() => cls())),
     ],
     children,
     style,
+    ...restProps,
   })
 }
 
