@@ -48,13 +48,13 @@ export const normalizeRouter = (routerProps: RouterProps) => {
 }
 
 const validatePathname = (pathname: string) => {
-  const pathnameRegex = /^\/(:?[a-zA-Z0-9_]*)$/
+  const pathnameRegex = /^\/(:?[a-zA-Z0-9_-]*)$/
 
   return pathnameRegex.test(pathname)
 }
 
 const isDynamicPathname = (pathname: string) => {
-  const pathnameRegex = /^\/:[a-zA-Z0-9_]+$/
+  const pathnameRegex = /^\/:[a-zA-Z0-9_-]+$/
 
   return pathnameRegex.test(pathname)
 }
