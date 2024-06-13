@@ -3,8 +3,17 @@
   "compilerOptions": {
     "baseUrl": "src",
     "paths": {
-      "@rvjs/core/*": [
-        "../../core/dist/*"
+      "@rvjs/core/dom": [
+        "../../core/dist/dom"
+      ],
+      "@rvjs/core/reactive": [
+        "../../core/dist/reactive"
+      ],
+      "@rvjs/core/router": [
+        "../../core/dist/router"
+      ],
+      "@rvjs/is": [
+        "../../core/dist"
       ],
       "@util/*": [
         "util/*"
@@ -38,6 +47,12 @@
       ],
       "@component/*": [
         "component/*"
+      ],
+      "@icon/*": [
+        "asset/icon/*"
+      ],
+      "@shell/*": [
+        "component/shell/*"
       ]
     }
   },

@@ -15,6 +15,7 @@
     "build": "tsc --p ./tsconfig-build.json && vite build",
     "preview": "vite preview"
   },
+  "type": "module",
   "types": "dist/index.d.ts",
   "exports": {
     "./component": {
@@ -32,19 +33,24 @@
     "dist"
   ],
   "dependencies": {
+    "@vanilla-extract/css": "^1.15.2",
+    "@vanilla-extract/recipes": "^0.5.3",
+    "@vanilla-extract/sprinkles": "^1.6.2",
     "csstype": "^3.1.3",
     "highlight.js": "^11.9.0",
     "jsdom": "^24.0.0",
+    "vite-plugin-import-svg": "^0.0.4",
     "vite-tsconfig-paths": "^4.3.2"
   },
   "devDependencies": {
+    "@vanilla-extract/vite-plugin": "^4.0.10",
     "less": "^4.2.0",
     "typescript": "^5.2.2",
     "vite": "^5.1.4",
-    "vite-plugin-svgr": "^4.2.0",
     "vitest": "^1.3.1"
   },
   "peerDependencies": {
-    "@rvjs/core": "^0.1.2"
+    "@rvjs/core": "^0.1.6",
+    "@rvjs/is": "^0.1.1"
   }
 }
