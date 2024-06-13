@@ -1,8 +1,7 @@
 import { subscribeStateContext } from '@context/executionContext.ts'
 import { Children } from '@dom/type.ts'
 import { Element } from '@element/elementBlock.ts'
-import { isDynamic } from '@hook/dynamic.ts'
-import { Reactive } from '@hook/useReactive.ts'
+import { Dynamic, isDynamic } from '@hook/dynamic.ts'
 import { RefObject } from '@hook/useRef.ts'
 import { isString } from '@type/guard.ts'
 import { AddTypeToValues } from '@type/util.ts'
@@ -13,7 +12,7 @@ export const setProperty = (
   key: string,
   value: unknown,
 ) => {
-  if(isDynamic(value)) {
+  if (isDynamic(value)) {
     subscribeStateContext.set({
       block: elementBlock,
       type: 'domProperty',
@@ -23,10 +22,10 @@ export const setProperty = (
     setProperty(elementBlock, key, value())
     subscribeStateContext.set(null)
   } else {
-    if(customProperties.hasOwnProperty(key)) {
+    if (customProperties.hasOwnProperty(key)) {
       // @ts-ignore
       customProperties[key](elementBlock, value)
-    } else if(elementBlock.element.hasAttribute(key)) {
+    } else if (elementBlock.element.hasAttribute(key)) {
       elementBlock.element.setAttribute(key, value as string)
     } else {
       // @ts-ignore
@@ -41,10 +40,10 @@ export type ExtendedHTMLElement<T extends keyof HTMLElementTagNameMap> =
 export interface CustomProperties {
   ref: RefObject<HTMLElement>
   children: Children
-  style: AddTypeToValues<Properties, Reactive<any>>
+  style: AddTypeToValues<Properties, Dynamic<any>>
   animation: AnimationProps
   className: string
-  classes: Reactive<string>[]
+  classes: (string | Dynamic<string>)[]
 }
 
 interface AnimationProps {
@@ -54,7 +53,7 @@ interface AnimationProps {
 
 const customProperties = {
   ref: (parent: Element, refObject: RefObject<HTMLElement>) => {
-    if(refObject !== undefined) {
+    if (refObject !== undefined) {
       refObject.current = parent.element
     }
   },
@@ -62,9 +61,9 @@ const customProperties = {
     parent.appendChildren(children)
   },
   style: (parent: Element, style: AddTypeToValues<Properties, any>) => {
-    for(const property in style) {
+    for (const property in style) {
       // @ts-ignore
-      if(isDynamic(style[property])) {
+      if (isDynamic(style[property])) {
         subscribeStateContext.set({
           block: parent,
           type: 'styleProperty',
@@ -87,9 +86,9 @@ const customProperties = {
   className: (parent: Element, className: string) => {
     parent.element.className = className
   },
-  classes: (parent: Element, classes: Reactive<string>[]) => {
+  classes: (parent: Element, classes: (string | Dynamic<string>)[]) => {
     classes.forEach((cls) => {
-      if(isDynamic(cls)) {
+      if (isDynamic(cls)) {
         // @ts-ignore
         const clsString = cls() as string
         subscribeStateContext.set({
@@ -112,7 +111,7 @@ const customProperties = {
           parent.element.classList.add(classString)
         })
         subscribeStateContext.set(null)
-      } else if(isString(cls)) {
+      } else if (isString(cls)) {
         cls.split(' ').forEach((cls) => {
           parent.element.classList.add(cls)
         })
@@ -126,7 +125,7 @@ export const setStyleProperty = (
   property: string,
   value: unknown,
 ) => {
-  if(isDynamic(value)) {
+  if (isDynamic(value)) {
     // @ts-ignore
     elementBlock.element.style[property] = value()
   } else {

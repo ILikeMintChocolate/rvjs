@@ -1,4 +1,5 @@
 import {
+  isUsingState,
   StateContext,
   subscribeStateContext,
 } from '@context/executionContext.ts'
@@ -32,6 +33,7 @@ export const useState = <State>(
         subscribers.subscribeState(stateContext)
       }
     }
+    isUsingState.set(getState)
     return state
   }
 

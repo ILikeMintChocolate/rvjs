@@ -1,12 +1,10 @@
 import { Component } from '@component/componentBlock.ts'
 import { componentContext } from '@context/executionContext.ts'
-import { Child } from '@dom/type.ts'
 import { Element } from '@element/elementBlock.ts'
 import { routeContext } from '@router/context/routerContext.ts'
 
 export interface ReceivableProps {
   key?: string
-  outlet?: Child
 }
 
 export interface ProvideProps {
@@ -20,7 +18,7 @@ type ComponentFunction<Props> = (
 
 export const component = <Props>(render: ComponentFunction<Props>) => {
   return function componentRender(props?: Props & ReceivableProps) {
-    const { key, outlet, ...restProps } = props ?? {}
+    const { key, ...restProps } = props ?? {}
     const componentBlock = new Component()
     let previousComponent: Component | null = null
 
@@ -41,10 +39,7 @@ export const component = <Props>(render: ComponentFunction<Props>) => {
     }
 
     const renderedChild = render(
-      {
-        outlet,
-        ...restProps,
-      } as Props & Partial<ReceivableProps>,
+      restProps as Props & Partial<ReceivableProps>,
       {
         caller: componentBlock,
       } as ProvideProps,
