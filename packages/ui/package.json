@@ -16,12 +16,26 @@
     "preview": "vite preview"
   },
   "type": "module",
-  "types": "dist/index.d.ts",
   "exports": {
-    "./component": {
-      "import": "./dist/component/component.es.js",
-      "require": "./dist/component/component.cjs.js",
-      "types": "./dist/component/index.d.ts"
+    "./form": {
+      "import": "./dist/form/form.es.js",
+      "require": "./dist/form/form.cjs.js",
+      "types": "./dist/form/index.d.ts"
+    },
+    "./layout": {
+      "import": "./dist/layout/layout.es.js",
+      "require": "./dist/layout/layout.cjs.js",
+      "types": "./dist/layout/index.d.ts"
+    },
+    "./shell": {
+      "import": "./dist/shell/shell.es.js",
+      "require": "./dist/shell/shell.cjs.js",
+      "types": "./dist/shell/index.d.ts"
+    },
+    "./typography": {
+      "import": "./dist/typography/typography.es.js",
+      "require": "./dist/typography/typography.cjs.js",
+      "types": "./dist/typography/index.d.ts"
     }
   },
   "files": [
@@ -43,9 +57,5 @@
     "typescript": "^5.2.2",
     "vite": "^5.1.4",
     "vitest": "^1.3.1"
-  },
-  "peerDependencies": {
-    "@rvjs/core": "^0.1.6",
-    "@rvjs/is": "^0.1.1"
   }
 }
