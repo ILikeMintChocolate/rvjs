@@ -1,22 +1,15 @@
 import { Component } from '@component/componentBlock.ts'
 import { componentContext } from '@context/executionContext.ts'
-import { Element } from '@element/elementBlock.ts'
+import { Block } from '@dom/type.ts'
 import { routeContext } from '@router/context/routerContext.ts'
 
-export interface ReceivableProps {
+interface ReceivableProps {
   key?: string
 }
 
-export interface ProvideProps {
-  caller: Component
-}
+export type ComponentFn = (props: any) => Component
 
-type ComponentFunction<Props> = (
-  props: Props & ReceivableProps,
-  context: ProvideProps,
-) => Element | Component
-
-export const component = <Props>(render: ComponentFunction<Props>) => {
+export const component = <Props>(render: (props: Props) => Block) => {
   return function componentRender(props?: Props & ReceivableProps) {
     const { key, ...restProps } = props ?? {}
     const componentBlock = new Component()
@@ -38,12 +31,7 @@ export const component = <Props>(render: ComponentFunction<Props>) => {
       }
     }
 
-    const renderedChild = render(
-      restProps as Props & Partial<ReceivableProps>,
-      {
-        caller: componentBlock,
-      } as ProvideProps,
-    )
+    const renderedChild = render(restProps as Props & Partial<ReceivableProps>)
 
     componentBlock.child = renderedChild
     renderedChild.parent = componentBlock
