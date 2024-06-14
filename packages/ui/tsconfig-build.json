@@ -23,14 +23,10 @@
     "esModuleInterop": true,
     "declaration": true,
     "declarationMap": true,
-    "declarationDir": "./dist",
     "baseUrl": ".",
     "paths": {
       "@rvjs/core/*": [
         "node_modules/@rvjs/core/dist/*"
-      ],
-      "@src/*": [
-        "src/*"
       ],
       "@util/*": [
         "src/util/*"
@@ -70,6 +66,9 @@
       ],
       "@shell/*": [
         "src/component/shell/*"
+      ],
+      "@overlay/*": [
+        "src/component/overlay/*"
       ]
     }
   },
@@ -77,7 +76,6 @@
     "src"
   ],
   "exclude": [
-    "dist",
     "src/main.ts",
     "src/example"
   ]

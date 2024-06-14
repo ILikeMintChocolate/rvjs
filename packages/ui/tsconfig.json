@@ -53,6 +53,9 @@
       ],
       "@shell/*": [
         "component/shell/*"
+      ],
+      "@overlay/*": [
+        "component/overlay/*"
       ]
     }
   },

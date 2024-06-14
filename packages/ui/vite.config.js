@@ -19,7 +19,10 @@ export default defineConfig({
     minify: 'terser',
     lib: {
       entry: {
-        component: resolve(__dirname, 'src/component/index.ts'),
+        form: resolve(__dirname, 'src/component/form/index.ts'),
+        layout: resolve(__dirname, 'src/component/layout/index.ts'),
+        shell: resolve(__dirname, 'src/component/shell/index.ts'),
+        typography: resolve(__dirname, 'src/component/typography/index.ts'),
       },
       name: '@rvjs/ui',
       fileName: (format, entryName) => `${entryName}/${entryName}.${format}.js`,
@@ -91,6 +94,10 @@ export default defineConfig({
       {
         find: '@icon',
         replacement: resolve(__dirname, 'src/asset/icon'),
+      },
+      {
+        find: '@overlay',
+        replacement: resolve(__dirname, 'src/component/overlay'),
       },
     ],
   },
