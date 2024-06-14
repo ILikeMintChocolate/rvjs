@@ -1,0 +1,17 @@
+<svg width="16" height="8" viewBox="0 0 16 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <style>
+            .cls-1 {
+            fill: none;
+            }
+        </style>
+    </defs>
+    <g clip-path="url(#clip0_94_126)">
+        <path d="M8 0L0 8H16L8 0Z"/>
+    </g>
+    <defs>
+        <clipPath id="clip0_94_126">
+            <rect width="16" height="8" class="cls-1"/>
+        </clipPath>
+    </defs>
+</svg>
