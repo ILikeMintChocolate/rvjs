@@ -1,6 +1,6 @@
 import chevronDownSvg from '@icon/chevron--down.svg?element'
 import Flex from '@layout/flex/Flex.ts'
-import { button, Children, component, svg } from '@rvjs/core/dom'
+import { button, Children, component, ComponentFn, svg } from '@rvjs/core/dom'
 import {
   dynamic,
   onDestroy,
@@ -32,7 +32,7 @@ interface SubMenuProps {
   tabIndex?: Prop<number>
 }
 
-const SubMenu = component<SubMenuProps>((props) => {
+const SubMenu: ComponentFn = component<SubMenuProps>((props) => {
   const {
     id,
     menuName,

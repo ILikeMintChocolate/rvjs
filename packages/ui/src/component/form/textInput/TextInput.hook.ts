@@ -1,5 +1,10 @@
-import { isGetState, onMount, useEffect, useRef } from '@rvjs/core/reactive'
-import { Prop } from '@rvjs/core/reactive'
+import {
+  isGetState,
+  onMount,
+  Prop,
+  useEffect,
+  useRef,
+} from '@rvjs/core/reactive'
 
 const useTextInput = (disabled: Prop<boolean>) => {
   const inputRef = useRef<HTMLInputElement>()
