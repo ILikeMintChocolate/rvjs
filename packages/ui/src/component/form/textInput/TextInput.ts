@@ -7,12 +7,12 @@ import {
   textInput_style,
   textInput_warnIcon_style,
 } from '@form/textInput/TextInput.css.ts'
-import useTextInput from '@form/textInput/TextInput.hook.js'
+import useTextInput from '@form/textInput/TextInput.hook.ts'
 import warnSvg from '@icon/warning--alt--filled.svg?element'
 import invalidSvg from '@icon/warning--filled.svg?element'
 import Flex from '@layout/flex/Flex.ts'
-import { component, input, svg, Switch } from '@rvjs/core/dom'
-import { dynamic, Prop, prop, SetState } from '@rvjs/core/reactive'
+import { component, ComponentFn, input, svg, Switch } from '@rvjs/core/dom'
+import { dynamic, prop, Prop, SetState } from '@rvjs/core/reactive'
 import vars from '@theme/variable/vars.css.ts'
 import Text from '@typography/text/Text.ts'
 import { ifIs } from '@util/array.ts'
@@ -37,7 +37,7 @@ export interface TextInputProps {
   warnText?: Prop<string>
 }
 
-const TextInput = component<TextInputProps>((props) => {
+const TextInput: ComponentFn = component<TextInputProps>((props) => {
   const {
     value,
     setValue,

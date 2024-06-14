@@ -3,8 +3,8 @@ import { element, ElementType } from '@rvjs/core/dom'
 import {
   dynamic,
   isGetState,
-  Prop,
   prop,
+  Prop,
   useEffect,
   useRef,
 } from '@rvjs/core/reactive'

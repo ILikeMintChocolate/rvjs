@@ -1,6 +1,6 @@
 import Box from '@layout/box/Box.ts'
 import Flex from '@layout/flex/Flex.ts'
-import { Children, component } from '@rvjs/core/dom'
+import { Children, component, ComponentFn } from '@rvjs/core/dom'
 import {
   onMount,
   prop,
@@ -17,7 +17,7 @@ interface SideNavProps {
   children: Children
 }
 
-const SideNav = component<SideNavProps>((props: SideNavProps) => {
+const SideNav: ComponentFn = component<SideNavProps>((props: SideNavProps) => {
   const { children } = props
   const [showSideNav, setShowSideNav] = useGlobalState('SHOW_SIDENAV', false)
   const sideNavBackdropRef = useRef<HTMLDivElement>()

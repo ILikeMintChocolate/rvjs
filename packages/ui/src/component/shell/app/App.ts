@@ -1,5 +1,5 @@
 import Flex from '@layout/flex/Flex.ts'
-import { Child, component } from '@rvjs/core/dom'
+import { Child, component, ComponentFn } from '@rvjs/core/dom'
 import { prop } from '@rvjs/core/reactive'
 import { app_sideNavBodyWrapper_style, app_style } from '@shell/app/App.css.ts'
 import { ifIs } from '@util/array.ts'
@@ -10,7 +10,7 @@ interface AppProps {
   panel?: Child
 }
 
-const App = component<AppProps>((props) => {
+const App: ComponentFn = component<AppProps>((props) => {
   const { header, body, panel } = props
 
   return Flex({

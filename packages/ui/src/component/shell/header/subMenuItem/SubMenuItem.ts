@@ -1,5 +1,5 @@
 import Flex from '@layout/flex/Flex.ts'
-import { a, component } from '@rvjs/core/dom'
+import { a, component, ComponentFn } from '@rvjs/core/dom'
 import { dynamic, Prop, prop, useGlobalState } from '@rvjs/core/reactive'
 import { useNavigate } from '@rvjs/core/router'
 import {
@@ -17,7 +17,7 @@ interface SubMenuItemProps {
   tabIndex?: Prop<number>
 }
 
-const SubMenuItem = component<SubMenuItemProps>((props) => {
+const SubMenuItem: ComponentFn = component<SubMenuItemProps>((props) => {
   const {
     id,
     href,
