@@ -1,14 +1,7 @@
-import { componentContext } from '@context/executionContext.ts'
+import { pathParamsContext } from '@router/context/routerContext.ts'
 
-const usePathParam = (key: string) => {
-  const component = componentContext.get()
-  const pathParam = component?.pathParam
-
-  if (!pathParam || pathParam.key !== key) {
-    return null
-  }
-
-  return pathParam.value
+const usePathParams = () => {
+  return pathParamsContext.get()
 }
 
-export default usePathParam
+export default usePathParams
