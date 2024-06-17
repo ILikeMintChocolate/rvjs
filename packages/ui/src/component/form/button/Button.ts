@@ -1,5 +1,12 @@
-import { button_recipe, ButtonStyleProps } from '@form/button/Button.css.ts'
-import { element, ElementType } from '@rvjs/core/dom'
+import {
+  button_icon_recipe,
+  button_kind_recipe,
+  button_size_recipe,
+  button_text_recipe,
+  ButtonStyleProps,
+} from '@form/button/Button.css.ts'
+import Box from '@layout/box/Box.ts'
+import { element, ElementType, svg } from '@rvjs/core/dom'
 import {
   dynamic,
   isGetState,
@@ -8,14 +15,19 @@ import {
   useEffect,
   useRef,
 } from '@rvjs/core/reactive'
+import vars from '@theme/variable/vars.css.ts'
+import Text from '@typography/text/Text.ts'
+import { ifIs } from '@util/array.js'
 
 interface ButtonProps extends ButtonStyleProps {
-  text: Prop<string>
+  text?: Prop<string>
   as?: ElementType
   classes?: Prop<string>[]
   disabled?: Prop<boolean>
   tabIndex?: Prop<number>
   type?: Prop<'button' | 'reset' | 'submit'>
+  hasIconOnly?: Prop<boolean>
+  renderIcon?: SVGElement
   onBlur?: GlobalEventHandlers['onblur']
   onClick?: GlobalEventHandlers['onclick']
   onFocus?: GlobalEventHandlers['onfocus']
@@ -25,7 +37,7 @@ interface ButtonProps extends ButtonStyleProps {
 
 const Button = (props: ButtonProps) => {
   const {
-    text,
+    text = prop(() => ''),
     as = 'button',
     classes = [],
     disabled = prop(() => false),
@@ -33,6 +45,8 @@ const Button = (props: ButtonProps) => {
     size = prop(() => 'md'),
     tabIndex = prop(() => 0),
     type = prop(() => 'button'),
+    hasIconOnly = prop(() => false),
+    renderIcon = null,
     onBlur,
     onClick,
     onFocus,
@@ -56,9 +70,13 @@ const Button = (props: ButtonProps) => {
     ref: buttonRef,
     classes: [
       dynamic(() =>
-        button_recipe({
-          size: size(),
-          kind: kind(),
+        button_kind_recipe({
+          kind: hasIconOnly() && kind() === 'ghost' ? 'ghostIconOnly' : kind(),
+        }),
+      ),
+      dynamic(() =>
+        button_size_recipe({
+          size: hasIconOnly() ? `${size()}IconOnly` : size(),
         }),
       ),
       ...classes.map((cls) => dynamic(() => cls())),
@@ -69,7 +87,35 @@ const Button = (props: ButtonProps) => {
     onmouseenter: onMouseEnter,
     onmouseleave: onMouseLeave,
     tabIndex,
-    textContent: dynamic(() => text()),
+    children: [
+      ...ifIs(!hasIconOnly(), () =>
+        Text({
+          as: 'span',
+          text: prop(() => text()),
+          kind: prop(() => 'body-compact-01'),
+          classes: [prop(() => button_text_recipe({ kind: kind() }))],
+        }),
+      ),
+      renderIcon !== null
+        ? svg(renderIcon!, {
+            classes: [
+              dynamic(() =>
+                button_icon_recipe({
+                  kind:
+                    hasIconOnly() && kind() === 'ghost'
+                      ? 'ghostIconOnly'
+                      : kind(),
+                }),
+              ),
+            ],
+          })
+        : Box({
+            style: {
+              width: vars.spacing['05'],
+              height: vars.spacing['05'],
+            },
+          }),
+    ],
     // @ts-ignore
     type,
     ...restProps,
