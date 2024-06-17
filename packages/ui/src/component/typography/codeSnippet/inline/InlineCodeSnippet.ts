@@ -1,0 +1,54 @@
+import { button, code } from '@rvjs/core/dom'
+import { dynamic, prop } from '@rvjs/core/reactive'
+import { CodeSnippetProps } from '@typography/codeSnippet/CodeSnippet.js'
+import { copyToClipboard } from '@typography/codeSnippet/CodeSnippet.util.js'
+import {
+  inlineCodeSnippet_button_style,
+  inlineCodeSnippet_code_style,
+} from '@typography/codeSnippet/inline/InlineCodeSnippet.css.js'
+import { text_recipe } from '@typography/text/Text.css.js'
+import { highlight, languages } from 'prismjs'
+import 'prismjs/themes/prism-tomorrow.css'
+import 'prismjs/components/prism-bash'
+
+type InlineCodeSnippetProps = Pick<
+  CodeSnippetProps,
+  'codeText' | 'language' | 'onClick' | 'ariaLabel'
+>
+
+const InlineCodeSnippet = (props: InlineCodeSnippetProps) => {
+  const {
+    codeText,
+    language,
+    onClick,
+    ariaLabel = prop(() => 'Copy to clipboard'),
+  } = props
+  const highlightedCodeHTML = highlight(
+    codeText(),
+    languages[language],
+    language,
+  )
+
+  return button({
+    classes: [dynamic(() => inlineCodeSnippet_button_style)],
+    ariaLabel: dynamic(() => ariaLabel()),
+    onclick: async (event: MouseEvent) => {
+      await copyToClipboard(codeText())
+      if (onClick) {
+        // @ts-ignore
+        onClick(event)
+      }
+    },
+    children: [
+      code({
+        innerHTML: highlightedCodeHTML,
+        classes: [
+          dynamic(() => text_recipe({ kind: 'code-01' })),
+          dynamic(() => inlineCodeSnippet_code_style),
+        ],
+      }),
+    ],
+  })
+}
+
+export default InlineCodeSnippet
