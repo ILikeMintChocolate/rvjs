@@ -1,7 +1,7 @@
 import { boxSprinkles } from '@layout/box/Box.css.ts'
 import { FlexStyleProps } from '@layout/flex/Flex.css.ts'
 import { Children, element, ElementType } from '@rvjs/core/dom'
-import { dynamic, Prop, RefObject } from '@rvjs/core/reactive'
+import { Dynamic, dynamic, Prop, RefObject } from '@rvjs/core/reactive'
 import { HTMLDivType } from '@type/element.ts'
 import { AddTypeToValues } from '@util/type.ts'
 import { Properties } from 'csstype'
@@ -10,7 +10,7 @@ interface FlexProps extends FlexStyleProps, HTMLDivType {
   as?: ElementType
   children?: Children
   classes?: Prop<string>[]
-  style?: AddTypeToValues<Partial<Properties>, Prop<any>>
+  style?: AddTypeToValues<Partial<Properties>, Dynamic<any>>
   ref?: RefObject<HTMLDivElement>
 }
 
