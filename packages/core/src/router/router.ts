@@ -10,6 +10,7 @@ import {
   getCurrentPath,
   isPathDeepEqual,
   PathToken,
+  setPathParams,
   tokenizePath,
 } from '@router/util/path.ts'
 import { normalizeRouter } from '@router/util/router.ts'
@@ -39,7 +40,7 @@ export interface Router {
   }
 }
 
-interface MatchedRouteFn {
+export interface MatchedRouteFn {
   pathType: 'static' | 'dynamic' | 'error'
   dynamicKey?: string
   pathname: string
@@ -54,7 +55,7 @@ const ErrorComponent = component(() => {
 })
 
 const Router = (routerProps: RouterProps) => {
-  const router = normalizeRouter(routerProps)
+  let router = normalizeRouter(routerProps)
   const [routerOutlet, setRouterOutlet] = useState<Block | null>(null)
   const { getRoutes, setRoutes, onPathChange } = pathEvent
 
@@ -67,6 +68,8 @@ const Router = (routerProps: RouterProps) => {
     const prePathTokens = tokenizePath(prevPath)
     const newPathTokens = tokenizePath(newPath)
     const matchedRoutes = findRoutes(newPathTokens, router)
+
+    setPathParams(matchedRoutes)
 
     for (let i = 0; i < newPathTokens.length; i++) {
       const prePath = prePathTokens?.[i]
@@ -169,6 +172,7 @@ const Router = (routerProps: RouterProps) => {
   const init = (currentPath: string) => {
     const pathTokens = tokenizePath(currentPath)
     const matchedRoutes = findRoutes(pathTokens, router)
+    setPathParams(matchedRoutes)
     const { rootComponent, currentRoutes: currRoutes } =
       renderComponent(matchedRoutes)
 

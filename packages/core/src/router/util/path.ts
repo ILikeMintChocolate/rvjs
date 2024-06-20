@@ -1,3 +1,6 @@
+import { pathParamsContext } from '@router/context/routerContext.ts'
+import { MatchedRouteFn } from '@router/router.ts'
+
 export const getCurrentPath = () => {
   return window.history.state?.newPath || window.location.pathname
 }
@@ -91,4 +94,23 @@ export const isPathDeepEqual = (path1: PathToken, path2: PathToken) => {
   }
 
   return path1.pathname === path2.pathname
+}
+
+export const exportParamFromPathname = (pathname: string) => {
+  return pathname.replace('/', '')
+}
+
+export const setPathParams = (matchedRoutes: MatchedRouteFn[]) => {
+  const params = matchedRoutes.reduce((params, route) => {
+    const { pathType, dynamicKey, pathname } = route
+
+    if (pathType === 'dynamic') {
+      // @ts-ignore
+      params[dynamicKey] = exportParamFromPathname(pathname)
+    }
+
+    return params
+  }, {})
+
+  pathParamsContext.set(params)
 }
