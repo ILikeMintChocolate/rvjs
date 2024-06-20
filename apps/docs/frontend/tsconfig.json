@@ -1,0 +1,23 @@
+{
+  "extends": "../../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "@layout/*": [
+        "component/layout/*"
+      ],
+      "@util/*": [
+        "util/*"
+      ],
+      "@icon/*": [
+        "asset/icon/*"
+      ],
+      "@asset/*": [
+        "asset/*"
+      ]
+    }
+  },
+  "include": [
+    "./src"
+  ]
+}
