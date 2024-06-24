@@ -1,15 +1,19 @@
 import { Component } from '@component/componentBlock.ts'
 import { componentContext } from '@context/executionContext.ts'
 import { Block } from '@dom/type.ts'
-import { GetState, isGetState } from '@hook/useState.ts'
-import { isFunction } from '@type/guard.ts'
+import { GetState } from '@hook/useState.ts'
+import { isFunction, isRvjsFunction } from '@type/guard.ts'
+import { RvjsFunction } from '@type/rvjs.ts'
 import { Context } from '@util/context.ts'
+import { RVJS_TOGGLE_RENDER_SYMBOL } from '@util/symbol.ts'
 
-export type ToggleRender = () => {
-  thisComponent: Component
-  getBlock: () => Block
-  context: Context<ToggleContext>
-}
+export type ToggleRender = RvjsFunction<
+  () => {
+    thisComponent: Component
+    getBlock: () => Block
+    context: Context<ToggleContext>
+  }
+>
 
 interface ToggleContext {
   index: number
@@ -24,9 +28,8 @@ export const Toggle = (
   const context = new Context<ToggleContext>()
   const thisComponent = componentContext.get()!
 
-  return function toggleRender() {
-    const newValue = isGetState(value) ? value() : value
-
+  const toggleRender = () => {
+    const newValue = isFunction(value) ? value() : value
     if (!newValue) {
       currentValue = newValue
       currentBlock?.triggerDestroy()
@@ -43,9 +46,12 @@ export const Toggle = (
       getBlock: () => currentBlock,
       context,
     }
-  } as ToggleRender
+  }
+  toggleRender.$$typeof = RVJS_TOGGLE_RENDER_SYMBOL
+
+  return toggleRender as ToggleRender
 }
 
 export const isToggleRender = (value: unknown): value is ToggleRender => {
-  return isFunction(value) && value.name === 'toggleRender'
+  return isRvjsFunction(value) && value?.$$typeof === RVJS_TOGGLE_RENDER_SYMBOL
 }

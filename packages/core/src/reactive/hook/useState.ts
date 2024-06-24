@@ -6,15 +6,18 @@ import {
 import { Block } from '@dom/type.ts'
 import { isElement } from '@element/elementBlock.ts'
 import { setProperty, setStyleProperty } from '@element/property.ts'
-import { isArray, isFunction } from '@type/guard.ts'
+import { AllElementProps } from '@element/type.ts'
+import { isArray, isFunction, isRvjsFunction } from '@type/guard.ts'
+import { RvjsFunction } from '@type/rvjs.ts'
 import { Observer } from '@util/observer.ts'
 import { Queue } from '@util/queue.ts'
+import { RVJS_GET_STATE_SYMBOL } from '@util/symbol.ts'
 
-export type GetState<State = unknown> = () => State
-export type SetState<State = unknown> = (
-  newState: State | SetStateCallback<State>,
-) => void
-type SetStateCallback<State = unknown> = (oldState: State) => void
+export type GetState<State = unknown> = RvjsFunction<() => State>
+export type SetState<State = unknown> = RvjsFunction<
+  (newState: State | SetStateCallback<State>) => void
+>
+type SetStateCallback<State = unknown> = (oldState: State) => State
 
 export const useState = <State>(
   initialState: State,
@@ -33,9 +36,10 @@ export const useState = <State>(
         subscribers.subscribeState(stateContext)
       }
     }
-    isUsingState.set(getState)
+    isUsingState.set([...(isUsingState.get() ?? []), getState])
     return state
   }
+  getState.$$typeof = RVJS_GET_STATE_SYMBOL
 
   const setState: SetState<State> = (
     newState: State | SetStateCallback<State>,
@@ -55,6 +59,7 @@ export const useState = <State>(
       subscribers.subscribeState(stateContext)
     })
   }
+  setState.$$typeof = RVJS_GET_STATE_SYMBOL
 
   return [getState, setState]
 }
@@ -64,7 +69,7 @@ const notifyWhenStateChange = (subscribers: StateObserver) => {
   subscribers.notify((block, values) => {
     Object.entries(values.domProperty).forEach(([property, value]) => {
       if (isElement(block)) {
-        setProperty(block, property as string, value())
+        setProperty(block, property as keyof AllElementProps, value())
       }
     })
     Object.entries(values.styleProperty).forEach(([property, value]) => {
@@ -101,7 +106,7 @@ const notifyWhenStateChange = (subscribers: StateObserver) => {
 }
 
 export const isGetState = (value: unknown): value is GetState => {
-  return isFunction(value) && value.name === 'getState'
+  return isRvjsFunction(value) && value?.$$typeof === RVJS_GET_STATE_SYMBOL
 }
 
 interface StateObserverValue {
@@ -115,13 +120,13 @@ interface StateObserverValue {
   }[]
 }
 
-class StateObserver extends Observer<Block, StateObserverValue> {
+class StateObserver extends Observer<Block | null, StateObserverValue> {
   constructor() {
     super()
   }
 
   subscribeState(stateContext: StateContext) {
-    const { block, type, property, value } = stateContext
+    const { block = null, type, property, value } = stateContext
 
     if (!this.hasValueBySubscriber(block)) {
       super.createEmptyValue(block, {

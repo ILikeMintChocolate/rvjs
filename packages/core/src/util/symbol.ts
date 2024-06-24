@@ -1,3 +1,9 @@
-export const RVJS_ELEMENT = Symbol.for('rvjs.element')
-
-export const RVJS_COMPONENT = Symbol.for('rvjs.component')
+export const RVJS_ELEMENT_SYMBOL = Symbol.for('rvjs.element')
+export const RVJS_COMPONENT_SYMBOL = Symbol.for('rvjs.component')
+export const RVJS_FOR_RENDER_SYMBOL = Symbol.for('rvjs.forRender')
+export const RVJS_SWITCH_RENDER_SYMBOL = Symbol.for('rvjs.switchRender')
+export const RVJS_TOGGLE_RENDER_SYMBOL = Symbol.for('rvjs.toggleRender')
+export const RVJS_DYNAMIC_RENDER_SYMBOL = Symbol.for('rvjs.dynamicRender')
+export const RVJS_GET_STATE_SYMBOL = Symbol.for('rvjs.getState')
+export const RVJS_SET_STATE_SYMBOL = Symbol.for('rvjs.setState')
+export const RVJS_PROP_SYMBOL = Symbol.for('rvjs.prop')

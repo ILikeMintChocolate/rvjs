@@ -1,10 +1,10 @@
 import { Block } from '@dom/type.ts'
 import { SetState } from '@hook/useState.ts'
-import { RVJS_COMPONENT } from '@util/symbol.ts'
+import { RVJS_COMPONENT_SYMBOL } from '@util/symbol.ts'
 import { isElement } from '../element/elementBlock.ts'
 
 export class Component {
-  $$typeof = RVJS_COMPONENT
+  $$typeof = RVJS_COMPONENT_SYMBOL
 
   #key: string | null
   #child: Block | null

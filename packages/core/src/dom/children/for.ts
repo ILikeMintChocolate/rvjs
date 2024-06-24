@@ -1,9 +1,10 @@
 import { componentContext } from '@context/executionContext.ts'
 import { Block } from '@dom/type.ts'
 import { GetState, isGetState } from '@hook/useState.ts'
-import { isFunction } from '@type/guard.ts'
+import { isRvjsFunction } from '@type/guard.ts'
 import { Context } from '@util/context.ts'
 import { IndexedMap } from '@util/indexedMap.ts'
+import { RVJS_FOR_RENDER_SYMBOL } from '@util/symbol.ts'
 
 export type ForRender = () => {
   getBlock: () => Block[]
@@ -22,7 +23,7 @@ export const For = <Item>(
   const context = new Context<ForContext>()
   const thisComponent = componentContext.get()!
 
-  return function forRender() {
+  const forRender = () => {
     const newItems = isGetState(items) ? items() : items
     const deletable = new Set(itemsMap.keys)
 
@@ -52,9 +53,13 @@ export const For = <Item>(
       },
       context,
     }
-  } as ForRender
+  }
+
+  forRender.$$typeof = RVJS_FOR_RENDER_SYMBOL
+
+  return forRender as ForRender
 }
 
 export const isForRender = (value: unknown): value is ForRender => {
-  return isFunction(value) && value.name === 'forRender'
+  return isRvjsFunction(value) && value?.$$typeof === RVJS_FOR_RENDER_SYMBOL
 }

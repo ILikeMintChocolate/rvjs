@@ -1,13 +1,16 @@
-import { isFunction } from '@type/guard.ts'
+import { isRvjsFunction } from '@type/guard.ts'
+import { RVJS_DYNAMIC_RENDER_SYMBOL } from '@util/symbol.ts'
 
-export type Dynamic<Result = unknown> = () => () => Result
+export type Dynamic<Result = unknown> = () => Result
 
 export const dynamic = <Result>(resultFn: () => Result) => {
-  return function dynamicRender() {
+  const dynamicRender = () => {
     return resultFn()
-  } as Dynamic<Result>
+  }
+  dynamicRender.$$typeof = RVJS_DYNAMIC_RENDER_SYMBOL
+  return dynamicRender as Dynamic<Result>
 }
 
 export const isDynamic = (value: unknown): value is Dynamic => {
-  return isFunction(value) && value.name === 'dynamicRender'
+  return isRvjsFunction(value) && value?.$$typeof === RVJS_DYNAMIC_RENDER_SYMBOL
 }

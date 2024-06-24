@@ -7,14 +7,14 @@ import { Block, Children, Render } from '@dom/type.ts'
 import { isArray } from '@type/guard.ts'
 import { insertChildrenAtIndex } from '@util/dom.ts'
 import { Observer } from '@util/observer.ts'
-import { RVJS_ELEMENT } from '@util/symbol.ts'
+import { RVJS_ELEMENT_SYMBOL } from '@util/symbol.ts'
 
 interface ElementProps {
   element: HTMLElement
 }
 
 export class Element {
-  $$typeof = RVJS_ELEMENT
+  $$typeof = RVJS_ELEMENT_SYMBOL
 
   #element: HTMLElement
   #children: (Block | Block[])[]
