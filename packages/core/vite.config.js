@@ -10,7 +10,6 @@ export default defineConfig({
     }),
   ],
   build: {
-    minify: 'terser',
     lib: {
       entry: {
         dom: resolve(__dirname, 'src/dom/index.ts'),
@@ -19,11 +18,30 @@ export default defineConfig({
         util: resolve(__dirname, 'src/util/index.ts'),
       },
       name: '@rvjs/core',
+      formats: ['es', 'cjs'],
       fileName: (format, entryName) => `${entryName}/${entryName}.${format}.js`,
     },
     rollupOptions: {
       output: {
-        globals: {},
+        entryFileNames: '[name]/index.[format].js',
+        chunkFileNames: '[name]/chunk.[format].js',
+        manualChunks: (id) => {
+          if (id.includes('node_modules')) {
+            return 'vendor'
+          }
+          if (id.includes('src/dom')) {
+            return 'dom'
+          }
+          if (id.includes('src/reactive')) {
+            return 'reactive'
+          }
+          if (id.includes('src/router')) {
+            return 'router'
+          }
+          if (id.includes('src/util')) {
+            return 'util'
+          }
+        },
       },
     },
   },
