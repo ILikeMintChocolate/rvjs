@@ -1,15 +1,29 @@
 import checkPropsInDevelopment from './inDevelopment.ts'
 import checkPropsInProduction from './inProduction.ts'
 
-const checkProps = <Props>(
+interface StartCheckPropsOptions {
+  environment: 'development' | 'production'
+}
+
+export let hasToCheckProps = false
+
+export const startCheckProps = (options: StartCheckPropsOptions) => {
+  const { environment } = options
+
+  if (environment === 'development') {
+    hasToCheckProps = true
+  } else if (environment === 'production') {
+    hasToCheckProps = false
+  }
+}
+
+export const checkProps = <Props>(
   props: Props,
   types: Record<keyof Props, Function>,
 ) => {
-  if (process.env.NODE_ENV === 'production') {
+  if (hasToCheckProps) {
+    return checkPropsInDevelopment(props, types)
+  } else {
     return checkPropsInProduction(props, types)
   }
-
-  return checkPropsInDevelopment(props, types)
 }
-
-export default checkProps
