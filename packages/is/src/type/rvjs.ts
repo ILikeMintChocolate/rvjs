@@ -39,7 +39,11 @@ export const isGetState = (value: unknown): value is GetState => {
   return isFunction(value) && value?.$$typeof === RVJS_GET_STATE_SYMBOL
 }
 
-export const isProp = (value: unknown): Prop<unknown> => {
+export const isProp = (value: unknown): value is Prop<unknown> => {
+  if (isGetState(value)) {
+    return true
+  }
+
   // @ts-ignore
   return isFunction(value) && value?.$$typeof === RVJS_PROP_SYMBOL
 }
