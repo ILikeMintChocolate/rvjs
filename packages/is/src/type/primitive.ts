@@ -25,3 +25,7 @@ export const isSymbol = (value: unknown): value is symbol => {
 export const isNull = (value: unknown): value is null => {
   return value === null
 }
+
+export const isAny = () => {
+  return true
+}
