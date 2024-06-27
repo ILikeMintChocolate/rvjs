@@ -1,7 +1,7 @@
 export const insertChildrenAtIndex = (
   parentElement: HTMLElement,
   index: number,
-  newChildren: HTMLElement[],
+  newChildren: (HTMLElement | Text)[],
 ) => {
   const referenceNode = parentElement.children[index]
 

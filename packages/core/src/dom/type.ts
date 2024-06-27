@@ -6,6 +6,7 @@ import { Element } from '@element/elementBlock.ts'
 
 export type ElementType = keyof HTMLElementTagNameMap
 export type Block = Element | Component
+export type { ForRender, SwitchRender, ToggleRender }
 export type Render = ForRender | SwitchRender | ToggleRender
 export type Child = Block | Render
-export type Children = (Block | Render)[]
+export type Children = (Block | Render | Text)[]
