@@ -38,7 +38,7 @@ const checkPropsInDevelopment = <Props>(
     console.error(errorMessage)
   })
 
-  return props
+  return props as Props
 }
 
 export default checkPropsInDevelopment
