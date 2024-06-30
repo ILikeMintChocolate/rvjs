@@ -1,43 +1,25 @@
-const VALIDATOR_TYPE = {
-  isString: 'string',
-  isNumber: 'number',
-  isBigint: 'bigint',
-  isBoolean: 'boolean',
-  isUndefined: 'undefined',
-  isSymbol: 'symbol',
-  isNull: 'null',
-  isArray: 'array',
-  isObject: 'object',
-  isFunction: 'function',
-  isDate: 'date',
-  isRegExp: 'regexp',
-  isError: 'error',
-  isPromise: 'promise',
-  isSet: 'set',
-  isMap: 'map',
-  isWeakSet: 'weakset',
-  isWeakMap: 'weakmap',
+import { checkContext } from './context.ts'
+
+export const printInvalidError = () => {
+  const { key, value } = checkContext.prop!
+
+  console.error(`Invalid prop "${key}" with value ${String(value)}.`)
+
+  checkContext.isContinue = false
 }
 
-export const createInvalidTypeErrorMessage = (
-  key: string,
-  value: any,
-  validateFunctionName: string,
-) => {
-  // @ts-ignore
-  const type = VALIDATOR_TYPE[validateFunctionName]
+export const printNoValidatorError = () => {
+  const { key } = checkContext.prop!
 
-  if (!type) {
-    return `Invalid prop "${key}" with value ${value}. Expected ${validateFunctionName} validator`
-  }
+  console.error(`No validator found for prop "${key}".`)
 
-  return `Invalid prop "${key}" with value ${value}. Expected ${type}`
+  checkContext.isContinue = false
 }
 
-export const createNoValidatorErrorMessage = (key: string) => {
-  return `No validator found for prop "${key}"`
-}
+export const printUndefinedError = () => {
+  const { key } = checkContext.prop!
 
-export const createUndefinedPropErrorMessage = (key: string) => {
-  return `Undefined prop "${key}"`
+  console.error(`Undefined prop "${key}".`)
+
+  checkContext.isContinue = false
 }
