@@ -1,12 +1,12 @@
-export const isArray = (value: unknown): value is any[] => {
+export const isArrayType = (value: unknown): value is any[] => {
   return Array.isArray(value)
 }
 
-export const isObject = (value: unknown): value is object => {
+export const isObjectType = (value: unknown): value is object => {
   return typeof value === 'object' && value !== null
 }
 
-export const isFunction = (value: unknown): value is Function => {
+export const isFunctionType = (value: unknown): value is Function => {
   return typeof value === 'function'
 }
 

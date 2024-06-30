@@ -6,17 +6,23 @@ import {
   RVJS_GET_STATE_SYMBOL,
   RVJS_PROP_SYMBOL,
 } from '@rvjs/core/util'
+import { checkContext } from '../checkProps/context.ts'
+import {
+  printInvalidError,
+  printNoValidatorError,
+} from '../checkProps/error.ts'
 
-import { isArray, isFunction, isObject } from './reference.ts'
+import { isArrayType, isFunctionType, isObjectType } from './reference.ts'
+import { Validator } from './type.ts'
 
 export const isElement = (value: any): value is Element => {
   // @ts-ignore
-  return isObject(value) && value.$$typeof === RVJS_ELEMENT_SYMBOL
+  return isObjectType(value) && value.$$typeof === RVJS_ELEMENT_SYMBOL
 }
 
 export const isComponent = (value: unknown): value is Component => {
   // @ts-ignore
-  return isObject(value) && value.$$typeof === RVJS_COMPONENT_SYMBOL
+  return isObjectType(value) && value.$$typeof === RVJS_COMPONENT_SYMBOL
 }
 
 export const isChild = (
@@ -31,19 +37,52 @@ export const isChildren = (
   if (!value) {
     return false
   }
-  return isArray(value) && value.every(isChild)
+  return isArrayType(value) && value.every(isChild)
 }
 
-export const isGetState = (value: unknown): value is GetState => {
+export const isGetStateType = (value: unknown): value is GetState => {
   // @ts-ignore
-  return isFunction(value) && value?.$$typeof === RVJS_GET_STATE_SYMBOL
+  return isFunctionType(value) && value?.$$typeof === RVJS_GET_STATE_SYMBOL
 }
 
-export const isProp = (value: unknown): value is Prop<unknown> => {
-  if (isGetState(value)) {
+export const isPropType = (value: unknown): value is Prop<unknown> => {
+  if (isGetStateType(value)) {
     return true
   }
 
   // @ts-ignore
-  return isFunction(value) && value?.$$typeof === RVJS_PROP_SYMBOL
+  return isFunctionType(value) && value?.$$typeof === RVJS_PROP_SYMBOL
+}
+
+export const isGetState = (validator: Validator) => (value: unknown) => {
+  if (!checkContext.isContinue) {
+    return false
+  }
+  if (!validator) {
+    printNoValidatorError()
+    return false
+  }
+  if (!isGetStateType(value)) {
+    printInvalidError()
+    return false
+  }
+  return validator(value()) as boolean
+}
+
+export const isProp = (validator: Validator) => (value: unknown) => {
+  if (!checkContext.isContinue) {
+    return false
+  }
+  if (!validator) {
+    printNoValidatorError()
+    return false
+  }
+  if (isGetStateType(value)) {
+    return validator(value()) as boolean
+  }
+  if (!isPropType(value)) {
+    printInvalidError()
+    return false
+  }
+  return validator(value()) as boolean
 }
