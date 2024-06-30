@@ -22,8 +22,9 @@ export const checkProps = <Props>(
   types: Record<keyof Props, Function>,
 ) => {
   if (hasToCheckProps) {
-    return checkPropsInDevelopment(props, types)
+    // @ts-ignore
+    return checkPropsInDevelopment(props, types) as Props
   } else {
-    return checkPropsInProduction(props, types)
+    return checkPropsInProduction(props, types) as Props
   }
 }

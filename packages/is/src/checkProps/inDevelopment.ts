@@ -1,44 +1,29 @@
-import {
-  createInvalidTypeErrorMessage,
-  createNoValidatorErrorMessage,
-  createUndefinedPropErrorMessage,
-} from './error.ts'
+import { Validator } from '../type/type.ts'
+import { checkContext } from './context.ts'
+import { printNoValidatorError } from './error.ts'
 
-const checkPropsInDevelopment = <Props>(
-  props: Props,
-  types: Record<keyof Props, Function>,
+const checkPropsInDevelopment = (
+  props: Record<string, unknown>,
+  propsTypes: Record<string, Validator>,
 ) => {
-  const uncheckedProps = { ...types }
-
-  // @ts-ignore
-  Object.keys(props).forEach((key) => {
-    // @ts-ignore
+  const propKeys = new Set(Object.keys(props))
+  for (const key in propsTypes) {
+    const validator = propsTypes[key]
     const value = props[key]
-    // @ts-ignore
-    const validator = types[key]
+    checkContext.prop = { key, value }
 
-    if (!validator) {
-      const errorMessage = createNoValidatorErrorMessage(key)
-      console.error(errorMessage)
-    } else if (!validator(value)) {
-      const errorMessage = createInvalidTypeErrorMessage(
-        key,
-        value,
-        validator.name,
-      )
-      console.error(errorMessage)
+    // @ts-ignore
+    validator(value)
+    propKeys.delete(key)
+  }
+  if (propKeys.size) {
+    for (const key of propKeys) {
+      // @ts-ignore
+      checkContext.prop = { key, value: props[key] }
+      printNoValidatorError()
     }
-
-    // @ts-ignore
-    delete uncheckedProps[key]
-  })
-
-  Object.keys(uncheckedProps).forEach((key) => {
-    const errorMessage = createUndefinedPropErrorMessage(key)
-    console.error(errorMessage)
-  })
-
-  return props as Props
+  }
+  return props
 }
 
 export default checkPropsInDevelopment
