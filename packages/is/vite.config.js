@@ -20,6 +20,12 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['@rvjs/core'],
   },
+  test: {
+    environment: 'jsdom',
+    coverage: {
+      provider: 'istanbul',
+    },
+  },
   sourcemap: true,
   emptyOutDir: true,
 })
