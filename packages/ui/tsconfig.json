@@ -1,65 +1,41 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "baseUrl": "src",
+    "baseUrl": ".",
     "paths": {
-      "@rvjs/core/dom": [
-        "../../core/dist/dom"
+      "@icon/*": [
+        "src/asset/icon/*"
       ],
-      "@rvjs/core/reactive": [
-        "../../core/dist/reactive"
-      ],
-      "@rvjs/core/router": [
-        "../../core/dist/router"
-      ],
-      "@rvjs/is": [
-        "../../core/dist"
-      ],
-      "@util/*": [
-        "util/*"
-      ],
-      "@type/*": [
-        "type/*"
-      ],
-      "@theme/*": [
-        "theme/*"
-      ],
-      "@layout/*": [
-        "component/layout/*"
-      ],
-      "@typography/*": [
-        "component/typography/*"
-      ],
-      "@media/*": [
-        "component/media/*"
-      ],
-      "@system/*": [
-        "system/*"
+      "@content/*": [
+        "src/component/content/*"
       ],
       "@form/*": [
-        "component/form/*"
+        "src/component/form/*"
       ],
-      "@style/*": [
-        "style/*"
-      ],
-      "@source/*": [
-        "source/*"
-      ],
-      "@component/*": [
-        "component/*"
-      ],
-      "@icon/*": [
-        "asset/icon/*"
-      ],
-      "@shell/*": [
-        "component/shell/*"
+      "@layout/*": [
+        "src/component/layout/*"
       ],
       "@overlay/*": [
-        "component/overlay/*"
+        "src/component/overlay/*"
+      ],
+      "@shell/*": [
+        "src/component/shell/*"
+      ],
+      "@typography/*": [
+        "src/component/typography/*"
+      ],
+      "@system/*": [
+        "src/system/*"
+      ],
+      "@theme/*": [
+        "src/theme/*"
+      ],
+      "@type/*": [
+        "src/type/*"
+      ],
+      "@util/*": [
+        "src/util/*"
       ]
     }
-  },
-  "include": [
-    "./src"
-  ]
+  }
 }
