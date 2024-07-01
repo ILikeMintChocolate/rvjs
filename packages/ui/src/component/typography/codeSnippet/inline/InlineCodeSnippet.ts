@@ -1,12 +1,12 @@
 import { button, code } from '@rvjs/core/dom'
 import { dynamic, prop } from '@rvjs/core/reactive'
-import { CodeSnippetProps } from '@typography/codeSnippet/CodeSnippet.js'
-import { copyToClipboard } from '@typography/codeSnippet/CodeSnippet.util.js'
+import { CodeSnippetProps } from '@typography/codeSnippet/CodeSnippet.props.ts'
+import { copyToClipboard } from '@typography/codeSnippet/CodeSnippet.util.ts'
 import {
   inlineCodeSnippet_button_style,
   inlineCodeSnippet_code_style,
-} from '@typography/codeSnippet/inline/InlineCodeSnippet.css.js'
-import { text_recipe } from '@typography/text/Text.css.js'
+} from '@typography/codeSnippet/inline/InlineCodeSnippet.css.ts'
+import { text_recipe } from '@typography/text/Text.css.ts'
 import { highlight, languages } from 'prismjs'
 import 'prismjs/themes/prism-tomorrow.css'
 import 'prismjs/components/prism-bash'

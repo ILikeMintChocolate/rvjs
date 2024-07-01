@@ -8,16 +8,14 @@ import {
   tooltip_wrapper_style,
 } from '@overlay/tooltip/Tooltip.css.ts'
 import { useTooltip } from '@overlay/tooltip/Tooltip.hook.ts'
-import { Child, svg } from '@rvjs/core/dom'
-import { dynamic, prop, Prop, useState } from '@rvjs/core/reactive'
+import {
+  TooltipProps,
+  tooltipPropsType,
+} from '@overlay/tooltip/Tooltip.props.ts'
+import { svg } from '@rvjs/core/dom'
+import { dynamic, prop, useState } from '@rvjs/core/reactive'
+import { checkProps } from '@rvjs/is'
 import Text from '@typography/text/Text.ts'
-
-interface TooltipProps {
-  trigger: Child
-  description: Prop<string>
-  kind?: 'standard' | 'iconButton' | 'definition'
-  showOnHoverOrClick?: 'hover' | 'click'
-}
 
 const Tooltip = (props: TooltipProps) => {
   const {
@@ -25,7 +23,7 @@ const Tooltip = (props: TooltipProps) => {
     trigger,
     description,
     showOnHoverOrClick = 'hover',
-  } = props
+  } = checkProps<TooltipProps>(props, tooltipPropsType)
   const [showTooltip, setShowHover] = useState(false)
   const { tooltipRef } = useTooltip(showTooltip, trigger)
 

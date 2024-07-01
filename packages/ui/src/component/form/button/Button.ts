@@ -3,37 +3,21 @@ import {
   button_kind_recipe,
   button_size_recipe,
   button_text_recipe,
-  ButtonStyleProps,
 } from '@form/button/Button.css.ts'
+import { ButtonProps, buttonPropsType } from '@form/button/Button.props.ts'
 import Box from '@layout/box/Box.ts'
-import { element, ElementType, svg } from '@rvjs/core/dom'
+import { element, svg } from '@rvjs/core/dom'
 import {
   dynamic,
   isGetState,
   prop,
-  Prop,
   useEffect,
   useRef,
 } from '@rvjs/core/reactive'
+import { checkProps } from '@rvjs/is'
 import vars from '@theme/variable/vars.css.ts'
 import Text from '@typography/text/Text.ts'
-import { ifIs } from '@util/array.js'
-
-interface ButtonProps extends ButtonStyleProps {
-  text?: Prop<string>
-  as?: ElementType
-  classes?: Prop<string>[]
-  disabled?: Prop<boolean>
-  tabIndex?: Prop<number>
-  type?: Prop<'button' | 'reset' | 'submit'>
-  hasIconOnly?: Prop<boolean>
-  renderIcon?: SVGElement
-  onBlur?: GlobalEventHandlers['onblur']
-  onClick?: GlobalEventHandlers['onclick']
-  onFocus?: GlobalEventHandlers['onfocus']
-  onMouseEnter?: GlobalEventHandlers['onmouseenter']
-  onMouseLeave?: GlobalEventHandlers['onmouseleave']
-}
+import { ifIs } from '@util/array.ts'
 
 const Button = (props: ButtonProps) => {
   const {
@@ -53,7 +37,9 @@ const Button = (props: ButtonProps) => {
     onMouseEnter,
     onMouseLeave,
     ...restProps
-  } = props
+  } = checkProps<ButtonProps>(props, buttonPropsType, {
+    errorOnNoValidator: false,
+  })
   const buttonRef = useRef<HTMLButtonElement>()
 
   useEffect(() => {

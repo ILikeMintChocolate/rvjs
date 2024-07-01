@@ -4,7 +4,7 @@ import {
   getZoomLevel,
   repositionArrow,
   repositionTooltip,
-} from '@overlay/tooltip/tooltip.util.ts'
+} from '@overlay/tooltip/Tooltip.util.ts'
 import { Block, Child } from '@rvjs/core/dom'
 import { GetState, useEffect, useElement, useRef } from '@rvjs/core/reactive'
 
