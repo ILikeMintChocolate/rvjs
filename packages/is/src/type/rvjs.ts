@@ -1,10 +1,11 @@
 import { Component, Element, isTextNode } from '@rvjs/core/dom'
-import { GetState, Prop } from '@rvjs/core/reactive'
+import { GetState, Prop, SetState } from '@rvjs/core/reactive'
 import {
   RVJS_COMPONENT_SYMBOL,
   RVJS_ELEMENT_SYMBOL,
   RVJS_GET_STATE_SYMBOL,
   RVJS_PROP_SYMBOL,
+  RVJS_SET_STATE_SYMBOL,
 } from '@rvjs/core/util'
 import { checkContext } from '../checkProps/context.ts'
 import {
@@ -67,6 +68,11 @@ export const isGetState = (validator: Validator) => (value: unknown) => {
     return false
   }
   return validator(value()) as boolean
+}
+
+export const isSetState = (value: unknown): value is SetState => {
+  // @ts-ignore
+  return isFunctionType(value) && value?.$$typeof === RVJS_SET_STATE_SYMBOL
 }
 
 export const isProp = (validator: Validator) => (value: unknown) => {
