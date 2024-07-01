@@ -17,14 +17,23 @@ export const startCheckProps = (options: StartCheckPropsOptions) => {
   }
 }
 
+export interface checkPropsOptions {
+  errorOnNoValidator: boolean
+}
+
 export const checkProps = <Props>(
   props: Props,
-  types: Record<keyof Props, Function>,
-) => {
+  types: Record<string, Function>,
+  options?: checkPropsOptions,
+): Props => {
   if (hasToCheckProps) {
     // @ts-ignore
-    return checkPropsInDevelopment(props, types) as Props
+    return checkPropsInDevelopment<Props>(props, types, options) as Props
   } else {
-    return checkPropsInProduction(props, types) as Props
+    return checkPropsInProduction(props) as Props
   }
 }
+
+const func = <T>(value: T) => value
+
+func('123')
