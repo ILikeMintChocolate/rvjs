@@ -1,13 +1,13 @@
 import { expect, test, vi } from 'vitest'
 import { checkProps, startCheckProps } from '../checkProps/check.ts'
-import { isArray, isFunction, isObject, isOptional } from '../type/complex.ts'
+import { isArray, isFunction, isObject, isOptional } from '../type/composite.ts'
 import { isNumber, isString } from '../type/primitive.ts'
 
 startCheckProps({
   environment: 'development',
 })
 
-test('complex types', () => {
+test('composite types', () => {
   const consoleErrorSpy = vi.spyOn(console, 'error')
 
   const props = {
@@ -57,3 +57,4 @@ test('complex types', () => {
   expect(consoleErrorSpy).not.toHaveBeenCalled()
   consoleErrorSpy.mockRestore()
 })
+

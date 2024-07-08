@@ -1,4 +1,4 @@
-export * from './type/complex'
+export * from './type/composite.ts'
 export * from './type/primitive'
 export * from './type/reference'
 export * from './type/rvjs'

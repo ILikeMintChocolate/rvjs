@@ -4,9 +4,9 @@ import {
   printNoValidatorError,
 } from '../checkProps/error.ts'
 import { isFunctionType, isObjectType } from './reference.ts'
-import { ComplexValidator, Validator, Validators } from './type.ts'
+import { CompositeValidator, Validator, Validators } from './type.ts'
 
-export const isArray: ComplexValidator<Validator> =
+export const isArray: CompositeValidator<Validator> =
   (validator) => (value: unknown) => {
     if (!checkContext.isContinue) {
       return false
@@ -22,7 +22,7 @@ export const isArray: ComplexValidator<Validator> =
     return value.every(validator) as boolean
   }
 
-export const isFunction: ComplexValidator<Validator> =
+export const isFunction: CompositeValidator<Validator> =
   (validator) => (value: unknown) => {
     if (!checkContext.isContinue) {
       return false
@@ -38,7 +38,7 @@ export const isFunction: ComplexValidator<Validator> =
     return validator(value()) as boolean
   }
 
-export const isObject: ComplexValidator<Validators> =
+export const isObject: CompositeValidator<Validators> =
   (validators) => (value: unknown) => {
     if (!checkContext.isContinue) {
       return false
