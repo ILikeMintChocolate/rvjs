@@ -6,9 +6,10 @@ import {
   headerMenuButton_button_style,
   headerMenuButton_icon_style,
 } from '@shell/header/headerMenuButton/HeaderMenuButton.css.ts'
+import { EventHandlers } from '@type/event.ts'
 
 interface HeaderMenuButtonProps {
-  onClick?: GlobalEventHandlers['onclick']
+  onClick?: EventHandlers['onClick']
   menuIcon?: SVGElement
   closeIcon?: SVGElement
 }
@@ -28,13 +29,12 @@ const HeaderMenuButton: ComponentFn = component<HeaderMenuButtonProps>(
       onclick: (event: MouseEvent) => {
         setShowSideNav(!showSideNav())
         if (onClick) {
-          // @ts-ignore
           onClick(event)
         }
       },
       children: [
-        Switch(showSideNav, (showSideNav) => {
-          if (showSideNav) {
+        Switch(showSideNav, () => {
+          if (showSideNav()) {
             return svg(closeIcon, {
               classes: [headerMenuButton_icon_style],
               style: {
