@@ -51,20 +51,18 @@ export const isObject: CompositeValidator<Validators> =
       printInvalidError()
       return false
     }
-    const propKeys = new Set(Object.keys(value))
+    const objectValue = value as Record<string, unknown>
+    const propKeys = new Set(Object.keys(objectValue))
     for (const key in validators) {
       const validator = validators[key]
-      // @ts-ignore
-      const prop = value[key]
+      const prop = objectValue[key]
       checkContext.prop = { key, value: prop }
-      // @ts-ignore
       validator(prop)
       propKeys.delete(key)
     }
     if (propKeys.size) {
       for (const key of propKeys) {
-        // @ts-ignore
-        checkContext.prop = { key, value: value[key] }
+        checkContext.prop = { key, value: objectValue[key] }
         printNoValidatorError()
       }
     }
