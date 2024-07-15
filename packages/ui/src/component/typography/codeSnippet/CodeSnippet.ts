@@ -1,21 +1,12 @@
-import { Prop } from '@rvjs/core/reactive'
-import InlineCodeSnippet from '@typography/codeSnippet/inline/InlineCodeSnippet.js'
-import MultiCodeSnippet from '@typography/codeSnippet/multi/MultiCodeSnippet.js'
-import SingleCodeSnippet from '@typography/codeSnippet/single/SingleCodeSnippet.js'
-import { CSSProperties } from '@vanilla-extract/css'
-
-export interface CodeSnippetProps {
-  codeText: Prop<string>
-  language: 'javascript' | 'typescript' | 'html' | 'css' | 'bash' | 'json'
-  type?: 'single' | 'inline' | 'multi'
-  collapsedNumberOfRows?: Prop<number>
-  copyButtonDescription?: Prop<string>
-  hideCopyButton?: Prop<boolean>
-  onClick?: GlobalEventHandlers['onclick']
-  width?: Prop<CSSProperties['width']>
-  wrapText?: Prop<boolean>
-  ariaLabel?: Prop<string>
-}
+import { checkProps } from '@rvjs/is'
+import {
+  CodeSnippetProps,
+  codeSnippetPropsType,
+} from '@typography/codeSnippet/CodeSnippet.props.ts'
+import InlineCodeSnippet from '@typography/codeSnippet/inline/InlineCodeSnippet.ts'
+import LinkCodeSnippet from '@typography/codeSnippet/link/LinkCodeSnippet.ts'
+import MultiCodeSnippet from '@typography/codeSnippet/multi/MultiCodeSnippet.ts'
+import SingleCodeSnippet from '@typography/codeSnippet/single/SingleCodeSnippet.ts'
 
 const CodeSnippet = (props: CodeSnippetProps) => {
   const {
@@ -29,7 +20,11 @@ const CodeSnippet = (props: CodeSnippetProps) => {
     onClick,
     width,
     wrapText,
-  } = props
+    defaultShow,
+    href,
+  } = checkProps<CodeSnippetProps>(props, codeSnippetPropsType, {
+    errorOnNoValidator: false,
+  })
 
   if (type === 'single') {
     return SingleCodeSnippet({
@@ -60,6 +55,14 @@ const CodeSnippet = (props: CodeSnippetProps) => {
       width,
       wrapText,
       ariaLabel,
+      defaultShow,
+    })
+  } else if (type === 'link') {
+    return LinkCodeSnippet({
+      codeText,
+      language,
+      ariaLabel,
+      href,
     })
   }
 
