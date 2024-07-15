@@ -6,7 +6,7 @@ import {
 } from '@form/button/Button.css.ts'
 import { ButtonProps, buttonPropsType } from '@form/button/Button.props.ts'
 import Box from '@layout/box/Box.ts'
-import { element, svg } from '@rvjs/core/dom'
+import { button, overrideElement } from '@rvjs/core/dom'
 import {
   dynamic,
   isGetState,
@@ -22,7 +22,6 @@ import { ifIs } from '@util/array.ts'
 const Button = (props: ButtonProps) => {
   const {
     text = prop(() => ''),
-    as = 'button',
     classes = [],
     disabled = prop(() => false),
     kind = prop(() => 'primary'),
@@ -52,7 +51,7 @@ const Button = (props: ButtonProps) => {
     }
   }, [disabled])
 
-  return element(as, {
+  return button({
     ref: buttonRef,
     classes: [
       dynamic(() =>
@@ -83,7 +82,7 @@ const Button = (props: ButtonProps) => {
         }),
       ),
       renderIcon !== null
-        ? svg(renderIcon!, {
+        ? overrideElement(renderIcon!, {
             classes: [
               dynamic(() =>
                 button_icon_recipe({
@@ -102,8 +101,7 @@ const Button = (props: ButtonProps) => {
             },
           }),
     ],
-    // @ts-ignore
-    type,
+    type: dynamic(() => type()),
     ...restProps,
   })
 }

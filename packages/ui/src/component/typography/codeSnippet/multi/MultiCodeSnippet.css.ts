@@ -32,24 +32,15 @@ export const multiCodeSnippet_pre_style = style({
 
 export const multiCodeSnippet_showMoreIcon_recipe = recipe({
   base: {
-    // @ts-ignore
-    '& svg': {
-      transition: `all ${vars.motion.productive}`,
-    },
+    transition: `all ${vars.motion.productive}`,
   },
   variants: {
     showMore: {
       true: {
-        // @ts-ignore
-        '& svg': {
-          transform: 'rotate(180deg)',
-        },
+        transform: 'rotate(180deg)',
       },
       false: {
-        // @ts-ignore
-        '& svg': {
-          transform: 'rotate(0deg)',
-        },
+        transform: 'rotate(0deg)',
       },
     },
   },

@@ -2,7 +2,7 @@ import Button from '@form/button/Button.ts'
 import copySvg from '@icon/copy.svg?element'
 import Flex from '@layout/flex/Flex.ts'
 import Tooltip from '@overlay/tooltip/Tooltip.ts'
-import { span } from '@rvjs/core/dom'
+import { span, svg } from '@rvjs/core/dom'
 import { dynamic, prop } from '@rvjs/core/reactive'
 import { CodeSnippetProps } from '@typography/codeSnippet/CodeSnippet.props.ts'
 import { copyToClipboard } from '@typography/codeSnippet/CodeSnippet.util.ts'
@@ -13,7 +13,7 @@ import {
 import { text_recipe } from '@typography/text/Text.css.ts'
 import { ifIs } from '@util/array.ts'
 import { highlight, languages } from 'prismjs'
-import 'prismjs/themes/prism-tomorrow.css'
+import 'prismjs/themes/prism.css'
 import 'prismjs/components/prism-bash'
 
 type SingleCodeSnippetProps = CodeSnippetProps
@@ -38,6 +38,7 @@ const SingleCodeSnippet = (props: SingleCodeSnippetProps) => {
     classes: [prop(() => singleCodeSnippet_wrapper_style)],
     justifyContent: 'space-between',
     style: {
+      // @ts-ignore
       width: dynamic(() => width()),
     },
     ariaLabel: dynamic(() => ariaLabel()),
@@ -59,11 +60,10 @@ const SingleCodeSnippet = (props: SingleCodeSnippetProps) => {
             size: prop(() => 'md'),
             kind: prop(() => 'ghost'),
             hasIconOnly: prop(() => true),
-            renderIcon: copySvg,
+            renderIcon: svg(copySvg),
             onClick: async (event: MouseEvent) => {
               await copyToClipboard(codeText())
               if (onClick) {
-                // @ts-ignore
                 onClick(event)
               }
             },

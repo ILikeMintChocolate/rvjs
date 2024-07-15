@@ -8,6 +8,7 @@ import {
   isSetState,
   isString,
 } from '@rvjs/is'
+import { EventHandlers } from '@type/event.ts'
 
 export interface TextInputProps {
   value: Prop<string>
@@ -20,8 +21,8 @@ export interface TextInputProps {
   invalidText?: Prop<string>
   labelText?: Prop<string>
   maxCount?: Prop<number>
-  onChange?: GlobalEventHandlers['oninput']
-  onClick?: GlobalEventHandlers['onclick']
+  onChange?: EventHandlers['onChange']
+  onClick?: EventHandlers['onClick']
   placeholder?: Prop<string>
   readOnly?: Prop<boolean>
   type?: HTMLInputElement['type']

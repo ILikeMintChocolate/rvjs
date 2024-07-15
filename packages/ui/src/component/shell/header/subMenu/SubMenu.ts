@@ -13,22 +13,22 @@ import {
 } from '@rvjs/core/reactive'
 import {
   subMenu_dropDown_style,
-  subMenu_icon_style,
   subMenu_iconWrapper_style,
   subMenu_recipe,
   subMenu_text_style,
 } from '@shell/header/subMenu/SubMenu.css.ts'
 import { noDrag_style } from '@theme/util/util.css.ts'
+import { EventHandlers } from '@type/event.ts'
 import Text from '@typography/text/Text.ts'
 
 interface SubMenuProps {
   id: string
   menuName: Prop<string>
   children: Children
-  ariaLabel?: Prop<number>
+  ariaLabel?: Prop<string>
   focusRef?: RefObject<HTMLButtonElement>
-  onBlur?: GlobalEventHandlers['onblur']
-  onClick?: GlobalEventHandlers['onclick']
+  onBlur?: EventHandlers['onBlur']
+  onClick?: EventHandlers['onClick']
   tabIndex?: Prop<number>
 }
 
@@ -37,7 +37,7 @@ const SubMenu: ComponentFn = component<SubMenuProps>((props) => {
     id,
     menuName,
     children,
-    ariaLabel = prop(() => undefined),
+    ariaLabel = prop(() => null),
     focusRef,
     onBlur,
     onClick,
@@ -78,13 +78,11 @@ const SubMenu: ComponentFn = component<SubMenuProps>((props) => {
         onclick: (event: MouseEvent) => {
           setShowItems(!showItems())
           if (onClick) {
-            // @ts-ignore
             onClick(event)
           }
         },
         onblur: (event: FocusEvent) => {
           if (onBlur) {
-            // @ts-ignore
             onBlur(event)
           }
         },
@@ -102,12 +100,12 @@ const SubMenu: ComponentFn = component<SubMenuProps>((props) => {
             justify: 'center',
             children: [
               svg(chevronDownSvg, {
-                classes: [subMenu_icon_style],
-                style: {
-                  transform: dynamic(() =>
-                    showItems() ? 'rotate(180deg)' : '',
-                  ),
-                },
+                // classes: [subMenu_icon_style],
+                // style: {
+                //   transform: dynamic(() =>
+                //     showItems() ? 'rotate(180deg)' : '',
+                //   ),
+                // },
               }),
             ],
           }),

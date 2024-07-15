@@ -6,13 +6,14 @@ import {
   headerGlobalAction_button_recipe,
   headerGlobalAction_li_style,
 } from '@shell/header/headerGlobalAction/HeaderGlobalAction.css.ts'
+import { EventHandlers } from '@type/event.ts'
 
 interface HeaderGlobalActionProps {
   children: Children
   classes?: Prop<string>[]
   isActive?: Prop<boolean>
-  onClick?: GlobalEventHandlers['onclick']
-  tooltip?: string
+  onClick?: EventHandlers['onClick']
+  tooltip?: Prop<string>
   tooltipAlignment?: 'start' | 'center' | 'end'
 }
 
@@ -24,13 +25,12 @@ const HeaderGlobalAction = (props: HeaderGlobalActionProps) => {
     onClick,
     tooltip,
   } = props
-  // const [showTooltip, setShowTooltip] = useState(false)
 
   return Flex({
     as: 'li',
     classes: [prop(() => headerGlobalAction_li_style), ...classes],
     children: [
-      Switch(tooltip, (tooltip) => {
+      Switch(tooltip, () => {
         if (tooltip) {
           return Tooltip({
             trigger: button({
@@ -42,7 +42,7 @@ const HeaderGlobalAction = (props: HeaderGlobalActionProps) => {
               ],
               children,
             }),
-            description: prop(() => tooltip),
+            description: prop(() => tooltip()),
           })
         } else {
           return button({

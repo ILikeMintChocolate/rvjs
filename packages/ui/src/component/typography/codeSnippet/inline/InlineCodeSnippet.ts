@@ -8,7 +8,7 @@ import {
 } from '@typography/codeSnippet/inline/InlineCodeSnippet.css.ts'
 import { text_recipe } from '@typography/text/Text.css.ts'
 import { highlight, languages } from 'prismjs'
-import 'prismjs/themes/prism-tomorrow.css'
+import 'prismjs/themes/prism.css'
 import 'prismjs/components/prism-bash'
 
 type InlineCodeSnippetProps = Pick<
@@ -35,7 +35,6 @@ const InlineCodeSnippet = (props: InlineCodeSnippetProps) => {
     onclick: async (event: MouseEvent) => {
       await copyToClipboard(codeText())
       if (onClick) {
-        // @ts-ignore
         onClick(event)
       }
     },

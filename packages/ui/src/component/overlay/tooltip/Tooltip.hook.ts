@@ -5,12 +5,12 @@ import {
   repositionArrow,
   repositionTooltip,
 } from '@overlay/tooltip/Tooltip.util.ts'
-import { Block, Child } from '@rvjs/core/dom'
+import { Block } from '@rvjs/core/dom'
 import { GetState, useEffect, useElement, useRef } from '@rvjs/core/reactive'
 
-export const useTooltip = (showTooltip: GetState<boolean>, trigger: Child) => {
+export const useTooltip = (showTooltip: GetState<boolean>, trigger: Block) => {
   const tooltipRef = useRef<HTMLDivElement>()
-  const triggerElement = useElement(trigger as Block)!
+  const triggerElement = useElement(trigger)!
   let previousZoom: number = -1
 
   useEffect(() => {

@@ -1,3 +1,4 @@
+import { StyleProps } from '@rvjs/core/dom'
 import { Prop, prop } from '@rvjs/core/reactive'
 import {
   isBoolean,
@@ -7,20 +8,21 @@ import {
   isProp,
   isString,
 } from '@rvjs/is'
-import { CSSProperties } from '@vanilla-extract/css'
+import { EventHandlers } from '@type/event.ts'
 
 export interface CodeSnippetProps {
   codeText: Prop<string>
   language: 'javascript' | 'typescript' | 'html' | 'css' | 'bash' | 'json'
-  type?: 'single' | 'inline' | 'multi'
+  type?: 'single' | 'inline' | 'multi' | 'link'
   collapsedNumberOfRows?: Prop<number>
   copyButtonDescription?: Prop<string>
   hideCopyButton?: Prop<boolean>
-  onClick?: GlobalEventHandlers['onclick']
-  width?: Prop<CSSProperties['width']>
+  onClick?: EventHandlers['onClick']
+  width?: Prop<StyleProps['width']>
   wrapText?: Prop<boolean>
   ariaLabel?: Prop<string>
   defaultShow?: Prop<boolean>
+  href?: Prop<string>
 }
 
 export const codeSnippetPropsType = {
@@ -49,4 +51,5 @@ export const codeSnippetRenderProps = {
   wrapText: (p: boolean) => prop(() => p),
   ariaLabel: (p: string) => prop(() => p),
   defaultShow: (p: boolean) => prop(() => p),
+  href: (p: string) => prop(() => p),
 }

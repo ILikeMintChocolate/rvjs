@@ -1,6 +1,6 @@
-import { Dynamic, Prop, prop } from '@rvjs/core/reactive'
+import { ElementProps } from '@rvjs/core/dom'
+import { Prop, prop } from '@rvjs/core/reactive'
 import { isOptional, isProp, isString } from '@rvjs/is'
-import { AddTypeToValues } from '@util/type.ts'
 import { Properties } from 'csstype'
 
 export interface IframeProps extends HTMLIframeType {
@@ -10,10 +10,7 @@ export interface IframeProps extends HTMLIframeType {
 }
 
 type HTMLIframeType = Partial<
-  AddTypeToValues<
-    Omit<HTMLIFrameElement, 'src' | 'width' | 'height'>,
-    Dynamic<any>
-  >
+  Omit<ElementProps<'iframe'>, 'src' | 'width' | 'height'>
 >
 
 export const iframePropsType = {

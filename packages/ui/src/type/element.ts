@@ -1,11 +1,5 @@
-import { Dynamic } from '@rvjs/core/reactive'
-import { AddTypeToValues } from '@util/type.ts'
+import { ElementProps } from '@rvjs/core/dom'
 
 export type HTMLDivType = Partial<
-  AddTypeToValues<
-    Omit<HTMLDivElement, 'align' | 'children' | 'style'>,
-    Dynamic<any>
-  >
+  Omit<ElementProps<'div'>, 'align' | 'classes' | 'children' | 'style' | 'ref'>
 >
-
-export type HTMLButtonType = Partial<Omit<HTMLButtonElement, 'children'>>
