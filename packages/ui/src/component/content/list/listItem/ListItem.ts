@@ -9,21 +9,28 @@ import {
 import { li } from '@rvjs/core/dom'
 import { dynamic, prop } from '@rvjs/core/reactive'
 import { checkProps } from '@rvjs/is'
+import { text_recipe } from '@typography/text/Text.css.ts'
 import Text from '@typography/text/Text.ts'
+import { ifIs } from '@util/array.ts'
 
 const ListItem = (props: ListItemProps) => {
   const { text, children = [] } = checkProps(props, listItemPropsType)
 
   return li({
-    classes: [dynamic(() => listItem_li_style)],
+    classes: [
+      listItem_li_style,
+      dynamic(() => text_recipe({ kind: 'body-01' })),
+    ],
     children: [
-      Text({
-        text,
-        as: 'span',
-        kind: prop(() => 'body-01'),
-        color: prop(() => 'textPrimary'),
-        classes: [prop(() => listItem_text_style)],
-      }),
+      ...ifIs(!!text, () =>
+        Text({
+          text,
+          as: 'span',
+          kind: prop(() => 'body-01'),
+          color: prop(() => 'textPrimary'),
+          classes: [prop(() => listItem_text_style)],
+        }),
+      ),
       ...children,
     ],
   })

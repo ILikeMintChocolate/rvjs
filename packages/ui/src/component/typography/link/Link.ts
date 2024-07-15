@@ -1,11 +1,11 @@
-import { a, svg } from '@rvjs/core/dom'
+import { a, overrideElement } from '@rvjs/core/dom'
 import { dynamic, prop, useState } from '@rvjs/core/reactive'
 import { useNavigate } from '@rvjs/core/router'
 import { checkProps } from '@rvjs/is'
 import {
   link_anchor_recipe,
   link_icon_recipe,
-  link_text_style,
+  link_text_recipe,
 } from '@typography/link/Link.css.ts'
 import { LinkProps, linkPropsType } from '@typography/link/Link.props.ts'
 import Text from '@typography/text/Text.ts'
@@ -16,6 +16,7 @@ const Link = (props: LinkProps) => {
     href,
     as = 'p',
     text,
+    children = [],
     disabled = prop(() => false),
     inline = prop(() => false),
     renderIcon,
@@ -33,25 +34,28 @@ const Link = (props: LinkProps) => {
       setVisited(true)
     },
     children: [
-      Text({
-        as,
-        text,
-        kind: prop(() =>
-          size() === 'sm'
-            ? 'helper-text-01'
-            : size() === 'md'
-              ? 'body-compact-01'
-              : 'body-compact-02',
-        ),
-        color: prop(() => 'linkPrimary'),
-        classes: [
-          prop(() =>
-            link_text_style({ disabled: disabled(), visited: visited() }),
+      ...ifIs(!!text, () =>
+        Text({
+          as,
+          text,
+          kind: prop(() =>
+            size() === 'sm'
+              ? 'helper-text-01'
+              : size() === 'md'
+                ? 'body-compact-01'
+                : 'body-compact-02',
           ),
-        ],
-      }),
+          color: prop(() => 'linkPrimary'),
+          classes: [
+            prop(() =>
+              link_text_recipe({ disabled: disabled(), visited: visited() }),
+            ),
+          ],
+        }),
+      ),
+      ...children,
       ...ifIs(!!renderIcon, () => {
-        return svg(renderIcon!, {
+        return overrideElement(renderIcon!, {
           classes: [
             dynamic(() =>
               link_icon_recipe({

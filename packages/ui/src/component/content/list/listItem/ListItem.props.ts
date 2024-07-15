@@ -3,12 +3,12 @@ import { Prop, prop } from '@rvjs/core/reactive'
 import { isChildren, isOptional, isProp, isString } from '@rvjs/is'
 
 export interface ListItemProps {
-  text: Prop<string>
+  text?: Prop<string>
   children?: Children
 }
 
 export const listItemPropsType = {
-  text: isProp(isString),
+  text: isOptional(isProp(isString)),
   children: isOptional(isChildren),
 }
 
