@@ -13,30 +13,31 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc --p ./tsconfig-build.json && vite build",
+    "postbuild": "ts-node build/postBuild.ts",
     "preview": "vite preview",
     "test": "vitest"
   },
   "types": "./dist/index.d.ts",
   "exports": {
     "./dom": {
-      "import": "./dist/dom/dom.es.js",
-      "require": "./dist/dom/dom.cjs.js",
-      "types": "./dist/dom/index.d.ts"
+      "import": "./dist/dom/index.es.js",
+      "require": "./dist/dom/index.cjs.js",
+      "types": "./dist/dom.d.ts"
     },
     "./reactive": {
-      "import": "./dist/reactive/reactive.es.js",
-      "require": "./dist/reactive/reactive.cjs.js",
-      "types": "./dist/reactive/index.d.ts"
+      "import": "./dist/reactive/index.es.js",
+      "require": "./dist/reactive/index.cjs.js",
+      "types": "./dist/reactive.d.ts"
     },
     "./util": {
-      "import": "./dist/util/util.es.js",
-      "require": "./dist/util/util.cjs.js",
-      "types": "./dist/util/index.d.ts"
+      "import": "./dist/util/index.es.js",
+      "require": "./dist/util/index.cjs.js",
+      "types": "./dist/util.d.ts"
     },
     "./router": {
-      "import": "./dist/router/router.es.js",
-      "require": "./dist/router/router.cjs.js",
-      "types": "./dist/router/index.d.ts"
+      "import": "./dist/router/index.es.js",
+      "require": "./dist/router/index.cjs.js",
+      "types": "./dist/router.d.ts"
     }
   },
   "files": [
