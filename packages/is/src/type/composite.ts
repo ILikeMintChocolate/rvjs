@@ -4,9 +4,9 @@ import {
   printNoValidatorError,
 } from '../checkProps/error.ts'
 import { isFunctionType, isObjectType } from './reference.ts'
-import { ComplexValidator, Validator, Validators } from './type.ts'
+import { CompositeValidator, Validator, Validators } from './type.ts'
 
-export const isArray: ComplexValidator<Validator> =
+export const isArray: CompositeValidator<Validator> =
   (validator) => (value: unknown) => {
     if (!checkContext.isContinue) {
       return false
@@ -22,7 +22,7 @@ export const isArray: ComplexValidator<Validator> =
     return value.every(validator) as boolean
   }
 
-export const isFunction: ComplexValidator<Validator> =
+export const isFunction: CompositeValidator<Validator> =
   (validator) => (value: unknown) => {
     if (!checkContext.isContinue) {
       return false
@@ -38,7 +38,7 @@ export const isFunction: ComplexValidator<Validator> =
     return validator(value()) as boolean
   }
 
-export const isObject: ComplexValidator<Validators> =
+export const isObject: CompositeValidator<Validators> =
   (validators) => (value: unknown) => {
     if (!checkContext.isContinue) {
       return false
@@ -51,20 +51,18 @@ export const isObject: ComplexValidator<Validators> =
       printInvalidError()
       return false
     }
-    const propKeys = new Set(Object.keys(value))
+    const objectValue = value as Record<string, unknown>
+    const propKeys = new Set(Object.keys(objectValue))
     for (const key in validators) {
       const validator = validators[key]
-      // @ts-ignore
-      const prop = value[key]
+      const prop = objectValue[key]
       checkContext.prop = { key, value: prop }
-      // @ts-ignore
       validator(prop)
       propKeys.delete(key)
     }
     if (propKeys.size) {
       for (const key of propKeys) {
-        // @ts-ignore
-        checkContext.prop = { key, value: value[key] }
+        checkContext.prop = { key, value: objectValue[key] }
         printNoValidatorError()
       }
     }

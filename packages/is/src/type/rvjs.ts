@@ -1,4 +1,10 @@
-import { Component, Element, isTextNode } from '@rvjs/core/dom'
+import {
+  Component,
+  Element,
+  isRvjsFunction,
+  isRvjsObject,
+  isTextNode,
+} from '@rvjs/core/dom'
 import { GetState, Prop, SetState } from '@rvjs/core/reactive'
 import {
   RVJS_COMPONENT_SYMBOL,
@@ -12,18 +18,15 @@ import {
   printInvalidError,
   printNoValidatorError,
 } from '../checkProps/error.ts'
-
-import { isArrayType, isFunctionType, isObjectType } from './reference.ts'
+import { isArrayType } from './reference.ts'
 import { Validator } from './type.ts'
 
 export const isElement = (value: any): value is Element => {
-  // @ts-ignore
-  return isObjectType(value) && value.$$typeof === RVJS_ELEMENT_SYMBOL
+  return isRvjsObject(value) && value.$$typeof === RVJS_ELEMENT_SYMBOL
 }
 
 export const isComponent = (value: unknown): value is Component => {
-  // @ts-ignore
-  return isObjectType(value) && value.$$typeof === RVJS_COMPONENT_SYMBOL
+  return isRvjsObject(value) && value.$$typeof === RVJS_COMPONENT_SYMBOL
 }
 
 export const isChild = (
@@ -42,17 +45,14 @@ export const isChildren = (
 }
 
 export const isGetStateType = (value: unknown): value is GetState => {
-  // @ts-ignore
-  return isFunctionType(value) && value?.$$typeof === RVJS_GET_STATE_SYMBOL
+  return isRvjsFunction(value) && value?.$$typeof === RVJS_GET_STATE_SYMBOL
 }
 
 export const isPropType = (value: unknown): value is Prop<unknown> => {
   if (isGetStateType(value)) {
     return true
   }
-
-  // @ts-ignore
-  return isFunctionType(value) && value?.$$typeof === RVJS_PROP_SYMBOL
+  return isRvjsFunction(value) && value?.$$typeof === RVJS_PROP_SYMBOL
 }
 
 export const isGetState = (validator: Validator) => (value: unknown) => {
@@ -71,8 +71,7 @@ export const isGetState = (validator: Validator) => (value: unknown) => {
 }
 
 export const isSetState = (value: unknown): value is SetState => {
-  // @ts-ignore
-  return isFunctionType(value) && value?.$$typeof === RVJS_SET_STATE_SYMBOL
+  return isRvjsFunction(value) && value?.$$typeof === RVJS_SET_STATE_SYMBOL
 }
 
 export const isProp = (validator: Validator) => (value: unknown) => {
