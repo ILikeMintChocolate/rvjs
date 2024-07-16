@@ -19,12 +19,7 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
-    "paths": {
-      "@rvjs/core/*": [
-        "../../core/dist/*"
-      ]
-    }
+    "noFallthroughCasesInSwitch": true
   },
   "include": [
     "src"
