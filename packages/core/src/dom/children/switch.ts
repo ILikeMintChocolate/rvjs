@@ -2,14 +2,18 @@ import { Component } from '@component/componentBlock.ts'
 import { componentContext } from '@context/executionContext.ts'
 import { Block } from '@dom/type.ts'
 import { GetState, isGetState } from '@hook/useState.ts'
-import { isFunction } from '@type/guard.ts'
+import { isRvjsFunction } from '@type/guard.ts'
+import { RvjsFunction } from '@type/rvjs.ts'
 import { Context } from '@util/context.ts'
+import { RVJS_SWITCH_RENDER_SYMBOL } from '@util/symbol.ts'
 
-export type SwitchRender = () => {
-  thisComponent: Component
-  getBlock: () => Block
-  context: Context<SwitchContext>
-}
+export type SwitchRender = RvjsFunction<
+  () => {
+    thisComponent: Component
+    getBlock: () => Block
+    context: Context<SwitchContext>
+  }
+>
 
 interface SwitchContext {
   index: number
@@ -17,21 +21,20 @@ interface SwitchContext {
 
 export const Switch = <Value>(
   value: Value | GetState<Value>,
-  render: (item: Value) => Block | null,
+  render: () => Block | null,
 ) => {
   let currentValue: Value | null = null
   let currentBlock: Block | null = null
   const context = new Context<SwitchContext>()
   const thisComponent = componentContext.get()!
 
-  return function switchRender() {
+  const switchRender = () => {
     const newValue = isGetState(value) ? value() : value
-
     if (newValue !== currentValue) {
       currentValue = newValue
       currentBlock?.triggerDestroy()
       componentContext.set(thisComponent)
-      currentBlock = render(newValue)
+      currentBlock = render()
       componentContext.set(null)
     }
     return {
@@ -39,9 +42,12 @@ export const Switch = <Value>(
       getBlock: () => currentBlock,
       context,
     }
-  } as SwitchRender
+  }
+  switchRender.$$typeof = RVJS_SWITCH_RENDER_SYMBOL
+
+  return switchRender as SwitchRender
 }
 
 export const isSwitchRender = (value: unknown): value is SwitchRender => {
-  return isFunction(value) && value.name === 'switchRender'
+  return isRvjsFunction(value) && value?.$$typeof === RVJS_SWITCH_RENDER_SYMBOL
 }

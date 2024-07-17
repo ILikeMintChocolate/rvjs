@@ -1,24 +1,26 @@
 import { isUsingState } from '@context/executionContext.ts'
 import { useEffect } from '@hook/useEffect.ts'
-import { useState } from '@hook/useState.ts'
+import { GetState, useState } from '@hook/useState.ts'
+import { RvjsFunction } from '@type/rvjs.ts'
+import { RVJS_PROP_SYMBOL } from '@util/symbol.ts'
 
-export type Prop<Value> = () => Value
+export type Prop<Value> = PropFn<Value> | GetState<Value>
 
-export const prop = <Value>(propFn: () => Value) => {
-  isUsingState.set(null)
+export type PropFn<Value> = RvjsFunction<() => Value>
+
+export const prop = <Value>(fn: () => Value) => {
+  const propFn = fn as PropFn<Value>
+  propFn.$$typeof = RVJS_PROP_SYMBOL
+  isUsingState.set([])
   const propResult = propFn()
-  const parentGetState = isUsingState.get()
-  isUsingState.set(null)
-
-  if (parentGetState) {
+  const parentGetStates = isUsingState.get()!
+  isUsingState.set([])
+  if (parentGetStates.length) {
     const [newState, setState] = useState(propResult)
-
     useEffect(() => {
       setState(propFn())
-    }, [parentGetState])
-
+    }, parentGetStates)
     return newState
   }
-
   return propFn
 }

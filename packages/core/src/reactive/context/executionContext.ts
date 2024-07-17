@@ -5,7 +5,7 @@ import { GetState } from '@hook/useState.ts'
 import { Context } from '@util/context.ts'
 
 export interface StateContext {
-  block: Block
+  block?: Block
   type:
     | 'useEffect'
     | 'childrenRender'

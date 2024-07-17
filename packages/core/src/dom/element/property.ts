@@ -1,96 +1,110 @@
 import { subscribeStateContext } from '@context/executionContext.ts'
 import { Children } from '@dom/type.ts'
 import { Element } from '@element/elementBlock.ts'
+import { AllElementProps, StyleProps } from '@element/type.ts'
 import { Dynamic, isDynamic } from '@hook/dynamic.ts'
 import { RefObject } from '@hook/useRef.ts'
 import { isString } from '@type/guard.ts'
-import { AddTypeToValues } from '@type/util.ts'
-import { Properties } from 'csstype'
+
+export const applyPropsToElement = <
+  Props extends Partial<AllElementProps>,
+>(
+  block: Element,
+  props: Partial<Props>,
+) => {
+  Object.entries(props).forEach(([key, value]) => {
+    setProperty(block, key as keyof AllElementProps, value)
+  })
+}
 
 export const setProperty = (
-  elementBlock: Element,
-  key: string,
-  value: unknown,
+  block: Element,
+  key: keyof AllElementProps,
+  value: AllElementProps[keyof AllElementProps],
 ) => {
-  if (isDynamic(value)) {
-    subscribeStateContext.set({
-      block: elementBlock,
-      type: 'domProperty',
-      property: key,
-      value,
-    })
-    setProperty(elementBlock, key, value())
-    subscribeStateContext.set(null)
+  if(isDynamic(value)) {
+    setDynamicProperty(
+      block,
+      key,
+      value as Dynamic<AllElementProps[keyof AllElementProps]>,
+    )
   } else {
-    if (customProperties.hasOwnProperty(key)) {
-      // @ts-ignore
-      customProperties[key](elementBlock, value)
-    } else if (elementBlock.element.hasAttribute(key)) {
-      elementBlock.element.setAttribute(key, value as string)
+    if(customProps.hasOwnProperty(key)) {
+      customProps[key as keyof CustomProps](block, value as any)
+    } else if(block.element.hasAttribute(key)) {
+      block.element.setAttribute(key, value as string)
     } else {
       // @ts-ignore
-      elementBlock.element[key] = value
+      block.element[key] = value
     }
   }
 }
 
-export type ExtendedHTMLElement<T extends keyof HTMLElementTagNameMap> =
-  HTMLElementTagNameMap[T] & CustomProperties
+export const setDynamicProperty = (
+  block: Element,
+  key: keyof AllElementProps,
+  value: Dynamic<AllElementProps[keyof AllElementProps]>,
+) => {
+  subscribeStateContext.set({
+    block: block,
+    type: 'domProperty',
+    property: key,
+    value,
+  })
+  setProperty(block, key, value())
+  subscribeStateContext.set(null)
+}
 
-export interface CustomProperties {
+export interface CustomProps {
   ref: RefObject<HTMLElement>
   children: Children
-  style: AddTypeToValues<Properties, Dynamic<any>>
-  animation: AnimationProps
+  style: Partial<StyleProps>
+  animation: {
+    keyframes: Keyframe[] | PropertyIndexedKeyframes | null
+    options?: number | KeyframeAnimationOptions
+  }
   className: string
   classes: (string | Dynamic<string>)[]
 }
 
-interface AnimationProps {
-  keyframes: Keyframe[] | PropertyIndexedKeyframes | null
-  options?: number | KeyframeAnimationOptions
-}
-
-const customProperties = {
-  ref: (parent: Element, refObject: RefObject<HTMLElement>) => {
-    if (refObject !== undefined) {
+const customProps = {
+  ref: (parent: Element, refObject: CustomProps['ref']) => {
+    if(refObject !== undefined) {
       refObject.current = parent.element
     }
   },
-  children: (parent: Element, children: Children) => {
+  children: (parent: Element, children: CustomProps['children']) => {
     parent.appendChildren(children)
   },
-  style: (parent: Element, style: AddTypeToValues<Properties, any>) => {
-    for (const property in style) {
-      // @ts-ignore
-      if (isDynamic(style[property])) {
+  style: (parent: Element, style: CustomProps['style']) => {
+    Object.entries(style).forEach(([property, value]) => {
+      if(isDynamic(value)) {
         subscribeStateContext.set({
           block: parent,
           type: 'styleProperty',
           property: property,
-          // @ts-ignore
-          value: style[property],
+          value,
         })
         // @ts-ignore
-        parent.element.style[property] = style[property]()
+        parent.element.style[property] = value()
         subscribeStateContext.set(null)
       } else {
         // @ts-ignore
-        parent.element.style[property] = style[property]
+        parent.element.style[property] = value
       }
-    }
+    })
   },
-  animation: (parent: Element, animation: AnimationProps) => {
+  animation: (parent: Element, animation: CustomProps['animation']) => {
     parent.element.animate(animation.keyframes, animation.options)
   },
-  className: (parent: Element, className: string) => {
-    parent.element.className = className
+  className: (block: Element, className: CustomProps['className']) => {
+    const splitedClassNames = className.split(' ')
+    block.element.classList.add(...splitedClassNames)
   },
-  classes: (parent: Element, classes: (string | Dynamic<string>)[]) => {
+  classes: (parent: Element, classes: CustomProps['classes']) => {
     classes.forEach((cls) => {
-      if (isDynamic(cls)) {
-        // @ts-ignore
-        const clsString = cls() as string
+      if(isDynamic(cls)) {
+        const clsString = cls()
         subscribeStateContext.set({
           block: parent,
           type: 'classesProperty',
@@ -98,20 +112,18 @@ const customProperties = {
           value: {
             classFn: cls,
             removePrevClassFn: () => {
-              // @ts-ignore
               clsString.split(' ').forEach((classString) => {
                 parent.element.classList.remove(classString)
               })
             },
           },
         })
-        // @ts-ignore
-        const classesString = cls() as string
+        const classesString = cls()
         classesString.split(' ').forEach((classString) => {
           parent.element.classList.add(classString)
         })
         subscribeStateContext.set(null)
-      } else if (isString(cls)) {
+      } else if(isString(cls)) {
         cls.split(' ').forEach((cls) => {
           parent.element.classList.add(cls)
         })
@@ -125,7 +137,7 @@ export const setStyleProperty = (
   property: string,
   value: unknown,
 ) => {
-  if (isDynamic(value)) {
+  if(isDynamic(value)) {
     // @ts-ignore
     elementBlock.element.style[property] = value()
   } else {

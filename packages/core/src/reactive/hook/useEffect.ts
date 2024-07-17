@@ -8,8 +8,6 @@ export const useEffect = (
   dependencies.forEach((dependency) => {
     if (isGetState(dependency)) {
       subscribeStateContext.set({
-        // @ts-ignore
-        block: null,
         type: 'useEffect',
         property: 'useEffect',
         value: callback,
