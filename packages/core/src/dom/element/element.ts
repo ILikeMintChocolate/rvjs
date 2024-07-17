@@ -280,3 +280,5 @@ export const video = (properties?: Attributes<'video'>) =>
   createElement('video', properties)
 export const wbr = (properties?: Attributes<'wbr'>) =>
   createElement('wbr', properties)
+
+export const text = (text: string) => document.createTextNode(text)

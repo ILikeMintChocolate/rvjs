@@ -4,7 +4,7 @@ import { isToggleRender, ToggleRender } from '@children/toggle.ts'
 import { isComponent } from '@component/componentBlock.ts'
 import { subscribeStateContext } from '@context/executionContext.ts'
 import { Block, Children, Render } from '@dom/type.ts'
-import { isArray } from '@type/guard.ts'
+import { isArray, isTextNode } from '@type/guard.ts'
 import { insertChildrenAtIndex } from '@util/dom.ts'
 import { Observer } from '@util/observer.ts'
 import { RVJS_ELEMENT_SYMBOL } from '@util/symbol.ts'
@@ -12,6 +12,8 @@ import { RVJS_ELEMENT_SYMBOL } from '@util/symbol.ts'
 interface ElementProps {
   element: HTMLElement
 }
+
+type El = (HTMLElement | Text) | (HTMLElement | Text)[]
 
 export class Element {
   $$typeof = RVJS_ELEMENT_SYMBOL
@@ -56,7 +58,7 @@ export class Element {
   }
 
   #renderChildren(children: Children) {
-    const elements: (HTMLElement | HTMLElement[])[] = []
+    const elements: El[] = []
 
     children.forEach((child) => {
       if (!child) {
@@ -70,6 +72,8 @@ export class Element {
         } else if (isComponent(child)) {
           elements.push(child.childElement)
         }
+      } else if (isTextNode(child)) {
+        elements.push(child)
       } else {
         const childBlocks = this.#diffingChildren(child, elements.length)
         this.#children.push(childBlocks)
@@ -202,11 +206,7 @@ export class Element {
     }
   }
 
-  #updateDOM(
-    newElements: (HTMLElement | HTMLElement[])[],
-    index?: number,
-    size?: number,
-  ) {
+  #updateDOM(newElements: El[], index?: number, size?: number) {
     if (index === undefined && size === undefined) {
       this.#element.replaceChildren(...newElements.flat())
     } else {
