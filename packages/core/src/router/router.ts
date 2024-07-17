@@ -2,7 +2,7 @@ import { Switch } from '@children/switch.ts'
 import { component } from '@component/component.ts'
 import { Component } from '@component/componentBlock.ts'
 import { Block } from '@dom/type.ts'
-import { h1 } from '@element/element.ts'
+import { h1 } from '@element/elementMap.ts'
 import { useState } from '@hook/useState.ts'
 import { routeContext } from '@router/context/routerContext.ts'
 import { pathEvent, Route } from '@router/util/event.ts'
@@ -49,10 +49,6 @@ export interface MatchedRouteFn {
 }
 
 type ComponentFn = () => Component
-
-const ErrorComponent = component(() => {
-  return h1({ textContent: '404' })
-})
 
 const Router = (routerProps: RouterProps) => {
   let router = normalizeRouter(routerProps)
@@ -131,7 +127,10 @@ const Router = (routerProps: RouterProps) => {
           pathType: 'error',
           pathname,
           query,
-          componentFn: () => ErrorComponent(),
+          componentFn: () =>
+            component(() => {
+              return h1({ textContent: '404...' })
+            })(),
         })
         break
       }
