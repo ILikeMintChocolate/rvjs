@@ -15,12 +15,13 @@
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
-  "types": "./dist/index.d.ts",
+  "type": "module",
+  "types": "./dist/type/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/index.es.js",
-      "require": "./dist/index.cjs.js",
-      "types": "./dist/index.d.ts"
+      "import": "./dist/entry/index.es.js",
+      "require": "./dist/entry/index.cjs.js",
+      "types": "./dist/type/index.d.ts"
     }
   },
   "files": [
