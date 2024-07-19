@@ -1,4 +1,6 @@
-export const isArrayType = (value: unknown): value is any[] => {
+import { NormalValidator } from './type.ts'
+
+export const isArrayType = (value: unknown): value is unknown[] => {
   return Array.isArray(value)
 }
 
@@ -10,34 +12,42 @@ export const isFunctionType = (value: unknown): value is Function => {
   return typeof value === 'function'
 }
 
-export const isDate = (value: unknown): value is Date => {
+export const isDate: NormalValidator = (value: unknown): value is Date => {
   return value instanceof Date
 }
 
-export const isRegExp = (value: unknown): value is RegExp => {
+export const isRegExp: NormalValidator = (value: unknown): value is RegExp => {
   return value instanceof RegExp
 }
 
-export const isError = (value: unknown): value is Error => {
+export const isError: NormalValidator = (value: unknown): value is Error => {
   return value instanceof Error
 }
 
-export const isPromise = (value: unknown): value is Promise<any> => {
+export const isPromise: NormalValidator = (
+  value: unknown,
+): value is Promise<any> => {
   return value instanceof Promise
 }
 
-export const isSet = (value: unknown): value is Set<any> => {
+export const isSet: NormalValidator = (value: unknown): value is Set<any> => {
   return value instanceof Set
 }
 
-export const isMap = (value: unknown): value is Map<any, any> => {
+export const isMap: NormalValidator = (
+  value: unknown,
+): value is Map<any, any> => {
   return value instanceof Map
 }
 
-export const isWeakSet = (value: unknown): value is WeakSet<any> => {
+export const isWeakSet: NormalValidator = (
+  value: unknown,
+): value is WeakSet<any> => {
   return value instanceof WeakSet
 }
 
-export const isWeakMap = (value: unknown): value is WeakMap<any, any> => {
+export const isWeakMap: NormalValidator = (
+  value: unknown,
+): value is WeakMap<any, any> => {
   return value instanceof WeakMap
 }

@@ -21,7 +21,7 @@ import {
 import { isArrayType } from './reference.ts'
 import { Validator } from './type.ts'
 
-export const isElement = (value: any): value is Element => {
+export const isElement = (value: unknown): value is Element => {
   return isRvjsObject(value) && value.$$typeof === RVJS_ELEMENT_SYMBOL
 }
 
