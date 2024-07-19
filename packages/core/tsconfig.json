@@ -21,24 +21,15 @@
       "@lifecycle/*": [
         "reactive/lifecycle/*"
       ],
+      "@router/*": [
+        "router/*"
+      ],
       "@type/*": [
         "type/*"
       ],
       "@util/*": [
         "util/*"
-      ],
-      "@dom/*": [
-        "dom/*"
-      ],
-      "@reactive/*": [
-        "reactive/*"
-      ],
-      "@router/*": [
-        "router/*"
       ]
     }
-  },
-  "include": [
-    "./src"
-  ]
+  }
 }
