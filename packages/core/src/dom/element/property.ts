@@ -1,14 +1,12 @@
 import { subscribeStateContext } from '@context/executionContext.ts'
-import { Children } from '@dom/type.ts'
 import { Element } from '@element/elementBlock.ts'
 import { AllElementProps, StyleProps } from '@element/type.ts'
 import { Dynamic, isDynamic } from '@hook/dynamic.ts'
 import { RefObject } from '@hook/useRef.ts'
 import { isString } from '@type/guard.ts'
+import { Children } from '@type/type.ts'
 
-export const applyPropsToElement = <
-  Props extends Partial<AllElementProps>,
->(
+export const applyPropsToElement = <Props extends Partial<AllElementProps>>(
   block: Element,
   props: Partial<Props>,
 ) => {
@@ -22,16 +20,16 @@ export const setProperty = (
   key: keyof AllElementProps,
   value: AllElementProps[keyof AllElementProps],
 ) => {
-  if(isDynamic(value)) {
+  if (isDynamic(value)) {
     setDynamicProperty(
       block,
       key,
       value as Dynamic<AllElementProps[keyof AllElementProps]>,
     )
   } else {
-    if(customProps.hasOwnProperty(key)) {
+    if (customProps.hasOwnProperty(key)) {
       customProps[key as keyof CustomProps](block, value as any)
-    } else if(block.element.hasAttribute(key)) {
+    } else if (block.element.hasAttribute(key)) {
       block.element.setAttribute(key, value as string)
     } else {
       // @ts-ignore
@@ -69,7 +67,7 @@ export interface CustomProps {
 
 const customProps = {
   ref: (parent: Element, refObject: CustomProps['ref']) => {
-    if(refObject !== undefined) {
+    if (refObject !== undefined) {
       refObject.current = parent.element
     }
   },
@@ -78,7 +76,7 @@ const customProps = {
   },
   style: (parent: Element, style: CustomProps['style']) => {
     Object.entries(style).forEach(([property, value]) => {
-      if(isDynamic(value)) {
+      if (isDynamic(value)) {
         subscribeStateContext.set({
           block: parent,
           type: 'styleProperty',
@@ -103,7 +101,7 @@ const customProps = {
   },
   classes: (parent: Element, classes: CustomProps['classes']) => {
     classes.forEach((cls) => {
-      if(isDynamic(cls)) {
+      if (isDynamic(cls)) {
         const clsString = cls()
         subscribeStateContext.set({
           block: parent,
@@ -123,7 +121,7 @@ const customProps = {
           parent.element.classList.add(classString)
         })
         subscribeStateContext.set(null)
-      } else if(isString(cls)) {
+      } else if (isString(cls)) {
         cls.split(' ').forEach((cls) => {
           parent.element.classList.add(cls)
         })
@@ -137,7 +135,7 @@ export const setStyleProperty = (
   property: string,
   value: unknown,
 ) => {
-  if(isDynamic(value)) {
+  if (isDynamic(value)) {
     // @ts-ignore
     elementBlock.element.style[property] = value()
   } else {

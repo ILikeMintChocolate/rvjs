@@ -1,15 +1,18 @@
 import { componentContext } from '@context/executionContext.ts'
-import { Block } from '@dom/type.ts'
 import { GetState, isGetState } from '@hook/useState.ts'
 import { isRvjsFunction } from '@type/guard.ts'
+import { RvjsFunction } from '@type/rvjs.ts'
+import { Block } from '@type/type.ts'
 import { Context } from '@util/context.ts'
 import { IndexedMap } from '@util/indexedMap.ts'
 import { RVJS_FOR_RENDER_SYMBOL } from '@util/symbol.ts'
 
-export type ForRender = () => {
-  getBlock: () => Block[]
-  context: Context<ForContext>
-}
+export type ForRender = RvjsFunction<
+  () => {
+    getBlock: () => Block[]
+    context: Context<ForContext>
+  }
+>
 
 interface ForContext {
   index: number
@@ -26,7 +29,6 @@ export const For = <Item>(
   const forRender = () => {
     const newItems = isGetState(items) ? items() : items
     const deletable = new Set(itemsMap.keys)
-
     newItems.forEach((item, index) => {
       if (itemsMap.has(item) || itemsMap.hasTemp(item)) {
         itemsMap.changeIndex(item, index)
@@ -38,7 +40,6 @@ export const For = <Item>(
         itemsMap.set(item, newBlock, index)
       }
     })
-
     if (deletable.size) {
       deletable.forEach((key) => {
         const block = itemsMap.getItemByKey(key)?.value
@@ -46,7 +47,6 @@ export const For = <Item>(
         itemsMap.deleteByKey(key)
       })
     }
-
     return {
       getBlock: () => {
         return itemsMap.getSortedValues()
@@ -54,7 +54,6 @@ export const For = <Item>(
       context,
     }
   }
-
   forRender.$$typeof = RVJS_FOR_RENDER_SYMBOL
 
   return forRender as ForRender
