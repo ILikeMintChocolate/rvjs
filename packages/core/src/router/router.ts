@@ -1,7 +1,6 @@
 import { Switch } from '@children/switch.ts'
 import { component } from '@component/component.ts'
 import { Component } from '@component/componentBlock.ts'
-import { Block } from '@dom/type.ts'
 import { h1 } from '@element/elementMap.ts'
 import { useState } from '@hook/useState.ts'
 import { routeContext } from '@router/context/routerContext.ts'
@@ -14,6 +13,7 @@ import {
   tokenizePath,
 } from '@router/util/path.ts'
 import { normalizeRouter } from '@router/util/router.ts'
+import { Block } from '@type/type.ts'
 
 export interface RouterProps {
   [key: string]: RouteProps

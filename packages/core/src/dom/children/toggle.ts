@@ -1,9 +1,9 @@
 import { Component } from '@component/componentBlock.ts'
 import { componentContext } from '@context/executionContext.ts'
-import { Block } from '@dom/type.ts'
 import { GetState } from '@hook/useState.ts'
 import { isFunction, isRvjsFunction } from '@type/guard.ts'
 import { RvjsFunction } from '@type/rvjs.ts'
+import { Block } from '@type/type.ts'
 import { Context } from '@util/context.ts'
 import { RVJS_TOGGLE_RENDER_SYMBOL } from '@util/symbol.ts'
 

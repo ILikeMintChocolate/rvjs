@@ -1,7 +1,7 @@
 import { Component } from '@component/componentBlock.ts'
 import { componentContext } from '@context/executionContext.ts'
-import { Block } from '@dom/type.ts'
 import { routeContext } from '@router/context/routerContext.ts'
+import { Block } from '@type/type.ts'
 
 interface ReceivableProps {
   key?: string

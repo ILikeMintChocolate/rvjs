@@ -1,7 +1,7 @@
-import { Block } from '@dom/type.ts'
+import { isElement } from '@element/elementBlock.ts'
 import { SetState } from '@hook/useState.ts'
+import { Block } from '@type/type.ts'
 import { RVJS_COMPONENT_SYMBOL } from '@util/symbol.ts'
-import { isElement } from '../element/elementBlock.ts'
 
 export class Component {
   $$typeof = RVJS_COMPONENT_SYMBOL

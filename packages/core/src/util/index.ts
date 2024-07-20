@@ -1,1 +1,1 @@
-export * from './symbol'
+export * from '@util/symbol.ts'
