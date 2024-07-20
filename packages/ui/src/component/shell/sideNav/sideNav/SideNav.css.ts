@@ -13,10 +13,10 @@ export const sideNav_nav_recipe = recipe({
     boxSizing: 'border-box',
     zIndex: 300,
     '@media': {
-      'screen and (max-width: 767px)': {
+      'screen and (max-width: 67.9375rem)': {
         display: 'none',
       },
-      'screen and (min-width: 768px)': {
+      'screen and (min-width: 68rem)': {
         display: 'block',
       },
     },
@@ -46,10 +46,10 @@ export const sideNav_backdrop_recipe = recipe({
     zIndex: 200,
     transition: `background-color 0.15s`,
     '@media': {
-      'screen and (max-width: 767px)': {
+      'screen and (max-width: 67.9375rem)': {
         display: 'block',
       },
-      'screen and (min-width: 768px)': {
+      'screen and (min-width: 68rem)': {
         display: 'none',
       },
     },

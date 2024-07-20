@@ -18,10 +18,10 @@ export const headerMenuButton_button_style = style({
     backgroundColor: vars.color.backgroundActive,
   },
   '@media': {
-    'screen and (max-width: 767px)': {
+    'screen and (max-width: 67.9375rem)': {
       display: 'block',
     },
-    'screen and (min-width: 768px)': {
+    'screen and (min-width: 68rem)': {
       display: 'none',
     },
   },
