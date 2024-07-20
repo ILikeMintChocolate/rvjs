@@ -14,9 +14,9 @@ export let hasToCheckProps = false
 
 export const startCheckProps = (options: StartCheckPropsOptions) => {
   const { environment } = options
-  if(environment === 'development') {
+  if (environment === 'development') {
     hasToCheckProps = true
-  } else if(environment === 'production') {
+  } else if (environment === 'production') {
     hasToCheckProps = false
   }
 }
@@ -26,7 +26,7 @@ export const checkProps = <Props extends Record<string, any>>(
   types: Partial<Record<keyof Props, Validator>>,
   options?: checkPropsOptions,
 ): Props => {
-  if(hasToCheckProps) {
+  if (hasToCheckProps) {
     return checkPropsInDevelopment(
       props,
       types,

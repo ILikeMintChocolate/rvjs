@@ -6,37 +6,35 @@ import {
 import { isFunctionType, isObjectType } from './reference.ts'
 import { CompositeValidator, Validator, Validators } from './type.ts'
 
-export const isArray: CompositeValidator<Validator> =
-  (validator) => (value: unknown) => {
-    if (!checkContext.isContinue) {
-      return false
-    }
-    if (!validator) {
-      printNoValidatorError()
-      return false
-    }
-    if (!Array.isArray(value)) {
-      printInvalidError()
-      return false
-    }
-    return value.every(validator) as boolean
+export const isArray = (validator: Validator) => (value: unknown) => {
+  if (!checkContext.isContinue) {
+    return false
   }
+  if (!validator) {
+    printNoValidatorError()
+    return false
+  }
+  if (!Array.isArray(value)) {
+    printInvalidError()
+    return false
+  }
+  return value.every(validator) as boolean
+}
 
-export const isFunction: CompositeValidator<Validator> =
-  (validator) => (value: unknown) => {
-    if (!checkContext.isContinue) {
-      return false
-    }
-    if (!validator) {
-      printNoValidatorError()
-      return false
-    }
-    if (!isFunctionType(value)) {
-      printInvalidError()
-      return false
-    }
-    return validator(value()) as boolean
+export const isFunction = (validator: Validator) => (value: unknown) => {
+  if (!checkContext.isContinue) {
+    return false
   }
+  if (!validator) {
+    printNoValidatorError()
+    return false
+  }
+  if (!isFunctionType(value)) {
+    printInvalidError()
+    return false
+  }
+  return validator(value()) as boolean
+}
 
 export const isObject: CompositeValidator<Validators> =
   (validators) => (value: unknown) => {
@@ -69,16 +67,17 @@ export const isObject: CompositeValidator<Validators> =
     return checkContext.isContinue as boolean
   }
 
-export const isOptional = (validator: Validator) => (value: unknown) => {
-  if (!checkContext.isContinue) {
-    return false
+export const isOptional: CompositeValidator<Validator> =
+  (validator: Validator) => (value: unknown) => {
+    if (!checkContext.isContinue) {
+      return false
+    }
+    if (!validator) {
+      printNoValidatorError()
+      return false
+    }
+    if (value === undefined) {
+      return true
+    }
+    return validator(value) as boolean
   }
-  if (!validator) {
-    printNoValidatorError()
-    return false
-  }
-  if (value === undefined) {
-    return true
-  }
-  return validator(value) as boolean
-}

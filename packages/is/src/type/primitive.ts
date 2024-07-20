@@ -1,5 +1,5 @@
 import { printInvalidError } from '../checkProps/error.ts'
-import { NormalValidator } from './type.ts'
+import { AlwaysTrueValidator, NormalValidator } from './type.ts'
 
 export const isString: NormalValidator = (value: unknown): value is string => {
   return typeof value === 'string' ? true : (printInvalidError(), false)
@@ -33,6 +33,6 @@ export const isNull: NormalValidator = (value: unknown): value is null => {
   return value === null ? true : (printInvalidError(), false)
 }
 
-export const isAny: NormalValidator = () => {
+export const isAny: AlwaysTrueValidator = () => {
   return true
 }
