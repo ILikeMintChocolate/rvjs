@@ -1,4 +1,4 @@
-import vars from '@theme/variable/vars.css.js'
+import vars from '@theme/variable/vars.css.ts'
 import { style } from '@vanilla-extract/css'
 
 export const singleCodeSnippet_wrapper_style = style({

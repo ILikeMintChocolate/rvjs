@@ -19,6 +19,7 @@ interface SubMenuProps {
   onBlur?: GlobalEventHandlers['onblur']
   onClick?: GlobalEventHandlers['onclick']
   tabIndex?: Prop<number>
+  defaultShow?: Prop<boolean>
 }
 
 const SideNavMenu = (props: SubMenuProps) => {
@@ -30,8 +31,9 @@ const SideNavMenu = (props: SubMenuProps) => {
     onBlur,
     onClick,
     tabIndex = prop(() => 0),
+    defaultShow = prop(() => false),
   } = props
-  const [showItems, setShowItems] = useState(false)
+  const [showItems, setShowItems] = useState(defaultShow())
 
   return Flex({
     ariaLabel: dynamic(() => ariaLabel()),

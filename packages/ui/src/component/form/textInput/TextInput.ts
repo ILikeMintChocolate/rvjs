@@ -8,34 +8,19 @@ import {
   textInput_warnIcon_style,
 } from '@form/textInput/TextInput.css.ts'
 import useTextInput from '@form/textInput/TextInput.hook.ts'
+import {
+  TextInputProps,
+  textInputPropsType,
+} from '@form/textInput/TextInput.props.ts'
 import warnSvg from '@icon/warning--alt--filled.svg?element'
 import invalidSvg from '@icon/warning--filled.svg?element'
 import Flex from '@layout/flex/Flex.ts'
 import { component, ComponentFn, input, svg, Switch } from '@rvjs/core/dom'
-import { dynamic, prop, Prop, SetState } from '@rvjs/core/reactive'
+import { dynamic, prop } from '@rvjs/core/reactive'
+import { checkProps } from '@rvjs/is'
 import vars from '@theme/variable/vars.css.ts'
 import Text from '@typography/text/Text.ts'
 import { ifIs } from '@util/array.ts'
-
-export interface TextInputProps {
-  value: Prop<string>
-  setValue: SetState<string>
-  size?: Prop<'sm' | 'md' | 'lg'>
-  disabled?: Prop<boolean>
-  enableCounter?: Prop<boolean>
-  helperText?: Prop<string>
-  hideLabel?: Prop<boolean>
-  invalidText?: Prop<string>
-  labelText?: Prop<string>
-  maxCount?: Prop<number>
-  onChange?: GlobalEventHandlers['oninput']
-  onClick?: GlobalEventHandlers['onclick']
-  placeholder?: Prop<string>
-  readOnly?: Prop<boolean>
-  type?: HTMLInputElement['type']
-  status?: Prop<'valid' | 'invalid' | 'warn'>
-  warnText?: Prop<string>
-}
 
 const TextInput: ComponentFn = component<TextInputProps>((props) => {
   const {
@@ -56,8 +41,7 @@ const TextInput: ComponentFn = component<TextInputProps>((props) => {
     type = 'text',
     status = prop(() => 'valid'),
     warnText = prop(() => ''),
-  } = props
-
+  } = checkProps<TextInputProps>(props, textInputPropsType)
   const { inputRef } = useTextInput(disabled)
 
   return Flex({

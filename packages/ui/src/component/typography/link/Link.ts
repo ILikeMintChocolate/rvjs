@@ -1,23 +1,15 @@
-import { a, ElementType, svg } from '@rvjs/core/dom'
-import { dynamic, Prop, prop, useState } from '@rvjs/core/reactive'
+import { a, svg } from '@rvjs/core/dom'
+import { dynamic, prop, useState } from '@rvjs/core/reactive'
 import { useNavigate } from '@rvjs/core/router'
+import { checkProps } from '@rvjs/is'
 import {
   link_anchor_recipe,
   link_icon_recipe,
   link_text_style,
 } from '@typography/link/Link.css.ts'
+import { LinkProps, linkPropsType } from '@typography/link/Link.props.ts'
 import Text from '@typography/text/Text.ts'
 import { ifIs } from '@util/array.ts'
-
-interface LinkProps {
-  href: Prop<string>
-  as?: ElementType
-  text: Prop<string>
-  disabled?: Prop<boolean>
-  inline?: Prop<boolean>
-  renderIcon?: SVGElement
-  size?: Prop<'sm' | 'md' | 'lg'>
-}
 
 const Link = (props: LinkProps) => {
   const {
@@ -28,7 +20,7 @@ const Link = (props: LinkProps) => {
     inline = prop(() => false),
     renderIcon,
     size = prop(() => 'md'),
-  } = props
+  } = checkProps<LinkProps>(props, linkPropsType)
   const navigate = useNavigate()
   const [visited, setVisited] = useState(false)
 

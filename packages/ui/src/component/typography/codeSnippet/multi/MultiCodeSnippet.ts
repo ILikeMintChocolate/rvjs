@@ -5,15 +5,15 @@ import Flex from '@layout/flex/Flex.ts'
 import Tooltip from '@overlay/tooltip/Tooltip.ts'
 import { code, pre } from '@rvjs/core/dom'
 import { dynamic, prop, useState } from '@rvjs/core/reactive'
-import { CodeSnippetProps } from '@typography/codeSnippet/CodeSnippet.ts'
-import { copyToClipboard } from '@typography/codeSnippet/CodeSnippet.util.js'
+import { CodeSnippetProps } from '@typography/codeSnippet/CodeSnippet.props.ts'
+import { copyToClipboard } from '@typography/codeSnippet/CodeSnippet.util.ts'
 import {
   multiCodeSnippet_codeWrapper_style,
   multiCodeSnippet_pre_style,
   multiCodeSnippet_showMoreIcon_recipe,
   multiCodeSnippet_wrapper_style,
 } from '@typography/codeSnippet/multi/MultiCodeSnippet.css.ts'
-import { calcHeight } from '@typography/codeSnippet/multi/MultiCodeSnippet.util.js'
+import { calcHeight } from '@typography/codeSnippet/multi/MultiCodeSnippet.util.ts'
 import { text_recipe } from '@typography/text/Text.css.ts'
 import { ifIs } from '@util/array.ts'
 import { highlight, languages } from 'prismjs'
@@ -33,15 +33,16 @@ const MultiCodeSnippet = (props: SingleCodeSnippetProps) => {
     width = prop(() => 'fit-content'),
     wrapText = prop(() => true),
     ariaLabel = prop(() => 'Copy to clipboard'),
+    defaultShow = prop(() => false),
   } = props
   const highlightedCodeHTML = highlight(
     codeText(),
     languages[language],
     language,
   )
-  const [showMore, setShowMore] = useState(false)
+  const [showMore, setShowMore] = useState(defaultShow())
   const collapsedHeight = calcHeight(collapsedNumberOfRows())
-  const [height, setHeight] = useState(collapsedHeight)
+  const [height, setHeight] = useState(defaultShow() ? 'auto' : collapsedHeight)
 
   const codeElement = wrapText()
     ? pre({

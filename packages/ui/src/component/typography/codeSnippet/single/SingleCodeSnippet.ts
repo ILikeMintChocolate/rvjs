@@ -1,17 +1,17 @@
 import Button from '@form/button/Button.ts'
 import copySvg from '@icon/copy.svg?element'
 import Flex from '@layout/flex/Flex.ts'
-import Tooltip from '@overlay/tooltip/Tooltip.js'
+import Tooltip from '@overlay/tooltip/Tooltip.ts'
 import { span } from '@rvjs/core/dom'
 import { dynamic, prop } from '@rvjs/core/reactive'
-import { CodeSnippetProps } from '@typography/codeSnippet/CodeSnippet.js'
-import { copyToClipboard } from '@typography/codeSnippet/CodeSnippet.util.js'
+import { CodeSnippetProps } from '@typography/codeSnippet/CodeSnippet.props.ts'
+import { copyToClipboard } from '@typography/codeSnippet/CodeSnippet.util.ts'
 import {
   singleCodeSnippet_codeWrapper_style,
   singleCodeSnippet_wrapper_style,
 } from '@typography/codeSnippet/single/SingleCodeSnippet.css.ts'
-import { text_recipe } from '@typography/text/Text.css.js'
-import { ifIs } from '@util/array.js'
+import { text_recipe } from '@typography/text/Text.css.ts'
+import { ifIs } from '@util/array.ts'
 import { highlight, languages } from 'prismjs'
 import 'prismjs/themes/prism-tomorrow.css'
 import 'prismjs/components/prism-bash'
