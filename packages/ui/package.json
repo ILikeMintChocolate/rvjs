@@ -12,47 +12,71 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc --p ./tsconfig-build.json && vite build",
+    "build": "tsc && vite build",
+    "postbuild": "node build/postBuild.js",
     "preview": "vite preview"
   },
   "type": "module",
+  "types": "./dist/index.d.ts",
   "exports": {
+    "./content": {
+      "import": "./dist/entry/content.es.js",
+      "require": "./dist/entry/content.cjs.js",
+      "types": "./dist/type/component/content/index.d.ts"
+    },
     "./form": {
-      "import": "./dist/form/form.es.js",
-      "require": "./dist/form/form.cjs.js",
-      "types": "./dist/form/index.d.ts"
+      "import": "./dist/entry/form.es.js",
+      "require": "./dist/entry/form.cjs.js",
+      "types": "./dist/type/component/form/index.d.ts"
     },
     "./layout": {
-      "import": "./dist/layout/layout.es.js",
-      "require": "./dist/layout/layout.cjs.js",
-      "types": "./dist/layout/index.d.ts"
+      "import": "./dist/entry/layout.es.js",
+      "require": "./dist/entry/layout.cjs.js",
+      "types": "./dist/type/component/layout/index.d.ts"
+    },
+    "./overlay": {
+      "import": "./dist/entry/overlay.es.js",
+      "require": "./dist/entry/overlay.cjs.js",
+      "types": "./dist/type/component/overlay/index.d.ts"
     },
     "./shell": {
-      "import": "./dist/shell/shell.es.js",
-      "require": "./dist/shell/shell.cjs.js",
-      "types": "./dist/shell/index.d.ts"
+      "import": "./dist/entry/shell.es.js",
+      "require": "./dist/entry/shell.cjs.js",
+      "types": "./dist/type/component/shell/index.d.ts"
     },
     "./typography": {
-      "import": "./dist/typography/typography.es.js",
-      "require": "./dist/typography/typography.cjs.js",
-      "types": "./dist/typography/index.d.ts"
+      "import": "./dist/entry/typography.es.js",
+      "require": "./dist/entry/typography.cjs.js",
+      "types": "./dist/type/component/typography/index.d.ts"
+    },
+    "./system": {
+      "import": "./dist/entry/system.es.js",
+      "require": "./dist/entry/system.cjs.js",
+      "types": "./dist/type/system/index.d.ts"
+    },
+    "./util": {
+      "import": "./dist/entry/util.es.js",
+      "require": "./dist/entry/util.cjs.js",
+      "types": "./dist/type/util/index.d.ts"
     }
   },
   "files": [
     "dist"
   ],
   "dependencies": {
+    "@types/prismjs": "^1.26.4",
     "@vanilla-extract/css": "^1.15.2",
+    "@vanilla-extract/dynamic": "^2.1.1",
     "@vanilla-extract/recipes": "^0.5.3",
     "@vanilla-extract/sprinkles": "^1.6.2",
-    "csstype": "^3.1.3",
     "highlight.js": "^11.9.0",
-    "jsdom": "^24.0.0",
-    "vite-plugin-import-svg": "^0.0.4",
-    "vite-tsconfig-paths": "^4.3.2"
+    "prismjs": "^1.29.0",
+    "vite-plugin-import-svg": "^0.0.4"
   },
   "devDependencies": {
     "@vanilla-extract/vite-plugin": "^4.0.10",
+    "csstype": "^3.1.3",
+    "jsdom": "^24.0.0",
     "less": "^4.2.0",
     "typescript": "^5.2.2",
     "vite": "^5.1.4",

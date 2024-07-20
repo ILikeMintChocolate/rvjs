@@ -3,101 +3,92 @@ import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 import importSvg from 'vite-plugin-import-svg'
-import tsconfigPaths from 'vite-tsconfig-paths'
 
 export default defineConfig({
   plugins: [
     vanillaExtractPlugin(),
     importSvg(),
-    tsconfigPaths(),
     dts({
-      insertTypesEntry: true,
+      outDir: 'dist/type',
       exclude: ['src/main.ts', 'src/example'],
     }),
   ],
   build: {
-    minify: 'terser',
     lib: {
       entry: {
+        content: resolve(__dirname, 'src/component/content/index.ts'),
         form: resolve(__dirname, 'src/component/form/index.ts'),
         layout: resolve(__dirname, 'src/component/layout/index.ts'),
+        overlay: resolve(__dirname, 'src/component/overlay/index.ts'),
         shell: resolve(__dirname, 'src/component/shell/index.ts'),
         typography: resolve(__dirname, 'src/component/typography/index.ts'),
+        system: resolve(__dirname, 'src/system/index.ts'),
+        util: resolve(__dirname, 'src/util/index.ts'),
       },
       name: '@rvjs/ui',
-      fileName: (format, entryName) => `${entryName}/${entryName}.${format}.js`,
+      formats: ['es', 'cjs'],
+      fileName: (format, entryName) => `${entryName}.${format}.js`,
     },
     rollupOptions: {
-      external: (id) => id === '@rvjs/core' || id.includes('@rvjs/core/'),
+      external: (id) =>
+        id === '@rvjs/core' ||
+        id.includes('@rvjs/core/') ||
+        id === '@rvjs/is' ||
+        id.includes('@rvjs/is'),
       output: {
-        globals: {
-          '@rvjs/core': '@rvjs/core',
-        },
+        entryFileNames: 'entry/[name].[format].js',
+        chunkFileNames: 'chunk/[name].[format].js',
       },
     },
   },
   optimizeDeps: {
-    exclude: ['@rvjs/core'],
+    exclude: ['@rvjs/core', '@rvjs/is'],
   },
-  sourcemap: true,
-  emptyOutDir: true,
   resolve: {
     alias: [
       {
-        find: '@util',
-        replacement: resolve(__dirname, 'src/util'),
+        find: '@icon',
+        replacement: resolve(__dirname, 'src/asset/icon'),
       },
       {
-        find: '@type',
-        replacement: resolve(__dirname, 'src/type'),
-      },
-      {
-        find: '@style',
-        replacement: resolve(__dirname, 'src/style'),
-      },
-      {
-        find: '@layout',
-        replacement: resolve(__dirname, 'src/component/layout'),
-      },
-      {
-        find: '@typography',
-        replacement: resolve(__dirname, 'src/component/typography'),
-      },
-      {
-        find: '@media',
-        replacement: resolve(__dirname, 'src/component/media'),
-      },
-      {
-        find: '@system',
-        replacement: resolve(__dirname, 'src/system'),
+        find: '@content',
+        replacement: resolve(__dirname, 'src/component/content'),
       },
       {
         find: '@form',
         replacement: resolve(__dirname, 'src/component/form'),
       },
       {
-        find: '@shell',
-        replacement: resolve(__dirname, 'src/component/shell'),
-      },
-      {
-        find: '@style',
-        replacement: resolve(__dirname, 'src/style'),
-      },
-      {
-        find: '@source',
-        replacement: resolve(__dirname, 'src/source'),
-      },
-      {
-        find: '@component',
-        replacement: resolve(__dirname, 'src/component'),
-      },
-      {
-        find: '@icon',
-        replacement: resolve(__dirname, 'src/asset/icon'),
+        find: '@layout',
+        replacement: resolve(__dirname, 'src/component/layout'),
       },
       {
         find: '@overlay',
         replacement: resolve(__dirname, 'src/component/overlay'),
+      },
+      {
+        find: '@shell',
+        replacement: resolve(__dirname, 'src/component/shell'),
+      },
+      {
+        find: '@typography',
+        replacement: resolve(__dirname, 'src/component/typography'),
+      },
+      {
+        find: '@system',
+        replacement: resolve(__dirname, 'src/system'),
+      },
+      {
+        find: '@theme',
+        replacement: resolve(__dirname, 'src/theme'),
+      },
+      {
+        find: '@type',
+        replacement: resolve(__dirname, 'src/type'),
+      },
+      {
+        find: '@util',
+        replacement: resolve(__dirname, 'src/util'),
       },
     ],
   },
