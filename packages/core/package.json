@@ -12,44 +12,43 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc --p ./tsconfig-build.json && vite build",
-    "postbuild": "ts-node build/postBuild.ts",
+    "build": "tsc && vite build",
+    "postbuild": "node build/postBuild.js",
     "preview": "vite preview",
     "test": "vitest"
   },
+  "type": "module",
   "types": "./dist/index.d.ts",
   "exports": {
     "./dom": {
-      "import": "./dist/dom/index.es.js",
-      "require": "./dist/dom/index.cjs.js",
-      "types": "./dist/dom.d.ts"
+      "import": "./dist/entry/dom.es.js",
+      "require": "./dist/entry/dom.cjs.js",
+      "types": "./dist/type/dom/index.d.ts"
     },
     "./reactive": {
-      "import": "./dist/reactive/index.es.js",
-      "require": "./dist/reactive/index.cjs.js",
-      "types": "./dist/reactive.d.ts"
+      "import": "./dist/entry/reactive.es.js",
+      "require": "./dist/entry/reactive.cjs.js",
+      "types": "./dist/type/reactive/index.d.ts"
     },
     "./util": {
-      "import": "./dist/util/index.es.js",
-      "require": "./dist/util/index.cjs.js",
-      "types": "./dist/util.d.ts"
+      "import": "./dist/entry/util.es.js",
+      "require": "./dist/entry/util.cjs.js",
+      "types": "./dist/type/util/index.d.ts"
     },
     "./router": {
-      "import": "./dist/router/index.es.js",
-      "require": "./dist/router/index.cjs.js",
-      "types": "./dist/router.d.ts"
+      "import": "./dist/entry/router.es.js",
+      "require": "./dist/entry/router.cjs.js",
+      "types": "./dist/type/router/index.d.ts"
     }
   },
   "files": [
     "dist"
   ],
-  "dependencies": {
+  "devDependencies": {
     "@types/node": "^20.11.26",
     "@types/web": "^0.0.142",
     "csstype": "^3.1.3",
-    "terser": "^5.29.2"
-  },
-  "devDependencies": {
+    "terser": "^5.29.2",
     "@vitest/coverage-istanbul": "^1.3.1",
     "@vitest/coverage-v8": "^1.3.1",
     "jsdom": "^24.0.0",

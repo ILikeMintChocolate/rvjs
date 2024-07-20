@@ -5,7 +5,7 @@ import dts from 'vite-plugin-dts'
 export default defineConfig({
   plugins: [
     dts({
-      insertTypesEntry: true,
+      outDir: 'dist/type',
       exclude: ['src/main.ts', 'src/example', 'src/test'],
     }),
   ],
@@ -19,29 +19,12 @@ export default defineConfig({
       },
       name: '@rvjs/core',
       formats: ['es', 'cjs'],
-      fileName: (format, entryName) => `${entryName}/${entryName}.${format}.js`,
+      fileName: (format, entryName) => `${entryName}.${format}.js`,
     },
     rollupOptions: {
       output: {
-        entryFileNames: '[name]/index.[format].js',
-        chunkFileNames: '[name]/chunk.[format].js',
-        manualChunks: (id) => {
-          if (id.includes('node_modules')) {
-            return 'vendor'
-          }
-          if (id.includes('src/dom')) {
-            return 'dom'
-          }
-          if (id.includes('src/reactive')) {
-            return 'reactive'
-          }
-          if (id.includes('src/router')) {
-            return 'router'
-          }
-          if (id.includes('src/util')) {
-            return 'util'
-          }
-        },
+        entryFileNames: 'entry/[name].[format].js',
+        chunkFileNames: 'chunk/[name].[format].js',
       },
     },
   },
@@ -51,8 +34,6 @@ export default defineConfig({
       provider: 'istanbul',
     },
   },
-  sourcemap: true,
-  emptyOutDir: true,
   resolve: {
     alias: [
       {
@@ -80,24 +61,16 @@ export default defineConfig({
         replacement: resolve(__dirname, 'src/reactive/lifecycle'),
       },
       {
+        find: '@router',
+        replacement: resolve(__dirname, 'src/router'),
+      },
+      {
         find: '@type',
         replacement: resolve(__dirname, 'src/type'),
       },
       {
         find: '@util',
         replacement: resolve(__dirname, 'src/util'),
-      },
-      {
-        find: '@dom',
-        replacement: resolve(__dirname, 'src/dom'),
-      },
-      {
-        find: '@reactive',
-        replacement: resolve(__dirname, 'src/reactive'),
-      },
-      {
-        find: '@router',
-        replacement: resolve(__dirname, 'src/router'),
       },
     ],
   },
