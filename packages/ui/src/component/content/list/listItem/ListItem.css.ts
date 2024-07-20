@@ -2,6 +2,9 @@ import vars from '@theme/variable/vars.css.ts'
 import { style } from '@vanilla-extract/css'
 
 export const listItem_li_style = style({
+  marginTop: vars.spacing['03'],
+  marginBottom: vars.spacing['03'],
+  color: vars.color.textPrimary,
   '::marker': {
     fontFamily: 'IBM Plex Sans, sans-serif',
     fontStyle: 'normal',

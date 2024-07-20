@@ -3,12 +3,14 @@ import { dynamic, prop } from '@rvjs/core/reactive'
 import { checkProps } from '@rvjs/is'
 import { text_recipe, textSprinkles } from '@typography/text/Text.css.ts'
 import { TextProps, textPropsType } from '@typography/text/Text.props.ts'
+import { ifIs } from '@util/array.ts'
 
 const Text = (props: TextProps) => {
   const {
     as = 'p',
     classes = [],
     text,
+    children,
     kind = prop(() => 'body-01'),
     color = prop(() => 'textPrimary'),
   } = checkProps<TextProps>(props, textPropsType)
@@ -19,7 +21,12 @@ const Text = (props: TextProps) => {
       dynamic(() => textSprinkles({ color: color() })),
       ...classes.map((cls) => dynamic(() => cls())),
     ],
-    textContent: dynamic(() => text()),
+    ...ifIs(!!text, () => ({
+      textContent: dynamic(() => text!()),
+    }))[0],
+    ...ifIs(!!children, () => ({
+      children: children,
+    }))[0],
   })
 }
 

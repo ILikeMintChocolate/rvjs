@@ -40,7 +40,7 @@ export const link_anchor_recipe = recipe({
   },
 })
 
-export const link_text_style = recipe({
+export const link_text_recipe = recipe({
   base: {
     color: `${vars.color.linkPrimary} !important`,
     selectors: {
