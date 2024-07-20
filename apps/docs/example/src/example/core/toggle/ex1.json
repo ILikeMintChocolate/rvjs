@@ -1,0 +1,3 @@
+{
+  "code": "import { button, div, p, root, Toggle } from '@rvjs/core/dom'\nimport { useState } from '@rvjs/core/reactive'\n\nconst App = () => {\n  const [show, setShow] = useState(false)\n\n  return div({\n    children: [\n      button({\n        textContent: 'Toggle',\n        onclick: () => setShow(!show()),\n      }),\n      Toggle(show, () => {\n        return Content()\n      }),\n    ],\n  })\n}\n\nconst Content = () => {\n  return p({\n    textContent: `Hello World!`,\n  })\n}\n\nroot(document.getElementById('app'), App())"
+}
