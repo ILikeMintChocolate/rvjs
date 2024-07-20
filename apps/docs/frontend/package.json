@@ -1,6 +1,6 @@
 {
-  "name": "docs",
-  "private": true,
+  "name": "@rvjs/docs-fe",
+  "description": "Frontend project for @rvjs developer documentation",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
@@ -9,11 +9,12 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@vanilla-extract/vite-plugin": "^4.0.12",
     "typescript": "^5.2.2",
     "vite": "^5.2.0"
   },
   "dependencies": {
-    "@rvjs/core": "^0.1.2",
-    "@rvjs/ui": "^0.0.1"
+    "@vanilla-extract/css": "^1.15.3",
+    "vite-plugin-import-svg": "^0.0.4"
   }
 }
