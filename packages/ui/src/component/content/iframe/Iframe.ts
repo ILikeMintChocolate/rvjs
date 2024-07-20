@@ -19,15 +19,14 @@ const Iframe = (props: IframeProps) => {
 
   return div({
     tabIndex: 0,
-    classes: [dynamic(() => iframe_wrapper_style)],
+    classes: [iframe_wrapper_style],
     style: {
       width: dynamic(() => width()),
       height: dynamic(() => height()),
     },
     children: [
-      // @ts-ignore
       iframe({
-        classes: [dynamic(() => iframe_style)],
+        classes: [iframe_style],
         src: dynamic(() => src()),
         ...restProps,
       }),

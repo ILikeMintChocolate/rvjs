@@ -9,15 +9,16 @@ import {
   subMenu_ul_style,
 } from '@shell/sideNav/sideNavMenu/SideNavMenu.css.ts'
 import { noDrag_style } from '@theme/util/util.css.ts'
+import { EventHandlers } from '@type/event.ts'
 import Text from '@typography/text/Text.ts'
 
 interface SubMenuProps {
   menuName: Prop<string>
   children: Children
-  ariaLabel?: Prop<number>
+  ariaLabel?: Prop<string>
   focusRef?: RefObject<HTMLButtonElement>
-  onBlur?: GlobalEventHandlers['onblur']
-  onClick?: GlobalEventHandlers['onclick']
+  onBlur?: EventHandlers['onBlur']
+  onClick?: EventHandlers['onClick']
   tabIndex?: Prop<number>
   defaultShow?: Prop<boolean>
 }
@@ -26,7 +27,7 @@ const SideNavMenu = (props: SubMenuProps) => {
   const {
     menuName,
     children,
-    ariaLabel = prop(() => undefined),
+    ariaLabel = prop(() => null),
     focusRef,
     onBlur,
     onClick,
@@ -45,13 +46,11 @@ const SideNavMenu = (props: SubMenuProps) => {
         onclick: (event: MouseEvent) => {
           setShowItems(!showItems())
           if (onClick) {
-            // @ts-ignore
             onClick(event)
           }
         },
         onblur: (event: FocusEvent) => {
           if (onBlur) {
-            // @ts-ignore
             onBlur(event)
           }
         },

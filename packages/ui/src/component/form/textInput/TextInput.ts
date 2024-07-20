@@ -99,35 +99,36 @@ const TextInput: ComponentFn = component<TextInputProps>((props) => {
             ],
             placeholder: dynamic(() => placeholder()),
             readOnly: dynamic(() => readOnly()),
-            oninput: (event: InputEvent) => {
+            oninput: (event: Event) => {
               const target = event.target as HTMLInputElement
               if (!!maxCount && target.value.length > maxCount()) {
                 target.value = target.value.slice(0, maxCount())
               } else {
                 setValue(target.value)
               }
-              // @ts-ignore
-              onChange && onChange(event)
+              if (onChange) {
+                onChange(event)
+              }
             },
             onclick: onClick,
             value: value(),
           }),
-          // @ts-ignore
-          Switch(status!, (status) => {
-            if (status === 'invalid') {
+          Switch(status!, () => {
+            if (status() === 'invalid') {
               return svg(invalidSvg, {
                 classes: [textInput_invalidIcon_style],
               })
-            } else if (status === 'warn') {
+            } else if (status() === 'warn') {
               return svg(warnSvg, {
                 classes: [textInput_warnIcon_style],
               })
             }
+            return null
           }),
         ],
       }),
-      Switch(status, (status) => {
-        if (status === 'invalid') {
+      Switch(status, () => {
+        if (status() === 'invalid') {
           return Text({
             text: invalidText,
             kind: prop(() => 'helper-text-01'),
@@ -135,7 +136,7 @@ const TextInput: ComponentFn = component<TextInputProps>((props) => {
               prop(() => textInput_helper_recipe({ disabled: disabled() })),
             ],
           })
-        } else if (status === 'warn') {
+        } else if (status() === 'warn') {
           return Text({
             text: warnText,
             kind: prop(() => 'helper-text-01'),
@@ -143,7 +144,7 @@ const TextInput: ComponentFn = component<TextInputProps>((props) => {
               prop(() => textInput_helper_recipe({ disabled: disabled() })),
             ],
           })
-        } else if (status === 'valid' && helperText !== undefined) {
+        } else if (status() === 'valid' && helperText !== undefined) {
           return Text({
             text: helperText,
             kind: prop(() => 'helper-text-01'),
@@ -151,9 +152,8 @@ const TextInput: ComponentFn = component<TextInputProps>((props) => {
               prop(() => textInput_helper_recipe({ disabled: disabled() })),
             ],
           })
-        } else {
-          return null
         }
+        return null
       }),
     ],
   })

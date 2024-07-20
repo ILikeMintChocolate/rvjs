@@ -2,7 +2,6 @@ import { Children } from '@rvjs/core/dom'
 import {
   componentFnMap,
   componentRenderPropsMap,
-  elementFnMap,
   elementRenderProps,
   textNodeFn,
 } from '@util/renderMap.ts'
@@ -19,7 +18,7 @@ export interface RenderJSON {
 }
 
 type ComponentFnMapKey = keyof typeof componentFnMap
-type ElementFnMapKey = keyof typeof elementFnMap
+type ElementFnMapKey = keyof HTMLElementTagNameMap
 
 export const renderComponentFromJSON = (jsons: RenderJSON[]): Children => {
   return jsons.map(renderByType).filter(Boolean) as Children
@@ -48,12 +47,12 @@ const renderComponent = (json: RenderJSON) => {
     componentProps.children = renderComponentFromJSON(children as RenderJSON[])
   }
 
+  // @ts-ignore
   return renderFn(componentProps)
 }
 
 const renderElement = (json: RenderJSON) => {
   const { name, props = {} } = json!
-  const renderFn = elementFnMap[name as ElementFnMapKey]
   const elementProps = configProps(props, elementRenderProps)
   const { children = [] } = elementProps
   if (children.length !== 0) {
@@ -61,7 +60,7 @@ const renderElement = (json: RenderJSON) => {
   }
 
   // @ts-ignore
-  return renderFn(elementProps)
+  return element(name, elementProps)
 }
 
 const renderTextNode = (json: RenderJSON) => {

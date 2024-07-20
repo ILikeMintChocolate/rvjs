@@ -7,7 +7,7 @@ import {
   unorderedListPropsType,
 } from '@content/list/unorderedList/UnorderedList.props.ts'
 import { ul } from '@rvjs/core/dom'
-import { dynamic, prop } from '@rvjs/core/reactive'
+import { prop } from '@rvjs/core/reactive'
 import { checkProps } from '@rvjs/is'
 import { assignInlineVars } from '@vanilla-extract/dynamic'
 
@@ -16,7 +16,7 @@ const unorderedList = (props: UnorderedListProps) => {
     checkProps<UnorderedListProps>(props, unorderedListPropsType)
 
   return ul({
-    classes: [dynamic(() => unorderedList_style)],
+    classes: [unorderedList_style],
     style: assignInlineVars({
       [unorderedList_listStyleType_var]: type(),
     }),

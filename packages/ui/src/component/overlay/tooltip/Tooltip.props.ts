@@ -1,9 +1,9 @@
-import { Child } from '@rvjs/core/dom'
+import { Block, Child } from '@rvjs/core/dom'
 import { prop, Prop } from '@rvjs/core/reactive'
 import { isChild, isOptional, isProp, isString } from '@rvjs/is'
 
 export interface TooltipProps {
-  trigger: Child
+  trigger: Block
   description: Prop<string>
   kind?: 'standard' | 'iconButton' | 'definition'
   showOnHoverOrClick?: 'hover' | 'click'
