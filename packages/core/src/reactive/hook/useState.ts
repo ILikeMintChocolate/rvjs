@@ -1,14 +1,13 @@
+import { Block } from '@block/block.ts'
 import {
   isUsingState,
   StateContext,
   subscribeStateContext,
 } from '@context/executionContext.ts'
-import { isElement } from '@element/elementBlock.ts'
 import { setProperty, setStyleProperty } from '@element/property.ts'
 import { AllElementProps } from '@element/type.ts'
 import { isArray, isFunction, isRvjsFunction } from '@type/guard.ts'
-import { RvjsFunction } from '@type/rvjs.ts'
-import { Block } from '@type/type.ts'
+import { isElement, RvjsFunction } from '@type/rvjs.ts'
 import { Observer } from '@util/observer.ts'
 import { Queue } from '@util/queue.ts'
 import { RVJS_GET_STATE_SYMBOL } from '@util/symbol.ts'

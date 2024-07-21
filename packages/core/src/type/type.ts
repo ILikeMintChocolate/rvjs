@@ -1,11 +1,7 @@
-import { ForRender } from '@children/for.ts'
-import { SwitchRender } from '@children/switch.ts'
-import { ToggleRender } from '@children/toggle.ts'
-import { Component } from '@component/componentBlock.ts'
-import { Element } from '@element/elementBlock.ts'
+import { Block } from '@block/block.ts'
+import { ForRender, SwitchRender, ToggleRender } from '@children/type.ts'
 
 export type ElementType = keyof HTMLElementTagNameMap
-export type Block = Element | Component
 export type { ForRender, SwitchRender, ToggleRender }
 export type Render = ForRender | SwitchRender | ToggleRender
 export type Child = Block | Render

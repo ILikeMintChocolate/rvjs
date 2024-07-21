@@ -1,29 +1,18 @@
+import { Block } from '@block/block.ts'
+import { ForRender, RenderContext } from '@children/type.ts'
 import { componentContext } from '@context/executionContext.ts'
 import { GetState, isGetState } from '@hook/useState.ts'
 import { isRvjsFunction } from '@type/guard.ts'
-import { RvjsFunction } from '@type/rvjs.ts'
-import { Block } from '@type/type.ts'
 import { Context } from '@util/context.ts'
 import { IndexedMap } from '@util/indexedMap.ts'
 import { RVJS_FOR_RENDER_SYMBOL } from '@util/symbol.ts'
-
-export type ForRender = RvjsFunction<
-  () => {
-    getBlock: () => Block[]
-    context: Context<ForContext>
-  }
->
-
-interface ForContext {
-  index: number
-}
 
 export const For = <Item>(
   items: Item[] | GetState<Item[]>,
   render: (item: Item, index: number) => Block,
 ) => {
   const itemsMap = new IndexedMap<Item, Block>()
-  const context = new Context<ForContext>()
+  const context = new Context<RenderContext>()
   const thisComponent = componentContext.get()!
 
   const forRender = () => {

@@ -1,7 +1,7 @@
+import { Block } from '@block/block.ts'
 import { Component } from '@component/componentBlock.ts'
 import { Dynamic } from '@hook/dynamic.ts'
 import { GetState } from '@hook/useState.ts'
-import { Block } from '@type/type.ts'
 import { Context } from '@util/context.ts'
 
 export interface StateContext {

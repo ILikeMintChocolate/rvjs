@@ -1,6 +1,5 @@
-import { isComponent } from '@component/componentBlock.ts'
-import { isElement } from '@element/elementBlock.ts'
-import { Block } from '@type/type.ts'
+import { Block } from '@block/block.ts'
+import { isComponent, isElement } from '@type/rvjs.ts'
 
 export const useElement = (block: Block) => {
   if (isElement(block)) {

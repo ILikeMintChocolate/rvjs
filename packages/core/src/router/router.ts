@@ -1,3 +1,4 @@
+import { Block } from '@block/block.ts'
 import { Switch } from '@children/switch.ts'
 import { component } from '@component/component.ts'
 import { Component } from '@component/componentBlock.ts'
@@ -13,7 +14,6 @@ import {
   tokenizePath,
 } from '@router/util/path.ts'
 import { normalizeRouter } from '@router/util/router.ts'
-import { Block } from '@type/type.ts'
 
 export interface RouterProps {
   [key: string]: RouteProps

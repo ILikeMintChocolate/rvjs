@@ -1,23 +1,10 @@
-import { Component } from '@component/componentBlock.ts'
+import { Block } from '@block/block.ts'
+import { RenderContext, SwitchRender } from '@children/type.ts'
 import { componentContext } from '@context/executionContext.ts'
 import { GetState, isGetState } from '@hook/useState.ts'
 import { isRvjsFunction } from '@type/guard.ts'
-import { RvjsFunction } from '@type/rvjs.ts'
-import { Block } from '@type/type.ts'
 import { Context } from '@util/context.ts'
 import { RVJS_SWITCH_RENDER_SYMBOL } from '@util/symbol.ts'
-
-export type SwitchRender = RvjsFunction<
-  () => {
-    thisComponent: Component
-    getBlock: () => Block
-    context: Context<SwitchContext>
-  }
->
-
-interface SwitchContext {
-  index: number
-}
 
 export const Switch = <Value>(
   value: Value | GetState<Value>,
@@ -25,7 +12,7 @@ export const Switch = <Value>(
 ) => {
   let currentValue: Value | null = null
   let currentBlock: Block | null = null
-  const context = new Context<SwitchContext>()
+  const context = new Context<RenderContext>()
   const thisComponent = componentContext.get()!
 
   const switchRender = () => {

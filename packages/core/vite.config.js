@@ -41,12 +41,16 @@ export default defineConfig({
         replacement: resolve(__dirname, 'src/dom/children'),
       },
       {
+        find: '@block',
+        replacement: resolve(__dirname, 'src/dom/block'),
+      },
+      {
         find: '@component',
-        replacement: resolve(__dirname, 'src/dom/component'),
+        replacement: resolve(__dirname, 'src/dom/block/component'),
       },
       {
         find: '@element',
-        replacement: resolve(__dirname, 'src/dom/element'),
+        replacement: resolve(__dirname, 'src/dom/block/element'),
       },
       {
         find: '@context',
