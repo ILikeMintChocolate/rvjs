@@ -1,10 +1,10 @@
 import { subscribeStateContext } from '@context/executionContext.ts'
-import { Element } from '@element/elementBlock.ts'
-import { AllElementProps, StyleProps } from '@element/type.ts'
 import { Dynamic, isDynamic } from '@hook/dynamic.ts'
 import { RefObject } from '@hook/useRef.ts'
 import { isString } from '@type/guard.ts'
 import { Children } from '@type/type.ts'
+import { Element } from './elementBlock.ts'
+import { AllElementProps, StyleProps } from './type.ts'
 
 export const applyPropsToElement = <Props extends Partial<AllElementProps>>(
   block: Element,

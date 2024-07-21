@@ -1,20 +1,15 @@
-import { isElement } from '@element/elementBlock.ts'
+import { Block } from '@block/block.ts'
 import { SetState } from '@hook/useState.ts'
-import { Block } from '@type/type.ts'
-import { RVJS_COMPONENT_SYMBOL } from '@util/symbol.ts'
+import { isElement } from '@type/rvjs.ts'
 
-export class Component {
-  $$typeof = RVJS_COMPONENT_SYMBOL
-
+export class Component extends Block {
   #key: string | null
   #child: Block | null
-  #parent: Block | null
   #handlers: {
     onMount: Function | null
     onDestroy: Function | null
   }
   #unsubscribeGlobalStateHandlers: Function[]
-  #isDestroyed: boolean
   #setOutlet: SetState<Block | null> | null
   #router: {
     pathname: string
@@ -22,21 +17,28 @@ export class Component {
     pathParam: { key: string; value: string } | null
   }
 
+  #lazyRender: {
+    renderFn: Function | null
+  }
+
   constructor() {
+    super('COMPONENT')
+
     this.#key = null
     this.#child = null
-    this.#parent = null
     this.#handlers = {
       onMount: null,
       onDestroy: null,
     }
     this.#unsubscribeGlobalStateHandlers = []
-    this.#isDestroyed = false
     this.#setOutlet = null
     this.#router = {
       pathname: '',
       queryParams: {},
       pathParam: null,
+    }
+    this.#lazyRender = {
+      renderFn: null,
     }
   }
 
@@ -46,14 +48,6 @@ export class Component {
 
   get key() {
     return this.#key
-  }
-
-  get parent() {
-    return this.#parent
-  }
-
-  set parent(value: Block | null) {
-    this.#parent = value
   }
 
   get child() {
@@ -122,104 +116,35 @@ export class Component {
     this.#router.pathParam = value
   }
 
+  set lazyRenderFn(value: Function) {
+    this.#lazyRender.renderFn = value
+  }
+
   addUnsubscribeGlobalStateHandler(handler: Function) {
     this.#unsubscribeGlobalStateHandlers.push(handler)
   }
 
-  #commit() {
-    this.traverseChildren(this, (child) => {
-      if (isComponent(child)) {
-        child.triggerOnMount()
-      }
-      return true
-    })
-  }
-
-  #onMount() {
+  onMount() {
     if (this.#handlers.onMount) {
       this.#handlers.onMount()
       this.#handlers.onMount = null
     }
   }
 
-  #cleanUp() {
+  onDestroy() {
     if (this.#handlers.onDestroy) {
       this.#handlers.onDestroy()
     }
-    this.#unsubscribeGlobalStateHandlers.forEach((handler) => {
-      handler(this)
+  }
+
+  unsubscribeDependencies() {
+    this.#unsubscribeGlobalStateHandlers.forEach((unsubscribeHandler) => {
+      unsubscribeHandler(this)
     })
-  }
-
-  #destroy() {
-    if (this.#isDestroyed) {
-      return
-    }
-    this.traverseChildren(this, (child) => {
-      child.triggerCleanUp()
-      return true
-    })
-  }
-
-  #selfDestroy() {
-    if (isElement(this.parent)) {
-      this.parent.deleteChild(this)
-    }
-    this.triggerDestroy()
-    this.#isDestroyed = true
-  }
-
-  triggerOnMount() {
-    this.#onMount()
-  }
-
-  triggerCommit() {
-    this.#commit()
   }
 
   triggerCleanUp() {
-    this.#cleanUp()
+    this.onDestroy()
+    this.unsubscribeDependencies()
   }
-
-  triggerDestroy() {
-    this.#destroy()
-  }
-
-  triggerSelfDestroy() {
-    this.#selfDestroy()
-  }
-
-  traverseChildren(block: Block, callback: (child: Block) => boolean) {
-    callback(block)
-    if (isComponent(block)) {
-      block.child.traverseChildren(block.child, callback)
-    } else if (isElement(block)) {
-      block.children.flat().forEach((child) => {
-        child.traverseChildren(child, callback)
-      })
-    }
-  }
-
-  traverseParent(block: Block, callback: (parent: Block) => boolean) {
-    const parent = block.parent
-
-    if (!parent) {
-      return
-    }
-    const isContinue = callback(parent)
-    if (!isContinue) {
-      return
-    }
-    while (parent) {
-      parent.traverseParent(parent, callback)
-    }
-  }
-}
-
-export const isComponent = (value: unknown): value is Component => {
-  if (!value) {
-    return false
-  }
-
-  return value instanceof Component
 }

@@ -1,6 +1,6 @@
-import { Element } from '@element/elementBlock.ts'
-import { applyPropsToElement } from '@element/property.ts'
-import { ElementProps, SvgProps } from '@element/type.ts'
+import { Element } from './elementBlock.ts'
+import { applyPropsToElement } from './property.ts'
+import { ElementProps, SvgProps } from './type.ts'
 
 export const createElement = <TagName extends keyof HTMLElementTagNameMap>(
   tagName: TagName,

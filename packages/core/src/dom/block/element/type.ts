@@ -1,6 +1,6 @@
-import { CustomProps } from '@element/property.ts'
 import { Dynamic } from '@hook/dynamic.ts'
 import { Properties } from 'csstype'
+import { CustomProps } from './property.ts'
 
 type AllHTMLProps = {
   [Tag in keyof HTMLElementTagNameMap]: HTMLElementTagNameMap[Tag]

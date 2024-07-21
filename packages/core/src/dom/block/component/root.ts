@@ -1,7 +1,7 @@
-import { Component } from '@component/componentBlock.js'
 import { componentContext } from '@context/executionContext.ts'
-import { Element } from '@element/elementBlock.ts'
 import { Child } from '@type/type.ts'
+import { Element } from '../element/elementBlock.ts'
+import { Component } from './componentBlock.ts'
 
 export const root = (element: HTMLElement, child: Child) => {
   const rootComponent = new Component()

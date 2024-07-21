@@ -1,34 +1,29 @@
+import { Block } from '@block/block.ts'
 import { isForRender } from '@children/for.ts'
 import { isSwitchRender } from '@children/switch.ts'
-import { isToggleRender, ToggleRender } from '@children/toggle.ts'
-import { isComponent } from '@component/componentBlock.ts'
+import { isToggleRender } from '@children/toggle.ts'
 import { subscribeStateContext } from '@context/executionContext.ts'
 import { isArray, isTextNode } from '@type/guard.ts'
-import { Block, Children, Render } from '@type/type.ts'
+import { isComponent, isElement } from '@type/rvjs.ts'
+import { Children, Render } from '@type/type.ts'
+import { NestedArray } from '@type/util.ts'
 import { insertChildrenAtIndex } from '@util/dom.ts'
 import { Observer } from '@util/observer.ts'
-import { RVJS_ELEMENT_SYMBOL } from '@util/symbol.ts'
 
 interface ElementProps {
   element: HTMLElement
 }
 
-type El = (HTMLElement | Text) | (HTMLElement | Text)[]
-
-export class Element {
-  $$typeof = RVJS_ELEMENT_SYMBOL
-
+export class Element extends Block {
   #element: HTMLElement
-  #children: (Block | Block[])[]
-  #parent: Block | null
+  #children: NestedArray<Block>
   #unsubscribeStateHandlers: Observer['unsubscribe'][]
 
   constructor(props: ElementProps) {
+    super('ELEMENT')
     const { element } = props
-
     this.#element = element
     this.#children = []
-    this.#parent = null
     this.#unsubscribeStateHandlers = []
   }
 
@@ -38,14 +33,6 @@ export class Element {
 
   set element(value: HTMLElement) {
     this.#element = value
-  }
-
-  get parent() {
-    return this.#parent
-  }
-
-  set parent(value: Block | null) {
-    this.#parent = value
   }
 
   get children() {
@@ -58,38 +45,38 @@ export class Element {
   }
 
   #renderChildren(children: Children) {
-    const elements: El[] = []
+    const elements: NestedArray<HTMLElement | Text> = []
 
     children.forEach((child) => {
       if (!child) {
         return
       }
-      if (isComponent(child) || isElement(child)) {
+      if (isComponent(child)) {
         child.parent = this
         this.#children.push(child)
-        if (isElement(child)) {
-          elements.push(child.element)
-        } else if (isComponent(child)) {
-          elements.push(child.childElement)
-        }
+        elements.push(child.childElement)
+      } else if (isElement(child)) {
+        child.parent = this
+        this.#children.push(child)
+        elements.push(child.element)
       } else if (isTextNode(child)) {
         elements.push(child)
-      } else {
-        const childBlocks = this.#diffingChildren(child, elements.length)
-        this.#children.push(childBlocks)
-        const tempElements: HTMLElement[] = []
-        childBlocks.forEach((childBlock: Block) => {
-          if (!childBlock) {
-            return
-          }
-          childBlock.parent = this
-          if (isElement(childBlock)) {
-            tempElements.push(childBlock.element)
-          } else if (isComponent(childBlock)) {
-            tempElements.push(childBlock.childElement)
+      } else if (
+        isForRender(child) ||
+        isSwitchRender(child) ||
+        isToggleRender(child)
+      ) {
+        const children = this.#diffingChildren(child, elements.length)
+        this.#children.push(children)
+        const newElements = children.map((child) => {
+          child.parent = this
+          if (isElement(child)) {
+            return child.element
+          } else if (isComponent(child)) {
+            return child.childElement
           }
         })
-        elements.push(tempElements)
+        elements.push(newElements)
       }
     })
     return elements
@@ -147,7 +134,7 @@ export class Element {
         index: currentIndex,
         size: oldChildElementSize,
       }
-    } else if (isSwitchRender(childrenFn)) {
+    } else if (isSwitchRender(childrenFn) || isToggleRender(childrenFn)) {
       const { getBlock, context } = childrenFn()
       const { index: currentIndex } = context.get()!
       const newChildBlock = getBlock()
@@ -168,35 +155,6 @@ export class Element {
       if (newChildBlock) {
         newBlocks.push(newChildBlock)
       }
-
-      return {
-        blocks: newBlocks,
-        elements: newChildElements,
-        index: currentIndex,
-        size: oldChildElementSize,
-      }
-    } else if (isToggleRender(childrenFn)) {
-      const { getBlock, context } = (childrenFn as ToggleRender)()
-      const { index: currentIndex } = context.get()!
-      const newChildBlock = getBlock()
-      const newChildElements: HTMLElement[] = []
-      const oldChildElementSize = (this.#children[currentIndex] as Block[])
-        .length
-      if (newChildBlock) {
-        newChildBlock.parent = this
-        if (isElement(newChildBlock)) {
-          newChildElements.push(newChildBlock.element)
-        } else if (isComponent(newChildBlock)) {
-          newChildElements.push(newChildBlock.childElement)
-        }
-        this.#children[currentIndex] = [newChildBlock]
-      } else {
-        this.#children[currentIndex] = []
-      }
-      if (newChildBlock) {
-        newBlocks.push(newChildBlock)
-      }
-
       return {
         blocks: newBlocks,
         elements: newChildElements,
@@ -206,7 +164,11 @@ export class Element {
     }
   }
 
-  #updateDOM(newElements: El[], index?: number, size?: number) {
+  #updateDOM(
+    newElements: NestedArray<HTMLElement | Text>,
+    index?: number,
+    size?: number,
+  ) {
     if (index === undefined && size === undefined) {
       this.#element.replaceChildren(...newElements.flat())
     } else {
@@ -225,95 +187,13 @@ export class Element {
     this.#unsubscribeStateHandlers.push(unsubscribeHandler)
   }
 
-  deleteChild(child: Block) {
-    const newChildren: (Block | Block[])[] = []
-    this.#children.forEach((children) => {
-      if (Array.isArray(children)) {
-        newChildren.push(children.filter((c) => c !== child))
-      } else {
-        if (children !== child) {
-          newChildren.push(children)
-        }
-      }
-    })
-    this.#children = newChildren
-    if (isElement(child)) {
-      child.element.remove()
-    } else if (isComponent(child)) {
-      child.childElement.remove()
-    }
-  }
-
-  #commit() {
-    this.traverseChildren(this, (child) => {
-      if (isComponent(child)) {
-        child.triggerOnMount()
-      }
-
-      return true
-    })
-  }
-
   #cleanUp() {
     this.#unsubscribeStateHandlers.forEach((unsubscribeHandler) => {
       unsubscribeHandler(this)
     })
   }
 
-  #destroy() {
-    this.traverseChildren(this, (child) => {
-      child.triggerCleanUp()
-
-      return true
-    })
-  }
-
-  triggerCommit() {
-    this.#commit()
-  }
-
-  triggerDestroy() {
-    this.#destroy()
-  }
-
   triggerCleanUp() {
     this.#cleanUp()
   }
-
-  traverseChildren(block: Block, callback: (child: Block) => boolean) {
-    const isContinue = callback(block)
-
-    if (!isContinue) {
-      return
-    }
-    if (isComponent(block)) {
-      block.child.traverseChildren(block.child, callback)
-    } else if (isElement(block)) {
-      block.children.flat().forEach((child) => {
-        child.traverseChildren(child, callback)
-      })
-    }
-  }
-
-  traverseParent(block: Block, callback: (parent: Block) => boolean) {
-    const parent = block.parent
-    if (!parent) {
-      return
-    }
-    const isContinue = callback(parent)
-    if (!isContinue) {
-      return
-    }
-    while (parent) {
-      parent.traverseParent(parent, callback)
-    }
-  }
-}
-
-export const isElement = (value: unknown): value is Element => {
-  if (!value) {
-    return false
-  }
-
-  return value instanceof Element
 }
