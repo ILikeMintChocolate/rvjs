@@ -1,6 +1,6 @@
 import { Block } from '@block/block.ts'
-import { Switch } from '@children/switch.ts'
 import { componentContext } from '@context/executionContext.ts'
+import { Switch } from '@flow/switch.ts'
 import { useState } from '@hook/useState.ts'
 
 const useOutlet = () => {
