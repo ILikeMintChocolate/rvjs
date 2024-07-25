@@ -1,11 +1,11 @@
+import { ComponentBlock } from '@block/component.ts'
+import { ElementBlock } from '@block/element.ts'
 import { componentContext } from '@context/executionContext.ts'
 import { Child } from '@type/type.ts'
-import { Element } from '../element/elementBlock.ts'
-import { Component } from './componentBlock.ts'
 
 export const root = (element: HTMLElement, child: Child) => {
-  const rootComponent = new Component()
-  const rootElement = new Element({ element })
+  const rootComponent = new ComponentBlock()
+  const rootElement = new ElementBlock({ element })
   rootComponent.key = 'root'
 
   componentContext.set(rootComponent)

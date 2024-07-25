@@ -1,8 +1,14 @@
 import { Block } from '@block/block.ts'
 import { SetState } from '@hook/useState.ts'
-import { isElement } from '@type/rvjs.ts'
+import {
+  isComponent,
+  isElement,
+  isForFlow,
+  isSwitchFlow,
+  isToggleFlow,
+} from '@type/rvjs.ts'
 
-export class Component extends Block {
+export class ComponentBlock extends Block {
   #key: string | null
   #child: Block | null
   #handlers: {
@@ -58,12 +64,11 @@ export class Component extends Block {
     this.#child = child
   }
 
-  get childElement() {
+  get element() {
     const child = this.#child as Block
-
     if (isElement(child)) {
       return child.element
-    } else {
+    } else if (isComponent(child)) {
       let element: HTMLElement | null = null
       child.traverseChildren(child, (block) => {
         if (isElement(block)) {
@@ -73,6 +78,8 @@ export class Component extends Block {
         return true
       })
       return element as unknown as HTMLElement
+    } else if (isForFlow(child) || isSwitchFlow(child) || isToggleFlow(child)) {
+      return child.element
     }
   }
 
