@@ -1,13 +1,26 @@
 import { isComponent, isElement } from '@type/rvjs.ts'
-import { RVJS_COMPONENT_SYMBOL, RVJS_ELEMENT_SYMBOL } from '@util/symbol.ts'
+import {
+  RVJS_COMPONENT_SYMBOL,
+  RVJS_ELEMENT_SYMBOL,
+  RVJS_FOR_FLOW_SYMBOL,
+  RVJS_SWITCH_FLOW_SYMBOL,
+  RVJS_TOGGLE_FLOW_SYMBOL,
+} from '@util/symbol.ts'
+
+export const blockTypes = {
+  COMPONENT: RVJS_COMPONENT_SYMBOL,
+  ELEMENT: RVJS_ELEMENT_SYMBOL,
+  FOR: RVJS_FOR_FLOW_SYMBOL,
+  SWITCH: RVJS_SWITCH_FLOW_SYMBOL,
+  TOGGLE: RVJS_TOGGLE_FLOW_SYMBOL,
+}
 
 export abstract class Block {
-  $$typeof: typeof RVJS_COMPONENT_SYMBOL | typeof RVJS_ELEMENT_SYMBOL
+  $$typeof: (typeof blockTypes)[keyof typeof blockTypes]
   #parent: Block | null
 
-  constructor(type: 'COMPONENT' | 'ELEMENT') {
-    this.$$typeof =
-      type === 'COMPONENT' ? RVJS_COMPONENT_SYMBOL : RVJS_ELEMENT_SYMBOL
+  constructor(type: keyof typeof blockTypes) {
+    this.$$typeof = blockTypes[type]
     this.#parent = null
   }
 
@@ -18,6 +31,8 @@ export abstract class Block {
   set parent(value: Block | null) {
     this.#parent = value
   }
+
+  abstract get element(): HTMLElement | null
 
   traverseChildren(block: Block, callback: (child: Block) => boolean) {
     const isContinue = callback(block)
@@ -30,20 +45,6 @@ export abstract class Block {
       block.children.flat().forEach((child) => {
         child.traverseChildren(child, callback)
       })
-    }
-  }
-
-  traverseParent(block: Block, callback: (parent: Block) => boolean) {
-    const parent = block.parent
-    if (!parent) {
-      return
-    }
-    const isContinue = callback(parent)
-    if (!isContinue) {
-      return
-    }
-    while (parent) {
-      parent.traverseParent(parent, callback)
     }
   }
 

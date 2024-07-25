@@ -1,13 +1,13 @@
+import { ElementBlock } from '@block/element.ts'
 import { subscribeStateContext } from '@context/executionContext.ts'
 import { Dynamic, isDynamic } from '@hook/dynamic.ts'
 import { RefObject } from '@hook/useRef.ts'
 import { isString } from '@type/guard.ts'
 import { Children } from '@type/type.ts'
-import { Element } from './elementBlock.ts'
 import { AllElementProps, StyleProps } from './type.ts'
 
 export const applyPropsToElement = <Props extends Partial<AllElementProps>>(
-  block: Element,
+  block: ElementBlock,
   props: Partial<Props>,
 ) => {
   Object.entries(props).forEach(([key, value]) => {
@@ -16,7 +16,7 @@ export const applyPropsToElement = <Props extends Partial<AllElementProps>>(
 }
 
 export const setProperty = (
-  block: Element,
+  block: ElementBlock,
   key: keyof AllElementProps,
   value: AllElementProps[keyof AllElementProps],
 ) => {
@@ -39,7 +39,7 @@ export const setProperty = (
 }
 
 export const setDynamicProperty = (
-  block: Element,
+  block: ElementBlock,
   key: keyof AllElementProps,
   value: Dynamic<AllElementProps[keyof AllElementProps]>,
 ) => {
@@ -66,15 +66,15 @@ export interface CustomProps {
 }
 
 const customProps = {
-  ref: (parent: Element, refObject: CustomProps['ref']) => {
+  ref: (parent: ElementBlock, refObject: CustomProps['ref']) => {
     if (refObject !== undefined) {
       refObject.current = parent.element
     }
   },
-  children: (parent: Element, children: CustomProps['children']) => {
+  children: (parent: ElementBlock, children: CustomProps['children']) => {
     parent.appendChildren(children)
   },
-  style: (parent: Element, style: CustomProps['style']) => {
+  style: (parent: ElementBlock, style: CustomProps['style']) => {
     Object.entries(style).forEach(([property, value]) => {
       if (isDynamic(value)) {
         subscribeStateContext.set({
@@ -92,14 +92,14 @@ const customProps = {
       }
     })
   },
-  animation: (parent: Element, animation: CustomProps['animation']) => {
+  animation: (parent: ElementBlock, animation: CustomProps['animation']) => {
     parent.element.animate(animation.keyframes, animation.options)
   },
-  className: (block: Element, className: CustomProps['className']) => {
+  className: (block: ElementBlock, className: CustomProps['className']) => {
     const splitedClassNames = className.split(' ')
     block.element.classList.add(...splitedClassNames)
   },
-  classes: (parent: Element, classes: CustomProps['classes']) => {
+  classes: (parent: ElementBlock, classes: CustomProps['classes']) => {
     classes.forEach((cls) => {
       if (isDynamic(cls)) {
         const clsString = cls()
@@ -131,7 +131,7 @@ const customProps = {
 }
 
 export const setStyleProperty = (
-  elementBlock: Element,
+  elementBlock: ElementBlock,
   property: string,
   value: unknown,
 ) => {

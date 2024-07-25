@@ -1,9 +1,9 @@
-import { Element } from '@element/elementBlock.ts'
+import { ElementBlock } from '@block/element.ts'
 import { pathEvent } from '@router/util/event.ts'
 
 interface LinkProps {
   to: string
-  a: Element
+  a: ElementBlock
 }
 
 const Link = (props: LinkProps) => {
