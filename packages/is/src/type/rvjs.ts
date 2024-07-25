@@ -1,6 +1,6 @@
 import {
-  Component,
-  Element,
+  ComponentBlock,
+  ElementBlock,
   isRvjsFunction,
   isRvjsObject,
   isTextNode,
@@ -21,23 +21,23 @@ import {
 import { isArrayType } from './reference.ts'
 import { Validator } from './type.ts'
 
-export const isElement = (value: unknown): value is Element => {
+export const isElement = (value: unknown): value is ElementBlock => {
   return isRvjsObject(value) && value.$$typeof === RVJS_ELEMENT_SYMBOL
 }
 
-export const isComponent = (value: unknown): value is Component => {
+export const isComponent = (value: unknown): value is ComponentBlock => {
   return isRvjsObject(value) && value.$$typeof === RVJS_COMPONENT_SYMBOL
 }
 
 export const isChild = (
   value: unknown,
-): value is Element | Component | Text => {
+): value is ElementBlock | ComponentBlock | Text => {
   return isElement(value) || isComponent(value) || isTextNode(value)
 }
 
 export const isChildren = (
   value: unknown,
-): value is (Element | Component | Text)[] => {
+): value is (ElementBlock | ComponentBlock | Text)[] => {
   if (!value) {
     return false
   }
