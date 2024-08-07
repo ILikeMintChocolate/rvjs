@@ -1,18 +1,18 @@
 import {
   ComponentBlock,
   ElementBlock,
+  GetState,
   isRvjsFunction,
   isRvjsObject,
   isTextNode,
-} from '@rvjs/core/dom'
-import { GetState, Prop, SetState } from '@rvjs/core/reactive'
-import {
+  Prop,
   RVJS_COMPONENT_SYMBOL,
   RVJS_ELEMENT_SYMBOL,
   RVJS_GET_STATE_SYMBOL,
   RVJS_PROP_SYMBOL,
   RVJS_SET_STATE_SYMBOL,
-} from '@rvjs/core/util'
+  SetState,
+} from '@rvjs/core'
 import { checkContext } from '../checkProps/context.ts'
 import {
   printInvalidError,
