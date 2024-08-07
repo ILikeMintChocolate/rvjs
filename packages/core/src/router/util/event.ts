@@ -18,7 +18,7 @@ export interface Route {
 export const pathEvent = (() => {
   const historyState = { prevPath: '', newPath: '' }
   const [getRoutes, setRoutes] = useState<Route[]>([])
-  const [getPathname, setPathname] = useState<string>('')
+  const [getPathname, setPathname] = useState<string>(getCurrentPath())
 
   window.addEventListener('popstate', () => {
     const newPath = getCurrentPath()
