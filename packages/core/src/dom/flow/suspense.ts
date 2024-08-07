@@ -1,8 +1,8 @@
 import { ComponentBlock } from '@block/component.ts'
 import { ElementBlock } from '@block/element.ts'
+import { Switch } from '@flow/switch.ts'
 import { useState } from '@hook/useState.ts'
 import { Child } from '@type/type.ts'
-import { Switch } from './switch.ts'
 
 interface SuspenseProps {
   content: () => Promise<ElementBlock | ComponentBlock>

@@ -6,8 +6,13 @@ import {
 } from '@context/executionContext.ts'
 import { setProperty, setStyleProperty } from '@element/property.ts'
 import { AllElementProps } from '@element/type.ts'
-import { isArray, isFunction, isRvjsFunction } from '@type/guard.ts'
-import { isElement, RvjsFunction } from '@type/rvjs.ts'
+import {
+  isArray,
+  isFunction,
+  isRvjsFunction,
+  RvjsFunction,
+} from '@type/guard.ts'
+import { isElement, isTextNode } from '@type/rvjs.ts'
 import { Queue } from '@util/dataStructure/queue.ts'
 import { Observer } from '@util/observer.ts'
 import { RVJS_GET_STATE_SYMBOL } from '@util/symbol.ts'
@@ -140,8 +145,8 @@ class StateObserver extends Observer<Block | null, StateObserverValue> {
         classesProperty: [],
         flowRender: [],
       } as StateObserverValue)
-      if (isElement(block)) {
-        block.appendStateUnsubscribeHandler(this.unsubscribe.bind(this))
+      if (block && !isTextNode(block)) {
+        block.addStateUnsubscribeHandler(this.unsubscribe.bind(this))
       }
     }
     const subscriberValue = this.getValueBySubscriber(block)!
