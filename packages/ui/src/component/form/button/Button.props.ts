@@ -1,6 +1,5 @@
 import { ButtonStyleProps } from '@form/button/Button.css.ts'
-import { ElementBlock, svg } from '@rvjs/core/dom'
-import { prop, Prop } from '@rvjs/core/reactive'
+import { ElementBlock, prop, Prop, svg } from '@rvjs/core'
 import {
   isArray,
   isBoolean,

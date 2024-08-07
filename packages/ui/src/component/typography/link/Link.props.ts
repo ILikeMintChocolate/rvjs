@@ -1,5 +1,11 @@
-import { Children, ElementBlock, ElementType, svg } from '@rvjs/core/dom'
-import { prop, Prop } from '@rvjs/core/reactive'
+import {
+  Children,
+  ElementBlock,
+  ElementType,
+  prop,
+  Prop,
+  svg,
+} from '@rvjs/core'
 import {
   isBoolean,
   isChild,

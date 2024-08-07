@@ -1,7 +1,5 @@
 import Flex from '@layout/flex/Flex.ts'
-import { a } from '@rvjs/core/dom'
-import { dynamic, Prop, prop } from '@rvjs/core/reactive'
-import { useNavigate } from '@rvjs/core/router'
+import { a, dynamic, Prop, prop, useNavigate } from '@rvjs/core'
 import {
   sideNavLink_anchor_style,
   sideNavLink_style,

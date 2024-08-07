@@ -1,6 +1,4 @@
-import { a, code } from '@rvjs/core/dom'
-import { dynamic, prop, useState } from '@rvjs/core/reactive'
-import { useNavigate } from '@rvjs/core/router'
+import { a, code, dynamic, prop, useNavigate, useState } from '@rvjs/core'
 import { CodeSnippetProps } from '@typography/codeSnippet/CodeSnippet.props.ts'
 import {
   linkCodeSnippet_anchor_style,

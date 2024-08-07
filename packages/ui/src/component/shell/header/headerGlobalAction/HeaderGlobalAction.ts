@@ -1,7 +1,6 @@
 import Flex from '@layout/flex/Flex.ts'
 import Tooltip from '@overlay/tooltip/Tooltip.ts'
-import { button, Children, Switch } from '@rvjs/core/dom'
-import { dynamic, Prop, prop } from '@rvjs/core/reactive'
+import { button, Children, dynamic, Prop, prop, Switch } from '@rvjs/core'
 import {
   headerGlobalAction_button_recipe,
   headerGlobalAction_li_style,

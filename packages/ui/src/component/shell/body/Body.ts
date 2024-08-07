@@ -1,6 +1,5 @@
 import Box from '@layout/box/Box.ts'
-import { Children, ElementType } from '@rvjs/core/dom'
-import { prop } from '@rvjs/core/reactive'
+import { Children, ElementType, prop } from '@rvjs/core'
 import { body_style } from '@shell/body/Body.css.ts'
 
 interface BodyProps {

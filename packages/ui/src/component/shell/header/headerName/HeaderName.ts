@@ -1,6 +1,4 @@
-import { a } from '@rvjs/core/dom'
-import { Prop, prop } from '@rvjs/core/reactive'
-import { useNavigate } from '@rvjs/core/router'
+import { a, Prop, prop, useNavigate } from '@rvjs/core'
 import { headerName_style } from '@shell/header/headerName/HeaderName.css.ts'
 import Text from '@typography/text/Text.ts'
 import { ifIs } from '@util/array.ts'

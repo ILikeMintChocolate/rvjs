@@ -1,6 +1,13 @@
 import { boxSprinkles, BoxStyleProps } from '@layout/box/Box.css.ts'
-import { Children, element, ElementType, StyleProps } from '@rvjs/core/dom'
-import { dynamic, Prop, RefObject } from '@rvjs/core/reactive'
+import {
+  Children,
+  dynamic,
+  element,
+  ElementType,
+  Prop,
+  RefObject,
+  StyleProps,
+} from '@rvjs/core'
 import { HTMLDivType } from '@type/element.ts'
 
 interface BoxProps extends BoxStyleProps, HTMLDivType {

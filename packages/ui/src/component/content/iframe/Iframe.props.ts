@@ -1,5 +1,4 @@
-import { ElementProps } from '@rvjs/core/dom'
-import { Prop, prop } from '@rvjs/core/reactive'
+import { ElementProps, Prop, prop } from '@rvjs/core'
 import { isOptional, isProp, isString } from '@rvjs/is'
 import { Properties } from 'csstype'
 

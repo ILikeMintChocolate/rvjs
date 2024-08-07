@@ -6,8 +6,7 @@ import {
   UnorderedListProps,
   unorderedListPropsType,
 } from '@content/list/unorderedList/UnorderedList.props.ts'
-import { ul } from '@rvjs/core/dom'
-import { prop } from '@rvjs/core/reactive'
+import { prop, ul } from '@rvjs/core'
 import { checkProps } from '@rvjs/is'
 import { assignInlineVars } from '@vanilla-extract/dynamic'
 

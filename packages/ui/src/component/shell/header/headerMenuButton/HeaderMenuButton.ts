@@ -1,7 +1,13 @@
 import defaultCloseSvg from '@icon/close.svg?element'
 import defaultMenuSvg from '@icon/menu.svg?element'
-import { button, component, ComponentFn, svg, Switch } from '@rvjs/core/dom'
-import { useGlobalState } from '@rvjs/core/reactive'
+import {
+  button,
+  component,
+  ComponentFn,
+  svg,
+  Switch,
+  useGlobalState,
+} from '@rvjs/core'
 import {
   headerMenuButton_button_style,
   headerMenuButton_icon_style,

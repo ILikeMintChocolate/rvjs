@@ -1,5 +1,4 @@
-import { element } from '@rvjs/core/dom'
-import { dynamic, prop } from '@rvjs/core/reactive'
+import { dynamic, element, prop } from '@rvjs/core'
 import { checkProps } from '@rvjs/is'
 import { text_recipe, textSprinkles } from '@typography/text/Text.css.ts'
 import { TextProps, textPropsType } from '@typography/text/Text.props.ts'

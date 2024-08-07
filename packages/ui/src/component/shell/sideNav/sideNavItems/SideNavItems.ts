@@ -1,6 +1,5 @@
 import Flex from '@layout/flex/Flex.ts'
-import { Children } from '@rvjs/core/dom'
-import { prop } from '@rvjs/core/reactive'
+import { Children, prop } from '@rvjs/core'
 import { sideNavItems_style } from '@shell/sideNav/sideNavItems/SideNavItems.css.ts'
 
 interface SideNavItemsProps {

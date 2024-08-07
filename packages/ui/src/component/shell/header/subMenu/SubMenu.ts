@@ -1,16 +1,20 @@
 import chevronDownSvg from '@icon/chevron--down.svg?element'
 import Flex from '@layout/flex/Flex.ts'
-import { button, Children, component, ComponentFn, svg } from '@rvjs/core/dom'
 import {
+  button,
+  Children,
+  component,
+  ComponentFn,
   dynamic,
   onDestroy,
   onMount,
   Prop,
   prop,
   RefObject,
+  svg,
   useGlobalState,
   useRef,
-} from '@rvjs/core/reactive'
+} from '@rvjs/core'
 import {
   subMenu_dropDown_style,
   subMenu_iconWrapper_style,

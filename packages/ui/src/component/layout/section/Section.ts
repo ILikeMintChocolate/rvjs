@@ -3,8 +3,8 @@ import {
   SectionProps,
   sectionPropsType,
 } from '@layout/section/Section.props.ts'
-import { section } from '@rvjs/core/dom'
-import { dynamic } from '@rvjs/core/reactive'
+import { section } from '@rvjs/core'
+import { dynamic } from '@rvjs/core'
 import { checkProps } from '@rvjs/is'
 
 const Section = (props: SectionProps) => {

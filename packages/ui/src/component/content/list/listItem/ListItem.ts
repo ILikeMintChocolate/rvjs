@@ -6,8 +6,7 @@ import {
   ListItemProps,
   listItemPropsType,
 } from '@content/list/listItem/ListItem.props.ts'
-import { li } from '@rvjs/core/dom'
-import { dynamic, prop } from '@rvjs/core/reactive'
+import { dynamic, li, prop } from '@rvjs/core'
 import { checkProps } from '@rvjs/is'
 import { text_recipe } from '@typography/text/Text.css.ts'
 import Text from '@typography/text/Text.ts'

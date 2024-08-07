@@ -1,16 +1,19 @@
 import Box from '@layout/box/Box.ts'
 import Flex from '@layout/flex/Flex.ts'
-import { Children, component, ComponentFn } from '@rvjs/core/dom'
 import {
+  Children,
+  component,
+  ComponentFn,
   onMount,
   prop,
   useEffect,
   useGlobalState,
   useRef,
-} from '@rvjs/core/reactive'
+} from '@rvjs/core'
 import {
   sideNav_backdrop_recipe,
   sideNav_nav_recipe,
+  sideNav_wrapper_style,
 } from '@shell/sideNav/sideNav/SideNav.css.ts'
 
 interface SideNavProps {
@@ -45,6 +48,7 @@ const SideNav: ComponentFn = component<SideNavProps>((props: SideNavProps) => {
   }, [showSideNav])
 
   return Flex({
+    classes: [prop(() => sideNav_wrapper_style)],
     children: [
       Flex({
         as: 'nav',

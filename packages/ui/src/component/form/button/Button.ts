@@ -6,14 +6,15 @@ import {
 } from '@form/button/Button.css.ts'
 import { ButtonProps, buttonPropsType } from '@form/button/Button.props.ts'
 import Box from '@layout/box/Box.ts'
-import { button, overrideElement } from '@rvjs/core/dom'
 import {
+  button,
   dynamic,
   isGetState,
+  overrideElement,
   prop,
   useEffect,
   useRef,
-} from '@rvjs/core/reactive'
+} from '@rvjs/core'
 import { checkProps } from '@rvjs/is'
 import vars from '@theme/variable/vars.css.ts'
 import Text from '@typography/text/Text.ts'

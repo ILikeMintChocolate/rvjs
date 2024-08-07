@@ -1,4 +1,4 @@
-import { Prop } from '@rvjs/core/reactive'
+import { Prop } from '@rvjs/core'
 import vars from '@theme/variable/vars.css.ts'
 import { recipe } from '@vanilla-extract/recipes'
 

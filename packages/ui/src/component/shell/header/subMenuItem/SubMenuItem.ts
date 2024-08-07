@@ -1,7 +1,14 @@
 import Flex from '@layout/flex/Flex.ts'
-import { a, component, ComponentFn } from '@rvjs/core/dom'
-import { dynamic, Prop, prop, useGlobalState } from '@rvjs/core/reactive'
-import { useNavigate } from '@rvjs/core/router'
+import {
+  a,
+  component,
+  ComponentFn,
+  dynamic,
+  Prop,
+  prop,
+  useGlobalState,
+  useNavigate,
+} from '@rvjs/core'
 import {
   subMenuItem_anchor_recipe,
   subMenuItem_li_style,
