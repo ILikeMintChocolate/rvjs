@@ -1,12 +1,10 @@
-import { Block } from '@block/block.ts'
-import { SwitchBlock } from '@block/switch.ts'
-import { GetState } from '@hook/useState.ts'
+import { SwitchBlock, SwitchProps } from '@block/switch.ts'
 
-export const Switch = <Dep>(
-  dependency: Dep | GetState<Dep>,
-  render: () => Block | null,
+export const Switch = <Item>(
+  dependency: SwitchProps<Item>['dependency'],
+  render: SwitchProps<Item>['render'],
 ) => {
-  return new SwitchBlock<Dep>({
+  return new SwitchBlock<Item>({
     dependency,
     render,
   })

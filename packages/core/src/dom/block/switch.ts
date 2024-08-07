@@ -4,43 +4,31 @@ import {
   subscribeStateContext,
 } from '@context/executionContext.ts'
 import { HTMLNode } from '@element/type.ts'
-import { FlowProps } from '@flow/type.ts'
-import { isGetState } from '@hook/useState.ts'
-import { isComponent, isElement } from '@type/rvjs.ts'
-import { insertChildrenAtIndex } from '@util/dom.ts'
+import { Prop } from '@hook/prop.ts'
+import { GetState, isGetState } from '@hook/useState.ts'
+import { isElement, isTextNode } from '@type/rvjs.ts'
 
-interface SwitchProps<Dep> extends FlowProps<Dep> {
-  render: () => Block | null
+export interface SwitchProps<Item> {
+  render: (item: Item) => Block | null
+  dependency: Item | GetState<Item> | Prop<Item>
 }
 
-export class SwitchBlock<Dep> extends Block {
-  #child: Block
-  #dependency: SwitchProps<Dep>['dependency']
-  #render: SwitchProps<Dep>['render']
-  #index: number
+export class SwitchBlock<Item> extends Block {
+  #child: Block | null
+  #dependency: SwitchProps<Item>['dependency']
+  #render: SwitchProps<Item>['render']
 
-  constructor(props: SwitchProps<Dep>) {
+  constructor(props: SwitchProps<Item>) {
     const { dependency, render } = props
-    super('SWITCH')
+    super({ type: 'SWITCH' })
     this.#dependency = dependency
     this.#render = render
     this.#child = null
-    this.#index = null
     this.#initialRender()
   }
 
-  get child() {
+  get child(): Block | null {
     return this.#child
-  }
-
-  get element() {
-    if (isElement(this.#child) || isComponent(this.#child)) {
-      return this.#child.element as HTMLElement
-    }
-  }
-
-  set index(index: number) {
-    this.#index = index
   }
 
   #initialRender() {
@@ -52,48 +40,68 @@ export class SwitchBlock<Dep> extends Block {
         this.#reRender()
       },
     })
-    isGetState(this.#dependency) ? this.#dependency() : this.#dependency
+    const item = isGetState(this.#dependency)
+      ? this.#dependency()
+      : this.#dependency
     subscribeStateContext.set(null)
-    const currentComponent = componentContext.get()!
-    componentContext.set(currentComponent)
-    const rendered = this.#render()
-    if (!rendered) {
-      return null
+    const newNodes: HTMLNode[] = []
+    const rerenderableContexts = []
+    const block = item ? this.#renderItem(item) : null
+    this.#child = block
+    if (block) {
+      block.blockIndex = 0
+      block.domIndex = 0
+      if (isElement(block) || isTextNode(block)) {
+        newNodes.push(block.element)
+      } else {
+        newNodes.push(...block.nodes)
+        rerenderableContexts.push({ block, localDOMIndex: 0 })
+      }
     }
-    this.#child = rendered
-    this.#child.parent = this
-    componentContext.set(null)
+    this.nodes = newNodes
+    this.domLength = newNodes.length
+    this.rerenderableContexts = rerenderableContexts
   }
 
   #reRender() {
-    if (isElement(this.#child) || isComponent(this.#child)) {
-      this.#child.triggerDestroy()
-    }
-    const newChild = this.#render()
-    if (!newChild) {
-      this.#updateDOM(null)
-    } else {
-      newChild.parent = this
-      if (isElement(newChild) || isComponent(newChild)) {
-        this.#updateDOM(newChild.element)
+    const deletable = this.#child
+    const item = (this.#dependency as GetState<Item>)()
+    const block = item ? this.#renderItem(item) : null
+    this.#child = block
+    const newNodes: HTMLNode[] = []
+    const rerenderableContexts = []
+    if (block) {
+      if (isElement(block) || isTextNode(block)) {
+        newNodes.push(block.element)
+      } else {
+        newNodes.push(...block.nodes)
+        rerenderableContexts.push({ block, localDOMIndex: 0 })
       }
     }
-    this.#child = newChild
+    const increased = newNodes.length - this.domLength
+    this.nodes = newNodes
+    this.domLength = newNodes.length
+    this.rerenderableContexts = rerenderableContexts
+    this.parent.requestDOMSwapUpdate(
+      this,
+      this.parent,
+      this.nodes,
+      [deletable],
+      this.blockIndex,
+      this.domIndex,
+      this.domLength,
+      increased,
+    )
   }
 
-  #updateDOM(newChildElement: HTMLNode | null) {
-    if (this.#child && !newChildElement) {
-      console.log('현재 O, 새로운 X')
-      this.element.replaceWith()
-    } else if (!this.#child && newChildElement) {
-      console.log('현재 X, 새로운 O')
-      const parent = this.parent
-      if (isComponent(parent) || isElement(parent)) {
-        insertChildrenAtIndex(parent.element, this.#index, [newChildElement])
-      }
-    } else {
-      console.log('현재 O, 새로운 O')
-      this.element.replaceWith(newChildElement)
+  #renderItem(item: Item) {
+    const currentComponent = componentContext.get()!
+    componentContext.set(currentComponent)
+    const child = this.#render(item)
+    if (child) {
+      child.parent = this
     }
+    componentContext.set(null)
+    return child
   }
 }

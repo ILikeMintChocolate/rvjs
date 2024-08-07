@@ -1,12 +1,10 @@
-import { Block } from '@block/block.ts'
-import { ToggleBlock } from '@block/toggle.ts'
-import { GetState } from '@hook/useState.ts'
+import { ToggleBlock, ToggleProps } from '@block/toggle.ts'
 
-export const Toggle = <Dep>(
-  dependency: Dep | GetState<Dep>,
-  render: () => Block | null,
+export const Toggle = <Bool>(
+  dependency: ToggleProps<Bool>['dependency'],
+  render: ToggleProps<Bool>['render'],
 ) => {
-  return new ToggleBlock<Dep>({
+  return new ToggleBlock<Bool>({
     dependency,
     render,
   })

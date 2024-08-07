@@ -1,10 +1,8 @@
-import { Block } from '@block/block.ts'
-import { ForBlock } from '@block/for.ts'
-import { GetState } from '@hook/useState.ts'
+import { ForBlock, ForProps } from '@block/for.ts'
 
 export const For = <Item>(
-  dependency: Item[] | GetState<Item[]>,
-  render: (item: Item, index: number) => Block | null,
+  dependency: ForProps<Item>['dependency'],
+  render: ForProps<Item>['render'],
 ) => {
   return new ForBlock<Item>({
     dependency,

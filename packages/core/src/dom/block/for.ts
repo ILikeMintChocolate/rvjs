@@ -3,13 +3,15 @@ import {
   componentContext,
   subscribeStateContext,
 } from '@context/executionContext.ts'
-import { FlowProps } from '@flow/type.ts'
+import { HTMLNode } from '@element/type.ts'
+import { Prop } from '@hook/prop.ts'
 import { GetState, isGetState } from '@hook/useState.ts'
-import { isComponent, isElement } from '@type/rvjs.ts'
+import { isElement, isTextNode } from '@type/rvjs.ts'
 import { ArrayMap } from '@util/dataStructure/arrayMap.ts'
 
-interface ForProps<Item> extends FlowProps<Item[]> {
-  render: (item: Item, index: number) => Block
+export interface ForProps<Item> {
+  dependency: Item[] | GetState<Item[]> | Prop<Item[]>
+  render: (item: Item, index: number) => Block | null
 }
 
 interface IndexedObject {
@@ -18,40 +20,17 @@ interface IndexedObject {
 }
 
 export class ForBlock<Item> extends Block {
-  #children: Block[]
   #dependency: ForProps<Item>['dependency']
   #render: ForProps<Item>['render']
-  #index: number
   #orderMap: ArrayMap<Item, IndexedObject>
 
   constructor(props: ForProps<Item>) {
     const { dependency, render } = props
-    super('FOR')
+    super({ type: 'FOR' })
     this.#dependency = dependency
     this.#render = render
-    this.#children = []
-    this.#index = 0
     this.#orderMap = new ArrayMap()
     this.#initialRender()
-  }
-
-  get children() {
-    return this.#children
-  }
-
-  get element() {
-    return this.#children
-      .flat(Infinity)
-      .map((child) => {
-        if (isElement(child) || isComponent(child)) {
-          return child.element as HTMLElement
-        }
-      })
-      .filter(Boolean)
-  }
-
-  set index(index: number) {
-    this.#index = index
   }
 
   #initialRender() {
@@ -68,67 +47,94 @@ export class ForBlock<Item> extends Block {
       : this.#dependency
     subscribeStateContext.set(null)
     const currOrderMap = new ArrayMap<Item, IndexedObject>()
-    const newChildren = newItems.map((item, index) => {
-      const block = this.#renderItem(item, index)
-      currOrderMap.push(item, { index, block })
-      return block
-    })
-    this.#children = newChildren
+    const newNodes: HTMLNode[] = []
+    const newChildren: Block[] = []
+    const rerenderableContexts = []
+    let domIndex = 0
+    let blockIndex = 0
+    for (let i = 0; i < newItems.length; i++) {
+      const item = newItems[i]
+      const block = this.#renderItem(item, i)
+      currOrderMap.push(item, { index: i, block })
+      newChildren.push(block)
+      block.domIndex = domIndex
+      if (isElement(block) || isTextNode(block)) {
+        newNodes.push(block.element)
+      } else {
+        newNodes.push(...block.nodes)
+        block.blockIndex = blockIndex++
+        rerenderableContexts.push({
+          block: block,
+          localDOMIndex: domIndex,
+        })
+      }
+      domIndex += block.domLength
+    }
     this.#orderMap = currOrderMap
+    this.nodes = newNodes
+    this.domLength = newNodes.length
+    this.children = newChildren
+    this.rerenderableContexts = rerenderableContexts
   }
 
   #reRender() {
-    const deletable = new Set(this.children)
     const prevOrderMap = this.#orderMap
     const currOrderMap = new ArrayMap<Item, IndexedObject>()
     const newItems = (this.#dependency as GetState<Item[]>)()
-    const newChildren = newItems.map((item, index) => {
-      const domIndex = this.#index + index
-      if (prevOrderMap.has(item)) {
-        const { block, index: blockIndex } = prevOrderMap.pop(item)
-        deletable.delete(block)
-        if (blockIndex !== index) {
-          const parent = this.parent
-          this.#DOMInsertAt(
-            parent.element as HTMLElement,
-            block.element as HTMLElement,
-            domIndex,
-          )
-        }
-        currOrderMap.push(item, { index, block })
-        return block
+    const newNodes: HTMLNode[] = []
+    const newChildren: Block[] = []
+    const deletable = new Set(this.children)
+    const rerenderableContexts = []
+    let domIndex = 0
+    let blockIndex = 0
+    for (let i = 0; i < newItems.length; i++) {
+      const item = newItems[i]
+      const isExist = prevOrderMap.has(item)
+      const block = isExist
+        ? prevOrderMap.pop(item).block
+        : this.#renderItem(item, i)
+      isExist && deletable.delete(block)
+      newChildren.push(block)
+      currOrderMap.push(item, { index: i, block })
+      block.domIndex = domIndex
+      if (isElement(block) || isTextNode(block)) {
+        newNodes.push(block.element)
       } else {
-        const block = this.#renderItem(item, index)
-        currOrderMap.push(item, { index, block })
-        const parent = this.parent
-        this.#DOMInsertAt(
-          parent.element as HTMLElement,
-          block.element as HTMLElement,
-          domIndex,
-        )
-        return block
+        newNodes.push(...block.nodes)
+        block.blockIndex = blockIndex++
+        rerenderableContexts.push({
+          block: block,
+          localDOMIndex: domIndex,
+        })
       }
-    })
-
-    ;[...deletable].forEach((block) => {
-      block.triggerDestroy()
-      block.element.remove()
-    })
-
-    this.#children = newChildren
+      domIndex += block.domLength
+    }
+    const increased = newNodes.length - this.domLength
+    this.nodes = newNodes
+    this.children = newChildren
     this.#orderMap = currOrderMap
+    this.domLength = newNodes.length
+    this.rerenderableContexts = rerenderableContexts
+    this.parent.requestDOMSwapUpdate(
+      this,
+      this.parent,
+      this.nodes,
+      [...deletable],
+      this.blockIndex,
+      this.domIndex,
+      this.domLength,
+      increased,
+    )
   }
 
   #renderItem(item: Item, index: number) {
     const currentComponent = componentContext.get()!
     componentContext.set(currentComponent)
     const child = this.#render(item, index)
-    child.parent = this
+    if (child) {
+      child.parent = this
+    }
     componentContext.set(null)
     return child
-  }
-
-  #DOMInsertAt(parent: HTMLElement, newElement: HTMLElement, index: number) {
-    parent.insertBefore(newElement, parent.children[index])
   }
 }

@@ -28,8 +28,7 @@ export const component = <Props>(render: (props: Props) => Block) => {
       }
     }
     const renderedChild = render(restProps as Props & Partial<ReceivableProps>)
-    componentBlock.child = renderedChild
-    renderedChild.parent = componentBlock
+    componentBlock.appendChild(renderedChild)
     componentContext.set(previousComponent)
     return componentBlock
   }
