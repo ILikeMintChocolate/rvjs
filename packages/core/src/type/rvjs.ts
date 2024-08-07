@@ -9,16 +9,9 @@ import {
   RVJS_ELEMENT_SYMBOL,
   RVJS_FOR_FLOW_SYMBOL,
   RVJS_SWITCH_FLOW_SYMBOL,
+  RVJS_TEXT_NODE_SYMBOL,
   RVJS_TOGGLE_FLOW_SYMBOL,
 } from '@util/symbol.ts'
-
-export type RvjsFunction<T extends Function> = T & {
-  $$typeof: symbol
-}
-
-export type RvjsObject<T extends Object> = T & {
-  $$typeof: symbol
-}
 
 export const isComponent = (value: unknown): value is ComponentBlock => {
   return isRvjsObject(value) && value.$$typeof === RVJS_COMPONENT_SYMBOL
@@ -38,4 +31,8 @@ export const isSwitchFlow = (value: unknown): value is SwitchBlock<unknown> => {
 
 export const isToggleFlow = (value: unknown): value is ToggleBlock<unknown> => {
   return isRvjsObject(value) && value.$$typeof === RVJS_TOGGLE_FLOW_SYMBOL
+}
+
+export const isTextNode = (value: unknown): value is ElementBlock => {
+  return isRvjsObject(value) && value.$$typeof === RVJS_TEXT_NODE_SYMBOL
 }
