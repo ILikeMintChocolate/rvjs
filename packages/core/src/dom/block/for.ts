@@ -34,66 +34,66 @@ export class ForBlock<Item> extends Block {
   }
 
   #initialRender() {
-    subscribeStateContext.set({
-      block: this,
-      type: 'flowRender',
-      property: 'flowRender',
-      value: () => {
-        this.#reRender()
-      },
-    })
-    const newItems = isGetState(this.#dependency)
-      ? this.#dependency()
-      : this.#dependency
-    subscribeStateContext.set(null)
-    const currOrderMap = new ArrayMap<Item, IndexedObject>()
-    const newNodes: HTMLNode[] = []
-    const newChildren: Block[] = []
-    const rerenderableContexts = []
-    let domIndex = 0
-    let blockIndex = 0
-    for (let i = 0; i < newItems.length; i++) {
-      const item = newItems[i]
-      const block = this.#renderItem(item, i)
-      currOrderMap.push(item, { index: i, block })
-      newChildren.push(block)
-      block.domIndex = domIndex
-      if (isElement(block) || isTextNode(block)) {
-        newNodes.push(block.element)
-      } else {
-        newNodes.push(...block.nodes)
-        block.blockIndex = blockIndex++
-        rerenderableContexts.push({
-          block: block,
-          localDOMIndex: domIndex,
-        })
-      }
-      domIndex += block.domLength
-    }
-    this.#orderMap = currOrderMap
-    this.nodes = newNodes
-    this.domLength = newNodes.length
-    this.children = newChildren
-    this.rerenderableContexts = rerenderableContexts
+    this.#renderByItem(true)
   }
 
   #reRender() {
+    const { triggerBlocks, deletable, increased } = this.#renderByItem(false)
+    this.parent.requestDOMSwapUpdate(
+      this,
+      this.parent,
+      this.nodes,
+      [...deletable],
+      this.blockIndex,
+      this.domIndex,
+      this.domLength,
+      increased,
+    )
+    for (let i = 0; i < triggerBlocks.length; i++) {
+      triggerBlocks[i].triggerCommit()
+    }
+  }
+
+  #renderByItem(isInitial: boolean) {
+    const items = (() => {
+      if (isInitial) {
+        subscribeStateContext.set({
+          block: this,
+          type: 'flowRender',
+          property: 'flowRender',
+          value: () => {
+            this.#reRender()
+          },
+        })
+        const items = isGetState(this.#dependency)
+          ? this.#dependency()
+          : this.#dependency
+        subscribeStateContext.set(null)
+        return items
+      } else {
+        return (this.#dependency as GetState<Item[]>)()
+      }
+    })()
     const prevOrderMap = this.#orderMap
     const currOrderMap = new ArrayMap<Item, IndexedObject>()
-    const newItems = (this.#dependency as GetState<Item[]>)()
     const newNodes: HTMLNode[] = []
     const newChildren: Block[] = []
+    const triggerBlocks = []
     const deletable = new Set(this.children)
     const rerenderableContexts = []
     let domIndex = 0
     let blockIndex = 0
-    for (let i = 0; i < newItems.length; i++) {
-      const item = newItems[i]
+    for (let i = 0; i < items.length; i++) {
+      const item = items[i]
       const isExist = prevOrderMap.has(item)
       const block = isExist
         ? prevOrderMap.pop(item).block
-        : this.#renderItem(item, i)
-      isExist && deletable.delete(block)
+        : this.#renderBlock(item, i)
+      if (isExist) {
+        deletable.delete(block)
+      } else {
+        triggerBlocks.push(block)
+      }
       newChildren.push(block)
       currOrderMap.push(item, { index: i, block })
       block.domIndex = domIndex
@@ -115,19 +115,10 @@ export class ForBlock<Item> extends Block {
     this.#orderMap = currOrderMap
     this.domLength = newNodes.length
     this.rerenderableContexts = rerenderableContexts
-    this.parent.requestDOMSwapUpdate(
-      this,
-      this.parent,
-      this.nodes,
-      [...deletable],
-      this.blockIndex,
-      this.domIndex,
-      this.domLength,
-      increased,
-    )
+    return { triggerBlocks, deletable, increased }
   }
 
-  #renderItem(item: Item, index: number) {
+  #renderBlock(item: Item, index: number) {
     const currentComponent = componentContext.get()!
     componentContext.set(currentComponent)
     const child = this.#render(item, index)

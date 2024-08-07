@@ -1,6 +1,5 @@
 import { BlockRelations } from '@block/util/blockRelations.ts'
 import { DOMController } from '@block/util/domController.ts'
-import { LifecycleHandlers } from '@block/util/lifecycleHandlers.ts'
 import { Empty } from '@block/util/mixin.ts'
 import { RouteContext } from '@block/util/routeContext.ts'
 import { UnsubscribeState } from '@block/util/unsubscribeState.ts'
@@ -36,7 +35,7 @@ export interface BlockProps {
 }
 
 export class Block extends RouteContext(
-  LifecycleHandlers(UnsubscribeState(DOMController(BlockRelations(Empty)))),
+  UnsubscribeState(DOMController(BlockRelations(Empty))),
 ) {
   $$typeof: (typeof blockTypes)[keyof typeof blockTypes]
 
@@ -69,7 +68,9 @@ export class Block extends RouteContext(
 
   #commit() {
     this.traverseChildren(this, (child) => {
-      child.triggerOnMount()
+      if (isComponent(child)) {
+        child.triggerOnMount()
+      }
       return true
     })
   }
@@ -80,8 +81,10 @@ export class Block extends RouteContext(
 
   #destroy() {
     this.traverseChildren(this, (child) => {
-      if (!isTextNode(child)) {
+      if (isComponent(child)) {
         child.triggerOnDestroy()
+      }
+      if (!isTextNode(child)) {
         child.cleanUpUnsubscribeState()
       }
       return true

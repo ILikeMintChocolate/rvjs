@@ -32,44 +32,51 @@ export class ToggleBlock<Bool> extends Block {
   }
 
   #initialRender() {
-    subscribeStateContext.set({
-      block: this,
-      type: 'flowRender',
-      property: 'flowRender',
-      value: () => {
-        this.#reRender()
-      },
-    })
-    const item = isGetState(this.#dependency)
-      ? this.#dependency()
-      : this.#dependency
-    subscribeStateContext.set(null)
-    const newNodes: HTMLNode[] = []
-    const rerenderableContexts = []
-    const block = item ? this.#renderItem() : null
-    this.#child = block
-    if (block) {
-      block.blockIndex = 0
-      block.domIndex = 0
-      if (isElement(block) || isTextNode(block)) {
-        newNodes.push(block.element)
-      } else {
-        newNodes.push(...block.nodes)
-        rerenderableContexts.push({ block, localDOMIndex: 0 })
-      }
-    }
-    this.nodes = newNodes
-    this.domLength = newNodes.length
-    this.rerenderableContexts = rerenderableContexts
+    this.#renderByItem(true)
   }
 
   #reRender() {
+    const { newBlock, deletable, increased } = this.#renderByItem(false)
+    this.parent.requestDOMSwapUpdate(
+      this,
+      this.parent,
+      this.nodes,
+      [deletable],
+      this.blockIndex,
+      this.domIndex,
+      this.domLength,
+      increased,
+    )
+    if (newBlock) {
+      newBlock.triggerCommit()
+    }
+  }
+
+  #renderByItem(isInitial: boolean) {
+    const item = (() => {
+      if (isInitial) {
+        subscribeStateContext.set({
+          block: this,
+          type: 'flowRender',
+          property: 'flowRender',
+          value: () => {
+            this.#reRender()
+          },
+        })
+        const item = isGetState(this.#dependency)
+          ? this.#dependency()
+          : this.#dependency
+        subscribeStateContext.set(null)
+        return item
+      } else {
+        return (this.#dependency as GetState<Bool>)()
+      }
+    })()
     const deletable = this.#child
-    const item = (this.#dependency as GetState<Bool>)()
-    const block = item ? this.#renderItem() : null
-    this.#child = block
     const newNodes: HTMLNode[] = []
     const rerenderableContexts = []
+    const block = item ? this.#renderBlock() : null
+    this.#child = block
     if (block) {
       if (isElement(block) || isTextNode(block)) {
         newNodes.push(block.element)
@@ -82,19 +89,10 @@ export class ToggleBlock<Bool> extends Block {
     this.nodes = newNodes
     this.domLength = newNodes.length
     this.rerenderableContexts = rerenderableContexts
-    this.parent.requestDOMSwapUpdate(
-      this,
-      this.parent,
-      this.nodes,
-      [deletable],
-      this.blockIndex,
-      this.domIndex,
-      this.domLength,
-      increased,
-    )
+    return { newBlock: block, deletable, increased }
   }
 
-  #renderItem() {
+  #renderBlock() {
     const currentComponent = componentContext.get()!
     componentContext.set(currentComponent)
     const child = this.#render()

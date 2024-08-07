@@ -1,9 +1,10 @@
 import { Block } from '@block/block.ts'
+import { LifecycleHandlers } from '@block/util/lifecycleHandlers.ts'
 import { RouteContext } from '@block/util/routeContext.ts'
 import { HTMLNode } from '@element/type.ts'
 import { isElement, isTextNode } from '@type/rvjs.ts'
 
-export class ComponentBlock extends RouteContext(Block) {
+export class ComponentBlock extends RouteContext(LifecycleHandlers(Block)) {
   #key: string | null
 
   constructor() {
