@@ -3,14 +3,14 @@ import { style } from '@vanilla-extract/css'
 import { recipe } from '@vanilla-extract/recipes'
 
 export const headerGlobalAction_li_style = style({
-  width: vars.spacing['09'],
-  height: vars.spacing['09'],
+  height: vars.component.header.height,
+  aspectRatio: '1/1',
 })
 
 export const headerGlobalAction_button_recipe = recipe({
   base: {
-    width: vars.spacing['09'],
-    height: vars.spacing['09'],
+    height: vars.component.header.height,
+    aspectRatio: '1/1',
     border: 'none',
     cursor: 'pointer',
     backgroundColor: vars.color.transparent,

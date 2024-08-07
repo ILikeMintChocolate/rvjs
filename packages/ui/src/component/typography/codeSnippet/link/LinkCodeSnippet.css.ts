@@ -24,6 +24,6 @@ export const linkCodeSnippet_anchor_style = style({
 })
 
 export const linkCodeSnippet_code_style = style({
-  paddingRight: vars.spacing['03'],
-  paddingLeft: vars.spacing['03'],
+  paddingRight: vars.spacing['02'],
+  paddingLeft: vars.spacing['02'],
 })

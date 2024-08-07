@@ -1,3 +1,4 @@
+import vars from '@theme/variable/vars.css.ts'
 import { style } from '@vanilla-extract/css'
 
 export const app_style = style({
@@ -11,4 +12,5 @@ export const app_style = style({
 export const app_sideNavBodyWrapper_style = style({
   flex: 1,
   overflowY: 'hidden',
+  height: `calc(100vh - ${vars.spacing['09']})`,
 })
