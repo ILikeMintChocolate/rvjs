@@ -13,51 +13,15 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "postbuild": "node build/postBuild.js",
     "preview": "vite preview"
   },
   "type": "module",
-  "types": "./dist/index.d.ts",
+  "types": "./dist/type/index.d.ts",
   "exports": {
-    "./content": {
-      "import": "./dist/entry/content.es.js",
-      "require": "./dist/entry/content.cjs.js",
-      "types": "./dist/type/component/content/index.d.ts"
-    },
-    "./form": {
-      "import": "./dist/entry/form.es.js",
-      "require": "./dist/entry/form.cjs.js",
-      "types": "./dist/type/component/form/index.d.ts"
-    },
-    "./layout": {
-      "import": "./dist/entry/layout.es.js",
-      "require": "./dist/entry/layout.cjs.js",
-      "types": "./dist/type/component/layout/index.d.ts"
-    },
-    "./overlay": {
-      "import": "./dist/entry/overlay.es.js",
-      "require": "./dist/entry/overlay.cjs.js",
-      "types": "./dist/type/component/overlay/index.d.ts"
-    },
-    "./shell": {
-      "import": "./dist/entry/shell.es.js",
-      "require": "./dist/entry/shell.cjs.js",
-      "types": "./dist/type/component/shell/index.d.ts"
-    },
-    "./typography": {
-      "import": "./dist/entry/typography.es.js",
-      "require": "./dist/entry/typography.cjs.js",
-      "types": "./dist/type/component/typography/index.d.ts"
-    },
-    "./system": {
-      "import": "./dist/entry/system.es.js",
-      "require": "./dist/entry/system.cjs.js",
-      "types": "./dist/type/system/index.d.ts"
-    },
-    "./util": {
-      "import": "./dist/entry/util.es.js",
-      "require": "./dist/entry/util.cjs.js",
-      "types": "./dist/type/util/index.d.ts"
+    ".": {
+      "import": "./dist/entry.es.js",
+      "require": "./dist/entry.cjs.js",
+      "types": "./dist/type/index.d.ts"
     }
   },
   "files": [
