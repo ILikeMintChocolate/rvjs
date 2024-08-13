@@ -2,7 +2,7 @@ import {
   iframe_style,
   iframe_wrapper_style,
 } from '@component/iframe/Iframe.css.ts'
-import { Child, div } from '@rvjs/core/dom'
+import { Child, div } from '@rvjs/core'
 
 interface IframeProps {
   content: Child

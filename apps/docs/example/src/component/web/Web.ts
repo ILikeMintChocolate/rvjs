@@ -1,6 +1,5 @@
 import { content_style, web_style } from '@component/web/Web.css.ts'
-import { Block, Child, section } from '@rvjs/core/dom'
-import { useElement } from '@rvjs/core/reactive'
+import { Block, Child, section, useElement } from '@rvjs/core'
 
 interface WebProps {
   web: Child

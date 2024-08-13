@@ -5,8 +5,8 @@ import {
   loadingText_style,
   statusText_style,
 } from '@example/core/switch/ex1.css.ts'
-import { button, div, p, Switch } from '@rvjs/core/dom'
-import { useState } from '@rvjs/core/reactive'
+import { button, div, p, Switch } from '@rvjs/core'
+import { useState } from '@rvjs/core'
 
 const App = () => {
   const [status, setStatus] = useState('Loading')

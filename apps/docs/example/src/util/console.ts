@@ -1,4 +1,4 @@
-import { useGlobalState } from '@rvjs/core/reactive'
+import { useGlobalState } from '@rvjs/core'
 
 export const overrideConsoleLog = () => {
   const originalConsoleLog = console.log
