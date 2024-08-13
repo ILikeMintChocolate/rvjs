@@ -1,8 +1,6 @@
 import searchingCat from '@asset/gif/searching-cat.webp'
-import { img } from '@rvjs/core/dom'
-import { prop } from '@rvjs/core/reactive'
-import { Flex } from '@rvjs/ui/layout'
-import { Text } from '@rvjs/ui/typography'
+import { img, prop } from '@rvjs/core'
+import { Flex, Text } from '@rvjs/ui'
 import {
   noContentError_image_style,
   noContentError_style,
