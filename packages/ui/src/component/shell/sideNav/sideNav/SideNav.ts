@@ -6,15 +6,16 @@ import {
   ComponentFn,
   onMount,
   prop,
-  useEffect,
+  Toggle,
   useGlobalState,
   useRef,
 } from '@rvjs/core'
 import {
-  sideNav_backdrop_recipe,
+  sideNav_backdrop_style,
   sideNav_nav_recipe,
-  sideNav_wrapper_style,
+  sideNav_wrapper_recipe,
 } from '@shell/sideNav/sideNav/SideNav.css.ts'
+import { coolScrollBar_style } from '@theme/util/util.css.ts'
 
 interface SideNavProps {
   children: Children
@@ -31,38 +32,38 @@ const SideNav: ComponentFn = component<SideNavProps>((props: SideNavProps) => {
         setShowSideNav(false)
       }
     })
-
-    if (sideNavBackdropRef.current) {
-      sideNavBackdropRef.current.addEventListener('transitionend', () => {
-        if (!showSideNav()) {
-          sideNavBackdropRef.current!.style.zIndex = '0'
-        }
-      })
-    }
   })
 
-  useEffect(() => {
-    if (showSideNav()) {
-      sideNavBackdropRef.current!.style.zIndex = '200'
-    }
-  }, [showSideNav])
-
   return Flex({
-    classes: [prop(() => sideNav_wrapper_style)],
+    classes: [
+      prop(() =>
+        sideNav_wrapper_recipe({
+          isOpen: showSideNav(),
+        }),
+      ),
+      prop(() => coolScrollBar_style),
+    ],
     children: [
       Flex({
         as: 'nav',
-        classes: [prop(() => sideNav_nav_recipe({ isOpen: showSideNav() }))],
+        direction: 'column',
+        classes: [
+          prop(() =>
+            sideNav_nav_recipe({
+              isOpen: showSideNav(),
+            }),
+          ),
+        ],
         children,
       }),
-      Box({
-        ref: sideNavBackdropRef,
-        onclick: () => {
-          setShowSideNav(false)
-        },
-        classes: [
-          prop(() => sideNav_backdrop_recipe({ isOpen: showSideNav() })),
-        ],
+      Toggle(showSideNav, () => {
+        return Box({
+          ref: sideNavBackdropRef,
+          classes: [prop(() => sideNav_backdrop_style)],
+          onclick: () => {
+            setShowSideNav(false)
+          },
+        })
       }),
     ],
   })
