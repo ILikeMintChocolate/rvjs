@@ -1,4 +1,4 @@
-import { Children, element } from '@rvjs/core'
+import { Block, Children, element } from '@rvjs/core'
 import {
   componentFnMap,
   componentRenderPropsMap,
@@ -20,22 +20,59 @@ export interface RenderJSON {
 type ComponentFnMapKey = keyof typeof componentFnMap
 type ElementFnMapKey = keyof HTMLElementTagNameMap
 
-export const renderComponentFromJSON = (jsons: RenderJSON[]): Children => {
-  return jsons.map(renderByType).filter(Boolean) as Children
+interface RenderComponentFromJSONOptions {
+  indexHeading: boolean
 }
 
-const renderByType = (json: RenderJSON) => {
-  const { type } = json!
-  if (type === 'component') {
-    return renderComponent(json)
-  } else if (type === 'element') {
-    return renderElement(json)
-  } else if (type === 'text') {
-    return renderTextNode(json)
+interface RenderComponentFromJSONContext {
+  headingIndex: Block[]
+}
+
+export const renderComponentFromJSON = (
+  jsons: RenderJSON[],
+  options?: RenderComponentFromJSONOptions,
+) => {
+  const { indexHeading = false } = options ?? {}
+  const context = {
+    headingIndex: [],
+  }
+  const blocks = renderJSON(
+    jsons,
+    {
+      indexHeading,
+    },
+    context,
+  )
+  return {
+    blocks,
+    context,
   }
 }
 
-const renderComponent = (json: RenderJSON) => {
+const renderJSON = (
+  jsons: RenderJSON[],
+  options: RenderComponentFromJSONOptions,
+  context: RenderComponentFromJSONContext,
+) => {
+  return jsons
+    .map((json) => {
+      const { type } = json!
+      if (type === 'component') {
+        return renderComponent(json, options, context)
+      } else if (type === 'element') {
+        return renderElement(json, options, context)
+      } else if (type === 'text') {
+        return renderTextNode(json)
+      }
+    })
+    .filter(Boolean) as Children
+}
+
+const renderComponent = (
+  json: RenderJSON,
+  options: RenderComponentFromJSONOptions,
+  context: RenderComponentFromJSONContext,
+) => {
   const { name, props = {} } = json!
   const renderFn = componentFnMap[name as ComponentFnMapKey]
   const componentProps = configProps(
@@ -44,23 +81,48 @@ const renderComponent = (json: RenderJSON) => {
   )
   const { children = [] } = componentProps
   if (children.length !== 0) {
-    componentProps.children = renderComponentFromJSON(children as RenderJSON[])
+    componentProps.children = renderJSON(
+      children as RenderJSON[],
+      options,
+      context,
+    )
   }
-
   // @ts-ignore
-  return renderFn(componentProps)
+  const block = renderFn(componentProps)
+  if (
+    options.indexHeading &&
+    name === 'Text' &&
+    /^heading-\d{2}$/.test(props.kind)
+  ) {
+    context.headingIndex.push(block)
+  }
+  return block
 }
 
-const renderElement = (json: RenderJSON) => {
+const renderElement = (
+  json: RenderJSON,
+  options: RenderComponentFromJSONOptions,
+  context: RenderComponentFromJSONContext,
+) => {
   const { name, props = {} } = json!
   const elementProps = configProps(props, elementRenderProps)
   const { children = [] } = elementProps
   if (children.length !== 0) {
-    elementProps.children = renderComponentFromJSON(children as RenderJSON[])
+    elementProps.children = renderJSON(
+      children as RenderJSON[],
+      options,
+      context,
+    )
   }
-
   // @ts-ignore
-  return element(name, elementProps)
+  const block = element(name, elementProps)
+  if (
+    options.indexHeading &&
+    ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(name)
+  ) {
+    context.headingIndex.push(block)
+  }
+  return block
 }
 
 const renderTextNode = (json: RenderJSON) => {
