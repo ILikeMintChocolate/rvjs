@@ -1,8 +1,5 @@
 import { Block } from '@block/block.ts'
-import {
-  componentContext,
-  subscribeStateContext,
-} from '@context/executionContext.ts'
+import { subscribeStateContext } from '@context/executionContext.ts'
 import { HTMLNode } from '@element/type.ts'
 import { Prop } from '@hook/prop.ts'
 import { GetState, isGetState } from '@hook/useState.ts'
@@ -93,13 +90,10 @@ export class SwitchBlock<Item> extends Block {
   }
 
   #renderBlock(item: Item) {
-    const currentComponent = componentContext.get()!
-    componentContext.set(currentComponent)
     const child = this.#render(item)
     if (child) {
       child.parent = this
     }
-    componentContext.set(null)
     return child
   }
 }
