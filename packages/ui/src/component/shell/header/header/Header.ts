@@ -1,6 +1,9 @@
 import Flex from '@layout/flex/Flex.ts'
 import { Children, prop } from '@rvjs/core'
-import { header_style } from '@shell/header/header/Header.css.ts'
+import {
+  header_content_style,
+  header_style,
+} from '@shell/header/header/Header.css.ts'
 
 interface HeaderProps {
   children?: Children
@@ -12,7 +15,12 @@ const Header = (props: HeaderProps) => {
   return Flex({
     as: 'header',
     classes: [prop(() => header_style)],
-    children,
+    children: [
+      Flex({
+        classes: [prop(() => header_content_style)],
+        children,
+      }),
+    ],
   })
 }
 
