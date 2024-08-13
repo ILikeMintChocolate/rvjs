@@ -1,5 +1,5 @@
+import { ContentService } from '@content/content.service'
 import { Controller, Get, Param } from '@nestjs/common'
-import { ContentService } from './content.service'
 
 @Controller('/')
 export class ContentController {

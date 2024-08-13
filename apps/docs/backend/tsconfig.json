@@ -16,6 +16,17 @@
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "paths": {
+      "@_data/*": [
+        "./src/_data/*"
+      ],
+      "@content/*": [
+        "./src/content/*"
+      ],
+      "@error/*": [
+        "./src/error/*"
+      ]
+    }
   }
 }
