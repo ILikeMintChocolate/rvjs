@@ -1,7 +1,6 @@
 import { createGlobalTheme } from '@vanilla-extract/css'
 
 const fontVars = createGlobalTheme(':root', {
-  family: 'Ibm Plex Sans',
   size: {
     /** 12px / 0.75rem */
     '12': '0.75rem',
