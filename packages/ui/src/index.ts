@@ -14,7 +14,7 @@ export { default as Section } from '@layout/section/Section.ts'
 
 export { default as Tooltip } from '@overlay/tooltip/Tooltip.ts'
 
-export { default as App } from '@shell/app/App.ts'
+export { default as Shell } from '@shell/shell/Shell.ts'
 export { default as Body } from '@shell/body/Body.ts'
 export { default as Header } from '@shell/header/header/Header.ts'
 export { default as HeaderGlobalAction } from '@shell/header/headerGlobalAction/HeaderGlobalAction.ts'
@@ -40,4 +40,5 @@ export { default as Link } from '@typography/link/Link.ts'
 export { startRvjsUI } from '@system/launch.ts'
 
 export { renderComponentFromJSON } from '@util/render.ts'
+export { ifIs } from '@util/array.ts'
 export type { RenderJSON } from '@util/render.ts'
