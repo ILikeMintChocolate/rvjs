@@ -75,7 +75,7 @@ export class SwitchBlock<Item> extends Block {
     const deletable = this.#child
     const newNodes: HTMLNode[] = []
     const rerenderableContexts = []
-    const block = item ? this.#renderBlock(item) : null
+    const block = this.#renderBlock(item)
     this.#child = block
     if (block) {
       if (isElement(block) || isTextNode(block)) {
