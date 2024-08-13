@@ -16,7 +16,7 @@ import { calcHeight } from '@typography/codeSnippet/multi/MultiCodeSnippet.util.
 import { text_recipe } from '@typography/text/Text.css.ts'
 import { ifIs } from '@util/array.ts'
 import { highlight, languages } from 'prismjs'
-import 'prismjs/themes/prism.css'
+import 'prismjs/themes/prism-coy.css'
 import 'prismjs/components/prism-bash'
 
 type SingleCodeSnippetProps = CodeSnippetProps

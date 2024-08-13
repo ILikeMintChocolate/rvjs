@@ -7,7 +7,7 @@ import {
 import { link_text_recipe } from '@typography/link/Link.css.ts'
 import { text_recipe } from '@typography/text/Text.css.ts'
 import { highlight, languages } from 'prismjs'
-import 'prismjs/themes/prism.css'
+import 'prismjs/themes/prism-coy.css'
 import 'prismjs/components/prism-bash'
 
 type LineCodeSnippetProps = Pick<
