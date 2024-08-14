@@ -1,20 +1,6 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@rvjs/core/dom": [
-        "node_modules/core/dist/dom"
-      ],
-      "@rvjs/core/reactive": [
-        "node_modules/core/dist/reactive"
-      ],
-      "@rvjs/core/router": [
-        "node_modules/core/dist/router"
-      ],
-      "@rvjs/core/util": [
-        "node_modules/core/dist/util"
-      ]
-    }
+    "baseUrl": "."
   }
 }

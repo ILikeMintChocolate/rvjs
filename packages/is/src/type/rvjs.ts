@@ -1,18 +1,18 @@
 import {
-  Component,
-  Element,
+  ComponentBlock,
+  ElementBlock,
+  GetState,
   isRvjsFunction,
   isRvjsObject,
   isTextNode,
-} from '@rvjs/core/dom'
-import { GetState, Prop, SetState } from '@rvjs/core/reactive'
-import {
+  Prop,
   RVJS_COMPONENT_SYMBOL,
   RVJS_ELEMENT_SYMBOL,
   RVJS_GET_STATE_SYMBOL,
   RVJS_PROP_SYMBOL,
   RVJS_SET_STATE_SYMBOL,
-} from '@rvjs/core/util'
+  SetState,
+} from '@rvjs/core'
 import { checkContext } from '../checkProps/context.ts'
 import {
   printInvalidError,
@@ -21,23 +21,23 @@ import {
 import { isArrayType } from './reference.ts'
 import { Validator } from './type.ts'
 
-export const isElement = (value: unknown): value is Element => {
+export const isElement = (value: unknown): value is ElementBlock => {
   return isRvjsObject(value) && value.$$typeof === RVJS_ELEMENT_SYMBOL
 }
 
-export const isComponent = (value: unknown): value is Component => {
+export const isComponent = (value: unknown): value is ComponentBlock => {
   return isRvjsObject(value) && value.$$typeof === RVJS_COMPONENT_SYMBOL
 }
 
 export const isChild = (
   value: unknown,
-): value is Element | Component | Text => {
+): value is ElementBlock | ComponentBlock | Text => {
   return isElement(value) || isComponent(value) || isTextNode(value)
 }
 
 export const isChildren = (
   value: unknown,
-): value is (Element | Component | Text)[] => {
+): value is (ElementBlock | ComponentBlock | Text)[] => {
   if (!value) {
     return false
   }

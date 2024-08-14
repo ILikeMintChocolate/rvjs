@@ -1,5 +1,5 @@
-import { component, div } from '@rvjs/core/dom'
-import { prop, useState } from '@rvjs/core/reactive'
+import { component, div } from '@rvjs/core'
+import { prop, useState } from '@rvjs/core'
 import { expect, test, vi } from 'vitest'
 import { checkProps, startCheckProps } from '../checkProps/check.ts'
 import { isNumber, isString } from '../type/primitive.ts'
