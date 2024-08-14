@@ -39,3 +39,5 @@ export type SvgProps = CustomProps & {
 type FilteredSvgElementProps = FilterProps<SVGElement>
 
 type FilterProps<Props> = Omit<Props, 'style' | 'children' | 'className'>
+
+export type HTMLNode = HTMLElement | SVGElement | Text

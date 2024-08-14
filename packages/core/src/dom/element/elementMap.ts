@@ -1,3 +1,4 @@
+import { TextNode } from '@block/textNode.ts'
 import { createElement, createSvgElement } from '@element/element.ts'
 import { ElementProps, SvgProps } from '@element/type.ts'
 
@@ -341,6 +342,9 @@ export const wbr = (props?: Partial<ElementProps<'wbr'>>) => {
 export const svg = (element: SVGElement, props?: Partial<SvgProps>) => {
   return createSvgElement(element, props)
 }
-export const text = (text: string) => {
-  return document.createTextNode(text)
+export const textNode = (text: string) => {
+  const node = document.createTextNode(text)
+  return new TextNode({
+    element: node,
+  })
 }

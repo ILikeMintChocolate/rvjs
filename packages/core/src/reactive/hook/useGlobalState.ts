@@ -1,4 +1,4 @@
-import { Component } from '@component/componentBlock.ts'
+import { ComponentBlock } from '@block/component.ts'
 import { componentContext } from '@context/executionContext.ts'
 import { GetState, SetState, useState } from '@hook/useState.ts'
 
@@ -40,7 +40,7 @@ export const useGlobalState = <State>(
   }
 }
 
-const addUnsubscribeHandler = (component: Component, key: string) => {
+const addUnsubscribeHandler = (component: ComponentBlock, key: string) => {
   component.addUnsubscribeGlobalStateHandler(() => {
     stateStore.get(key)!.count -= 1
     if (stateStore.get(key)!.count === 0) {

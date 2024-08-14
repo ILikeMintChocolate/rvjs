@@ -1,16 +1,20 @@
+import { Block } from '@block/block.ts'
 import {
   isUsingState,
   StateContext,
   subscribeStateContext,
 } from '@context/executionContext.ts'
-import { isElement } from '@element/elementBlock.ts'
 import { setProperty, setStyleProperty } from '@element/property.ts'
 import { AllElementProps } from '@element/type.ts'
-import { isArray, isFunction, isRvjsFunction } from '@type/guard.ts'
-import { RvjsFunction } from '@type/rvjs.ts'
-import { Block } from '@type/type.ts'
+import {
+  isArray,
+  isFunction,
+  isRvjsFunction,
+  RvjsFunction,
+} from '@type/guard.ts'
+import { isElement, isTextNode } from '@type/rvjs.ts'
+import { Queue } from '@util/dataStructure/queue.ts'
 import { Observer } from '@util/observer.ts'
-import { Queue } from '@util/queue.ts'
 import { RVJS_GET_STATE_SYMBOL } from '@util/symbol.ts'
 
 export type GetState<State = unknown> = RvjsFunction<() => State>
@@ -80,6 +84,9 @@ const notifyWhenStateChange = (subscribers: StateObserver) => {
     values.childrenRender.forEach((render) => {
       render()
     })
+    values.flowRender.forEach((render) => {
+      render()
+    })
     values.classesProperty.forEach((classes) => {
       const { classFn, removePrevClassFn } = classes
       const className = classFn() as string
@@ -109,7 +116,7 @@ export const isGetState = (value: unknown): value is GetState => {
   return isRvjsFunction(value) && value?.$$typeof === RVJS_GET_STATE_SYMBOL
 }
 
-interface StateObserverValue {
+export interface StateObserverValue {
   useEffect: Function[]
   childrenRender: Function[]
   domProperty: Record<string, Function>
@@ -118,6 +125,7 @@ interface StateObserverValue {
     classFn: Function
     removePrevClassFn: Function
   }[]
+  flowRender: Function[]
 }
 
 class StateObserver extends Observer<Block | null, StateObserverValue> {
@@ -135,9 +143,10 @@ class StateObserver extends Observer<Block | null, StateObserverValue> {
         domProperty: {},
         styleProperty: {},
         classesProperty: [],
+        flowRender: [],
       } as StateObserverValue)
-      if (isElement(block)) {
-        block.appendStateUnsubscribeHandler(this.unsubscribe.bind(this))
+      if (block && !isTextNode(block)) {
+        block.addStateUnsubscribeHandler(this.unsubscribe.bind(this))
       }
     }
     const subscriberValue = this.getValueBySubscriber(block)!
