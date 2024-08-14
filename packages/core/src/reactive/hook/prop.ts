@@ -1,7 +1,7 @@
 import { isUsingState } from '@context/executionContext.ts'
 import { useEffect } from '@hook/useEffect.ts'
 import { GetState, useState } from '@hook/useState.ts'
-import { RvjsFunction } from '@type/guard.ts'
+import { RvjsFunction } from '@type/rvjs.ts'
 import { RVJS_PROP_SYMBOL } from '@util/symbol.ts'
 
 export type Prop<Value> = PropFn<Value> | GetState<Value>

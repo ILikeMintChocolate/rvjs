@@ -13,14 +13,6 @@ export class Queue<Value> {
     return this.end - this.front
   }
 
-  get items() {
-    return Object.values(this.data)
-  }
-
-  get first() {
-    return this.data[this.front]
-  }
-
   push(value: Value) {
     this.data[this.end] = value
     this.end++

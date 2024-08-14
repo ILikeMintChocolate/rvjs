@@ -1,9 +1,7 @@
-import { HTMLNode } from '@element/type.ts'
-
 export const insertChildrenAtIndex = (
   parentElement: HTMLElement,
   index: number,
-  newChildren: HTMLNode[],
+  newChildren: (HTMLElement | Text)[],
 ) => {
   const referenceNode = parentElement.children[index]
 

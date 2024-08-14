@@ -1,11 +1,11 @@
-import { ComponentBlock } from '@block/component.ts'
-import { ElementBlock } from '@block/element.ts'
-import { Switch } from '@flow/switch.ts'
+import { Switch } from '@children/switch.ts'
+import { Component } from '@component/componentBlock.ts'
+import { Element } from '@element/elementBlock.ts'
 import { useState } from '@hook/useState.ts'
 import { Child } from '@type/type.ts'
 
 interface SuspenseProps {
-  content: () => Promise<ElementBlock | ComponentBlock>
+  content: () => Promise<Element | Component>
   loading?: Child
   error?: Child
 }
@@ -26,6 +26,7 @@ export const Suspense = (props: SuspenseProps) => {
       setStatus('rejected')
     })
 
+  // @ts-ignore
   return Switch(status, () => {
     if (status() === 'pending') {
       return loading ?? null

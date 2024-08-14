@@ -1,12 +1,11 @@
-import { Block } from '@block/block.ts'
+import { Switch } from '@children/switch.ts'
 import { componentContext } from '@context/executionContext.ts'
-import { Switch } from '@flow/switch.ts'
 import { useState } from '@hook/useState.ts'
+import { Block } from '@type/type.ts'
 
 const useOutlet = () => {
   const [outlet, setOutlet] = useState<Block | null>(null)
   const component = componentContext.get()!
-
   component.setOutlet = setOutlet
 
   return Switch(outlet, () => {

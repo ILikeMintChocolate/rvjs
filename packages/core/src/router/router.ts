@@ -1,8 +1,7 @@
-import { Block } from '@block/block.ts'
-import { ComponentBlock } from '@block/component.ts'
+import { Switch } from '@children/switch.ts'
 import { component } from '@component/component.ts'
+import { Component } from '@component/componentBlock.ts'
 import { h1 } from '@element/elementMap.ts'
-import { Switch } from '@flow/switch.ts'
 import { useState } from '@hook/useState.ts'
 import { routeContext } from '@router/context/routerContext.ts'
 import { pathEvent, Route } from '@router/util/event.ts'
@@ -14,6 +13,7 @@ import {
   tokenizePath,
 } from '@router/util/path.ts'
 import { normalizeRouter } from '@router/util/router.ts'
+import { Block } from '@type/type.ts'
 
 export interface RouterProps {
   [key: string]: RouteProps
@@ -48,7 +48,7 @@ export interface MatchedRouteFn {
   componentFn: ComponentFn
 }
 
-type ComponentFn = () => ComponentBlock
+type ComponentFn = () => Component
 
 const Router = (routerProps: RouterProps) => {
   let router = normalizeRouter(routerProps)
@@ -140,18 +140,21 @@ const Router = (routerProps: RouterProps) => {
   }
 
   const renderComponent = (routes: MatchedRouteFn[]) => {
-    let currentComponent: ComponentBlock | null = null
+    let currentComponent: Component | null = null
     let currRoutes: Route[] = []
 
     routes.reverse().forEach((route) => {
       const { pathType, pathname, query, componentFn, dynamicKey } = route
+
       if (pathType === 'dynamic') {
         routeContext.set({ pathType, pathname, query, dynamicKey })
       } else {
         routeContext.set({ pathType, pathname, query })
       }
+
       const component = componentFn()
       routeContext.set(null)
+
       if (currentComponent) {
         component.setOutlet(currentComponent)
       }
