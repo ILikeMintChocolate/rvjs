@@ -1,9 +1,9 @@
-import { Element } from '@element/elementBlock.ts'
-import { applyPropsToElement } from '@element/property.ts'
-import { AllElementProps } from '@element/type.ts'
+import { ElementBlock } from '@block/element.ts'
+import { applyPropsToElement } from './property.ts'
+import { AllElementProps } from './type.ts'
 
 export const overrideElement = (
-  block: Element,
+  block: ElementBlock,
   props: Partial<AllElementProps>,
 ) => {
   applyPropsToElement(block, props)
