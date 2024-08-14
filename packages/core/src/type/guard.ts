@@ -1,4 +1,10 @@
-import { RvjsFunction, RvjsObject } from '@type/rvjs.ts'
+export type RvjsFunction<T extends Function> = T & {
+  $$typeof: symbol
+}
+
+export type RvjsObject<T extends Object> = T & {
+  $$typeof: symbol
+}
 
 export const isArray = (value: unknown): value is unknown[] => {
   return Array.isArray(value)
@@ -10,10 +16,6 @@ export const isFunction = (value: unknown): value is Function => {
 
 export const isString = (value: unknown): value is string => {
   return typeof value === 'string'
-}
-
-export const isTextNode = (value: unknown): value is Text => {
-  return value instanceof Text
 }
 
 export const isRvjsFunction = (

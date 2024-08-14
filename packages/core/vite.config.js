@@ -11,20 +11,14 @@ export default defineConfig({
   ],
   build: {
     lib: {
-      entry: {
-        dom: resolve(__dirname, 'src/dom/index.ts'),
-        reactive: resolve(__dirname, 'src/reactive/index.ts'),
-        router: resolve(__dirname, 'src/router/index.ts'),
-        util: resolve(__dirname, 'src/util/index.ts'),
-      },
+      entry: resolve(__dirname, 'src/index.ts'),
       name: '@rvjs/core',
       formats: ['es', 'cjs'],
-      fileName: (format, entryName) => `${entryName}.${format}.js`,
     },
     rollupOptions: {
       output: {
-        entryFileNames: 'entry/[name].[format].js',
-        chunkFileNames: 'chunk/[name].[format].js',
+        entryFileNames: 'entry.[format].js',
+        chunkFileNames: 'chunk.[format].js',
       },
     },
   },
@@ -37,8 +31,8 @@ export default defineConfig({
   resolve: {
     alias: [
       {
-        find: '@children',
-        replacement: resolve(__dirname, 'src/dom/children'),
+        find: '@block',
+        replacement: resolve(__dirname, 'src/dom/block'),
       },
       {
         find: '@component',
@@ -47,6 +41,10 @@ export default defineConfig({
       {
         find: '@element',
         replacement: resolve(__dirname, 'src/dom/element'),
+      },
+      {
+        find: '@flow',
+        replacement: resolve(__dirname, 'src/dom/flow'),
       },
       {
         find: '@context',
@@ -63,6 +61,10 @@ export default defineConfig({
       {
         find: '@router',
         replacement: resolve(__dirname, 'src/router'),
+      },
+      {
+        find: '@test',
+        replacement: resolve(__dirname, 'src/test'),
       },
       {
         find: '@type',

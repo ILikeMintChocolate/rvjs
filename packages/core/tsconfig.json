@@ -3,14 +3,17 @@
   "compilerOptions": {
     "baseUrl": "src",
     "paths": {
-      "@children/*": [
-        "dom/children/*"
+      "@block/*": [
+        "dom/block/*"
       ],
       "@component/*": [
         "dom/component/*"
       ],
       "@element/*": [
         "dom/element/*"
+      ],
+      "@flow/*": [
+        "dom/flow/*"
       ],
       "@context/*": [
         "reactive/context/*"
@@ -23,6 +26,9 @@
       ],
       "@router/*": [
         "router/*"
+      ],
+      "@test/*": [
+        "test/*"
       ],
       "@type/*": [
         "type/*"
