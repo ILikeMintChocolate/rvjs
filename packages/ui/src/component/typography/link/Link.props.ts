@@ -29,7 +29,7 @@ export interface LinkProps {
 export const linkPropsType = {
   href: isProp(isString),
   as: isOptional(isString),
-  text: isProp(isString),
+  text: isOptional(isProp(isString)),
   children: isOptional(isChildren),
   disabled: isOptional(isProp(isBoolean)),
   inline: isOptional(isProp(isBoolean)),

@@ -3,6 +3,7 @@ import arrowRightSvg from '@icon/arrow--right.svg?element'
 import chevronDownSvg from '@icon/chevron--down.svg?element'
 import closeSvg from '@icon/close.svg?element'
 import copySvg from '@icon/copy.svg?element'
+import documentSvg from '@icon/document.svg?element'
 import logoGithubSvg from '@icon/logo--github.svg?element'
 import logoNpmSvg from '@icon/logo--npm.svg?element'
 import menuSvg from '@icon/menu.svg?element'
@@ -18,6 +19,7 @@ export const svgList = {
   'chevron-down': chevronDownSvg,
   close: closeSvg,
   copy: copySvg,
+  document: documentSvg,
   'logo-github': logoGithubSvg,
   'logo-npm': logoNpmSvg,
   menu: menuSvg,
