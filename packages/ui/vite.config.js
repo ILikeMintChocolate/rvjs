@@ -15,28 +15,15 @@ export default defineConfig({
   ],
   build: {
     lib: {
-      entry: {
-        content: resolve(__dirname, 'src/component/content/index.ts'),
-        form: resolve(__dirname, 'src/component/form/index.ts'),
-        layout: resolve(__dirname, 'src/component/layout/index.ts'),
-        overlay: resolve(__dirname, 'src/component/overlay/index.ts'),
-        shell: resolve(__dirname, 'src/component/shell/index.ts'),
-        typography: resolve(__dirname, 'src/component/typography/index.ts'),
-        system: resolve(__dirname, 'src/system/index.ts'),
-        util: resolve(__dirname, 'src/util/index.ts'),
-      },
+      entry: resolve(__dirname, 'src/index.ts'),
       name: '@rvjs/ui',
       formats: ['es', 'cjs'],
-      fileName: (format, entryName) => `${entryName}.${format}.js`,
+      fileName: (format) => `rvjs-ui.${format}.js`,
     },
     rollupOptions: {
-      external: (id) =>
-        id === '@rvjs/core' ||
-        id.includes('@rvjs/core/') ||
-        id === '@rvjs/is' ||
-        id.includes('@rvjs/is'),
+      external: (id) => id === '@rvjs/core' || id === '@rvjs/is',
       output: {
-        entryFileNames: 'entry/[name].[format].js',
+        entryFileNames: 'entry.[format].js',
         chunkFileNames: 'chunk/[name].[format].js',
       },
     },
