@@ -1,7 +1,7 @@
-import { root } from '@rvjs/core/dom'
-import { startRvjsUI } from '@rvjs/ui/system'
-import App from './page/App.ts'
-import '../node_modules/@rvjs/ui/dist/style.css'
+import App from '@page/App.ts'
+import { root } from '@rvjs/core'
+import { startRvjsUI } from '@rvjs/ui'
+import '/node_modules/@rvjs/ui/dist/style.css'
 
 startRvjsUI({
   environment: 'development',

@@ -1,12 +1,11 @@
-import { prop } from '@rvjs/core/reactive'
-import { usePathname } from '@rvjs/core/router'
+import { prop, usePathname } from '@rvjs/core'
 import {
   SideNav,
   SideNavItems,
   SideNavLink,
   SideNavMenu,
   SideNavMenuItem,
-} from '@rvjs/ui/shell'
+} from '@rvjs/ui'
 
 const CoreSideNav = () => {
   const pathname = usePathname()

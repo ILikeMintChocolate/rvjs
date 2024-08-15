@@ -1,9 +1,7 @@
 import githubSvg from '@icon/logo--github.svg?element'
 import npmSvg from '@icon/logo--npm.svg?element'
 import menuSvg from '@icon/menu.svg?element'
-import { component, svg } from '@rvjs/core/dom'
-import { prop } from '@rvjs/core/reactive'
-import { useNavigate, usePathname } from '@rvjs/core/router'
+import { component, prop, svg, useNavigate, usePathname } from '@rvjs/core'
 import {
   Header as ShellHeader,
   HeaderGlobalAction,
@@ -13,7 +11,7 @@ import {
   HeaderMenuItem,
   HeaderName,
   HeaderNavigation,
-} from '@rvjs/ui/shell'
+} from '@rvjs/ui'
 import { isInCorePage, isInIsPage, isInUIPage } from '@util/path.ts'
 
 const Header = component(() => {
