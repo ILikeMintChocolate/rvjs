@@ -3,17 +3,26 @@
   "compilerOptions": {
     "baseUrl": "src",
     "paths": {
-      "@layout/*": [
-        "component/layout/*"
+      "@component/*": [
+        "component/*"
+      ],
+      "@hook/*": [
+        "hook/*"
+      ],
+      "@page/*": [
+        "page/*"
+      ],
+      "@style/*": [
+        "style/*"
       ],
       "@util/*": [
         "util/*"
       ],
-      "@icon/*": [
-        "asset/icon/*"
-      ],
       "@asset/*": [
         "asset/*"
+      ],
+      "@icon/*": [
+        "asset/icon/*"
       ]
     }
   },
