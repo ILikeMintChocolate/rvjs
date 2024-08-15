@@ -1,4 +1,4 @@
-import { Children } from '@rvjs/core/dom'
+import { Children, element } from '@rvjs/core'
 import {
   componentFnMap,
   componentRenderPropsMap,

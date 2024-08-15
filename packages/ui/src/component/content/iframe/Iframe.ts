@@ -3,8 +3,7 @@ import {
   iframe_wrapper_style,
 } from '@content/iframe/Iframe.css.ts'
 import { IframeProps, iframePropsType } from '@content/iframe/Iframe.props.ts'
-import { div, iframe } from '@rvjs/core/dom'
-import { dynamic, prop } from '@rvjs/core/reactive'
+import { div, dynamic, iframe, prop } from '@rvjs/core'
 import { checkProps } from '@rvjs/is'
 
 const Iframe = (props: IframeProps) => {

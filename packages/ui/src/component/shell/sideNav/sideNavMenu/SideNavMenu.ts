@@ -1,7 +1,15 @@
 import chevronDownSvg from '@icon/chevron--down.svg?element'
 import Flex from '@layout/flex/Flex.ts'
-import { button, Children, svg } from '@rvjs/core/dom'
-import { dynamic, Prop, prop, RefObject, useState } from '@rvjs/core/reactive'
+import {
+  button,
+  Children,
+  dynamic,
+  Prop,
+  prop,
+  RefObject,
+  svg,
+  useState,
+} from '@rvjs/core'
 import {
   sideNavMenu_style,
   sideNavMenu_text_style,

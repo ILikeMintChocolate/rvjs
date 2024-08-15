@@ -5,8 +5,7 @@ import {
   repositionArrow,
   repositionTooltip,
 } from '@overlay/tooltip/Tooltip.util.ts'
-import { Block } from '@rvjs/core/dom'
-import { GetState, useEffect, useElement, useRef } from '@rvjs/core/reactive'
+import { Block, GetState, useEffect, useElement, useRef } from '@rvjs/core'
 
 export const useTooltip = (showTooltip: GetState<boolean>, trigger: Block) => {
   const tooltipRef = useRef<HTMLDivElement>()

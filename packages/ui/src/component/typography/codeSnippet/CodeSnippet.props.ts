@@ -1,5 +1,4 @@
-import { StyleProps } from '@rvjs/core/dom'
-import { Prop, prop } from '@rvjs/core/reactive'
+import { Prop, prop, StyleProps } from '@rvjs/core'
 import {
   isBoolean,
   isFunctionType,

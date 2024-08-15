@@ -1,7 +1,14 @@
 import { boxSprinkles } from '@layout/box/Box.css.ts'
 import { FlexStyleProps } from '@layout/flex/Flex.css.ts'
-import { Children, element, ElementType, StyleProps } from '@rvjs/core/dom'
-import { dynamic, Prop, RefObject } from '@rvjs/core/reactive'
+import {
+  Children,
+  dynamic,
+  element,
+  ElementType,
+  Prop,
+  RefObject,
+  StyleProps,
+} from '@rvjs/core'
 import { HTMLDivType } from '@type/element.ts'
 
 interface FlexProps extends FlexStyleProps, HTMLDivType {

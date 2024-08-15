@@ -1,5 +1,4 @@
 import { IconProps, IconPropsType } from '@content/icon/Icon.props.ts'
-
 import arrowRightSvg from '@icon/arrow--right.svg?element'
 import chevronDownSvg from '@icon/chevron--down.svg?element'
 import closeSvg from '@icon/close.svg?element'
@@ -11,7 +10,7 @@ import searchSvg from '@icon/search.svg?element'
 import tooltipArrowSvg from '@icon/tooltip--arrow.svg?element'
 import warningAltFilledSvg from '@icon/warning--alt--filled.svg?element'
 import warningFilledSvg from '@icon/warning--filled.svg?element'
-import { svg } from '@rvjs/core/dom'
+import { svg } from '@rvjs/core'
 import { checkProps } from '@rvjs/is'
 
 export const svgList = {

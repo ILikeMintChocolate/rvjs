@@ -1,6 +1,11 @@
-import { a, overrideElement } from '@rvjs/core/dom'
-import { dynamic, prop, useState } from '@rvjs/core/reactive'
-import { useNavigate } from '@rvjs/core/router'
+import {
+  a,
+  dynamic,
+  overrideElement,
+  prop,
+  useNavigate,
+  useState,
+} from '@rvjs/core'
 import { checkProps } from '@rvjs/is'
 import {
   link_anchor_recipe,

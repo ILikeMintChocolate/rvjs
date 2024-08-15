@@ -1,7 +1,5 @@
 import Flex from '@layout/flex/Flex.ts'
-import { a } from '@rvjs/core/dom'
-import { dynamic, prop, Prop } from '@rvjs/core/reactive'
-import { useNavigate } from '@rvjs/core/router'
+import { a, dynamic, prop, Prop, useNavigate } from '@rvjs/core'
 import {
   headerMenuItem_anchor_recipe,
   headerMenuItem_li_style,

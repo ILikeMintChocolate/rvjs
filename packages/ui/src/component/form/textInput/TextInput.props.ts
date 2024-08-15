@@ -1,4 +1,4 @@
-import { Prop, prop, SetState } from '@rvjs/core/reactive'
+import { Prop, prop, SetState } from '@rvjs/core'
 import {
   isBoolean,
   isFunctionType,

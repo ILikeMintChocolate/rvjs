@@ -1,5 +1,11 @@
-import { Children, Element, ElementType, svg } from '@rvjs/core/dom'
-import { prop, Prop } from '@rvjs/core/reactive'
+import {
+  Children,
+  ElementBlock,
+  ElementType,
+  prop,
+  Prop,
+  svg,
+} from '@rvjs/core'
 import {
   isBoolean,
   isChild,
@@ -16,7 +22,7 @@ export interface LinkProps {
   children?: Children
   disabled?: Prop<boolean>
   inline?: Prop<boolean>
-  renderIcon?: Element
+  renderIcon?: ElementBlock
   size?: Prop<'sm' | 'md' | 'lg'>
 }
 

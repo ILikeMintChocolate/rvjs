@@ -1,4 +1,4 @@
-import { Children } from '@rvjs/core/dom'
+import { Children } from '@rvjs/core'
 import { isChildren } from '@rvjs/is'
 
 export interface SectionProps {

@@ -6,8 +6,7 @@ import {
   OrderedListProps,
   orderedListPropsType,
 } from '@content/list/orderedList/OrderedList.props.ts'
-import { ol } from '@rvjs/core/dom'
-import { prop } from '@rvjs/core/reactive'
+import { ol, prop } from '@rvjs/core'
 import { checkProps } from '@rvjs/is'
 import { assignInlineVars } from '@vanilla-extract/dynamic'
 

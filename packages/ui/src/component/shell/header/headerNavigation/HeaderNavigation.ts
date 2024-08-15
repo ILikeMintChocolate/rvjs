@@ -1,6 +1,6 @@
 import Flex from '@layout/flex/Flex.ts'
-import { Children } from '@rvjs/core/dom'
-import { prop } from '@rvjs/core/reactive'
+import { Children } from '@rvjs/core'
+import { prop } from '@rvjs/core'
 import {
   headerNavigation_nav_style,
   headerNavigation_ul_style,

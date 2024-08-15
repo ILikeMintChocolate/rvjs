@@ -15,8 +15,15 @@ import {
 import warnSvg from '@icon/warning--alt--filled.svg?element'
 import invalidSvg from '@icon/warning--filled.svg?element'
 import Flex from '@layout/flex/Flex.ts'
-import { component, ComponentFn, input, svg, Switch } from '@rvjs/core/dom'
-import { dynamic, prop } from '@rvjs/core/reactive'
+import {
+  component,
+  ComponentFn,
+  dynamic,
+  input,
+  prop,
+  svg,
+  Switch,
+} from '@rvjs/core'
 import { checkProps } from '@rvjs/is'
 import vars from '@theme/variable/vars.css.ts'
 import Text from '@typography/text/Text.ts'

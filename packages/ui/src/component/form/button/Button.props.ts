@@ -1,6 +1,5 @@
 import { ButtonStyleProps } from '@form/button/Button.css.ts'
-import { Element, svg } from '@rvjs/core/dom'
-import { prop, Prop } from '@rvjs/core/reactive'
+import { ElementBlock, prop, Prop, svg } from '@rvjs/core'
 import {
   isArray,
   isBoolean,
@@ -20,7 +19,7 @@ export interface ButtonProps extends ButtonStyleProps {
   tabIndex?: Prop<number>
   type?: Prop<'button' | 'reset' | 'submit'>
   hasIconOnly?: Prop<boolean>
-  renderIcon?: Element
+  renderIcon?: ElementBlock
   onBlur?: EventHandlers['onBlur']
   onClick?: EventHandlers['onClick']
   onFocus?: EventHandlers['onFocus']

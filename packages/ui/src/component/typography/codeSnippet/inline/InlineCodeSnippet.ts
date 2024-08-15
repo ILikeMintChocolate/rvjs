@@ -1,5 +1,4 @@
-import { button, code } from '@rvjs/core/dom'
-import { dynamic, prop } from '@rvjs/core/reactive'
+import { button, code, dynamic, prop } from '@rvjs/core'
 import { CodeSnippetProps } from '@typography/codeSnippet/CodeSnippet.props.ts'
 import { copyToClipboard } from '@typography/codeSnippet/CodeSnippet.util.ts'
 import {

@@ -12,8 +12,7 @@ import {
   TooltipProps,
   tooltipPropsType,
 } from '@overlay/tooltip/Tooltip.props.ts'
-import { svg } from '@rvjs/core/dom'
-import { dynamic, prop, useState } from '@rvjs/core/reactive'
+import { dynamic, prop, svg, useState } from '@rvjs/core'
 import { checkProps } from '@rvjs/is'
 import Text from '@typography/text/Text.ts'
 

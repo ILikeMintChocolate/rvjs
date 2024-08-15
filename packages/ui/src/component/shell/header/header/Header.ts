@@ -1,6 +1,5 @@
 import Flex from '@layout/flex/Flex.ts'
-import { Children } from '@rvjs/core/dom'
-import { prop } from '@rvjs/core/reactive'
+import { Children, prop } from '@rvjs/core'
 import { header_style } from '@shell/header/header/Header.css.ts'
 
 interface HeaderProps {

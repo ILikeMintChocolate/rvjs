@@ -1,5 +1,4 @@
-import { Block, Child } from '@rvjs/core/dom'
-import { prop, Prop } from '@rvjs/core/reactive'
+import { Block, Child, prop, Prop } from '@rvjs/core'
 import { isChild, isOptional, isProp, isString } from '@rvjs/is'
 
 export interface TooltipProps {

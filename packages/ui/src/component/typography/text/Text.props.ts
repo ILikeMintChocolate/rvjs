@@ -1,5 +1,4 @@
-import { Children, ElementType } from '@rvjs/core/dom'
-import { Prop, prop } from '@rvjs/core/reactive'
+import { Children, ElementType, Prop, prop } from '@rvjs/core'
 import { isArray, isChildren, isOptional, isProp, isString } from '@rvjs/is'
 import { TextStyleProps } from '@typography/text/Text.css.ts'
 

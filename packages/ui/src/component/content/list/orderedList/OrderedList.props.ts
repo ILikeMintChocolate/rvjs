@@ -1,5 +1,4 @@
-import { Children } from '@rvjs/core/dom'
-import { Prop, prop } from '@rvjs/core/reactive'
+import { Children, Prop, prop } from '@rvjs/core'
 import { isChildren, isOptional, isString } from '@rvjs/is'
 
 export interface OrderedListProps {

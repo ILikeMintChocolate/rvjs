@@ -1,5 +1,4 @@
-import { mark } from '@rvjs/core/dom'
-import { dynamic } from '@rvjs/core/reactive'
+import { dynamic, mark } from '@rvjs/core'
 import { checkProps } from '@rvjs/is'
 import { highlight_style } from '@typography/highlight/Highlight.css.ts'
 import {
