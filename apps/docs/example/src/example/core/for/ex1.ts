@@ -1,6 +1,6 @@
 import { ul_style, wrapper_style } from '@example/core/for/ex1.css.ts'
-import { button, div, For, li, ul } from '@rvjs/core/dom'
-import { useState } from '@rvjs/core/reactive'
+import { button, div, For, li, ul } from '@rvjs/core'
+import { useState } from '@rvjs/core'
 import { coolScrollBar_style } from '@theme/util.css.ts'
 
 const Products = () => {

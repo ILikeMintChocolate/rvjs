@@ -4,8 +4,8 @@ import {
   heading_style,
   wrapper_style,
 } from '@example/core/useState/ex1.css.ts'
-import { button, div, h1 } from '@rvjs/core/dom'
-import { dynamic, useState } from '@rvjs/core/reactive'
+import { button, div, h1 } from '@rvjs/core'
+import { dynamic, useState } from '@rvjs/core'
 
 const Counter = () => {
   const [getCount, setCount] = useState(0)

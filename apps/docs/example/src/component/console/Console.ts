@@ -8,8 +8,8 @@ import {
   console_wrapper_style,
 } from '@component/console/Console.css.ts'
 import trashCanSvg from '@icon/trash-can.svg?element'
-import { button, component, div, For, p, section, svg } from '@rvjs/core/dom'
-import { useEffect, useGlobalState, useRef } from '@rvjs/core/reactive'
+import { button, component, div, For, p, section, svg } from '@rvjs/core'
+import { useEffect, useGlobalState, useRef } from '@rvjs/core'
 import { coolScrollBar_style } from '@theme/util.css.ts'
 
 const Console = component(() => {

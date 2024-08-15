@@ -1,6 +1,6 @@
 import { content_style, wrapper_style } from '@example/core/toggle/ex1.css.ts'
-import { button, div, p, Toggle } from '@rvjs/core/dom'
-import { useState } from '@rvjs/core/reactive'
+import { button, div, p, Toggle } from '@rvjs/core'
+import { useState } from '@rvjs/core'
 
 const App = () => {
   const [show, setShow] = useState(false)
