@@ -1,3 +1,4 @@
+import { ibmPlexSans } from '@theme/font/fontFace.css.ts'
 import vars from '@theme/variable/vars.css.ts'
 import { style } from '@vanilla-extract/css'
 
@@ -6,7 +7,7 @@ export const listItem_li_style = style({
   marginBottom: vars.spacing['03'],
   color: vars.color.textPrimary,
   '::marker': {
-    fontFamily: 'IBM Plex Sans, sans-serif',
+    fontFamily: ibmPlexSans,
     fontStyle: 'normal',
     fontVariant: 'normal',
     fontWeight: vars.font.weight.regular,
