@@ -1,6 +1,7 @@
 import {
   Child,
   component,
+  ComponentFn,
   createContext,
   GetState,
   SetState,
@@ -18,9 +19,9 @@ interface ThemeContext {
 
 export const rvjsUIThemeContext = createContext<ThemeContext>()
 
-const RvjsUIProvider = component<StartRvjsUIProps>((props) => {
+const RvjsUIProvider: ComponentFn = component<StartRvjsUIProps>((props) => {
   const { child } = props
-  const [showSideNav, setShowSideNav] = useState(true)
+  const [showSideNav, setShowSideNav] = useState(false)
 
   rvjsUIThemeContext.setContext({
     showSideNav,
