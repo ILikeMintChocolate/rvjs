@@ -1,10 +1,15 @@
 import { Block } from '@block/block.ts'
+import { ContextHook } from '@block/util/contextHook.ts'
 import { LifecycleHandlers } from '@block/util/lifecycleHandlers.ts'
 import { RouteContext } from '@block/util/routeContext.ts'
 import { componentContext } from '@context/executionContext.ts'
+import { HTMLNode } from '@element/type.ts'
 import { isComponent, isElement, isTextNode } from '@type/rvjs.ts'
+import { NestedArray } from '@type/util.ts'
 
-export class ComponentBlock extends RouteContext(LifecycleHandlers(Block)) {
+export class ComponentBlock extends ContextHook(
+  RouteContext(LifecycleHandlers(Block)),
+) {
   #key: string | null
   #lazyRenderContext: {
     tempElement: Comment
@@ -44,10 +49,16 @@ export class ComponentBlock extends RouteContext(LifecycleHandlers(Block)) {
   #initialRender() {
     const comment = document.createComment('lazy-component')
     this.#lazyRenderContext.tempElement = comment
-    this.nodes = [comment]
+    this.nestedNodes = [comment]
+    this.domLength = 1
   }
 
   triggerLazyRender() {
+    const previousComponent = componentContext.get()
+    if (previousComponent) {
+      this.shortcutParent = previousComponent
+      this.shortcutParent.addShortcutChild(this)
+    }
     componentContext.set(this)
     const renderedChild = this.#lazyRenderContext.renderFn()
     this.#lazyRenderContext.renderFn = null
@@ -66,17 +77,19 @@ export class ComponentBlock extends RouteContext(LifecycleHandlers(Block)) {
     this.child = child
     this.domLength = child.domLength
     child.parent = this
-    const rerenderableContexts = []
-    if (!(isElement(child) || isTextNode(child))) {
-      rerenderableContexts.push({ block: child, localDOMIndex: 0 })
-    }
-    this.rerenderableContexts = rerenderableContexts
-    const fragment = document.createDocumentFragment()
+    const newNestedNodes: NestedArray<HTMLNode> = []
+    const rerenderableChildren = []
     if (isElement(child) || isTextNode(child)) {
-      fragment.append(child.element)
+      newNestedNodes.push(child.element)
     } else {
-      fragment.append(...child.nodes)
+      newNestedNodes.push(child.nestedNodes)
+      rerenderableChildren.push(child)
     }
+    this.nestedNodes = newNestedNodes
+    this.rerenderableChildren = rerenderableChildren
+    const fragment = document.createDocumentFragment()
+    fragment.append(...this.nodes)
     this.tempElement.replaceWith(fragment)
+    this.parent.requestRerenderableChildrenUpdate(this, child.domLength - 1)
   }
 }
