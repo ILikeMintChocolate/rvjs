@@ -69,6 +69,9 @@ export class Block extends RouteContext(
   #commit() {
     this.traverseChildren(this, (child) => {
       if (isComponent(child)) {
+        if (!child.isRendered()) {
+          child.triggerLazyRender()
+        }
         child.triggerOnMount()
       }
       return true
@@ -83,6 +86,7 @@ export class Block extends RouteContext(
     this.traverseChildren(this, (child) => {
       if (isComponent(child)) {
         child.triggerOnDestroy()
+        child.deleteAllContextProviders()
       }
       if (!isTextNode(child)) {
         child.cleanUpUnsubscribeState()
