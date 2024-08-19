@@ -27,8 +27,9 @@ export const component = <Props>(render: (props: Props) => Block) => {
         componentBlock.pathParam = { key: dynamicKey, value: pathname }
       }
     }
-    const renderedChild = render(restProps as Props & Partial<ReceivableProps>)
-    componentBlock.appendChild(renderedChild)
+    componentBlock.renderFn = () => {
+      return render(restProps as Props & Partial<ReceivableProps>)
+    }
     componentContext.set(previousComponent)
     return componentBlock
   }
