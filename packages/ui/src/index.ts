@@ -38,6 +38,7 @@ export { default as CodeSnippet } from '@typography/codeSnippet/CodeSnippet.ts'
 export { default as Link } from '@typography/link/Link.ts'
 
 export { startRvjsUI } from '@system/launch.ts'
+export { default as RvjsUIProvider } from '@system/provider.ts'
 
 export { renderComponentFromJSON } from '@util/render.ts'
 export { ifIs } from '@util/array.ts'
