@@ -6,9 +6,9 @@ import {
   dynamic,
   Prop,
   prop,
-  useGlobalState,
   useNavigate,
 } from '@rvjs/core'
+import { subMenuContext } from '@shell/header/subMenu/SubMenu.ts'
 import {
   subMenuItem_anchor_recipe,
   subMenuItem_li_style,
@@ -26,13 +26,12 @@ interface SubMenuItemProps {
 
 const SubMenuItem: ComponentFn = component<SubMenuItemProps>((props) => {
   const {
-    id,
     href,
     text,
     isActive = prop(() => false),
     tabIndex = prop(() => 0),
   } = props
-  const [_, setShowItems] = useGlobalState(`SUB_MENU_SHOW_ITEMS_${id}`, false)
+  const { setShowItems } = subMenuContext.getContext()
   const navigate = useNavigate()
 
   return Flex({

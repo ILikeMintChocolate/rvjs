@@ -1,17 +1,11 @@
 import defaultCloseSvg from '@icon/close.svg?element'
 import defaultMenuSvg from '@icon/menu.svg?element'
-import {
-  button,
-  component,
-  ComponentFn,
-  svg,
-  Switch,
-  useGlobalState,
-} from '@rvjs/core'
+import { button, component, ComponentFn, svg, Switch } from '@rvjs/core'
 import {
   headerMenuButton_button_style,
   headerMenuButton_icon_style,
 } from '@shell/header/headerMenuButton/HeaderMenuButton.css.ts'
+import { rvjsUIThemeContext } from '@system/provider.ts'
 import { EventHandlers } from '@type/event.ts'
 
 interface HeaderMenuButtonProps {
@@ -27,7 +21,7 @@ const HeaderMenuButton: ComponentFn = component<HeaderMenuButtonProps>(
       menuIcon = defaultMenuSvg,
       closeIcon = defaultCloseSvg,
     } = props
-    const [showSideNav, setShowSideNav] = useGlobalState('SHOW_SIDENAV', false)
+    const { showSideNav, setShowSideNav } = rvjsUIThemeContext.getContext()
 
     return button({
       type: 'button',

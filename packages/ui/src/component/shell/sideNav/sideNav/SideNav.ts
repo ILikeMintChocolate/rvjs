@@ -7,7 +7,6 @@ import {
   onMount,
   prop,
   Toggle,
-  useGlobalState,
   useRef,
 } from '@rvjs/core'
 import {
@@ -15,6 +14,7 @@ import {
   sideNav_nav_recipe,
   sideNav_wrapper_recipe,
 } from '@shell/sideNav/sideNav/SideNav.css.ts'
+import { rvjsUIThemeContext } from '@system/provider.ts'
 import { coolScrollBar_style } from '@theme/util/util.css.ts'
 
 interface SideNavProps {
@@ -23,7 +23,7 @@ interface SideNavProps {
 
 const SideNav: ComponentFn = component<SideNavProps>((props: SideNavProps) => {
   const { children } = props
-  const [showSideNav, setShowSideNav] = useGlobalState('SHOW_SIDENAV', false)
+  const { showSideNav, setShowSideNav } = rvjsUIThemeContext.getContext()
   const sideNavBackdropRef = useRef<HTMLDivElement>()
 
   onMount(() => {
