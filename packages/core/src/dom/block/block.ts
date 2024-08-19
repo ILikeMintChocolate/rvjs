@@ -86,6 +86,7 @@ export class Block extends RouteContext(
     this.traverseChildren(this, (child) => {
       if (isComponent(child)) {
         child.triggerOnDestroy()
+        child.deleteAllContextProviders()
       }
       if (!isTextNode(child)) {
         child.cleanUpUnsubscribeState()
