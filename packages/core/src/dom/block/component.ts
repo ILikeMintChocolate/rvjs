@@ -67,6 +67,7 @@ export class ComponentBlock extends ContextHook(
       componentContext.set(this.#lazyRenderContext.previousComponent)
     }
     this.#swapNodesForLazyRender(renderedChild)
+    this.triggerLazySetOutlet()
   }
 
   isRendered() {
