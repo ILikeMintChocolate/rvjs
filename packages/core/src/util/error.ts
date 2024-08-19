@@ -1,5 +1,5 @@
 type ErrorType =
-  | 'USE_CONTEXT_NOT_IN_COMPONENT_ERROR'
+  | 'CREATE_CONTEXT_NOT_IN_COMPONENT_ERROR'
   | 'USE_GLOBAL_STATE_NOT_IN_COMPONENT_ERROR'
   | 'ON_MOUNT_NOT_IN_COMPONENT_ERROR'
   | 'ON_DESTROY_NOT_IN_COMPONENT_ERROR'
@@ -7,8 +7,8 @@ type ErrorType =
   | 'USE_QUERY_PARAMS_NOT_IN_COMPONENT_ERROR'
 
 const errorMessages: Record<ErrorType, string> = {
-  USE_CONTEXT_NOT_IN_COMPONENT_ERROR:
-    'The `useContext` hook can only be used inside components.',
+  CREATE_CONTEXT_NOT_IN_COMPONENT_ERROR:
+    'The `createContext` hook can only be used inside components.',
   USE_GLOBAL_STATE_NOT_IN_COMPONENT_ERROR:
     'The `useGlobalState` hook can only be used inside components.',
   ON_MOUNT_NOT_IN_COMPONENT_ERROR:

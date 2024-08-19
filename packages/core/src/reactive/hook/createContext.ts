@@ -19,7 +19,7 @@ export const createContext = <Value>() => {
   const setContext = (value: Value) => {
     const providerComponent = componentContext.get()
     if (!providerComponent) {
-      throwError('USE_CONTEXT_NOT_IN_COMPONENT_ERROR')
+      throwError('CREATE_CONTEXT_NOT_IN_COMPONENT_ERROR')
     }
     setProvider(providerComponent)
     providersMap.set(providerComponent, value)
@@ -28,7 +28,7 @@ export const createContext = <Value>() => {
   const getContext = () => {
     const component = componentContext.get()!
     if (!component) {
-      throwError('USE_CONTEXT_NOT_IN_COMPONENT_ERROR')
+      throwError('CREATE_CONTEXT_NOT_IN_COMPONENT_ERROR')
     }
     let providerComponent: ComponentBlock | null = null
     component.traverseShortcutParent(component, (parent) => {
