@@ -1,6 +1,7 @@
 import { ComponentBlock } from '@block/component.ts'
 import { DeleteProvider } from '@block/util/contextHook.ts'
 import { componentContext } from '@context/executionContext.ts'
+import { throwError } from '@util/error.ts'
 
 export const createContext = <Value>() => {
   const ref = {}
@@ -16,13 +17,19 @@ export const createContext = <Value>() => {
   }
 
   const setContext = (value: Value) => {
-    const providerComponent = componentContext.get()!
+    const providerComponent = componentContext.get()
+    if (!providerComponent) {
+      throwError('USE_CONTEXT_NOT_IN_COMPONENT_ERROR')
+    }
     setProvider(providerComponent)
     providersMap.set(providerComponent, value)
   }
 
   const getContext = () => {
     const component = componentContext.get()!
+    if (!component) {
+      throwError('USE_CONTEXT_NOT_IN_COMPONENT_ERROR')
+    }
     let providerComponent: ComponentBlock | null = null
     component.traverseShortcutParent(component, (parent) => {
       if (parent.hasContextProvider(ref)) {
