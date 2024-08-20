@@ -18,6 +18,9 @@ const ContentData = async () => {
   })
 
   return Flex({
+    style: {
+      flex: '1',
+    },
     children: [
       Content({
         children: content,

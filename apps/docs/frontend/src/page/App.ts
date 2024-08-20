@@ -4,7 +4,6 @@ import SideNav from '@component/sideNav/SideNav.ts'
 import ContentData from '@page/Content.ts'
 import {
   component,
-  div,
   onMount,
   Router,
   Suspense,
@@ -12,29 +11,31 @@ import {
   useOutlet,
   usePathname,
 } from '@rvjs/core'
-import { Shell } from '@rvjs/ui'
+import { RvjsUIProvider, Shell } from '@rvjs/ui'
 
 const App = () => {
-  return Shell({
-    header: Header(),
-    panel: SideNav(),
-    body: Router({
-      '/:pId': {
-        componentFn: () => MainBody(),
-        router: {
-          '/getting-started': {
-            componentFn: () => ContentPage(),
-          },
-          '/:cId': {
-            componentFn: () => CategoryPage(),
-            router: {
-              '/:fId': {
-                componentFn: () => ContentPage(),
+  return RvjsUIProvider({
+    child: Shell({
+      header: Header(),
+      panel: SideNav(),
+      body: Router({
+        '/:pId': {
+          componentFn: () => MainBody(),
+          router: {
+            '/getting-started': {
+              componentFn: () => ContentPage(),
+            },
+            '/:cId': {
+              componentFn: () => CategoryPage(),
+              router: {
+                '/:fId': {
+                  componentFn: () => ContentPage(),
+                },
               },
             },
           },
         },
-      },
+      }),
     }),
   })
 }
@@ -50,22 +51,13 @@ const MainBody = component(() => {
     }
   })
 
-  return div({
-    style: {
-      flex: '1',
-    },
-    children: [outlet],
-  })
+  return outlet
 })
 
 const CategoryPage = component(() => {
   const outlet = useOutlet()
-  return div({
-    style: {
-      width: '100%',
-    },
-    children: [outlet],
-  })
+  
+  return outlet
 })
 
 const ContentPage = component(() => {
