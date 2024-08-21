@@ -1,6 +1,6 @@
 import { Block } from '@block/block.ts'
 
-export class TextNode extends Block {
+export class TextNodeBlock extends Block {
   constructor(...args: any[]) {
     super({
       type: 'TEXT',
