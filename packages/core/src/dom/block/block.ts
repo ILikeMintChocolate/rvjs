@@ -4,29 +4,29 @@ import { Empty } from '@block/util/mixin.ts'
 import { RouteContext } from '@block/util/routeContext.ts'
 import { UnsubscribeState } from '@block/util/unsubscribeState.ts'
 import {
-  isComponent,
-  isElement,
-  isForFlow,
-  isSwitchFlow,
-  isTextNode,
-  isToggleFlow,
+  isComponentBlock,
+  isElementBlock,
+  isForFlowBlock,
+  isSwitchFlowBlock,
+  isTextNodeBlock,
+  isToggleFlowBlock,
 } from '@type/rvjs.ts'
 import {
-  RVJS_COMPONENT_SYMBOL,
-  RVJS_ELEMENT_SYMBOL,
-  RVJS_FOR_FLOW_SYMBOL,
-  RVJS_SWITCH_FLOW_SYMBOL,
-  RVJS_TEXT_NODE_SYMBOL,
-  RVJS_TOGGLE_FLOW_SYMBOL,
+  RVJS_COMPONENT_BLOCK_SYMBOL,
+  RVJS_ELEMENT_BLOCK_SYMBOL,
+  RVJS_FOR_FLOW_BLOCK_SYMBOL,
+  RVJS_SWITCH_FLOW_BLOCK_SYMBOL,
+  RVJS_TEXT_NODE_BLOCK_SYMBOL,
+  RVJS_TOGGLE_FLOW_BLOCK_SYMBOL,
 } from '@util/symbol.ts'
 
 export const blockTypes = {
-  COMPONENT: RVJS_COMPONENT_SYMBOL,
-  ELEMENT: RVJS_ELEMENT_SYMBOL,
-  FOR: RVJS_FOR_FLOW_SYMBOL,
-  SWITCH: RVJS_SWITCH_FLOW_SYMBOL,
-  TOGGLE: RVJS_TOGGLE_FLOW_SYMBOL,
-  TEXT: RVJS_TEXT_NODE_SYMBOL,
+  COMPONENT: RVJS_COMPONENT_BLOCK_SYMBOL,
+  ELEMENT: RVJS_ELEMENT_BLOCK_SYMBOL,
+  FOR: RVJS_FOR_FLOW_BLOCK_SYMBOL,
+  SWITCH: RVJS_SWITCH_FLOW_BLOCK_SYMBOL,
+  TOGGLE: RVJS_TOGGLE_FLOW_BLOCK_SYMBOL,
+  TEXT: RVJS_TEXT_NODE_BLOCK_SYMBOL,
 }
 
 export interface BlockProps {
@@ -51,15 +51,19 @@ export class Block extends RouteContext(
     if (!isContinue) {
       return
     }
-    if (isComponent(block) || isSwitchFlow(block) || isToggleFlow(block)) {
+    if (
+      isComponentBlock(block) ||
+      isSwitchFlowBlock(block) ||
+      isToggleFlowBlock(block)
+    ) {
       if (block.child) {
         block.child.traverseChildren(block.child, callback)
       }
-    } else if (isElement(block)) {
+    } else if (isElementBlock(block)) {
       block.children.flat().forEach((child) => {
         child.traverseChildren(child, callback)
       })
-    } else if (isForFlow(block)) {
+    } else if (isForFlowBlock(block)) {
       block.children.flat().forEach((child) => {
         child.traverseChildren(child, callback)
       })
@@ -68,7 +72,7 @@ export class Block extends RouteContext(
 
   #commit() {
     this.traverseChildren(this, (child) => {
-      if (isComponent(child)) {
+      if (isComponentBlock(child)) {
         if (!child.isRendered()) {
           child.triggerLazyRender()
         }
@@ -84,11 +88,11 @@ export class Block extends RouteContext(
 
   #destroy() {
     this.traverseChildren(this, (child) => {
-      if (isComponent(child)) {
+      if (isComponentBlock(child)) {
         child.triggerOnDestroy()
         child.deleteAllContextProviders()
       }
-      if (!isTextNode(child)) {
+      if (!isTextNodeBlock(child)) {
         child.cleanUpUnsubscribeState()
       }
       return true

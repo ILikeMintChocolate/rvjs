@@ -1,6 +1,6 @@
 import { Block } from '@block/block.ts'
 import { HTMLNode } from '@element/type.ts'
-import { isElement, isTextNode } from '@type/rvjs.ts'
+import { isElementBlock, isTextNodeBlock } from '@type/rvjs.ts'
 import { Children } from '@type/type.ts'
 import { NestedArray } from '@type/util.ts'
 
@@ -25,7 +25,7 @@ export class ElementBlock extends Block {
       }
       child.parent = this
       this.addChild(child)
-      if (isElement(child) || isTextNode(child)) {
+      if (isElementBlock(child) || isTextNodeBlock(child)) {
         newNestedNodes.push(child.element)
         domIndex += 1
       } else {

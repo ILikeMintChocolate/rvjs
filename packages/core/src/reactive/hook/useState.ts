@@ -12,7 +12,7 @@ import {
   isRvjsFunction,
   RvjsFunction,
 } from '@type/guard.ts'
-import { isElement, isTextNode } from '@type/rvjs.ts'
+import { isElementBlock, isTextNodeBlock } from '@type/rvjs.ts'
 import { Queue } from '@util/dataStructure/queue.ts'
 import { Observer } from '@util/observer.ts'
 import { RVJS_GET_STATE_SYMBOL } from '@util/symbol.ts'
@@ -72,12 +72,12 @@ const notifyWhenStateChange = (subscribers: StateObserver) => {
   const lazyUseEffectQueue: Function[][] = []
   subscribers.notify((block, values) => {
     Object.entries(values.domProperty).forEach(([property, value]) => {
-      if (isElement(block)) {
+      if (isElementBlock(block)) {
         setProperty(block, property as keyof AllElementProps, value())
       }
     })
     Object.entries(values.styleProperty).forEach(([property, value]) => {
-      if (isElement(block)) {
+      if (isElementBlock(block)) {
         setStyleProperty(block, property as string, value())
       }
     })
@@ -92,13 +92,13 @@ const notifyWhenStateChange = (subscribers: StateObserver) => {
       const className = classFn() as string
 
       removePrevClassFn()
-      if (isElement(block)) {
+      if (isElementBlock(block)) {
         className.split(' ').forEach((classString) => {
           block.element.classList.add(classString)
         })
       }
       classes.removePrevClassFn = () => {
-        if (isElement(block)) {
+        if (isElementBlock(block)) {
           className.split(' ').forEach((classString) => {
             block.element.classList.remove(classString)
           })
@@ -145,7 +145,7 @@ class StateObserver extends Observer<Block | null, StateObserverValue> {
         classesProperty: [],
         flowRender: [],
       } as StateObserverValue)
-      if (block && !isTextNode(block)) {
+      if (block && !isTextNodeBlock(block)) {
         block.addStateUnsubscribeHandler(this.unsubscribe.bind(this))
       }
     }
