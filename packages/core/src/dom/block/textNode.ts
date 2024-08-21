@@ -1,7 +1,6 @@
 import { Block } from '@block/block.ts'
-import { RouteContext } from '@block/util/routeContext.ts'
 
-export class TextNode extends RouteContext(Block) {
+export class TextNode extends Block {
   constructor(...args: any[]) {
     super({
       type: 'TEXT',

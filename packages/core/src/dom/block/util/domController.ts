@@ -1,9 +1,9 @@
 import { Block } from '@block/block.ts'
 import { Constructor, Empty } from '@block/util/mixin.ts'
 import { HTMLNode } from '@element/type.ts'
-import { isElement, isForFlow, isTextNode } from '@type/rvjs.ts'
+import { isElementBlock, isForFlowBlock, isTextNodeBlock } from '@type/rvjs.ts'
 import { NestedArray } from '@type/util.ts'
-import { RVJS_ELEMENT_SYMBOL } from '@util/symbol.ts'
+import { RVJS_ELEMENT_BLOCK_SYMBOL } from '@util/symbol.ts'
 
 export const DOMController = <TBase extends Constructor<Empty>>(
   Base: TBase,
@@ -81,7 +81,7 @@ export const DOMController = <TBase extends Constructor<Empty>>(
 
     initialDOMUpdate(block: Block) {
       const parent = block.parent
-      if (parent.$$typeof === RVJS_ELEMENT_SYMBOL) {
+      if (parent.$$typeof === RVJS_ELEMENT_BLOCK_SYMBOL) {
         parent.requestDOMPushUpdate(parent, parent.nodes)
       } else {
         parent.initialDOMUpdate(parent)
@@ -91,7 +91,7 @@ export const DOMController = <TBase extends Constructor<Empty>>(
     requestDOMPushUpdate(block: Block, newNodes: HTMLNode[]) {
       const fragment = document.createDocumentFragment()
       fragment.append(...newNodes)
-      if (block.$$typeof === RVJS_ELEMENT_SYMBOL) {
+      if (block.$$typeof === RVJS_ELEMENT_BLOCK_SYMBOL) {
         block.#element.append(fragment)
       }
     }
@@ -116,7 +116,7 @@ export const DOMController = <TBase extends Constructor<Empty>>(
       increased: number,
     ) {
       const parent = me.parent
-      if (isElement(me)) {
+      if (isElementBlock(me)) {
         const { domIndex: localDOMIndex } =
           me.rerenderableChildren[rerenderableIndex]
         for (let i = 0; i < deletable.length; i++) {
@@ -126,9 +126,9 @@ export const DOMController = <TBase extends Constructor<Empty>>(
             if (!child) {
               return
             }
-            if (isElement(child) || isTextNode(child)) {
+            if (isElementBlock(child) || isTextNodeBlock(child)) {
               deletableElements.push(child.element)
-            } else if (isForFlow(child)) {
+            } else if (isForFlowBlock(child)) {
               for (let i = 0; i < child.children.length; i++) {
                 findElementChild(child.children[i])
               }
@@ -152,7 +152,7 @@ export const DOMController = <TBase extends Constructor<Empty>>(
           if (nNode === pNode) {
             pNodeIndex++
           } else {
-            if (isElement(me)) {
+            if (isElementBlock(me)) {
               me.element.insertBefore(nNode, pNode)
             }
           }
