@@ -3,7 +3,7 @@ import { subscribeStateContext } from '@context/executionContext.ts'
 import { HTMLNode } from '@element/type.ts'
 import { Prop } from '@hook/prop.ts'
 import { GetState, isGetState } from '@hook/useState.ts'
-import { isElement, isTextNode } from '@type/rvjs.ts'
+import { isElementBlock, isTextNodeBlock } from '@type/rvjs.ts'
 import { NestedArray } from '@type/util.ts'
 
 export interface ToggleProps<Bool> {
@@ -76,7 +76,7 @@ export class ToggleBlock<Bool> extends Block {
     const child = item ? this.#renderBlock() : null
     this.#child = child
     if (child) {
-      if (isElement(child) || isTextNode(child)) {
+      if (isElementBlock(child) || isTextNodeBlock(child)) {
         newNestedNodes.push(child.element)
       } else {
         child.domIndex = 0

@@ -4,7 +4,11 @@ import { LifecycleHandlers } from '@block/util/lifecycleHandlers.ts'
 import { RouteContext } from '@block/util/routeContext.ts'
 import { componentContext } from '@context/executionContext.ts'
 import { HTMLNode } from '@element/type.ts'
-import { isComponent, isElement, isTextNode } from '@type/rvjs.ts'
+import {
+  isComponentBlock,
+  isElementBlock,
+  isTextNodeBlock,
+} from '@type/rvjs.ts'
 import { NestedArray } from '@type/util.ts'
 
 export class ComponentBlock extends ContextHook(
@@ -63,7 +67,7 @@ export class ComponentBlock extends ContextHook(
     const renderedChild = this.#lazyRenderContext.renderFn()
     this.#lazyRenderContext.renderFn = null
     this.#lazyRenderContext.isRendered = true
-    if (isComponent(this.#lazyRenderContext.previousComponent)) {
+    if (isComponentBlock(this.#lazyRenderContext.previousComponent)) {
       componentContext.set(this.#lazyRenderContext.previousComponent)
     }
     this.#swapNodesForLazyRender(renderedChild)
@@ -80,7 +84,7 @@ export class ComponentBlock extends ContextHook(
     child.parent = this
     const newNestedNodes: NestedArray<HTMLNode> = []
     const rerenderableChildren = []
-    if (isElement(child) || isTextNode(child)) {
+    if (isElementBlock(child) || isTextNodeBlock(child)) {
       newNestedNodes.push(child.element)
     } else {
       newNestedNodes.push(child.nestedNodes)

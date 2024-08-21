@@ -3,7 +3,7 @@ import { subscribeStateContext } from '@context/executionContext.ts'
 import { HTMLNode } from '@element/type.ts'
 import { Prop } from '@hook/prop.ts'
 import { GetState, isGetState } from '@hook/useState.ts'
-import { isElement, isTextNode } from '@type/rvjs.ts'
+import { isElementBlock, isTextNodeBlock } from '@type/rvjs.ts'
 import { NestedArray } from '@type/util.ts'
 import { ArrayMap } from '@util/dataStructure/arrayMap.ts'
 
@@ -94,7 +94,7 @@ export class ForBlock<Item> extends Block {
       }
       newChildren.push(child)
       currOrderMap.push(item, { index: i, block: child })
-      if (isElement(child) || isTextNode(child)) {
+      if (isElementBlock(child) || isTextNodeBlock(child)) {
         domIndex += 1
         newNestedNodes.push(child.element)
       } else {
