@@ -140,11 +140,11 @@ const Router = (routerProps: RouterProps) => {
   }
 
   const renderComponent = (routes: MatchedRouteFn[]) => {
-    let currentComponent: ComponentBlock | null = null
     let currRoutes: Route[] = []
 
-    routes.reverse().forEach((route) => {
+    routes.reverse().forEach((route, i) => {
       const { pathType, pathname, query, componentFn, dynamicKey } = route
+      const childComponent = currRoutes[i - 1]?.component
       if (pathType === 'dynamic') {
         routeContext.set({ pathType, pathname, query, dynamicKey })
       } else {
@@ -152,15 +152,17 @@ const Router = (routerProps: RouterProps) => {
       }
       const component = componentFn()
       routeContext.set(null)
-      if (currentComponent) {
-        component.setOutlet(currentComponent)
+      if (childComponent) {
+        test = childComponent
+        component.lazySetOutlet = () => {
+          component.setOutlet(childComponent)
+        }
       }
-      currentComponent = component
       currRoutes.push({ pathType, pathname, query, component })
     })
 
     return {
-      rootComponent: currentComponent,
+      rootComponent: currRoutes.at(-1).component,
       currentRoutes: currRoutes.reverse(),
     }
   }
@@ -182,5 +184,7 @@ const Router = (routerProps: RouterProps) => {
     return routerOutlet()
   })
 }
+
+export let test = null
 
 export default Router
