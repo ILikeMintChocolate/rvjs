@@ -28,6 +28,7 @@ export default defineConfig({
     exclude: ['@rvjs/core'],
   },
   test: {
+    environment: 'jsdom',
     coverage: {
       provider: 'istanbul',
     },

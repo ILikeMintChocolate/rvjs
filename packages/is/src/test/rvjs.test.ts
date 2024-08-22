@@ -1,18 +1,29 @@
-import { component, div } from '@rvjs/core'
-import { prop, useState } from '@rvjs/core'
+import {
+  component,
+  div,
+  For,
+  prop,
+  Switch,
+  textNode,
+  Toggle,
+  useState,
+} from '@rvjs/core'
 import { expect, test, vi } from 'vitest'
 import { checkProps, startCheckProps } from '../checkProps/check.ts'
 import { isNumber, isString } from '../type/primitive.ts'
 import {
   isChild,
   isChildren,
-  isComponent,
-  isElement,
+  isComponentBlock,
+  isElementBlock,
+  isForFlowBlock,
   isGetState,
   isGetStateType,
   isProp,
   isPropType,
-  isSetState,
+  isSwitchFlowBlock,
+  isTextNodeBlock,
+  isToggleFlowBlock,
 } from '../type/rvjs.ts'
 
 startCheckProps({
@@ -36,11 +47,15 @@ test('rvjs types - valid', () => {
     h: prop(() => '123'),
     i: prop(() => 123),
     j: state,
+    k: For([], () => div()),
+    l: Switch(1, () => div()),
+    m: Toggle(true, () => div()),
+    n: textNode(''),
   }
 
   const propsType = {
-    a: isElement,
-    b: isComponent,
+    a: isElementBlock,
+    b: isComponentBlock,
     c: isChild,
     d: isChild,
     e: isChildren,
@@ -49,37 +64,10 @@ test('rvjs types - valid', () => {
     h: isProp(isString),
     i: isProp(isNumber),
     j: isGetState(isNumber),
-  }
-
-  checkProps(props, propsType)
-
-  expect(consoleErrorSpy).not.toHaveBeenCalled()
-  consoleErrorSpy.mockRestore()
-})
-
-test('문서용 예시', () => {
-  const consoleErrorSpy = vi.spyOn(console, 'error')
-
-  const [count, setCount] = useState(0)
-
-  const props = {
-    a: div(),
-    b: component(() => div()),
-    d: div(),
-    e: [div(), component(() => div())],
-    f: count,
-    g: setCount,
-    h: prop(() => '123'),
-  }
-
-  const propsType = {
-    a: isElement,
-    b: isComponent,
-    d: isChild,
-    e: isChildren,
-    f: isGetStateType,
-    g: isSetState,
-    h: isPropType,
+    k: isForFlowBlock,
+    l: isSwitchFlowBlock,
+    m: isToggleFlowBlock,
+    n: isTextNodeBlock,
   }
 
   checkProps(props, propsType)
