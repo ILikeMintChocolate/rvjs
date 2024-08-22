@@ -1,17 +1,24 @@
 import {
   ComponentBlock,
   ElementBlock,
+  ForBlock,
   GetState,
   isRvjsFunction,
   isRvjsObject,
-  isTextNode,
   Prop,
-  RVJS_COMPONENT_SYMBOL,
-  RVJS_ELEMENT_SYMBOL,
+  RVJS_COMPONENT_BLOCK_SYMBOL,
+  RVJS_ELEMENT_BLOCK_SYMBOL,
+  RVJS_FOR_FLOW_BLOCK_SYMBOL,
   RVJS_GET_STATE_SYMBOL,
   RVJS_PROP_SYMBOL,
   RVJS_SET_STATE_SYMBOL,
+  RVJS_SWITCH_FLOW_BLOCK_SYMBOL,
+  RVJS_TEXT_NODE_BLOCK_SYMBOL,
+  RVJS_TOGGLE_FLOW_BLOCK_SYMBOL,
   SetState,
+  SwitchBlock,
+  TextNodeBlock,
+  ToggleBlock,
 } from '@rvjs/core'
 import { checkContext } from '../checkProps/context.ts'
 import {
@@ -21,23 +28,63 @@ import {
 import { isArrayType } from './reference.ts'
 import { Validator } from './type.ts'
 
-export const isElement = (value: unknown): value is ElementBlock => {
-  return isRvjsObject(value) && value.$$typeof === RVJS_ELEMENT_SYMBOL
+export const isElementBlock = (value: unknown): value is ElementBlock => {
+  return isRvjsObject(value) && value.$$typeof === RVJS_ELEMENT_BLOCK_SYMBOL
 }
 
-export const isComponent = (value: unknown): value is ComponentBlock => {
-  return isRvjsObject(value) && value.$$typeof === RVJS_COMPONENT_SYMBOL
+export const isComponentBlock = (value: unknown): value is ComponentBlock => {
+  return isRvjsObject(value) && value.$$typeof === RVJS_COMPONENT_BLOCK_SYMBOL
+}
+
+export const isForFlowBlock = (value: unknown): value is ForBlock<unknown> => {
+  return isRvjsObject(value) && value.$$typeof === RVJS_FOR_FLOW_BLOCK_SYMBOL
+}
+
+export const isSwitchFlowBlock = (
+  value: unknown,
+): value is SwitchBlock<unknown> => {
+  return isRvjsObject(value) && value.$$typeof === RVJS_SWITCH_FLOW_BLOCK_SYMBOL
+}
+
+export const isToggleFlowBlock = (
+  value: unknown,
+): value is ToggleBlock<unknown> => {
+  return isRvjsObject(value) && value.$$typeof === RVJS_TOGGLE_FLOW_BLOCK_SYMBOL
+}
+
+export const isTextNodeBlock = (value: unknown): value is TextNodeBlock => {
+  return isRvjsObject(value) && value.$$typeof === RVJS_TEXT_NODE_BLOCK_SYMBOL
 }
 
 export const isChild = (
   value: unknown,
-): value is ElementBlock | ComponentBlock | Text => {
-  return isElement(value) || isComponent(value) || isTextNode(value)
+): value is
+  | ElementBlock
+  | ComponentBlock
+  | ForBlock<unknown>
+  | SwitchBlock<unknown>
+  | ToggleBlock<unknown>
+  | TextNodeBlock => {
+  return (
+    isElementBlock(value) ||
+    isComponentBlock(value) ||
+    isForFlowBlock(value) ||
+    isSwitchFlowBlock(value) ||
+    isToggleFlowBlock(value) ||
+    isTextNodeBlock(value)
+  )
 }
 
 export const isChildren = (
   value: unknown,
-): value is (ElementBlock | ComponentBlock | Text)[] => {
+): value is (
+  | ElementBlock
+  | ComponentBlock
+  | ForBlock<unknown>
+  | SwitchBlock<unknown>
+  | ToggleBlock<unknown>
+  | TextNodeBlock
+)[] => {
   if (!value) {
     return false
   }
