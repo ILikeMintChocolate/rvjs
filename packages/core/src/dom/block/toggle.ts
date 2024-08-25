@@ -3,7 +3,8 @@ import { subscribeStateContext } from '@context/executionContext.ts'
 import { HTMLNode } from '@element/type.ts'
 import { Prop } from '@hook/prop.ts'
 import { GetState, isGetState } from '@hook/useState.ts'
-import { isElement, isTextNode } from '@type/rvjs.ts'
+import { isElementBlock, isTextNodeBlock } from '@type/rvjs.ts'
+import { NestedArray } from '@type/util.ts'
 
 export interface ToggleProps<Bool> {
   dependency: Bool | GetState<Bool> | Prop<Bool>
@@ -39,8 +40,8 @@ export class ToggleBlock<Bool> extends Block {
       this.parent,
       this.nodes,
       [deletable],
-      this.blockIndex,
-      this.domIndex,
+      this.rerenderableIndex,
+      0,
       this.domLength,
       increased,
     )
@@ -70,23 +71,26 @@ export class ToggleBlock<Bool> extends Block {
       }
     })()
     const deletable = this.#child
-    const newNodes: HTMLNode[] = []
-    const rerenderableContexts = []
-    const block = item ? this.#renderBlock() : null
-    this.#child = block
-    if (block) {
-      if (isElement(block) || isTextNode(block)) {
-        newNodes.push(block.element)
+    const newNestedNodes: NestedArray<HTMLNode> = []
+    const rerenderableChildren = []
+    const child = item ? this.#renderBlock() : null
+    this.#child = child
+    if (child) {
+      if (isElementBlock(child) || isTextNodeBlock(child)) {
+        newNestedNodes.push(child.element)
       } else {
-        newNodes.push(...block.nodes)
-        rerenderableContexts.push({ block, localDOMIndex: 0 })
+        child.domIndex = 0
+        child.rerenderableIndex = 0
+        rerenderableChildren.push(child)
+        newNestedNodes.push(child.nestedNodes)
       }
     }
-    const increased = newNodes.length - this.domLength
-    this.nodes = newNodes
-    this.domLength = newNodes.length
-    this.rerenderableContexts = rerenderableContexts
-    return { newBlock: block, deletable, increased }
+    const newNestedNodesLength = (newNestedNodes as any[]).flat(Infinity).length
+    const increased = newNestedNodesLength - this.domLength
+    this.nestedNodes = newNestedNodes
+    this.domLength = newNestedNodesLength
+    this.rerenderableChildren = rerenderableChildren
+    return { newBlock: child, deletable, increased }
   }
 
   #renderBlock() {
