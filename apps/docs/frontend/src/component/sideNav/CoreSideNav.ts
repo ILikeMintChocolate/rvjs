@@ -116,7 +116,7 @@ const CoreSideNav = () => {
             children: [
               SideNavMenuItem({
                 text: prop(() => 'Router'),
-                href: prop(() => '/core/router/Router'),
+                href: prop(() => '/core/router/router'),
                 isActive: prop(() => pathname() === '/core/router/router'),
               }),
               SideNavMenuItem({
