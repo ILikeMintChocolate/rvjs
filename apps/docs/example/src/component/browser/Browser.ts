@@ -2,8 +2,8 @@ import { browser_style } from '@component/browser/Browser.css.ts'
 import Console from '@component/console/Console.ts'
 import Web from '@component/web/Web.ts'
 import { Child, component, div } from '@rvjs/core'
-import { ifIs } from '@rvjs/ui'
 import { overrideConsoleLog } from '@util/console.ts'
+import { ifIs } from '@util/util.ts'
 
 interface BrowserProps {
   showConsole: boolean
