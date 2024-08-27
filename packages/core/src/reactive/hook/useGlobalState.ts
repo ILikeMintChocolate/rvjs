@@ -1,6 +1,7 @@
 import { ComponentBlock } from '@block/component.ts'
 import { componentContext } from '@context/executionContext.ts'
 import { GetState, SetState, useState } from '@hook/useState.ts'
+import { throwError } from '@util/error.ts'
 
 interface useGlobalStateOptions {
   overwrite?: boolean
@@ -17,7 +18,7 @@ export const useGlobalState = <State>(
   const component = componentContext.get()
 
   if (!component) {
-    throw new Error('useGlobalState must be called inside a component')
+    throwError('USE_GLOBAL_STATE_NOT_IN_COMPONENT_ERROR')
   }
 
   addUnsubscribeHandler(component, key)

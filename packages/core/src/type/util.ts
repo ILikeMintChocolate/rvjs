@@ -6,4 +6,4 @@ export type AllOptional<T> = {
   [K in keyof T]: T[K] | undefined
 }
 
-export type NestedArray<T> = (T | T[])[]
+export type NestedArray<T> = T | NestedArray<T>[]

@@ -1,8 +1,8 @@
 import { Block } from '@block/block.ts'
-import { isElement, isTextNode } from '@type/rvjs.ts'
+import { isElementBlock, isTextNodeBlock } from '@type/rvjs.ts'
 
 export const useElement = (block: Block) => {
-  if (isElement(block) || isTextNode(block)) {
+  if (isElementBlock(block) || isTextNodeBlock(block)) {
     return block.element
   } else {
     return block.nodes[0]
