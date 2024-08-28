@@ -1,7 +1,7 @@
-import { pathEvent } from '@router/util/event.ts'
+import { getPathEventInstance } from '@router/util/event.ts'
 
 const usePathname = () => {
-  return pathEvent.getPathname
+  return getPathEventInstance().getPathname
 }
 
 export default usePathname
