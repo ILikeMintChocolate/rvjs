@@ -17,12 +17,16 @@ export interface Route {
 }
 
 let instance = null
+let pathEventOptions = null
 
-export const getPathEventInstance = (options: RouterOptions) => {
+export const getPathEventInstance = (options?: RouterOptions) => {
   if (instance) {
     return instance
   }
-  instance = pathEvent(options)
+  if (options) {
+    pathEventOptions = options
+  }
+  instance = pathEvent(pathEventOptions)
   return instance
 }
 
