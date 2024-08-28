@@ -1,8 +1,8 @@
-import { pathEvent } from '@router/util/event.ts'
+import { getPathEventInstance } from '@router/util/event.ts'
 
 const useNavigate = () => {
   const navigate = (newPath: string) => {
-    pathEvent.navigate(newPath)
+    getPathEventInstance().navigate(newPath)
   }
 
   return navigate

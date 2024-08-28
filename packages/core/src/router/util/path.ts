@@ -1,8 +1,14 @@
 import { pathParamsContext } from '@router/context/routerContext.ts'
 import { MatchedRouteFn } from '@router/router.ts'
 
-export const getCurrentPath = () => {
-  return window.history.state?.newPath || window.location.pathname
+export const getCurrentPath = (useHash: boolean) => {
+  if (useHash) {
+    const path = (window.history.state?.newPath ||
+      window.location.hash) as string
+    return path.replace('#/', '/')
+  } else {
+    return window.history.state?.newPath || window.location.pathname
+  }
 }
 
 export interface PathToken {
@@ -19,25 +25,28 @@ export const tokenizePath = (path: string) => {
       },
     ]
   }
-
-  const splitedPaths = path
-    .split('/')
-    .filter(Boolean)
-    .map((path) => {
-      const splitedBySymbol = path.split(/[?&]/g)
-      const queries = splitedBySymbol.slice(1).reduce((object, query) => {
-        const splitedByEqual = query.split('=')
-        // @ts-ignore
-        object[splitedByEqual[0]] = splitedByEqual[1]
-
-        return object
-      }, {})
-
-      return {
+  const splitedPaths = []
+  const splitedPath = path.split('/').filter(Boolean)
+  splitedPath.forEach((path) => {
+    const splitedBySymbol = path.split(/[?&]/g)
+    const queries = splitedBySymbol.slice(1).reduce((object, query) => {
+      const splitedByEqual = query.split('=')
+      // @ts-ignore
+      object[splitedByEqual[0]] = splitedByEqual[1]
+      return object
+    }, {})
+    if (splitedPath.length === 1 && splitedBySymbol[0] === '#') {
+      splitedPaths.push({
+        pathname: '/',
+        query: {},
+      })
+    } else {
+      splitedPaths.push({
         pathname: `/${splitedBySymbol[0]}`,
         query: queries,
-      }
-    })
+      })
+    }
+  })
 
   return splitedPaths
 }
