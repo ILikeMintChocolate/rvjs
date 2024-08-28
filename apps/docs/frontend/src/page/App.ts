@@ -18,24 +18,29 @@ const App = () => {
     child: Shell({
       header: Header(),
       panel: SideNav(),
-      body: Router({
-        '/:pId': {
-          componentFn: () => MainBody(),
-          router: {
-            '/getting-started': {
-              componentFn: () => ContentPage(),
-            },
-            '/:cId': {
-              componentFn: () => CategoryPage(),
-              router: {
-                '/:fId': {
-                  componentFn: () => ContentPage(),
+      body: Router(
+        {
+          '/:pId': {
+            componentFn: () => MainBody(),
+            router: {
+              '/getting-started': {
+                componentFn: () => ContentPage(),
+              },
+              '/:cId': {
+                componentFn: () => CategoryPage(),
+                router: {
+                  '/:fId': {
+                    componentFn: () => ContentPage(),
+                  },
                 },
               },
             },
           },
         },
-      }),
+        {
+          useHash: true,
+        },
+      ),
     }),
   })
 }
@@ -56,7 +61,7 @@ const MainBody = component(() => {
 
 const CategoryPage = component(() => {
   const outlet = useOutlet()
-  
+
   return outlet
 })
 
