@@ -1,4 +1,4 @@
-import { ComponentBlock } from '@block/component.js'
+import { ComponentBlock } from '@block/component.ts'
 import { BlockRelations } from '@block/util/blockRelations.ts'
 import { DOMController } from '@block/util/domController.ts'
 import { Empty } from '@block/util/mixin.ts'
@@ -12,7 +12,7 @@ import {
   isTextNodeBlock,
   isToggleFlowBlock,
 } from '@type/rvjs.ts'
-import { Queue } from '@util/dataStructure/queue.js'
+import { Queue } from '@util/dataStructure/queue.ts'
 import {
   RVJS_COMPONENT_BLOCK_SYMBOL,
   RVJS_ELEMENT_BLOCK_SYMBOL,
