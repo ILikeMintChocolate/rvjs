@@ -76,12 +76,6 @@ export const pathEvent = (options: RouterOptions) => {
     })
   }
 
-  ;(() => {
-    if (useHash) {
-      window.history.pushState({}, '', `#${getCurrentPath(useHash)}`)
-    }
-  })()
-
   return {
     navigate,
     onPathChange,

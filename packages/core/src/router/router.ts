@@ -1,7 +1,7 @@
 import { Block } from '@block/block.ts'
 import { ComponentBlock } from '@block/component.ts'
 import { component } from '@component/component.ts'
-import { h1 } from '@element/elementMap.ts'
+import { div } from '@element/elementMap.ts'
 import { Switch } from '@flow/switch.ts'
 import { useState } from '@hook/useState.ts'
 import { routeContext } from '@router/context/routerContext.ts'
@@ -20,7 +20,7 @@ export interface RouterProps {
 }
 
 export interface RouterOptions {
-  useHash: boolean
+  useHash?: boolean
 }
 
 interface RouteProps {
@@ -29,18 +29,22 @@ interface RouteProps {
 }
 
 export interface Router {
-  dynamic?: {
-    dynamicKey: string
-    pathname: string
-    componentFn: ComponentFn
-    router?: Router
-  }
   static: {
     [key: string]: {
       pathname: string
       componentFn: ComponentFn
       router?: Router
     }
+  }
+  dynamic?: {
+    dynamicKey: string
+    pathname: string
+    componentFn: ComponentFn
+    router?: Router
+  }
+  any?: {
+    type: 'local' | 'global'
+    componentFn: ComponentFn
   }
 }
 
@@ -101,8 +105,13 @@ const Router = (routerProps: RouterProps, options?: RouterOptions) => {
 
   const findRoutes = (paths: PathToken[], router: Router) => {
     const matchedRoutes: MatchedRouteFn[] = []
+    let globalAnyRoute = null
+
     for (const path of paths) {
       const { pathname, query } = path
+      if (router?.any?.type === 'global') {
+        globalAnyRoute = router.any
+      }
       if (router.static[pathname]) {
         matchedRoutes.push({
           pathType: 'static',
@@ -120,15 +129,26 @@ const Router = (routerProps: RouterProps, options?: RouterOptions) => {
           componentFn: router.dynamic.componentFn,
         })
         router = router.dynamic.router!
+      } else if (router.any) {
+        matchedRoutes.push({
+          pathType: 'error',
+          pathname,
+          query,
+          componentFn: router.any.componentFn,
+        })
+      } else if (globalAnyRoute) {
+        matchedRoutes.push({
+          pathType: 'error',
+          pathname,
+          query,
+          componentFn: globalAnyRoute.componentFn,
+        })
       } else {
         matchedRoutes.push({
           pathType: 'error',
           pathname,
           query,
-          componentFn: () =>
-            component(() => {
-              return h1({ textContent: '404...' })
-            })(),
+          componentFn: () => component(() => div())(),
         })
         break
       }

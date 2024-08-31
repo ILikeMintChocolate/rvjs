@@ -1,6 +1,7 @@
 import type { Router, RouterProps } from '@router/router.ts'
 
 export const normalizeRouter = (routerProps: RouterProps) => {
+  console.log('routerProps', routerProps)
   let router: Router = {
     static: {},
   }
@@ -25,6 +26,11 @@ export const normalizeRouter = (routerProps: RouterProps) => {
 
           traverse(router.dynamic.router, childRouterProps)
         }
+      } else if (isGlobalAnyPathname(key) || isLocalAnyPathname(key)) {
+        router.any = {
+          type: isGlobalAnyPathname(key) ? 'global' : 'local',
+          componentFn: routerProps[key].componentFn,
+        }
       } else {
         router.static[key] = {
           pathname: key,
@@ -48,13 +54,19 @@ export const normalizeRouter = (routerProps: RouterProps) => {
 }
 
 const validatePathname = (pathname: string) => {
-  const pathnameRegex = /^\/(:?[a-zA-Z0-9_-]*)$/
-
+  const pathnameRegex = /^\/(:?[a-zA-Z0-9_-]*)$|^\*|^\/\*$/
   return pathnameRegex.test(pathname)
 }
 
 const isDynamicPathname = (pathname: string) => {
   const pathnameRegex = /^\/:[a-zA-Z0-9_-]+$/
-
   return pathnameRegex.test(pathname)
+}
+
+const isGlobalAnyPathname = (pathname: string) => {
+  return pathname === '*'
+}
+
+const isLocalAnyPathname = (pathname: string) => {
+  return pathname === '/*'
 }
