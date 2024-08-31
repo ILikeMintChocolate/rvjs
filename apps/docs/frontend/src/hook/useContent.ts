@@ -1,34 +1,43 @@
 import { renderComponentFromJSON } from '@rvjs/ui'
 import { getApiPath } from '@util/api.ts'
-
-const contentCache = {}
+import {
+  getItemFromCache,
+  hasItemCache,
+  isCacheExpired,
+  storeItemToCache,
+} from '@util/cache.ts'
 
 export const useGetContent = async (path: string) => {
-  const apiPath = getApiPath(path)
-  if (contentCache[apiPath]) {
-    return contentCache[apiPath]
-  }
-  const rawContent = await fetchContent(apiPath)
+  const apiPath = getApiPath(`${path}.json`)
+  const { content: rawContent } = await getContent(apiPath)
   const { blocks: renderedContent, context } = renderComponentFromJSON(
     rawContent,
     {
       indexHeading: true,
     },
   )
-  contentCache[apiPath] = {
-    content: renderedContent,
-    headingIndex: context.headingIndex,
-  }
   return { content: renderedContent, headingIndex: context.headingIndex }
 }
 
-export const fetchContent = async (path: string) => {
+export const getContent = async (path: string) => {
+  if (hasItemCache(path) && !isCacheExpired(path)) {
+    const content = getItemFromCache(path)
+    return content
+  } else {
+    const content = await fetchContent(path)
+    storeItemToCache(path, content, 3600)
+    return content
+  }
+}
+
+const fetchContent = async (path: string) => {
   const response = await fetch(path, {
-    cache: 'force-cache',
+    method: 'GET',
+    cache: 'no-store',
   })
   if (!response.ok) {
     throw new Error(`Failed to fetch content: ${response.statusText}`)
   }
-  const data = await response.json()
-  return data
+  const content = await response.json()
+  return content
 }
