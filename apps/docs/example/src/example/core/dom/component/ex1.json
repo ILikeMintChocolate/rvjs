@@ -1,0 +1,3 @@
+{
+  "code": "import {\n  button,\n  component,\n  div,\n  h1,\n  onDestroy,\n  onMount,\n  Toggle,\n  useState,\n} from '@rvjs/core'\n\nconst App = component(() => {\n  const [show, setShow] = useState(true)\n\n  return div({\n    children: [\n      button({\n        textContent: 'Toggle',\n        onclick: () => setShow(!show()),\n      }),\n      div({\n        children: [\n          Toggle(show, () => {\n            return Content()\n          }),\n        ],\n      }),\n    ],\n  })\n})\n\nconst Content = component(() => {\n  onMount(() => {\n    console.log('Content mounted')\n  })\n\n  onDestroy(() => {\n    console.log('Content destroyed')\n  })\n\n  return h1({\n    textContent: 'Hello World!',\n  })\n})\n\nexport default App"
+}

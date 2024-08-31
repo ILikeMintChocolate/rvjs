@@ -1,0 +1,3 @@
+{
+  "code": "import { component, div, onMount } from '@rvjs/core'\n\nconst Content = component(() => {\n  onMount(() => {\n    console.log('Content component: mounted')\n  })\n\n  return div({\n    textContent: 'Hello World!',\n  })\n})\n\nexport default Content\n"
+}

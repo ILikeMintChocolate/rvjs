@@ -1,0 +1,3 @@
+{
+  "code": "import { div, dynamic, useState } from '@rvjs/core'\n\nconst DynamicBox = () => {\n  const [width, setWidth] = useState(100)\n\n  return div({\n    children: [\n      div({\n        style: {\n          width: dynamic(() => `${width()}px`),\n          height: '100px',\n          backgroundColor: '#0c8ce9',\n          transition: 'width 0.2s',\n        },\n        onclick: () => {\n          if (width() < 300) {\n            setWidth(width() + 50)\n          }\n        },\n      }),\n    ],\n  })\n}\n\nexport default DynamicBox"
+}
