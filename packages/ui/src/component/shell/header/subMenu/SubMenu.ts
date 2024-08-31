@@ -5,15 +5,18 @@ import {
   Children,
   component,
   ComponentFn,
+  createContext,
   dynamic,
+  GetState,
   onDestroy,
   onMount,
   Prop,
   prop,
   RefObject,
+  SetState,
   svg,
-  useGlobalState,
   useRef,
+  useState,
 } from '@rvjs/core'
 import {
   subMenu_dropDown_style,
@@ -36,9 +39,15 @@ interface SubMenuProps {
   tabIndex?: Prop<number>
 }
 
+interface SubMenuContext {
+  showItems: GetState<boolean>
+  setShowItems: SetState<boolean>
+}
+
+export const subMenuContext = createContext<SubMenuContext>()
+
 const SubMenu: ComponentFn = component<SubMenuProps>((props) => {
   const {
-    id,
     menuName,
     children,
     ariaLabel = prop(() => null),
@@ -47,11 +56,9 @@ const SubMenu: ComponentFn = component<SubMenuProps>((props) => {
     onClick,
     tabIndex = prop(() => 0),
   } = props
-  const [showItems, setShowItems] = useGlobalState(
-    `SUB_MENU_SHOW_ITEMS_${id}`,
-    false,
-  )
+  const [showItems, setShowItems] = useState(false)
   const subMenuRef = useRef<HTMLDivElement>()
+  subMenuContext.setContext({ showItems, setShowItems })
 
   const handleClickOutside = (event: MouseEvent) => {
     if (subMenuRef.current && event.target) {

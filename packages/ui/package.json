@@ -1,7 +1,7 @@
 {
   "name": "@rvjs/ui",
   "description": "UI component library with rvjs",
-  "version": "0.1.1",
+  "version": "0.1.13",
   "repository": {
     "type": "git",
     "url": "https://github.com/ILikMintChocolate/rvjs.git",
@@ -28,7 +28,7 @@
     "dist"
   ],
   "dependencies": {
-    "@rvjs/core": "^0.1.9",
+    "@rvjs/core": "^0.2.0",
     "@rvjs/is": "^0.1.3",
     "@types/prismjs": "^1.26.4",
     "@vanilla-extract/css": "^1.15.2",

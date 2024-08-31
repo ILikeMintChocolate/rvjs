@@ -18,6 +18,7 @@ import { ifIs } from '@util/array.ts'
 import { highlight, languages } from 'prismjs'
 import 'prismjs/themes/prism-coy.css'
 import 'prismjs/components/prism-bash'
+import 'prismjs/components/prism-typescript'
 
 type SingleCodeSnippetProps = CodeSnippetProps
 
