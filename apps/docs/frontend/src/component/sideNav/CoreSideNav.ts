@@ -77,26 +77,16 @@ const CoreSideNav = () => {
                 isActive: prop(() => pathname() === '/core/reactive/useEffect'),
               }),
               SideNavMenuItem({
-                text: prop(() => 'useElement'),
-                href: prop(() => '/core/reactive/useElement'),
-                isActive: prop(
-                  () => pathname() === '/core/reactive/useElement',
-                ),
-              }),
-              SideNavMenuItem({
                 text: prop(() => 'useRef'),
                 href: prop(() => '/core/reactive/useRef'),
                 isActive: prop(() => pathname() === '/core/reactive/useRef'),
               }),
               SideNavMenuItem({
-                text: prop(() => 'onMount'),
-                href: prop(() => '/core/reactive/onMount'),
-                isActive: prop(() => pathname() === '/core/reactive/onMount'),
-              }),
-              SideNavMenuItem({
-                text: prop(() => 'onDestroy'),
-                href: prop(() => '/core/reactive/onDestroy'),
-                isActive: prop(() => pathname() === '/core/reactive/onDestroy'),
+                text: prop(() => 'useElement'),
+                href: prop(() => '/core/reactive/useElement'),
+                isActive: prop(
+                  () => pathname() === '/core/reactive/useElement',
+                ),
               }),
               SideNavMenuItem({
                 text: prop(() => 'dynamic'),
@@ -108,6 +98,23 @@ const CoreSideNav = () => {
                 href: prop(() => '/core/reactive/prop'),
                 isActive: prop(() => pathname() === '/core/reactive/prop'),
               }),
+              SideNavMenuItem({
+                text: prop(() => 'createContext'),
+                href: prop(() => '/core/reactive/createContext'),
+                isActive: prop(
+                  () => pathname() === '/core/reactive/createContext',
+                ),
+              }),
+              SideNavMenuItem({
+                text: prop(() => 'onMount'),
+                href: prop(() => '/core/reactive/onMount'),
+                isActive: prop(() => pathname() === '/core/reactive/onMount'),
+              }),
+              SideNavMenuItem({
+                text: prop(() => 'onDestroy'),
+                href: prop(() => '/core/reactive/onDestroy'),
+                isActive: prop(() => pathname() === '/core/reactive/onDestroy'),
+              }),
             ],
           }),
           SideNavMenu({
@@ -116,7 +123,7 @@ const CoreSideNav = () => {
             children: [
               SideNavMenuItem({
                 text: prop(() => 'Router'),
-                href: prop(() => '/core/router/Router'),
+                href: prop(() => '/core/router/router'),
                 isActive: prop(() => pathname() === '/core/router/router'),
               }),
               SideNavMenuItem({
