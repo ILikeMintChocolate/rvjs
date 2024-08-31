@@ -1,7 +1,12 @@
 import { componentContext } from '@context/executionContext.ts'
+import { throwError } from '@util/error.ts'
 
 const useQueryParams = () => {
-  return componentContext.get()!.queryParams
+  const component = componentContext.get()
+  if (!component) {
+    throwError('USE_QUERY_PARAMS_NOT_IN_COMPONENT_ERROR')
+  }
+  return component.queryParams
 }
 
 export default useQueryParams

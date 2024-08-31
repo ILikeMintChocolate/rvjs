@@ -1,31 +1,30 @@
 import { Block } from '@block/block.ts'
 import { Constructor, Empty } from '@block/util/mixin.ts'
 import { HTMLNode } from '@element/type.ts'
-import { isElement, isForFlow, isTextNode } from '@type/rvjs.ts'
-import { RVJS_ELEMENT_SYMBOL } from '@util/symbol.ts'
+import { isElementBlock, isForFlowBlock, isTextNodeBlock } from '@type/rvjs.ts'
+import { NestedArray } from '@type/util.ts'
+import { RVJS_ELEMENT_BLOCK_SYMBOL } from '@util/symbol.ts'
 
 export const DOMController = <TBase extends Constructor<Empty>>(
   Base: TBase,
 ) => {
   return class extends Base {
     #element: HTMLElement | null
-    #sameLevelNodes: HTMLNode[]
-    #blockIndex: number
+    #nestedNodes: NestedArray<HTMLNode>
     #domIndex: number
     #domLength: number
-    #rerenderableContexts: {
-      block: Block
-      localDOMIndex: number
-    }[]
+    #rerenderableIndex: number
+    #rerenderableChildren: Block[]
 
     constructor(...args: any[]) {
       super(...args)
       const { element } = args[0] as { element: HTMLElement }
       this.element = element
-      this.#sameLevelNodes = []
-      this.#blockIndex = 0
+      this.#nestedNodes = []
       this.#domIndex = 0
       this.#domLength = 0
+      this.#rerenderableIndex = 0
+      this.#rerenderableChildren = []
     }
 
     get element() {
@@ -36,28 +35,24 @@ export const DOMController = <TBase extends Constructor<Empty>>(
       this.#element = element
     }
 
+    get nestedNodes() {
+      return this.#nestedNodes
+    }
+
+    set nestedNodes(nestedNodes: NestedArray<HTMLNode>) {
+      this.#nestedNodes = nestedNodes
+    }
+
     get nodes() {
-      return this.#sameLevelNodes
-    }
-
-    set nodes(nodes: HTMLNode[]) {
-      this.#sameLevelNodes = nodes
-    }
-
-    get blockIndex() {
-      return this.#blockIndex
-    }
-
-    set blockIndex(index: number) {
-      this.#blockIndex = index
+      return (this.#nestedNodes as any[]).flat(Infinity)
     }
 
     get domIndex() {
       return this.#domIndex
     }
 
-    set domIndex(index: number) {
-      this.#domIndex = index
+    set domIndex(domIndex: number) {
+      this.#domIndex = domIndex
     }
 
     get domLength() {
@@ -68,22 +63,25 @@ export const DOMController = <TBase extends Constructor<Empty>>(
       this.#domLength = length
     }
 
-    get rerenderableContexts() {
-      return this.#rerenderableContexts
+    get rerenderableIndex() {
+      return this.#rerenderableIndex
     }
 
-    set rerenderableContexts(
-      contexts: {
-        block: Block
-        localDOMIndex: number
-      }[],
-    ) {
-      this.#rerenderableContexts = contexts
+    set rerenderableIndex(rerenderableIndex: number) {
+      this.#rerenderableIndex = rerenderableIndex
+    }
+
+    get rerenderableChildren() {
+      return this.#rerenderableChildren
+    }
+
+    set rerenderableChildren(children: Block[]) {
+      this.#rerenderableChildren = children
     }
 
     initialDOMUpdate(block: Block) {
       const parent = block.parent
-      if (parent.$$typeof === RVJS_ELEMENT_SYMBOL) {
+      if (parent.$$typeof === RVJS_ELEMENT_BLOCK_SYMBOL) {
         parent.requestDOMPushUpdate(parent, parent.nodes)
       } else {
         parent.initialDOMUpdate(parent)
@@ -93,9 +91,18 @@ export const DOMController = <TBase extends Constructor<Empty>>(
     requestDOMPushUpdate(block: Block, newNodes: HTMLNode[]) {
       const fragment = document.createDocumentFragment()
       fragment.append(...newNodes)
-      if (block.$$typeof === RVJS_ELEMENT_SYMBOL) {
+      if (block.$$typeof === RVJS_ELEMENT_BLOCK_SYMBOL) {
         block.#element.append(fragment)
       }
+    }
+
+    requestRerenderableChildrenUpdate(child: Block, increased: number) {
+      this.rerenderableChildren
+        .slice(child.rerenderableIndex + 1)
+        .forEach((child) => {
+          child.domIndex += increased
+        })
+      this.domLength += increased
     }
 
     requestDOMSwapUpdate(
@@ -103,14 +110,15 @@ export const DOMController = <TBase extends Constructor<Empty>>(
       me: Block,
       newNodes: HTMLNode[],
       deletable: Block[],
-      blockIndex: number,
+      rerenderableIndex: number,
       domIndex: number,
       domLength: number,
       increased: number,
     ) {
       const parent = me.parent
-      if (isElement(me)) {
-        const { localDOMIndex } = me.rerenderableContexts[blockIndex]
+      if (isElementBlock(me)) {
+        const { domIndex: localDOMIndex } =
+          me.rerenderableChildren[rerenderableIndex]
         for (let i = 0; i < deletable.length; i++) {
           const deletableParent = deletable[i]
           const deletableElements: HTMLNode[] = []
@@ -118,9 +126,9 @@ export const DOMController = <TBase extends Constructor<Empty>>(
             if (!child) {
               return
             }
-            if (isElement(child) || isTextNode(child)) {
+            if (isElementBlock(child) || isTextNodeBlock(child)) {
               deletableElements.push(child.element)
-            } else if (isForFlow(child)) {
+            } else if (isForFlowBlock(child)) {
               for (let i = 0; i < child.children.length; i++) {
                 findElementChild(child.children[i])
               }
@@ -144,31 +152,28 @@ export const DOMController = <TBase extends Constructor<Empty>>(
           if (nNode === pNode) {
             pNodeIndex++
           } else {
-            if (isElement(me)) {
-              this.element.insertBefore(nNode, pNode)
+            if (isElementBlock(me)) {
+              me.element.insertBefore(nNode, pNode)
             }
           }
         })
-        if (!isElement(caller)) {
-          this.rerenderableContexts.slice(blockIndex + 1).forEach((context) => {
-            context.localDOMIndex += increased
-          })
-        }
+        me.requestRerenderableChildrenUpdate(me, increased)
       } else {
-        const { localDOMIndex } = me.rerenderableContexts[blockIndex]
+        const { domIndex: localDOMIndex } =
+          me.rerenderableChildren[rerenderableIndex]
+        me.nestedNodes[caller.domIndex] = caller.nestedNodes
+        me.domLength += increased
         parent.requestDOMSwapUpdate(
           me,
           parent,
           newNodes,
           deletable,
-          me.blockIndex,
+          me.rerenderableIndex,
           domIndex + localDOMIndex,
           domLength,
           increased,
         )
-        me.rerenderableContexts.slice(blockIndex + 1).forEach((context) => {
-          context.localDOMIndex += increased
-        })
+        me.requestRerenderableChildrenUpdate(me, increased)
       }
     }
   }

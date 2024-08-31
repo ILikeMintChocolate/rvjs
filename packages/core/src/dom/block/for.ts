@@ -3,7 +3,8 @@ import { subscribeStateContext } from '@context/executionContext.ts'
 import { HTMLNode } from '@element/type.ts'
 import { Prop } from '@hook/prop.ts'
 import { GetState, isGetState } from '@hook/useState.ts'
-import { isElement, isTextNode } from '@type/rvjs.ts'
+import { isElementBlock, isTextNodeBlock } from '@type/rvjs.ts'
+import { NestedArray } from '@type/util.ts'
 import { ArrayMap } from '@util/dataStructure/arrayMap.ts'
 
 export interface ForProps<Item> {
@@ -41,8 +42,8 @@ export class ForBlock<Item> extends Block {
       this.parent,
       this.nodes,
       [...deletable],
-      this.blockIndex,
-      this.domIndex,
+      this.rerenderableIndex,
+      0,
       this.domLength,
       increased,
     )
@@ -73,45 +74,44 @@ export class ForBlock<Item> extends Block {
     })()
     const prevOrderMap = this.#orderMap
     const currOrderMap = new ArrayMap<Item, IndexedObject>()
-    const newNodes: HTMLNode[] = []
+    const newNestedNodes: NestedArray<HTMLNode> = []
     const newChildren: Block[] = []
     const triggerBlocks = []
     const deletable = new Set(this.children)
-    const rerenderableContexts = []
+    const rerenderableChildren = []
     let domIndex = 0
-    let blockIndex = 0
+    let rerenderableIndex = 0
     for (let i = 0; i < items.length; i++) {
       const item = items[i]
       const isExist = prevOrderMap.has(item)
-      const block = isExist
+      const child = isExist
         ? prevOrderMap.pop(item).block
         : this.#renderBlock(item, i)
       if (isExist) {
-        deletable.delete(block)
+        deletable.delete(child)
       } else {
-        triggerBlocks.push(block)
+        triggerBlocks.push(child)
       }
-      newChildren.push(block)
-      currOrderMap.push(item, { index: i, block })
-      block.domIndex = domIndex
-      if (isElement(block) || isTextNode(block)) {
-        newNodes.push(block.element)
+      newChildren.push(child)
+      currOrderMap.push(item, { index: i, block: child })
+      if (isElementBlock(child) || isTextNodeBlock(child)) {
+        domIndex += 1
+        newNestedNodes.push(child.element)
       } else {
-        newNodes.push(...block.nodes)
-        block.blockIndex = blockIndex++
-        rerenderableContexts.push({
-          block: block,
-          localDOMIndex: domIndex,
-        })
+        child.rerenderableIndex = rerenderableIndex++
+        child.domIndex = domIndex
+        domIndex += child.domLength
+        rerenderableChildren.push(child)
+        newNestedNodes.push(child.nestedNodes)
       }
-      domIndex += block.domLength
     }
-    const increased = newNodes.length - this.domLength
-    this.nodes = newNodes
+    const newNestedNodesLength = (newNestedNodes as any[]).flat(Infinity).length
+    const increased = newNestedNodesLength - this.domLength
+    this.nestedNodes = newNestedNodes
     this.children = newChildren
     this.#orderMap = currOrderMap
-    this.domLength = newNodes.length
-    this.rerenderableContexts = rerenderableContexts
+    this.domLength = newNestedNodesLength
+    this.rerenderableChildren = rerenderableChildren
     return { triggerBlocks, deletable, increased }
   }
 

@@ -1,7 +1,8 @@
 import { Block } from '@block/block.ts'
 import { HTMLNode } from '@element/type.ts'
-import { isElement, isTextNode } from '@type/rvjs.ts'
+import { isElementBlock, isTextNodeBlock } from '@type/rvjs.ts'
 import { Children } from '@type/type.ts'
+import { NestedArray } from '@type/util.ts'
 
 export class ElementBlock extends Block {
   constructor(...args: any[]) {
@@ -14,9 +15,9 @@ export class ElementBlock extends Block {
 
   appendChildren(children: Children) {
     let domIndex = 0
-    let blockIndex = 0
-    const rerenderableContexts = []
-    const newNodes: HTMLNode[] = []
+    let rerenderableIndex = 0
+    const rerenderableChildren = []
+    const newNestedNodes: NestedArray<HTMLNode> = []
     for (let i = 0; i < children.length; i++) {
       const child = children[i]
       if (!child) {
@@ -24,21 +25,19 @@ export class ElementBlock extends Block {
       }
       child.parent = this
       this.addChild(child)
-      if (isElement(child) || isTextNode(child)) {
+      if (isElementBlock(child) || isTextNodeBlock(child)) {
+        newNestedNodes.push(child.element)
         domIndex += 1
-        newNodes.push(child.element)
       } else {
-        child.blockIndex = blockIndex++
-        rerenderableContexts.push({
-          block: child,
-          localDOMIndex: domIndex,
-        })
-        newNodes.push(...child.nodes)
+        child.rerenderableIndex = rerenderableIndex++
+        rerenderableChildren.push(child)
+        child.domIndex = domIndex
         domIndex += child.domLength
+        newNestedNodes.push(child.nestedNodes)
       }
     }
-    this.rerenderableContexts = rerenderableContexts
-    this.nodes = newNodes
+    this.rerenderableChildren = rerenderableChildren
+    this.nestedNodes = newNestedNodes
     const fragment = document.createDocumentFragment()
     fragment.append(...this.nodes)
     this.element.appendChild(fragment)

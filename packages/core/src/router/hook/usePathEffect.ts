@@ -1,8 +1,8 @@
 import { useEffect } from '@hook/useEffect.ts'
-import { pathEvent, Route } from '@router/util/event.ts'
+import { getPathEventInstance, Route } from '@router/util/event.ts'
 
 const usePathEffect = (callback: (routes: Route[]) => void) => {
-  const { getRoutes } = pathEvent
+  const { getRoutes } = getPathEventInstance()
 
   useEffect(() => {
     callback(getRoutes())

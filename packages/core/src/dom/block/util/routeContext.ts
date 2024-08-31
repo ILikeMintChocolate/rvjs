@@ -6,6 +6,7 @@ export const RouteContext = <TBase extends Constructor<Empty>>(Base: TBase) => {
     #queryParams: Record<string, string>
     #pathParam: { key: string; value: string } | null
     #setOutlet: Function | null
+    #lazySetOutlet: Function | null
 
     constructor(...args: any[]) {
       super(...args)
@@ -13,6 +14,7 @@ export const RouteContext = <TBase extends Constructor<Empty>>(Base: TBase) => {
       this.#queryParams = {}
       this.#pathParam = null
       this.#setOutlet = null
+      this.#lazySetOutlet = null
     }
 
     get pathname() {
@@ -45,6 +47,16 @@ export const RouteContext = <TBase extends Constructor<Empty>>(Base: TBase) => {
 
     set setOutlet(setOutlet: Function) {
       this.#setOutlet = setOutlet
+    }
+
+    set lazySetOutlet(lazySetOutlet: Function) {
+      this.#lazySetOutlet = lazySetOutlet
+    }
+
+    triggerLazySetOutlet() {
+      if (this.#lazySetOutlet) {
+        this.#lazySetOutlet()
+      }
     }
   }
 }
