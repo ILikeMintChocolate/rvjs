@@ -1,3 +1,4 @@
+import { ComponentBlock } from '@block/component.js'
 import { BlockRelations } from '@block/util/blockRelations.ts'
 import { DOMController } from '@block/util/domController.ts'
 import { Empty } from '@block/util/mixin.ts'
@@ -11,6 +12,7 @@ import {
   isTextNodeBlock,
   isToggleFlowBlock,
 } from '@type/rvjs.ts'
+import { Queue } from '@util/dataStructure/queue.js'
 import {
   RVJS_COMPONENT_BLOCK_SYMBOL,
   RVJS_ELEMENT_BLOCK_SYMBOL,
@@ -71,14 +73,18 @@ export class Block extends RouteContext(
   }
 
   #commit() {
+    const onMountQueue = new Queue<ComponentBlock>()
     this.traverseChildren(this, (child) => {
       if (isComponentBlock(child)) {
         if (!child.isRendered()) {
           child.triggerLazyRender()
         }
-        child.triggerOnMount()
+        onMountQueue.push(child)
       }
       return true
+    })
+    onMountQueue.popAll((child) => {
+      child.triggerOnMount()
     })
   }
 
