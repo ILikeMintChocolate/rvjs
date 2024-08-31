@@ -11,4 +11,5 @@ export const content_outer_style = style({
 export const content_inner_style = style({
   flexDirection: 'column',
   width: '42rem',
+  gap: '2rem',
 })

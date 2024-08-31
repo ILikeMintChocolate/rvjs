@@ -9,6 +9,9 @@ import {
 
 const NoContentError = () => {
   return Flex({
+    style: {
+      flex: '1',
+    },
     direction: 'column',
     align: 'center',
     justifyContent: 'center',
