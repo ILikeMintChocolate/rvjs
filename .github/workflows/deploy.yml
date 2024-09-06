@@ -54,13 +54,17 @@ jobs:
       - name: Pull latest changes from docs-fe/deploy branch
         run: |
           git pull origin docs-fe/deploy
-
+          
       - name: Delete existing files in docs folder
         run: |
           rm -f docs/index.html
           rm -rf docs/assets
-          git add docs/
-          git commit -m "docs-fe-deploy: initial dist"
+          if git diff --quiet docs/; then
+            echo "No changes in docs folder, skipping commit."
+          else
+            git add docs/
+            git commit -m "docs-fe-deploy: initial dist"
+          fi
 
       - name: Download build artifacts
         uses: actions/download-artifact@v3
