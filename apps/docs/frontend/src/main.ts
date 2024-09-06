@@ -4,7 +4,7 @@ import { startRvjsUI } from '@rvjs/ui'
 import '/node_modules/@rvjs/ui/dist/style.css'
 
 startRvjsUI({
-  environment: 'development',
+  environment: import.meta.env.MODE as 'development' | 'production',
 })
 
 window.addEventListener('beforeunload', () => {
