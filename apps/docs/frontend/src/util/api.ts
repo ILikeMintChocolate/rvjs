@@ -1,3 +1,3 @@
 export const getApiPath = (path: string) => {
-  return `${import.meta.env.VITE_API_URL}/${path}`
+  return `https://rvjs.xyz/content/${path}`
 }
