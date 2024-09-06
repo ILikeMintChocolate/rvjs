@@ -1,0 +1,384 @@
+{
+  "content": [
+    {
+      "type": "component",
+      "name": "Text",
+      "props": {
+        "as": "h1",
+        "text": "reference",
+        "kind": "heading-06"
+      }
+    },
+    {
+      "type": "component",
+      "name": "Section",
+      "props": {
+        "children": [
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "children": [
+                {
+                  "type": "text",
+                  "name": "text",
+                  "props": {
+                    "text": "값이 특정 객체 타입인지 확인합니다."
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "component",
+      "name": "Section",
+      "props": {
+        "children": [
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "text": "종류",
+              "kind": "heading-03",
+              "as": "h4"
+            }
+          },
+          {
+            "type": "component",
+            "name": "UnorderedList",
+            "props": {
+              "children": [
+                {
+                  "type": "component",
+                  "name": "ListItem",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "Text",
+                        "props": {
+                          "as": "span",
+                          "children": [
+                            {
+                              "type": "component",
+                              "name": "CodeSnippet",
+                              "props": {
+                                "codeText": "isArrayType",
+                                "language": "javascript",
+                                "type": "inline"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "ListItem",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "Text",
+                        "props": {
+                          "as": "span",
+                          "children": [
+                            {
+                              "type": "component",
+                              "name": "CodeSnippet",
+                              "props": {
+                                "codeText": "isObjectType",
+                                "language": "javascript",
+                                "type": "inline"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "ListItem",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "Text",
+                        "props": {
+                          "as": "span",
+                          "children": [
+                            {
+                              "type": "component",
+                              "name": "CodeSnippet",
+                              "props": {
+                                "codeText": "isFunctionType",
+                                "language": "javascript",
+                                "type": "inline"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "ListItem",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "Text",
+                        "props": {
+                          "as": "span",
+                          "children": [
+                            {
+                              "type": "component",
+                              "name": "CodeSnippet",
+                              "props": {
+                                "codeText": "isDate",
+                                "language": "javascript",
+                                "type": "inline"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "ListItem",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "Text",
+                        "props": {
+                          "as": "span",
+                          "children": [
+                            {
+                              "type": "component",
+                              "name": "CodeSnippet",
+                              "props": {
+                                "codeText": "isRegExp",
+                                "language": "javascript",
+                                "type": "inline"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "ListItem",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "Text",
+                        "props": {
+                          "as": "span",
+                          "children": [
+                            {
+                              "type": "component",
+                              "name": "CodeSnippet",
+                              "props": {
+                                "codeText": "isError",
+                                "language": "javascript",
+                                "type": "inline"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "ListItem",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "Text",
+                        "props": {
+                          "as": "span",
+                          "children": [
+                            {
+                              "type": "component",
+                              "name": "CodeSnippet",
+                              "props": {
+                                "codeText": "isPromise",
+                                "language": "javascript",
+                                "type": "inline"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "ListItem",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "Text",
+                        "props": {
+                          "as": "span",
+                          "children": [
+                            {
+                              "type": "component",
+                              "name": "CodeSnippet",
+                              "props": {
+                                "codeText": "isSet",
+                                "language": "javascript",
+                                "type": "inline"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "ListItem",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "Text",
+                        "props": {
+                          "as": "span",
+                          "children": [
+                            {
+                              "type": "component",
+                              "name": "CodeSnippet",
+                              "props": {
+                                "codeText": "isMap",
+                                "language": "javascript",
+                                "type": "inline"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "ListItem",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "Text",
+                        "props": {
+                          "as": "span",
+                          "children": [
+                            {
+                              "type": "component",
+                              "name": "CodeSnippet",
+                              "props": {
+                                "codeText": "isWeakSet",
+                                "language": "javascript",
+                                "type": "inline"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "ListItem",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "Text",
+                        "props": {
+                          "as": "span",
+                          "children": [
+                            {
+                              "type": "component",
+                              "name": "CodeSnippet",
+                              "props": {
+                                "codeText": "isWeakMap",
+                                "language": "javascript",
+                                "type": "inline"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "element",
+      "name": "div",
+      "props": {
+        "style": {
+          "height": "60vh"
+        }
+      }
+    },
+    {
+      "type": "component",
+      "name": "Link",
+      "props": {
+        "href": "xxxxxxxxxxxxxxxxxxxx",
+        "children": [
+          {
+            "type": "component",
+            "name": "Icon",
+            "props": {
+              "type": "document",
+              "style": {
+                "width": "1rem",
+                "filter": "brightness(0) saturate(100%) invert(25%) sepia(69%) saturate(3617%) hue-rotate(218deg) brightness(100%) contrast(104%)"
+              }
+            }
+          },
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "text": "Raw Data From Github",
+              "color": "linkPrimary"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
