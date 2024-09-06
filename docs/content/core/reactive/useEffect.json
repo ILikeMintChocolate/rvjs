@@ -241,7 +241,7 @@
       "type": "component",
       "name": "Link",
       "props": {
-        "href": "xxxxxxxxxxxxxxxxxxxx",
+        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/core/reactive/useEffect.json",
         "children": [
           {
             "type": "component",

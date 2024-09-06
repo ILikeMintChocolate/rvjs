@@ -1006,7 +1006,7 @@
       "type": "component",
       "name": "Link",
       "props": {
-        "href": "xxxxxxxxxxxxxxxxxxxx",
+        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/is/type/rvjs-core.json",
         "children": [
           {
             "type": "component",

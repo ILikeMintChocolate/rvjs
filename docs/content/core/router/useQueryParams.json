@@ -182,7 +182,7 @@
       "type": "component",
       "name": "Link",
       "props": {
-        "href": "xxxxxxxxxxxxxxxxxxxx",
+        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/core/router/useQueryParams.json",
         "children": [
           {
             "type": "component",

@@ -393,7 +393,7 @@
       "type": "component",
       "name": "Link",
       "props": {
-        "href": "xxxxxxxxxxxxxxxxxxxx",
+        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/core/dom/toggle.json",
         "children": [
           {
             "type": "component",

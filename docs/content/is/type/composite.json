@@ -519,7 +519,7 @@
       "type": "component",
       "name": "Link",
       "props": {
-        "href": "xxxxxxxxxxxxxxxxxxxx",
+        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/is/type/composite.json",
         "children": [
           {
             "type": "component",
