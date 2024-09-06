@@ -7,6 +7,9 @@ import InlineCodeSnippet from '@typography/codeSnippet/inline/InlineCodeSnippet.
 import LinkCodeSnippet from '@typography/codeSnippet/link/LinkCodeSnippet.ts'
 import MultiCodeSnippet from '@typography/codeSnippet/multi/MultiCodeSnippet.ts'
 import SingleCodeSnippet from '@typography/codeSnippet/single/SingleCodeSnippet.ts'
+import 'prismjs/themes/prism-coy.css'
+import 'prismjs/components/prism-bash'
+import 'prismjs/components/prism-typescript'
 
 const CodeSnippet = (props: CodeSnippetProps) => {
   const {
