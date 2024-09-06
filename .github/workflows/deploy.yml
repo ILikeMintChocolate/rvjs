@@ -1,0 +1,78 @@
+name: Build Docs
+
+on:
+  push:
+    branches:
+      - docs-fe/dev
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: '0'
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        working-directory: apps/docs/frontend
+        run: npm install
+
+      - name: Build the project
+        working-directory: apps/docs/frontend
+        run: npm run build
+
+      - name: Update asset paths in index.html
+        run: |
+          sed -i 's|/assets|assets|g' apps/docs/frontend/dist/index.html
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: docs-build
+          path: apps/docs/frontend/dist/
+
+  push:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v3
+        with:
+          ref: docs-fe/deploy
+
+      - name: Configure Git user
+        run: |
+          git config --local user.name "GitHub Actions"
+          git config --local user.email "actions@github.com"
+
+      - name: Pull latest changes from docs-fe/deploy branch
+        run: |
+          git pull origin docs-fe/deploy
+
+      - name: Delete existing files in docs folder
+        run: |
+          rm -f docs/index.html
+          rm -rf docs/assets
+          git add docs/
+          git commit -m "docs-fe-deploy: initial dist"
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: docs-build
+          path: docs
+
+      - name: Commit changes in docs/dev
+        run: |
+          git add docs/
+          git commit -m "docs-fe-deploy: update dist"
+
+      - name: Push commit to docs-fe/deploy branch
+        run: |
+          git push origin docs-fe/deploy
