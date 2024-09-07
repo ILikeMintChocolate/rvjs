@@ -106,7 +106,7 @@
                                       "codeText": "ElementBlock",
                                       "language": "javascript",
                                       "type": "link",
-                                      "href": "zzzzzzzzzzzzzzzzzzzzzzzzz"
+                                      "href": "/core/dom/element"
                                     }
                                   },
                                   {
@@ -170,7 +170,7 @@
                                       "codeText": "ComponentBlock",
                                       "language": "javascript",
                                       "type": "link",
-                                      "href": "zzzzzzzzzzzzzzzzzzzzzzzzz"
+                                      "href": "/core/dom/component"
                                     }
                                   },
                                   {
@@ -234,7 +234,7 @@
                                       "codeText": "ForBlock",
                                       "language": "javascript",
                                       "type": "link",
-                                      "href": "zzzzzzzzzzzzzzzzzzzzzzzzz"
+                                      "href": "/core/dom/for"
                                     }
                                   },
                                   {
@@ -298,7 +298,7 @@
                                       "codeText": "SwitchBlock",
                                       "language": "javascript",
                                       "type": "link",
-                                      "href": "zzzzzzzzzzzzzzzzzzzzzzzzz"
+                                      "href": "/core/dom/switch"
                                     }
                                   },
                                   {
@@ -362,7 +362,7 @@
                                       "codeText": "ToggleBlock",
                                       "language": "javascript",
                                       "type": "link",
-                                      "href": "zzzzzzzzzzzzzzzzzzzzzzzzz"
+                                      "href": "/core/dom/toggle"
                                     }
                                   },
                                   {
@@ -426,7 +426,7 @@
                                       "codeText": "TextNodeBlock",
                                       "language": "javascript",
                                       "type": "link",
-                                      "href": "zzzzzzzzzzzzzzzzzzzzzzzzz"
+                                      "href": "/core/dom/textNode"
                                     }
                                   },
                                   {
@@ -776,7 +776,7 @@
                                       "codeText": "useState",
                                       "language": "javascript",
                                       "type": "link",
-                                      "href": "zzzzzzzzzzzzzzzzzzzzzzzzz"
+                                      "href": "/core/reactive/useState"
                                     }
                                   },
                                   {
@@ -825,7 +825,7 @@
                                       "codeText": "isGetState",
                                       "language": "javascript",
                                       "type": "link",
-                                      "href": "zzzzzzzzzzzzzzzzzzzzzzzzz"
+                                      "href": "/is/type/composite"
                                     }
                                   },
                                   {
@@ -968,7 +968,7 @@
                                       "codeText": "prop",
                                       "language": "javascript",
                                       "type": "link",
-                                      "href": "zzzzzzzzzzzzzzzzzzzzzzzzz"
+                                      "href": "/core/reactive/prop"
                                     }
                                   },
                                   {

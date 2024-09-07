@@ -74,7 +74,7 @@
             "type": "component",
             "name": "Text",
             "props": {
-              "text": "에시",
+              "text": "예시",
               "kind": "heading-03",
               "as": "h4"
             }
@@ -411,7 +411,7 @@
                                 "codeText": "createContext",
                                 "language": "javascript",
                                 "type": "link",
-                                "href": "zzzzzzzzzzzzzzzzzzzzzzzzz"
+                                "href": "/core/reactive/createContext"
                               }
                             },
                             {
