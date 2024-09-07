@@ -1,13 +1,14 @@
 import Flex from '@layout/flex/Flex.ts'
-import { Children, prop } from '@rvjs/core'
+import { prop } from '@rvjs/core'
+import { checkProps } from '@rvjs/is'
 import { sideNavItems_style } from '@shell/sideNav/sideNavItems/SideNavItems.css.ts'
-
-interface SideNavItemsProps {
-  children: Children
-}
+import {
+  SideNavItemsProps,
+  sideNavItemsType,
+} from '@shell/sideNav/sideNavItems/SideNavItems.props.ts'
 
 const SideNavItems = (props: SideNavItemsProps) => {
-  const { children } = props
+  const { children } = checkProps(props, sideNavItemsType)
 
   return Flex({
     as: 'ul',

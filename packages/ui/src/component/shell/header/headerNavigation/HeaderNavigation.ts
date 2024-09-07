@@ -1,17 +1,17 @@
 import Flex from '@layout/flex/Flex.ts'
-import { Children } from '@rvjs/core'
 import { prop } from '@rvjs/core'
+import { checkProps } from '@rvjs/is'
 import {
   headerNavigation_nav_style,
   headerNavigation_ul_style,
 } from '@shell/header/headerNavigation/HeaderNavigation.css.ts'
-
-interface HeaderNavigationProps {
-  children?: Children
-}
+import {
+  HeaderNavigationProps,
+  headerNavigationPropsType,
+} from '@shell/header/headerNavigation/HeaderNavigation.props.ts'
 
 const HeaderNavigation = (props: HeaderNavigationProps) => {
-  const { children = [] } = props
+  const { children } = checkProps(props, headerNavigationPropsType)
 
   return Flex({
     as: 'nav',

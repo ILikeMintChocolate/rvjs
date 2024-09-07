@@ -4,25 +4,21 @@ import {
   component,
   ComponentFn,
   dynamic,
-  Prop,
   prop,
   useNavigate,
 } from '@rvjs/core'
+import { checkProps } from '@rvjs/is'
 import { subMenuContext } from '@shell/header/subMenu/SubMenu.ts'
 import {
   subMenuItem_anchor_recipe,
   subMenuItem_li_style,
   subMenuItem_text_recipe,
 } from '@shell/header/subMenuItem/SubMenuItem.css.ts'
+import {
+  SubMenuItemProps,
+  subMenuItemPropsType,
+} from '@shell/header/subMenuItem/SubMenuItem.props.ts'
 import Text from '@typography/text/Text.ts'
-
-interface SubMenuItemProps {
-  id: string
-  href: Prop<string>
-  text: Prop<string>
-  isActive?: Prop<boolean>
-  tabIndex?: Prop<number>
-}
 
 const SubMenuItem: ComponentFn = component<SubMenuItemProps>((props) => {
   const {
@@ -30,7 +26,7 @@ const SubMenuItem: ComponentFn = component<SubMenuItemProps>((props) => {
     text,
     isActive = prop(() => false),
     tabIndex = prop(() => 0),
-  } = props
+  } = checkProps(props, subMenuItemPropsType)
   const { setShowItems } = subMenuContext.getContext()
   const navigate = useNavigate()
 

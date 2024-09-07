@@ -1,18 +1,16 @@
 import Flex from '@layout/flex/Flex.ts'
-import { a, dynamic, Prop, prop, useNavigate } from '@rvjs/core'
+import { a, dynamic, prop, useNavigate } from '@rvjs/core'
+import { checkProps } from '@rvjs/is'
 import {
   sideNavLink_anchor_style,
   sideNavLink_style,
   sideNavLink_text_recipe,
 } from '@shell/sideNav/sideNavLink/SideNavLink.css.ts'
+import {
+  SideNavLinkProps,
+  sideNavLinkPropsType,
+} from '@shell/sideNav/sideNavLink/SideNavLink.props.ts'
 import Text from '@typography/text/Text.ts'
-
-interface SideNavLinkProps {
-  text: Prop<string>
-  href: Prop<string>
-  isActive?: Prop<boolean>
-  tabIndex?: Prop<number>
-}
 
 const SideNavLink = (props: SideNavLinkProps) => {
   const {
@@ -20,7 +18,7 @@ const SideNavLink = (props: SideNavLinkProps) => {
     href,
     isActive = prop(() => true),
     tabIndex = prop(() => 0),
-  } = props
+  } = checkProps(props, sideNavLinkPropsType)
   const navigate = useNavigate()
 
   return Flex({

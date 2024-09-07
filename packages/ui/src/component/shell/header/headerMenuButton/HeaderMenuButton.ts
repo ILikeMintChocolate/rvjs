@@ -1,18 +1,16 @@
 import defaultCloseSvg from '@icon/close.svg?element'
 import defaultMenuSvg from '@icon/menu.svg?element'
 import { button, component, ComponentFn, svg, Switch } from '@rvjs/core'
+import { checkProps } from '@rvjs/is'
 import {
   headerMenuButton_button_style,
   headerMenuButton_icon_style,
 } from '@shell/header/headerMenuButton/HeaderMenuButton.css.ts'
+import {
+  HeaderMenuButtonProps,
+  headerMenuButtonPropsType,
+} from '@shell/header/headerMenuButton/HeaderMenuButton.props.ts'
 import { rvjsUIThemeContext } from '@system/provider.ts'
-import { EventHandlers } from '@type/event.ts'
-
-interface HeaderMenuButtonProps {
-  onClick?: EventHandlers['onClick']
-  menuIcon?: SVGElement
-  closeIcon?: SVGElement
-}
 
 const HeaderMenuButton: ComponentFn = component<HeaderMenuButtonProps>(
   (props) => {
@@ -20,7 +18,7 @@ const HeaderMenuButton: ComponentFn = component<HeaderMenuButtonProps>(
       onClick,
       menuIcon = defaultMenuSvg,
       closeIcon = defaultCloseSvg,
-    } = props
+    } = checkProps(props, headerMenuButtonPropsType)
     const { showSideNav, setShowSideNav } = rvjsUIThemeContext.getContext()
 
     return button({

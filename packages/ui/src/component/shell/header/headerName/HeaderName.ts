@@ -1,16 +1,15 @@
-import { a, Prop, prop, useNavigate } from '@rvjs/core'
+import { a, prop, useNavigate } from '@rvjs/core'
+import { checkProps } from '@rvjs/is'
 import { headerName_style } from '@shell/header/headerName/HeaderName.css.ts'
+import {
+  HeaderNameProps,
+  headerNamePropsType,
+} from '@shell/header/headerName/HeaderName.props.ts'
 import Text from '@typography/text/Text.ts'
 import { ifIs } from '@util/array.ts'
 
-interface HeaderNameProps {
-  title: Prop<string>
-  href: Prop<string>
-  prefix?: Prop<string>
-}
-
 const HeaderName = (props: HeaderNameProps) => {
-  const { title, href, prefix } = props
+  const { title, href, prefix } = checkProps(props, headerNamePropsType)
   const navigate = useNavigate()
 
   return a({

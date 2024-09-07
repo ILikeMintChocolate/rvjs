@@ -1,19 +1,15 @@
-import { Child, prop } from '@rvjs/core'
+import { prop } from '@rvjs/core'
+import { checkProps } from '@rvjs/is'
 import { Flex, ifIs } from '@rvjs/ui'
 import {
   shell_body_style,
   shell_bodyWrapper_style,
   shell_style,
 } from '@shell/shell/Shell.css.ts'
-
-interface ShellProps {
-  header: Child
-  body: Child
-  panel?: Child
-}
+import { ShellProps, shellPropsType } from '@shell/shell/Shell.props.ts'
 
 const Shell = (props: ShellProps) => {
-  const { header, body, panel } = props
+  const { header, body, panel } = checkProps(props, shellPropsType)
 
   return Flex({
     classes: [prop(() => shell_style)],
