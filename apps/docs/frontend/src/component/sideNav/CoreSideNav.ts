@@ -39,6 +39,11 @@ const CoreSideNav = () => {
                 isActive: prop(() => pathname() === '/core/dom/root'),
               }),
               SideNavMenuItem({
+                text: prop(() => 'textNode'),
+                href: prop(() => '/core/dom/textNode'),
+                isActive: prop(() => pathname() === '/core/dom/textNode'),
+              }),
+              SideNavMenuItem({
                 text: prop(() => 'For'),
                 href: prop(() => '/core/dom/for'),
                 isActive: prop(() => pathname() === '/core/dom/for'),
