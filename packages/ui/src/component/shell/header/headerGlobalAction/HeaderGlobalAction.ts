@@ -1,20 +1,15 @@
 import Flex from '@layout/flex/Flex.ts'
 import Tooltip from '@overlay/tooltip/Tooltip.ts'
-import { button, Children, dynamic, Prop, prop, Switch } from '@rvjs/core'
+import { button, dynamic, prop, Switch } from '@rvjs/core'
+import { checkProps } from '@rvjs/is'
 import {
   headerGlobalAction_button_recipe,
   headerGlobalAction_li_style,
 } from '@shell/header/headerGlobalAction/HeaderGlobalAction.css.ts'
-import { EventHandlers } from '@type/event.ts'
-
-interface HeaderGlobalActionProps {
-  children: Children
-  classes?: Prop<string>[]
-  isActive?: Prop<boolean>
-  onClick?: EventHandlers['onClick']
-  tooltip?: Prop<string>
-  tooltipAlignment?: 'start' | 'center' | 'end'
-}
+import {
+  HeaderGlobalActionProps,
+  headerGlobalActionPropsType,
+} from '@shell/header/headerGlobalAction/HeaderGlobalAction.props.ts'
 
 const HeaderGlobalAction = (props: HeaderGlobalActionProps) => {
   const {
@@ -23,7 +18,7 @@ const HeaderGlobalAction = (props: HeaderGlobalActionProps) => {
     isActive = prop(() => false),
     onClick,
     tooltip,
-  } = props
+  } = checkProps(props, headerGlobalActionPropsType)
 
   return Flex({
     as: 'li',

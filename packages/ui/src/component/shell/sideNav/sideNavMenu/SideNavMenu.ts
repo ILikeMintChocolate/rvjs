@@ -1,37 +1,21 @@
 import chevronDownSvg from '@icon/chevron--down.svg?element'
 import Flex from '@layout/flex/Flex.ts'
-import {
-  button,
-  Children,
-  dynamic,
-  Prop,
-  prop,
-  RefObject,
-  svg,
-  useState,
-} from '@rvjs/core'
+import { button, dynamic, prop, svg, useState } from '@rvjs/core'
+import { checkProps } from '@rvjs/is'
 import {
   sideNavMenu_style,
   sideNavMenu_text_style,
   subMenu_icon_style,
   subMenu_ul_style,
 } from '@shell/sideNav/sideNavMenu/SideNavMenu.css.ts'
+import {
+  SideNavMenuProps,
+  sideNavMenuPropsType,
+} from '@shell/sideNav/sideNavMenu/SideNavMenu.props.ts'
 import { noDrag_style } from '@theme/util/util.css.ts'
-import { EventHandlers } from '@type/event.ts'
 import Text from '@typography/text/Text.ts'
 
-interface SubMenuProps {
-  menuName: Prop<string>
-  children: Children
-  ariaLabel?: Prop<string>
-  focusRef?: RefObject<HTMLButtonElement>
-  onBlur?: EventHandlers['onBlur']
-  onClick?: EventHandlers['onClick']
-  tabIndex?: Prop<number>
-  defaultShow?: Prop<boolean>
-}
-
-const SideNavMenu = (props: SubMenuProps) => {
+const SideNavMenu = (props: SideNavMenuProps) => {
   const {
     menuName,
     children,
@@ -41,7 +25,7 @@ const SideNavMenu = (props: SubMenuProps) => {
     onClick,
     tabIndex = prop(() => 0),
     defaultShow = prop(() => false),
-  } = props
+  } = checkProps(props, sideNavMenuPropsType)
   const [showItems, setShowItems] = useState(defaultShow())
 
   return Flex({

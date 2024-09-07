@@ -1,7 +1,6 @@
 import Box from '@layout/box/Box.ts'
 import Flex from '@layout/flex/Flex.ts'
 import {
-  Children,
   component,
   ComponentFn,
   onMount,
@@ -9,20 +8,21 @@ import {
   Toggle,
   useRef,
 } from '@rvjs/core'
+import { checkProps } from '@rvjs/is'
 import {
   sideNav_backdrop_style,
   sideNav_nav_recipe,
   sideNav_wrapper_recipe,
 } from '@shell/sideNav/sideNav/SideNav.css.ts'
+import {
+  SideNavProps,
+  sideNavType,
+} from '@shell/sideNav/sideNav/SideNav.props.ts'
 import { rvjsUIThemeContext } from '@system/provider.ts'
 import { coolScrollBar_style } from '@theme/util/util.css.ts'
 
-interface SideNavProps {
-  children: Children
-}
-
-const SideNav: ComponentFn = component<SideNavProps>((props: SideNavProps) => {
-  const { children } = props
+const SideNav: ComponentFn = component<SideNavProps>((props) => {
+  const { children } = checkProps(props, sideNavType)
   const { showSideNav, setShowSideNav } = rvjsUIThemeContext.getContext()
   const sideNavBackdropRef = useRef<HTMLDivElement>()
 

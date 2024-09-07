@@ -1,14 +1,11 @@
 import Box from '@layout/box/Box.ts'
-import { Children, ElementType, prop } from '@rvjs/core'
+import { prop } from '@rvjs/core'
+import { checkProps } from '@rvjs/is'
 import { body_style } from '@shell/body/Body.css.ts'
-
-interface BodyProps {
-  as?: ElementType
-  children: Children
-}
+import { BodyProps, bodyPropsType } from '@shell/body/Body.props.ts'
 
 const Body = (props: BodyProps) => {
-  const { as = 'div', children = [] } = props
+  const { as = 'div', children = [] } = checkProps(props, bodyPropsType)
 
   return Box({
     as,

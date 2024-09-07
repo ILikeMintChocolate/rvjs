@@ -1,50 +1,20 @@
 import chevronDownSvg from '@icon/chevron--down.svg?element'
 import Flex from '@layout/flex/Flex.ts'
-import {
-  button,
-  Children,
-  component,
-  ComponentFn,
-  createContext,
-  dynamic,
-  GetState,
-  onDestroy,
-  onMount,
-  Prop,
-  prop,
-  RefObject,
-  SetState,
-  svg,
-  useRef,
-  useState,
-} from '@rvjs/core'
+import { button, component, ComponentFn, dynamic, prop, svg } from '@rvjs/core'
+import { checkProps } from '@rvjs/is'
 import {
   subMenu_dropDown_style,
   subMenu_iconWrapper_style,
   subMenu_recipe,
   subMenu_text_style,
 } from '@shell/header/subMenu/SubMenu.css.ts'
+import useSubMenu from '@shell/header/subMenu/SubMenu.hook.ts'
+import {
+  SubMenuProps,
+  subMenuPropsType,
+} from '@shell/header/subMenu/SubMenu.props.ts'
 import { noDrag_style } from '@theme/util/util.css.ts'
-import { EventHandlers } from '@type/event.ts'
 import Text from '@typography/text/Text.ts'
-
-interface SubMenuProps {
-  id: string
-  menuName: Prop<string>
-  children: Children
-  ariaLabel?: Prop<string>
-  focusRef?: RefObject<HTMLButtonElement>
-  onBlur?: EventHandlers['onBlur']
-  onClick?: EventHandlers['onClick']
-  tabIndex?: Prop<number>
-}
-
-interface SubMenuContext {
-  showItems: GetState<boolean>
-  setShowItems: SetState<boolean>
-}
-
-export const subMenuContext = createContext<SubMenuContext>()
 
 const SubMenu: ComponentFn = component<SubMenuProps>((props) => {
   const {
@@ -55,25 +25,10 @@ const SubMenu: ComponentFn = component<SubMenuProps>((props) => {
     onBlur,
     onClick,
     tabIndex = prop(() => 0),
-  } = props
-  const [showItems, setShowItems] = useState(false)
-  const subMenuRef = useRef<HTMLDivElement>()
-  subMenuContext.setContext({ showItems, setShowItems })
-
-  const handleClickOutside = (event: MouseEvent) => {
-    if (subMenuRef.current && event.target) {
-      if (!subMenuRef.current.contains(event.target as Node)) {
-        setShowItems(false)
-      }
-    }
-  }
-
-  onMount(() => {
-    document.addEventListener('mousedown', handleClickOutside)
-  })
-
-  onDestroy(() => {
-    document.removeEventListener('mousedown', handleClickOutside)
+  } = checkProps(props, subMenuPropsType)
+  const { showItems, onClickHandler, onBlurHandler } = useSubMenu({
+    onClick,
+    onBlur,
   })
 
   return Flex({
@@ -82,21 +37,9 @@ const SubMenu: ComponentFn = component<SubMenuProps>((props) => {
     children: [
       button({
         ref: focusRef,
-        classes: [
-          // SubMenuItem_Li_Style,
-          dynamic(() => subMenu_recipe({ isSelected: showItems() })),
-        ],
-        onclick: (event: MouseEvent) => {
-          setShowItems(!showItems())
-          if (onClick) {
-            onClick(event)
-          }
-        },
-        onblur: (event: FocusEvent) => {
-          if (onBlur) {
-            onBlur(event)
-          }
-        },
+        classes: [dynamic(() => subMenu_recipe({ isSelected: showItems() }))],
+        onclick: onClickHandler,
+        onblur: onBlurHandler,
         tabIndex,
         children: [
           Text({
@@ -109,16 +52,7 @@ const SubMenu: ComponentFn = component<SubMenuProps>((props) => {
             classes: [prop(() => subMenu_iconWrapper_style)],
             direction: 'column',
             justify: 'center',
-            children: [
-              svg(chevronDownSvg, {
-                // classes: [subMenu_icon_style],
-                // style: {
-                //   transform: dynamic(() =>
-                //     showItems() ? 'rotate(180deg)' : '',
-                //   ),
-                // },
-              }),
-            ],
+            children: [svg(chevronDownSvg)],
           }),
         ],
       }),

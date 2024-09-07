@@ -1,18 +1,16 @@
 import Flex from '@layout/flex/Flex.ts'
-import { a, dynamic, Prop, prop, useNavigate } from '@rvjs/core'
+import { a, dynamic, prop, useNavigate } from '@rvjs/core'
+import { checkProps } from '@rvjs/is'
 import {
   sideNavMenuItem_anchor_recipe,
   sideNavMenuItem_style,
   sideNavMenuItem_text_recipe,
 } from '@shell/sideNav/sideNavMenuItem/SideNavMenuItem.css.ts'
+import {
+  SideNavMenuItemProps,
+  sideNavMenuItemPropsType,
+} from '@shell/sideNav/sideNavMenuItem/SideNavMenuItem.props.ts'
 import Text from '@typography/text/Text.ts'
-
-interface SideNavMenuItemProps {
-  text: Prop<string>
-  href: Prop<string>
-  isActive?: Prop<boolean>
-  tabIndex?: Prop<number>
-}
 
 const SideNavMenuItem = (props: SideNavMenuItemProps) => {
   const {
@@ -20,7 +18,7 @@ const SideNavMenuItem = (props: SideNavMenuItemProps) => {
     href,
     isActive = prop(() => true),
     tabIndex = prop(() => 0),
-  } = props
+  } = checkProps(props, sideNavMenuItemPropsType)
   const navigate = useNavigate()
 
   return Flex({

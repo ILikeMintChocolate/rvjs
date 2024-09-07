@@ -1,18 +1,16 @@
 import Flex from '@layout/flex/Flex.ts'
-import { a, dynamic, prop, Prop, useNavigate } from '@rvjs/core'
+import { a, dynamic, prop, useNavigate } from '@rvjs/core'
+import { checkProps } from '@rvjs/is'
 import {
   headerMenuItem_anchor_recipe,
   headerMenuItem_li_style,
   headerMenuItem_text_recipe,
 } from '@shell/header/headerMenuItem/HeaderMenuItem.css.ts'
+import {
+  HeaderMenuItemProps,
+  headerMenuItemPropsType,
+} from '@shell/header/headerMenuItem/HeaderMenuItem.props.ts'
 import Text from '@typography/text/Text.ts'
-
-interface HeaderMenuItemProps {
-  text: Prop<string>
-  href: Prop<string>
-  isActive?: Prop<boolean>
-  tabIndex?: Prop<number>
-}
 
 const HeaderMenuItem = (props: HeaderMenuItemProps) => {
   const {
@@ -20,7 +18,7 @@ const HeaderMenuItem = (props: HeaderMenuItemProps) => {
     href,
     isActive = prop(() => false),
     tabIndex = prop(() => 0),
-  } = props
+  } = checkProps(props, headerMenuItemPropsType)
   const navigate = useNavigate()
 
   return Flex({

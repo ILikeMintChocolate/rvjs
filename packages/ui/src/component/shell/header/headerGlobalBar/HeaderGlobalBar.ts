@@ -1,13 +1,14 @@
 import Flex from '@layout/flex/Flex.ts'
-import { Children, prop } from '@rvjs/core'
+import { prop } from '@rvjs/core'
+import { checkProps } from '@rvjs/is'
 import { headerGlobalBar_style } from '@shell/header/headerGlobalBar/HeaderGlobalBar.css.ts'
-
-interface HeaderGlobalBarProps {
-  children?: Children
-}
+import {
+  HeaderGlobalBarProps,
+  headerGlobalPropsType,
+} from '@shell/header/headerGlobalBar/HeaderGlobalBar.props.ts'
 
 const HeaderGlobalBar = (props: HeaderGlobalBarProps) => {
-  const { children = [] } = props
+  const { children } = checkProps(props, headerGlobalPropsType)
 
   return Flex({
     as: 'ul',
