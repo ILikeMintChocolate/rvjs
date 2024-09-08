@@ -1,12 +1,13 @@
+import Flex from '@layout/flex/Flex.ts'
 import { prop } from '@rvjs/core'
 import { checkProps } from '@rvjs/is'
-import { Flex, ifIs } from '@rvjs/ui'
 import {
   shell_body_style,
   shell_bodyWrapper_style,
   shell_style,
 } from '@shell/shell/Shell.css.ts'
 import { ShellProps, shellPropsType } from '@shell/shell/Shell.props.ts'
+import { ifIs } from '@util/array.ts'
 
 const Shell = (props: ShellProps) => {
   const { header, body, panel } = checkProps(props, shellPropsType)

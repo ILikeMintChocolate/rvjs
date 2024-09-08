@@ -8,7 +8,7 @@ import {
   useNavigate,
 } from '@rvjs/core'
 import { checkProps } from '@rvjs/is'
-import { subMenuContext } from '@shell/header/subMenu/SubMenu.ts'
+import { subMenuContext } from '@shell/header/subMenu/SubMenu.hook.ts'
 import {
   subMenuItem_anchor_recipe,
   subMenuItem_li_style,
