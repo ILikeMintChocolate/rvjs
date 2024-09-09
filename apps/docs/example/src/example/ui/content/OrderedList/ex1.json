@@ -1,0 +1,3 @@
+{
+  "code": "import { prop } from '@rvjs/core'\nimport { ListItem, OrderedList } from '@rvjs/ui'\n\nconst OrderedListExample = () => {\n  return OrderedList({\n    children: [\n      ListItem({ text: prop(() => '배포 파이프라인 설정') }),\n      ListItem({ text: prop(() => '타입스크립트 빌드 에러 해결') }),\n      ListItem({ text: prop(() => '테스트 코드 작성') }),\n      ListItem({ text: prop(() => 'UI 컴포넌트 최적화') }),\n    ],\n  })\n}\n\nexport default OrderedListExample"
+}
