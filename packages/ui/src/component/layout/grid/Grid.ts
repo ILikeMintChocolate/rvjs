@@ -72,6 +72,7 @@ const Grid = (props: BoxProps) => {
     bgColor,
     ...restProps
   } = props
+  const restPropsObject: any = restProps
 
   return element(as, {
     ref,
@@ -127,7 +128,7 @@ const Grid = (props: BoxProps) => {
     ],
     children,
     style,
-    ...restProps,
+    ...restPropsObject,
   })
 }
 

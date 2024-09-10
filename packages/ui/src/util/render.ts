@@ -17,7 +17,7 @@ export interface RenderJSON {
   >
 }
 
-type ComponentFnMapKey = keyof typeof componentFnMap
+type ComponentFnMapKey = string
 type ElementFnMapKey = keyof HTMLElementTagNameMap
 
 interface RenderComponentFromJSONOptions {
@@ -77,7 +77,7 @@ const renderComponent = (
   const renderFn = componentFnMap[name as ComponentFnMapKey]
   const componentProps = configProps(
     props,
-    componentRenderPropsMap[name as ComponentFnMapKey],
+    (componentRenderPropsMap as Object)[name as ComponentFnMapKey],
   )
   const { children = [] } = componentProps
   if (children.length !== 0) {
