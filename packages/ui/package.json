@@ -37,7 +37,7 @@
     "@vanilla-extract/sprinkles": "^1.6.2",
     "highlight.js": "^11.9.0",
     "prismjs": "^1.29.0",
-    "vite-plugin-import-svg": "^0.0.4"
+    "vite-plugin-import-svg": "^0.1.0"
   },
   "devDependencies": {
     "@vanilla-extract/vite-plugin": "^4.0.10",
