@@ -1,14 +1,10 @@
-import {
-  orderedList_listStyleType_var,
-  orderedList_style,
-} from '@content/list/orderedList/OrderedList.css.ts'
+import { orderedList_style } from '@content/list/orderedList/OrderedList.css.ts'
 import {
   OrderedListProps,
   orderedListPropsType,
 } from '@content/list/orderedList/OrderedList.props.ts'
-import { ol, prop } from '@rvjs/core'
+import { dynamic, ol, prop } from '@rvjs/core'
 import { checkProps } from '@rvjs/is'
-import { assignInlineVars } from '@vanilla-extract/dynamic'
 
 const orderedListStyleTypeMap = {
   '1': 'decimal',
@@ -26,9 +22,9 @@ const OrderedList = (props: OrderedListProps) => {
 
   return ol({
     classes: [orderedList_style],
-    style: assignInlineVars({
-      [orderedList_listStyleType_var]: orderedListStyleTypeMap[type()],
-    }),
+    style: {
+      listStyleType: dynamic(() => orderedListStyleTypeMap[type()]),
+    },
     children,
   })
 }
