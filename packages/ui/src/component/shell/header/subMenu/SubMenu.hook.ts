@@ -56,7 +56,7 @@ const useSubMenu = (props: UseSubMenuProps) => {
     document.removeEventListener('mousedown', handleClickOutside)
   })
 
-  return { showItems, onClickHandler, onBlurHandler }
+  return { showItems, subMenuRef, onClickHandler, onBlurHandler }
 }
 
 export default useSubMenu

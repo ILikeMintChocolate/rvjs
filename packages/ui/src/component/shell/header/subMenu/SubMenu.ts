@@ -26,7 +26,7 @@ const SubMenu: ComponentFn = component<SubMenuProps>((props) => {
     onClick,
     tabIndex = prop(() => 0),
   } = checkProps(props, subMenuPropsType)
-  const { showItems, onClickHandler, onBlurHandler } = useSubMenu({
+  const { showItems, subMenuRef, onClickHandler, onBlurHandler } = useSubMenu({
     onClick,
     onBlur,
   })
