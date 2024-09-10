@@ -1,5 +1,3 @@
-import { IconRenderProps } from '@content/icon/Icon.props.ts'
-import Icon from '@content/icon/Icon.ts'
 import { iframeRenderProps } from '@content/iframe/Iframe.props.ts'
 import Iframe from '@content/iframe/Iframe.ts'
 import { listItemRenderProps } from '@content/list/listItem/ListItem.props.ts'
@@ -59,7 +57,6 @@ import { textRenderProps } from '@typography/text/Text.props.ts'
 import Text from '@typography/text/Text.ts'
 
 export const componentFnMap = {
-  Icon: Icon,
   Iframe: Iframe,
   OrderedList: OrderedList,
   UnorderedList: UnorderedList,
@@ -92,7 +89,6 @@ export const componentFnMap = {
 }
 
 export const componentRenderPropsMap = {
-  Icon: IconRenderProps,
   Iframe: iframeRenderProps,
   OrderedList: orderedListRenderProps,
   UnorderedList: unorderedListRenderProps,

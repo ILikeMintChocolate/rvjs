@@ -1,6 +1,6 @@
-import chevronDownSvg from '@icon/chevron--down.svg?element'
+import { ChevronDownIcon } from '@content/icon/Icons.ts'
 import Flex from '@layout/flex/Flex.ts'
-import { button, dynamic, prop, svg, useState } from '@rvjs/core'
+import { button, dynamic, prop, useState } from '@rvjs/core'
 import { checkProps } from '@rvjs/is'
 import {
   sideNavMenu_style,
@@ -61,7 +61,7 @@ const SideNavMenu = (props: SideNavMenuProps) => {
             direction: 'column',
             justify: 'center',
             children: [
-              svg(chevronDownSvg, {
+              ChevronDownIcon({
                 classes: [subMenu_icon_style],
                 style: {
                   transform: dynamic(() =>

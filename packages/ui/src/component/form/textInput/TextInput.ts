@@ -1,3 +1,4 @@
+import { WarningAltFilledIcon, WarningFilledIcon } from '@content/icon/Icons.ts'
 import {
   textInput_helper_recipe,
   textInput_input_recipe,
@@ -12,8 +13,6 @@ import {
   TextInputProps,
   textInputPropsType,
 } from '@form/textInput/TextInput.props.ts'
-import warnSvg from '@icon/warning--alt--filled.svg?element'
-import invalidSvg from '@icon/warning--filled.svg?element'
 import Flex from '@layout/flex/Flex.ts'
 import {
   component,
@@ -21,7 +20,6 @@ import {
   dynamic,
   input,
   prop,
-  svg,
   Switch,
 } from '@rvjs/core'
 import { checkProps } from '@rvjs/is'
@@ -122,11 +120,11 @@ const TextInput: ComponentFn = component<TextInputProps>((props) => {
           }),
           Switch(status!, () => {
             if (status() === 'invalid') {
-              return svg(invalidSvg, {
+              return WarningFilledIcon({
                 classes: [textInput_invalidIcon_style],
               })
             } else if (status() === 'warn') {
-              return svg(warnSvg, {
+              return WarningAltFilledIcon({
                 classes: [textInput_warnIcon_style],
               })
             }

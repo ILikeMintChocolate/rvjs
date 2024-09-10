@@ -1,6 +1,6 @@
-import chevronDownSvg from '@icon/chevron--down.svg?element'
+import { ChevronDownIcon } from '@content/icon/Icons.ts'
 import Flex from '@layout/flex/Flex.ts'
-import { button, component, ComponentFn, dynamic, prop, svg } from '@rvjs/core'
+import { button, component, ComponentFn, dynamic, prop } from '@rvjs/core'
 import { checkProps } from '@rvjs/is'
 import {
   subMenu_dropDown_style,
@@ -52,7 +52,7 @@ const SubMenu: ComponentFn = component<SubMenuProps>((props) => {
             classes: [prop(() => subMenu_iconWrapper_style)],
             direction: 'column',
             justify: 'center',
-            children: [svg(chevronDownSvg)],
+            children: [ChevronDownIcon()],
           }),
         ],
       }),

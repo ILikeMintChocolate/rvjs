@@ -1,8 +1,8 @@
+import { CopyIcon } from '@content/icon/Icons.ts'
 import Button from '@form/button/Button.ts'
-import copySvg from '@icon/copy.svg?element'
 import Flex from '@layout/flex/Flex.ts'
 import Tooltip from '@overlay/tooltip/Tooltip.ts'
-import { dynamic, prop, span, svg } from '@rvjs/core'
+import { dynamic, prop, span } from '@rvjs/core'
 import { CodeSnippetProps } from '@typography/codeSnippet/CodeSnippet.props.ts'
 import { copyToClipboard } from '@typography/codeSnippet/CodeSnippet.util.ts'
 import {
@@ -57,7 +57,7 @@ const SingleCodeSnippet = (props: SingleCodeSnippetProps) => {
             size: prop(() => 'md'),
             kind: prop(() => 'ghost'),
             hasIconOnly: prop(() => true),
-            renderIcon: svg(copySvg),
+            renderIcon: CopyIcon(),
             onClick: async (event: MouseEvent) => {
               await copyToClipboard(codeText())
               if (onClick) {
