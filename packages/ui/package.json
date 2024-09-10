@@ -4,7 +4,7 @@
   "version": "0.1.14",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ILikMintChocolate/rvjs.git",
+    "url": "https://github.com/ILikeMintChocolate/rvjs.git",
     "directory": "packages/ui"
   },
   "publishConfig": {
