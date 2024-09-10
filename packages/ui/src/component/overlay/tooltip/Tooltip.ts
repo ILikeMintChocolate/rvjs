@@ -1,4 +1,4 @@
-import arrowSvg from '@icon/tooltip--arrow.svg?element'
+import { TooltipArrowIcon } from '@content/icon/Icons.ts'
 import Box from '@layout/box/Box.ts'
 import {
   tooltip_arrow_style,
@@ -12,7 +12,7 @@ import {
   TooltipProps,
   tooltipPropsType,
 } from '@overlay/tooltip/Tooltip.props.ts'
-import { dynamic, prop, svg, useState } from '@rvjs/core'
+import { dynamic, prop, useState } from '@rvjs/core'
 import { checkProps } from '@rvjs/is'
 import Text from '@typography/text/Text.ts'
 
@@ -56,7 +56,7 @@ const Tooltip = (props: TooltipProps) => {
           display: dynamic(() => (showTooltip() ? 'block' : 'none')),
         },
         children: [
-          svg(arrowSvg, {
+          TooltipArrowIcon({
             classes: [dynamic(() => tooltip_arrow_style)],
           }),
           Box({

@@ -1,9 +1,8 @@
+import { ChevronDownIcon, CopyIcon } from '@content/icon/Icons.ts'
 import Button from '@form/button/Button.ts'
-import chevronDownSvg from '@icon/chevron--down.svg?element'
-import copySvg from '@icon/copy.svg?element'
 import Flex from '@layout/flex/Flex.ts'
 import Tooltip from '@overlay/tooltip/Tooltip.ts'
-import { code, dynamic, pre, prop, svg, useState } from '@rvjs/core'
+import { code, dynamic, pre, prop, useState } from '@rvjs/core'
 import { CodeSnippetProps } from '@typography/codeSnippet/CodeSnippet.props.ts'
 import { copyToClipboard } from '@typography/codeSnippet/CodeSnippet.util.ts'
 import {
@@ -84,7 +83,7 @@ const MultiCodeSnippet = (props: SingleCodeSnippetProps) => {
                 size: prop(() => 'md'),
                 kind: prop(() => 'ghost'),
                 hasIconOnly: prop(() => true),
-                renderIcon: svg(copySvg),
+                renderIcon: CopyIcon(),
                 onClick: async (event: MouseEvent) => {
                   await copyToClipboard(codeText())
                   if (onClick) {
@@ -99,7 +98,7 @@ const MultiCodeSnippet = (props: SingleCodeSnippetProps) => {
             size: prop(() => 'md'),
             kind: prop(() => 'ghost'),
             hasIconOnly: prop(() => true),
-            renderIcon: svg(chevronDownSvg, {
+            renderIcon: ChevronDownIcon({
               classes: [
                 dynamic(() =>
                   multiCodeSnippet_showMoreIcon_recipe({

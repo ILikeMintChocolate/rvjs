@@ -1,5 +1,4 @@
-import defaultCloseSvg from '@icon/close.svg?element'
-import defaultMenuSvg from '@icon/menu.svg?element'
+import { CloseIcon, MenuIcon } from '@content/icon/Icons.ts'
 import { button, component, ComponentFn, svg, Switch } from '@rvjs/core'
 import { checkProps } from '@rvjs/is'
 import {
@@ -14,11 +13,10 @@ import { rvjsUIThemeContext } from '@system/provider.ts'
 
 const HeaderMenuButton: ComponentFn = component<HeaderMenuButtonProps>(
   (props) => {
-    const {
-      onClick,
-      menuIcon = defaultMenuSvg,
-      closeIcon = defaultCloseSvg,
-    } = checkProps(props, headerMenuButtonPropsType)
+    const { onClick, menuIcon, closeIcon } = checkProps(
+      props,
+      headerMenuButtonPropsType,
+    )
     const { showSideNav, setShowSideNav } = rvjsUIThemeContext.getContext()
 
     return button({
@@ -32,22 +30,25 @@ const HeaderMenuButton: ComponentFn = component<HeaderMenuButtonProps>(
       },
       children: [
         Switch(showSideNav, () => {
+          const iconProps = {
+            classes: [headerMenuButton_icon_style],
+            style: {
+              width: '1.25rem',
+              height: '1.25rem',
+            },
+          }
           if (showSideNav()) {
-            return svg(closeIcon, {
-              classes: [headerMenuButton_icon_style],
-              style: {
-                width: '1.25rem',
-                height: '1.25rem',
-              },
-            })
+            if (closeIcon) {
+              return svg(closeIcon, iconProps)
+            } else {
+              return CloseIcon(iconProps)
+            }
           } else {
-            return svg(menuIcon, {
-              classes: [headerMenuButton_icon_style],
-              style: {
-                width: '1.25rem',
-                height: '1.25rem',
-              },
-            })
+            if (menuIcon) {
+              return svg(menuIcon, iconProps)
+            } else {
+              return MenuIcon(iconProps)
+            }
           }
         }),
       ],
