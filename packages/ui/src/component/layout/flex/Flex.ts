@@ -82,6 +82,7 @@ const Flex = (props: FlexProps) => {
     direction,
     ...restProps
   } = props
+  const restPropsObject: any = restProps
 
   return element(as, {
     ref,
@@ -143,7 +144,7 @@ const Flex = (props: FlexProps) => {
     ],
     children,
     style,
-    ...restProps,
+    ...restPropsObject,
   })
 }
 

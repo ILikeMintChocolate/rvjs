@@ -112,7 +112,7 @@ export const componentFnMap = {
   TooltipArrowIcon: TooltipArrowIcon,
   WarningAltFilledIcon: WarningAltFilledIcon,
   WarningFilledIcon: WarningFilledIcon,
-}
+} as any
 
 export const componentRenderPropsMap = {
   Iframe: iframeRenderProps,
@@ -155,7 +155,7 @@ export const componentRenderPropsMap = {
   TooltipArrowIcon: {},
   WarningAltFilledIcon: {},
   WarningFilledIcon: {},
-}
+} as any
 
 export const textNodeFn = textNode
 

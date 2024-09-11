@@ -78,6 +78,7 @@ const Box = (props: BoxProps) => {
     bgColor,
     ...restProps
   } = props
+  const restPropsObject: any = restProps
 
   return element(as, {
     ref,
@@ -139,7 +140,7 @@ const Box = (props: BoxProps) => {
     ],
     children,
     style,
-    ...restProps,
+    ...restPropsObject,
   })
 }
 
