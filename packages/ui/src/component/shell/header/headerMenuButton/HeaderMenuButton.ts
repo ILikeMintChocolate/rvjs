@@ -1,5 +1,5 @@
 import { CloseIcon, MenuIcon } from '@content/icon/Icons.ts'
-import { button, component, ComponentFn, svg, Switch } from '@rvjs/core'
+import { button, component, svg, Switch } from '@rvjs/core'
 import { checkProps } from '@rvjs/is'
 import {
   headerMenuButton_button_style,
@@ -11,49 +11,47 @@ import {
 } from '@shell/header/headerMenuButton/HeaderMenuButton.props.ts'
 import { rvjsUIThemeContext } from '@system/provider.ts'
 
-const HeaderMenuButton: ComponentFn = component<HeaderMenuButtonProps>(
-  (props) => {
-    const { onClick, menuIcon, closeIcon } = checkProps(
-      props,
-      headerMenuButtonPropsType,
-    )
-    const { showSideNav, setShowSideNav } = rvjsUIThemeContext.getContext()
+const HeaderMenuButton = component<HeaderMenuButtonProps>((props) => {
+  const { onClick, menuIcon, closeIcon } = checkProps(
+    props,
+    headerMenuButtonPropsType,
+  )
+  const { showSideNav, setShowSideNav } = rvjsUIThemeContext.getContext()
 
-    return button({
-      type: 'button',
-      classes: [headerMenuButton_button_style],
-      onclick: (event: MouseEvent) => {
-        setShowSideNav(!showSideNav())
-        if (onClick) {
-          onClick(event)
+  return button({
+    type: 'button',
+    classes: [headerMenuButton_button_style],
+    onclick: (event: MouseEvent) => {
+      setShowSideNav(!showSideNav())
+      if (onClick) {
+        onClick(event)
+      }
+    },
+    children: [
+      Switch(showSideNav, () => {
+        const iconProps = {
+          classes: [headerMenuButton_icon_style],
+          style: {
+            width: '1.25rem',
+            height: '1.25rem',
+          },
         }
-      },
-      children: [
-        Switch(showSideNav, () => {
-          const iconProps = {
-            classes: [headerMenuButton_icon_style],
-            style: {
-              width: '1.25rem',
-              height: '1.25rem',
-            },
-          }
-          if (showSideNav()) {
-            if (closeIcon) {
-              return svg(closeIcon, iconProps)
-            } else {
-              return CloseIcon(iconProps)
-            }
+        if (showSideNav()) {
+          if (closeIcon) {
+            return svg(closeIcon, iconProps)
           } else {
-            if (menuIcon) {
-              return svg(menuIcon, iconProps)
-            } else {
-              return MenuIcon(iconProps)
-            }
+            return CloseIcon(iconProps)
           }
-        }),
-      ],
-    })
-  },
-)
+        } else {
+          if (menuIcon) {
+            return svg(menuIcon, iconProps)
+          } else {
+            return MenuIcon(iconProps)
+          }
+        }
+      }),
+    ],
+  })
+})
 
 export default HeaderMenuButton

@@ -14,20 +14,13 @@ import {
   textInputPropsType,
 } from '@form/textInput/TextInput.props.ts'
 import Flex from '@layout/flex/Flex.ts'
-import {
-  component,
-  ComponentFn,
-  dynamic,
-  input,
-  prop,
-  Switch,
-} from '@rvjs/core'
+import { component, dynamic, input, prop, Switch } from '@rvjs/core'
 import { checkProps } from '@rvjs/is'
 import vars from '@theme/variable/vars.css.ts'
 import Text from '@typography/text/Text.ts'
 import { ifIs } from '@util/array.ts'
 
-const TextInput: ComponentFn = component<TextInputProps>((props) => {
+const TextInput = component<TextInputProps>((props) => {
   const {
     value,
     setValue,

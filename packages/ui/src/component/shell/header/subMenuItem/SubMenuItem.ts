@@ -1,12 +1,5 @@
 import Flex from '@layout/flex/Flex.ts'
-import {
-  a,
-  component,
-  ComponentFn,
-  dynamic,
-  prop,
-  useNavigate,
-} from '@rvjs/core'
+import { a, component, dynamic, prop, useNavigate } from '@rvjs/core'
 import { checkProps } from '@rvjs/is'
 import { subMenuContext } from '@shell/header/subMenu/SubMenu.hook.ts'
 import {
@@ -20,7 +13,7 @@ import {
 } from '@shell/header/subMenuItem/SubMenuItem.props.ts'
 import Text from '@typography/text/Text.ts'
 
-const SubMenuItem: ComponentFn = component<SubMenuItemProps>((props) => {
+const SubMenuItem = component<SubMenuItemProps>((props) => {
   const {
     href,
     text,
