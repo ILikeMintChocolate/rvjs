@@ -57,7 +57,7 @@ const TextInput: ComponentFn = component<TextInputProps>((props) => {
         direction: 'row',
         justify: 'space-between',
         children: [
-          ...ifIs(hideLabel(), () =>
+          ...ifIs(!hideLabel(), () =>
             Text({
               text: labelText!,
               kind: prop(() => 'label-01'),
