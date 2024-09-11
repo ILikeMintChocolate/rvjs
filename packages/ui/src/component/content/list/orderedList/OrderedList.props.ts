@@ -1,5 +1,5 @@
 import { Children, Prop, prop } from '@rvjs/core'
-import { isChildren, isOptional, isString } from '@rvjs/is'
+import { isChildren, isOptional, isProp, isString } from '@rvjs/is'
 
 export interface OrderedListProps {
   children: Children
@@ -8,7 +8,7 @@ export interface OrderedListProps {
 
 export const orderedListPropsType = {
   children: isChildren,
-  type: isOptional(isString),
+  type: isOptional(isProp(isString)),
 }
 
 export const orderedListRenderProps = {

@@ -1,14 +1,10 @@
-import {
-  unorderedList_listStyleType_var,
-  unorderedList_style,
-} from '@content/list/unorderedList/UnorderedList.css.ts'
+import { unorderedList_style } from '@content/list/unorderedList/UnorderedList.css.ts'
 import {
   UnorderedListProps,
   unorderedListPropsType,
 } from '@content/list/unorderedList/UnorderedList.props.ts'
-import { prop, ul } from '@rvjs/core'
+import { dynamic, prop, ul } from '@rvjs/core'
 import { checkProps } from '@rvjs/is'
-import { assignInlineVars } from '@vanilla-extract/dynamic'
 
 const unorderedList = (props: UnorderedListProps) => {
   const { children, type = prop(() => 'square') } =
@@ -16,9 +12,9 @@ const unorderedList = (props: UnorderedListProps) => {
 
   return ul({
     classes: [unorderedList_style],
-    style: assignInlineVars({
-      [unorderedList_listStyleType_var]: type(),
-    }),
+    style: {
+      listStyleType: dynamic(() => type()),
+    },
     children,
   })
 }

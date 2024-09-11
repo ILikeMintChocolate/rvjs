@@ -1,3 +1,17 @@
+import {
+  ArrowRightIcon,
+  ChevronDownIcon,
+  CloseIcon,
+  CopyIcon,
+  DocumentIcon,
+  LogoGithubIcon,
+  LogoNpmIcon,
+  MenuIcon,
+  SearchIcon,
+  TooltipArrowIcon,
+  WarningAltFilledIcon,
+  WarningFilledIcon,
+} from '@content/icon/Icons.ts'
 import { iframeRenderProps } from '@content/iframe/Iframe.props.ts'
 import Iframe from '@content/iframe/Iframe.ts'
 import { listItemRenderProps } from '@content/list/listItem/ListItem.props.ts'
@@ -86,6 +100,18 @@ export const componentFnMap = {
   SideNavLink: SideNavLink,
   SideNavMenu: SideNavMenu,
   SideNavMenuItem: SideNavMenuItem,
+  ArrowRightIcon: ArrowRightIcon,
+  ChevronDownIcon: ChevronDownIcon,
+  CloseIcon: CloseIcon,
+  CopyIcon: CopyIcon,
+  DocumentIcon: DocumentIcon,
+  LogoGithubIcon: LogoGithubIcon,
+  LogoNpmIcon: LogoNpmIcon,
+  MenuIcon: MenuIcon,
+  SearchIcon: SearchIcon,
+  TooltipArrowIcon: TooltipArrowIcon,
+  WarningAltFilledIcon: WarningAltFilledIcon,
+  WarningFilledIcon: WarningFilledIcon,
 }
 
 export const componentRenderPropsMap = {
@@ -117,6 +143,18 @@ export const componentRenderPropsMap = {
   SideNavLink: sideNavLinkRenderProps,
   SideNavMenu: sideNavMenuRenderProps,
   SideNavMenuItem: sideNavMenuItemRenderProps,
+  ArrowRightIcon: {},
+  ChevronDownIcon: {},
+  CloseIcon: {},
+  CopyIcon: {},
+  DocumentIcon: {},
+  LogoGithubIcon: {},
+  LogoNpmIcon: {},
+  MenuIcon: {},
+  SearchIcon: {},
+  TooltipArrowIcon: {},
+  WarningAltFilledIcon: {},
+  WarningFilledIcon: {},
 }
 
 export const textNodeFn = textNode
