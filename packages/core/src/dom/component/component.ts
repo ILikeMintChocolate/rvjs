@@ -3,14 +3,10 @@ import { ComponentBlock } from '@block/component.ts'
 import { componentContext } from '@context/executionContext.ts'
 import { routeContext } from '@router/context/routerContext.ts'
 
-interface ReceivableProps {
-  key?: string
-}
-
 export type ComponentFn = (props: unknown) => ComponentBlock
 
 export const component = <Props>(render: (props: Props) => Block) => {
-  return function componentRender(props?: Props & ReceivableProps) {
+  return function componentRender(props?: Props & { key?: string }) {
     const { key, ...restProps } = props ?? {}
     const componentBlock = new ComponentBlock()
     let previousComponent: ComponentBlock | null = null
@@ -28,7 +24,7 @@ export const component = <Props>(render: (props: Props) => Block) => {
       }
     }
     componentBlock.renderFn = () => {
-      return render(restProps as Props & Partial<ReceivableProps>)
+      return render(restProps as Props & Partial<{ key?: string }>)
     }
     componentContext.set(previousComponent)
     return componentBlock
