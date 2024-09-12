@@ -8,8 +8,18 @@ import {
   console_wrapper_style,
 } from '@component/console/Console.css.ts'
 import trashCanSvg from '@icon/trash-can.svg?element'
-import { button, component, div, For, p, section, svg } from '@rvjs/core'
-import { useEffect, useGlobalState, useRef } from '@rvjs/core'
+import {
+  button,
+  component,
+  div,
+  For,
+  p,
+  section,
+  svg,
+  useEffect,
+  useGlobalState,
+  useRef,
+} from '@rvjs/core'
 import { coolScrollBar_style } from '@theme/util.css.ts'
 
 const Console = component(() => {
@@ -35,7 +45,7 @@ const Console = component(() => {
               setLogs([])
             },
             children: [
-              svg(trashCanSvg, {
+              svg(trashCanSvg(), {
                 classes: [console_headerIcon_style],
               }),
             ],
