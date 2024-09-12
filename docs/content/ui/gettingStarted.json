@@ -127,7 +127,7 @@
                                 "codeText": "@rvjs/is",
                                 "language": "javascript",
                                 "type": "link",
-                                "href": "/is/getting-started"
+                                "href": "/is/gettingStarted"
                               }
                             },
                             {
@@ -296,7 +296,7 @@
       "type": "component",
       "name": "Link",
       "props": {
-        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ui/getting-started.json",
+        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ui/gettingStarted.json",
         "children": [
           {
             "type": "component",

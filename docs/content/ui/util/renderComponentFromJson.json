@@ -290,7 +290,7 @@
                                                   "codeText": "@rvjs/ui",
                                                   "language": "javascript",
                                                   "type": "link",
-                                                  "href": "/ui/getting-started"
+                                                  "href": "/ui/gettingStarted"
                                                 }
                                               },
                                               {
@@ -307,7 +307,7 @@
                                                   "codeText": "@rvjs/core",
                                                   "language": "javascript",
                                                   "type": "link",
-                                                  "href": "/core/getting-started"
+                                                  "href": "/core/gettingStarted"
                                                 }
                                               },
                                               {

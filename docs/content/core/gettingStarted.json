@@ -749,7 +749,7 @@
       "type": "component",
       "name": "Link",
       "props": {
-        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/core/getting-started.json",
+        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/core/gettingStarted.json",
         "children": [
           {
             "type": "component",
