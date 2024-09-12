@@ -6,7 +6,7 @@ import { usePathParams, useState } from '@rvjs/core'
 import { Flex } from '@rvjs/ui'
 
 const ContentData = async () => {
-  const { pId, cId = 'getting-started', fId } = usePathParams()!
+  const { pId, cId = 'gettingStarted', fId } = usePathParams()!
   const requestPath = [pId, cId, fId].filter(Boolean).join('/')
   const { content, headingIndex } = await useGetContent(requestPath)
   const [activeIndex, setActiveIndex] = useState<number>(0)

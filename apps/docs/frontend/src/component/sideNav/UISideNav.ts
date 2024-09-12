@@ -16,8 +16,8 @@ const UISideNav = () => {
         children: [
           SideNavLink({
             text: prop(() => 'Getting Started'),
-            href: prop(() => '/ui/getting-started'),
-            isActive: prop(() => pathname() === '/ui/getting-started'),
+            href: prop(() => '/ui/gettingStarted'),
+            isActive: prop(() => pathname() === '/ui/gettingStarted'),
           }),
           SideNavMenu({
             menuName: prop(() => 'Layout'),
