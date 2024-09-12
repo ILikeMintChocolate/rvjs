@@ -1,0 +1,323 @@
+{
+  "content": [
+    {
+      "type": "component",
+      "name": "Text",
+      "props": {
+        "as": "h1",
+        "text": "@rvjs/ui 시작하기",
+        "kind": "heading-06"
+      }
+    },
+    {
+      "type": "component",
+      "name": "Section",
+      "props": {
+        "children": [
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "children": [
+                {
+                  "type": "text",
+                  "name": "text",
+                  "props": {
+                    "text": "@rvjs/core 기반의 UI 컴포넌트 라이브러리입니다."
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "component",
+      "name": "Section",
+      "props": {
+        "children": [
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "text": "설치",
+              "kind": "heading-03",
+              "as": "h4"
+            }
+          },
+          {
+            "type": "component",
+            "name": "CodeSnippet",
+            "props": {
+              "codeText": "npm install @rvjs/ui",
+              "language": "bash",
+              "type": "single",
+              "width": "100%",
+              "defaultShow": true
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "component",
+      "name": "Section",
+      "props": {
+        "children": [
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "text": "설정",
+              "kind": "heading-03",
+              "as": "h4"
+            }
+          },
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "children": [
+                {
+                  "type": "text",
+                  "name": "text",
+                  "props": {
+                    "text": "원활한 동작을 위해 제공되는 기본적인 함수를 모두 호출해야 합니다."
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "component",
+            "name": "UnorderedList",
+            "props": {
+              "children": [
+                {
+                  "type": "component",
+                  "name": "ListItem",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "Text",
+                        "props": {
+                          "children": [
+                            {
+                              "type": "component",
+                              "name": "CodeSnippet",
+                              "props": {
+                                "codeText": "startRvjsUI",
+                                "language": "javascript",
+                                "type": "inline"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "name": "text",
+                              "props": {
+                                "text": " 함수는 내부적으로 "
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "CodeSnippet",
+                              "props": {
+                                "codeText": "@rvjs/is",
+                                "language": "javascript",
+                                "type": "link",
+                                "href": "/is/getting-started"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "name": "text",
+                              "props": {
+                                "text": "를 사용해 "
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "CodeSnippet",
+                              "props": {
+                                "codeText": "props",
+                                "language": "javascript",
+                                "type": "inline"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "name": "text",
+                              "props": {
+                                "text": "의 유효성을 검사를 수행하는 동작을 설정합니다. 이는 "
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "CodeSnippet",
+                              "props": {
+                                "codeText": "development",
+                                "language": "javascript",
+                                "type": "inline"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "name": "text",
+                              "props": {
+                                "text": " 환경에서만 실행됩니다."
+                              }
+                            }
+                          ],
+                          "as": "span"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "ListItem",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "Text",
+                        "props": {
+                          "children": [
+                            {
+                              "type": "text",
+                              "name": "text",
+                              "props": {
+                                "text": "RvjsUIProvider 함수는 내부적으로 컴포넌트 간의 상태를 공유하도록 지원합니다."
+                              }
+                            }
+                          ],
+                          "as": "span"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "ListItem",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "Text",
+                        "props": {
+                          "children": [
+                            {
+                              "type": "component",
+                              "name": "CodeSnippet",
+                              "props": {
+                                "codeText": "css",
+                                "language": "javascript",
+                                "type": "inline"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "name": "text",
+                              "props": {
+                                "text": " 파일 가져오기를 통해 @rvjs/ui의 기본 스타일을 추가합니다."
+                              }
+                            }
+                          ],
+                          "as": "span"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "component",
+            "name": "CodeSnippet",
+            "props": {
+              "codeText": "import { root } from '@rvjs/core'\nimport { RvjsUIProvider, startRvjsUI } from '@rvjs/ui'\nimport '/node_modules/@rvjs/ui/dist/style.css'\n\nstartRvjsUI({\n  environment: import.meta.env.MODE as 'development' | 'production',\n})\n\nconst App = () => {\n  return RvjsUIProvider({\n    child: ...,\n  })\n}\n\nroot(document.getElementById('app')!, App())",
+              "language": "typescript",
+              "type": "multi",
+              "width": "100%",
+              "defaultShow": true
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "component",
+      "name": "Section",
+      "props": {
+        "children": [
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "text": "링크",
+              "kind": "heading-03",
+              "as": "h4"
+            }
+          },
+          {
+            "type": "component",
+            "name": "Link",
+            "props": {
+              "href": "https://github.com/ILikeMintChocolate/rvjs/tree/ui/dev/packages/ui",
+              "text": "GitHub"
+            }
+          },
+          {
+            "type": "component",
+            "name": "Link",
+            "props": {
+              "href": "https://www.npmjs.com/package/@rvjs/ui",
+              "text": "npm"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "element",
+      "name": "div",
+      "props": {
+        "style": {
+          "height": "60vh"
+        }
+      }
+    },
+    {
+      "type": "component",
+      "name": "Link",
+      "props": {
+        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ui/getting-started.json",
+        "children": [
+          {
+            "type": "component",
+            "name": "DocumentIcon",
+            "props": {
+              "style": {
+                "width": "1rem",
+                "filter": "brightness(0) saturate(100%) invert(25%) sepia(69%) saturate(3617%) hue-rotate(218deg) brightness(100%) contrast(104%)"
+              }
+            }
+          },
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "text": "Raw Data From Github",
+              "color": "linkPrimary"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
