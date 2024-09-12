@@ -23,7 +23,7 @@ const App = () => {
           '/:pId': {
             componentFn: () => MainBody(),
             router: {
-              '/getting-started': {
+              '/gettingStarted': {
                 componentFn: () => ContentPage(),
               },
               '/:cId': {
@@ -52,7 +52,7 @@ const MainBody = component(() => {
 
   onMount(() => {
     if (pathname() === '') {
-      navigate('/core/getting-started')
+      navigate('/core/gettingStarted')
     }
   })
 

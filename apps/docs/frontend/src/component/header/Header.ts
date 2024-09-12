@@ -25,7 +25,7 @@ const Header = component(() => {
       }),
       HeaderName({
         title: prop(() => 'Documentation'),
-        href: prop(() => '/core/getting-started'),
+        href: prop(() => '/core/gettingStarted'),
         prefix: prop(() => 'rvjs'),
       }),
       HeaderHr(),
@@ -33,17 +33,17 @@ const Header = component(() => {
         children: [
           HeaderMenuItem({
             text: prop(() => 'Core'),
-            href: prop(() => '/core/getting-started'),
+            href: prop(() => '/core/gettingStarted'),
             isActive: prop(() => isInCorePage(pathname())),
           }),
           HeaderMenuItem({
             text: prop(() => 'UI'),
-            href: prop(() => '/ui/getting-started'),
+            href: prop(() => '/ui/gettingStarted'),
             isActive: prop(() => isInUIPage(pathname())),
           }),
           HeaderMenuItem({
             text: prop(() => 'Is'),
-            href: prop(() => '/is/getting-started'),
+            href: prop(() => '/is/gettingStarted'),
             isActive: prop(() => isInIsPage(pathname())),
           }),
         ],
