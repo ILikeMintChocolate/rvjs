@@ -1,6 +1,6 @@
 import { ChevronDownIcon } from '@content/icon/Icons.ts'
 import Flex from '@layout/flex/Flex.ts'
-import { button, component, ComponentFn, dynamic, prop } from '@rvjs/core'
+import { button, component, dynamic, prop } from '@rvjs/core'
 import { checkProps } from '@rvjs/is'
 import {
   subMenu_dropDown_style,
@@ -16,7 +16,7 @@ import {
 import { noDrag_style } from '@theme/util/util.css.ts'
 import Text from '@typography/text/Text.ts'
 
-const SubMenu: ComponentFn = component<SubMenuProps>((props) => {
+const SubMenu = component<SubMenuProps>((props) => {
   const {
     menuName,
     children,
