@@ -1,0 +1,3 @@
+{
+  "code": "import { prop } from '@rvjs/core'\nimport { CodeSnippet } from '@rvjs/ui'\n\nconst MultiCodeSnippetExample = () => {\n  return CodeSnippet({\n    type: 'multi',\n    language: 'javascript',\n    codeText: prop(\n      () =>\n        \"import { div, h1 } from '@rvjs/core'\\n\" +\n        '\\n' +\n        'const App = () => {\\n' +\n        '  return div({\\n' +\n        '    children: [\\n' +\n        '      h1({\\n' +\n        \"        textContent: 'Hello World!',\\n\" +\n        '      }),\\n' +\n        '    ],\\n' +\n        '  })\\n' +\n        '}\\n' +\n        '',\n    ),\n    defaultShow: prop(() => true),\n  })\n}\n\nexport default MultiCodeSnippetExample"
+}
