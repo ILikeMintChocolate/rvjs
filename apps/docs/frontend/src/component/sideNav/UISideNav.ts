@@ -56,8 +56,8 @@ const UISideNav = () => {
               }),
               SideNavMenuItem({
                 text: prop(() => 'TextInput'),
-                href: prop(() => '/ui/form/text-input'),
-                isActive: prop(() => pathname() === '/ui/form/text-input'),
+                href: prop(() => '/ui/form/textInput'),
+                isActive: prop(() => pathname() === '/ui/form/textInput'),
               }),
             ],
           }),
@@ -77,9 +77,9 @@ const UISideNav = () => {
               }),
               SideNavMenuItem({
                 text: prop(() => 'CodeSnippet'),
-                href: prop(() => '/ui/typography/code-snippet'),
+                href: prop(() => '/ui/typography/codeSnippet'),
                 isActive: prop(
-                  () => pathname() === '/ui/typography/code-snippet',
+                  () => pathname() === '/ui/typography/codeSnippet',
                 ),
               }),
               SideNavMenuItem({
@@ -105,20 +105,20 @@ const UISideNav = () => {
               }),
               SideNavMenuItem({
                 text: prop(() => 'OrderedList'),
-                href: prop(() => '/ui/content/ordered-list'),
-                isActive: prop(() => pathname() === '/ui/content/ordered-list'),
+                href: prop(() => '/ui/content/orderedList'),
+                isActive: prop(() => pathname() === '/ui/content/orderedList'),
               }),
               SideNavMenuItem({
                 text: prop(() => 'UnorderedList'),
-                href: prop(() => '/ui/content/unordered-list'),
+                href: prop(() => '/ui/content/unorderedList'),
                 isActive: prop(
-                  () => pathname() === '/ui/content/unordered-list',
+                  () => pathname() === '/ui/content/unorderedList',
                 ),
               }),
               SideNavMenuItem({
                 text: prop(() => 'ListItem'),
-                href: prop(() => '/ui/content/list-item'),
-                isActive: prop(() => pathname() === '/ui/content/list-item'),
+                href: prop(() => '/ui/content/listItem'),
+                isActive: prop(() => pathname() === '/ui/content/listItem'),
               }),
             ],
           }),
@@ -143,84 +143,82 @@ const UISideNav = () => {
               }),
               SideNavMenuItem({
                 text: prop(() => 'HeaderGlobalAction'),
-                href: prop(() => '/ui/shell/header-global-action'),
+                href: prop(() => '/ui/shell/headerGlobalAction'),
                 isActive: prop(
-                  () => pathname() === '/ui/shell/header-global-action',
+                  () => pathname() === '/ui/shell/headerGlobalAction',
                 ),
               }),
               SideNavMenuItem({
                 text: prop(() => 'HeaderGlobalBar'),
-                href: prop(() => '/ui/shell/header-global-bar'),
+                href: prop(() => '/ui/shell/headerGlobalBar'),
                 isActive: prop(
-                  () => pathname() === '/ui/shell/header-global-bar',
+                  () => pathname() === '/ui/shell/headerGlobalBar',
                 ),
               }),
               SideNavMenuItem({
                 text: prop(() => 'HeaderHr'),
-                href: prop(() => '/ui/shell/header-hr'),
-                isActive: prop(() => pathname() === '/ui/shell/header-hr'),
+                href: prop(() => '/ui/shell/headerHr'),
+                isActive: prop(() => pathname() === '/ui/shell/headerHr'),
               }),
               SideNavMenuItem({
                 text: prop(() => 'HeaderMenuButton'),
-                href: prop(() => '/ui/shell/header-menu-button'),
+                href: prop(() => '/ui/shell/headerMenuButton'),
                 isActive: prop(
-                  () => pathname() === '/ui/shell/header-menu-button',
+                  () => pathname() === '/ui/shell/headerMenuButton',
                 ),
               }),
               SideNavMenuItem({
                 text: prop(() => 'HeaderMenuItem'),
-                href: prop(() => '/ui/shell/header-menu-item'),
-                isActive: prop(
-                  () => pathname() === '/ui/shell/header-menu-item',
-                ),
+                href: prop(() => '/ui/shell/headerMenuItem'),
+                isActive: prop(() => pathname() === '/ui/shell/headerMenuItem'),
               }),
               SideNavMenuItem({
                 text: prop(() => 'HeaderName'),
-                href: prop(() => '/ui/shell/header-name'),
-                isActive: prop(() => pathname() === '/ui/shell/header-name'),
+                href: prop(() => '/ui/shell/headerName'),
+                isActive: prop(() => pathname() === '/ui/shell/headerName'),
               }),
               SideNavMenuItem({
                 text: prop(() => 'HeaderNavigation'),
-                href: prop(() => '/ui/shell/header-navigation'),
+                href: prop(() => '/ui/shell/headerNavigation'),
                 isActive: prop(
-                  () => pathname() === '/ui/shell/header-navigation',
+                  () => pathname() === '/ui/shell/headerNavigation',
                 ),
               }),
               SideNavMenuItem({
                 text: prop(() => 'SubMenu'),
-                href: prop(() => '/ui/shell/sub-menu'),
-                isActive: prop(() => pathname() === '/ui/shell/sub-menu'),
+                href: prop(() => '/ui/shell/subMenu'),
+                isActive: prop(() => pathname() === '/ui/shell/subMenu'),
               }),
               SideNavMenuItem({
                 text: prop(() => 'SubMenuItem'),
-                href: prop(() => '/ui/shell/sub-menu-item'),
-                isActive: prop(() => pathname() === '/ui/shell/sub-menu-item'),
+                href: prop(() => '/ui/shell/subMenuItem'),
+                isActive: prop(() => pathname() === '/ui/shell/subMenuItem'),
               }),
               SideNavMenuItem({
                 text: prop(() => 'SideNav'),
-                href: prop(() => '/ui/shell/side-nav'),
-                isActive: prop(() => pathname() === '/ui/shell/side-nav'),
+                href: prop(() => '/ui/shell/sideNav'),
+                isActive: prop(() => pathname() === '/ui/shell/sideNav'),
               }),
               SideNavMenuItem({
                 text: prop(() => 'SideNavItems'),
-                href: prop(() => '/ui/shell/side-nav-items'),
-                isActive: prop(() => pathname() === '/ui/shell/side-nav-items'),
+                href: prop(() => '/ui/shell/sideNavItems'),
+                isActive: prop(() => pathname() === '/ui/shell/sideNavItems'),
               }),
               SideNavMenuItem({
                 text: prop(() => 'SideNavLink'),
-                href: prop(() => '/ui/shell/side-nav-link'),
-                isActive: prop(() => pathname() === '/ui/shell/side-nav-link'),
+                href: prop(() => '/ui/shell/sideNavLink'),
+                isActive: prop(() => pathname() === '/ui/shell/sideNavLink'),
               }),
               SideNavMenuItem({
                 text: prop(() => 'SideNavMenu'),
-                href: prop(() => '/ui/shell/side-nav-menu'),
-                isActive: prop(() => pathname() === '/ui/shell/side-nav-menu'),
+                href: prop(() => '/ui/shell/sideNavMenu'),
+                isActive: prop(() => pathname() === '/ui/shell/sideNavMenu'),
               }),
               SideNavMenuItem({
                 text: prop(() => 'SideNavMenuItem'),
-                href: prop(() => '/ui/shell/side-nav-menu-item'),
+                href: prop(() => '/ui/shell/sideNavMenuItem'),
                 isActive: prop(
-                  () => pathname() === '/ui/shell/side-nav-menu-item',
+                  () => pathname() === '/ui/shell/sideNavMenuItem',
                 ),
               }),
             ],
@@ -242,9 +240,9 @@ const UISideNav = () => {
             children: [
               SideNavMenuItem({
                 text: prop(() => 'renderComponentFromJSON'),
-                href: prop(() => '/ui/util/render-component-from-json'),
+                href: prop(() => '/ui/util/renderComponentFromJSON'),
                 isActive: prop(
-                  () => pathname() === '/ui/util/render-component-from-json',
+                  () => pathname() === '/ui/util/renderComponentFromJSON',
                 ),
               }),
             ],
