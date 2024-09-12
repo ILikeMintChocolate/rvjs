@@ -64,6 +64,13 @@
           },
           {
             "type": "component",
+            "name": "Iframe",
+            "props": {
+              "src": "https://rvjs.xyz/example/core/dom/textNode/ex1/"
+            }
+          },
+          {
+            "type": "component",
             "name": "CodeSnippet",
             "props": {
               "codeText": "import { p, textNode } from '@rvjs/core'\n\nconst App = () => {\n  return p({\n    children: [textNode('Hello '), textNode('World!')],\n  })\n}\n\nexport default App",

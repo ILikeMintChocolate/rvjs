@@ -5,7 +5,7 @@
       "name": "Text",
       "props": {
         "as": "h1",
-        "text": "시작하기",
+        "text": "@rvjs/is 시작하기",
         "kind": "heading-06"
       }
     },
@@ -32,7 +32,7 @@
                   "type": "text",
                   "name": "text",
                   "props": {
-                    "text": "의 유효성 검사를 위한 패키지 입니다."
+                    "text": "의 유효성 검사를 위한 라이브러리입니다."
                   }
                 }
               ]

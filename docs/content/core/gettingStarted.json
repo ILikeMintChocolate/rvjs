@@ -5,7 +5,7 @@
       "name": "Text",
       "props": {
         "as": "h1",
-        "text": "@rvjs/core",
+        "text": "@rvjs/core 시작하기",
         "kind": "heading-06"
       }
     },
@@ -53,6 +53,59 @@
               "codeText": "npm install @rvjs/core",
               "language": "bash",
               "type": "single",
+              "width": "100%",
+              "defaultShow": true
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "component",
+      "name": "Section",
+      "props": {
+        "children": [
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "text": "설정",
+              "kind": "heading-03",
+              "as": "h4"
+            }
+          },
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "children": [
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "root",
+                    "language": "javascript",
+                    "type": "link",
+                    "href": "/core/dom/root"
+                  }
+                },
+                {
+                  "type": "text",
+                  "name": "text",
+                  "props": {
+                    "text": " 함수를 사용해 렌더링을 시작할 최상위 요소와 위치를 지정합니다."
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "component",
+            "name": "CodeSnippet",
+            "props": {
+              "codeText": "import { div, h1, root } from '@rvjs/core'\n\nconst App = () => {\n  return div({\n    children: [\n      h1({\n        textContent: 'Hello World!',\n      }),\n    ],\n  })\n}\n\nroot(document.getElementById('app'), App())",
+              "language": "javascript",
+              "type": "multi",
               "width": "100%",
               "defaultShow": true
             }
