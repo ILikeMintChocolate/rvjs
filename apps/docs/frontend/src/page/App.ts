@@ -1,7 +1,8 @@
 import NoContentError from '@component/error/NoContentError.ts'
 import Header from '@component/header/Header.ts'
+import Loading from '@component/loading/Loading.js'
 import SideNav from '@component/sideNav/SideNav.ts'
-import ContentData from '@page/Content.ts'
+import ContentData from '@page/Content.js'
 import {
   component,
   onMount,
@@ -68,6 +69,7 @@ const CategoryPage = component(() => {
 const ContentPage = component(() => {
   return Suspense({
     content: () => ContentData(),
+    loading: Loading(),
     error: NoContentError(),
   })
 })
