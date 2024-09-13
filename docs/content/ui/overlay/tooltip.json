@@ -50,7 +50,8 @@
             "type": "component",
             "name": "Iframe",
             "props": {
-              "src": "https://rvjs.xyz/example/ui/overlay/tooltip/ex1/"
+              "src": "https://rvjs.xyz/example/ui/overlay/tooltip/ex1/",
+              "height": "200px"
             }
           },
           {

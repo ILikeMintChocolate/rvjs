@@ -50,14 +50,15 @@
             "type": "component",
             "name": "Iframe",
             "props": {
-              "src": "https://rvjs.xyz/example/ui/typography/multiCodeSnippet/ex1/"
+              "src": "https://rvjs.xyz/example/ui/typography/multiCodeSnippet/ex1/",
+              "height": "300px"
             }
           },
           {
             "type": "component",
             "name": "CodeSnippet",
             "props": {
-              "codeText": "import { prop } from '@rvjs/core'\nimport { CodeSnippet } from '@rvjs/ui'\n\nconst MultiCodeSnippetExample = () => {\n  return CodeSnippet({\n    type: 'multi',\n    language: 'javascript',\n    codeText: prop(\n      () =>\n        \"import { button, div, dynamic, h1, useState } from '@rvjs/core'\\n\\nconst Counter = () => {\\n  const [getCount, setCount] = useState(0)\\n\\n  return div({\\n    children: [\\n      h1({\\n        textContent: dynamic(() => `Count: ${getCount()}`),\\n      }),\\n      button({\\n        textContent: '-1',\\n        onclick: () => setCount(getCount() - 1),\\n      }),\\n      button({\\n        textContent: '+1',\\n        onclick: () => setCount(getCount() + 1),\\n      }),\\n    ],\\n  })\\n}\\n\\nexport default Counter\",\n    ),\n    defaultShow: prop(() => true),\n  })\n}\n\nexport default MultiCodeSnippetExample",
+              "codeText": "import { prop } from '@rvjs/core'\nimport { CodeSnippet } from '@rvjs/ui'\n\nconst MultiCodeSnippetExample = () => {\n  return CodeSnippet({\n    type: 'multi',\n    language: 'javascript',\n    codeText: prop(\n      () => `\n  import { button, div, dynamic, h1, useState } from '@rvjs/core'\n  \n  const Counter = () => {\n    const [getCount, setCount] = useState(0)\n    \n    return div({\n      children: [\n        h1({\n          textContent: dynamic(() => \\`Count: \\${getCount()}\\`),\n        }),\n        button({\n          textContent: '-1',\n          onclick: () => setCount(getCount() - 1),\n        }),\n        button({\n          textContent: '+1',\n          onclick: () => setCount(getCount() + 1),\n        }),\n      ],\n    })\n  }\n\n  export default Counter\n`,\n    ),\n    defaultShow: prop(() => true),\n  })\n}\n\nexport default MultiCodeSnippetExample",
               "language": "javascript",
               "type": "multi",
               "width": "100%",
