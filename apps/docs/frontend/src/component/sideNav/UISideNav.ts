@@ -76,16 +76,37 @@ const UISideNav = () => {
                 isActive: prop(() => pathname() === '/ui/typography/highlight'),
               }),
               SideNavMenuItem({
-                text: prop(() => 'CodeSnippet'),
-                href: prop(() => '/ui/typography/codeSnippet'),
-                isActive: prop(
-                  () => pathname() === '/ui/typography/codeSnippet',
-                ),
-              }),
-              SideNavMenuItem({
                 text: prop(() => 'Link'),
                 href: prop(() => '/ui/typography/link'),
                 isActive: prop(() => pathname() === '/ui/typography/link'),
+              }),
+              SideNavMenuItem({
+                text: prop(() => 'InlineCodeSnippet'),
+                href: prop(() => '/ui/typography/inlineCodeSnippet'),
+                isActive: prop(
+                  () => pathname() === '/ui/typography/inlineCodeSnippet',
+                ),
+              }),
+              SideNavMenuItem({
+                text: prop(() => 'LinkCodeSnippet'),
+                href: prop(() => '/ui/typography/linkCodeSnippet'),
+                isActive: prop(
+                  () => pathname() === '/ui/typography/linkCodeSnippet',
+                ),
+              }),
+              SideNavMenuItem({
+                text: prop(() => 'SingleCodeSnippet'),
+                href: prop(() => '/ui/typography/singleCodeSnippet'),
+                isActive: prop(
+                  () => pathname() === '/ui/typography/singleCodeSnippet',
+                ),
+              }),
+              SideNavMenuItem({
+                text: prop(() => 'MultiCodeSnippet'),
+                href: prop(() => '/ui/typography/multiCodeSnippet'),
+                isActive: prop(
+                  () => pathname() === '/ui/typography/multiCodeSnippet',
+                ),
               }),
             ],
           }),
@@ -126,11 +147,6 @@ const UISideNav = () => {
             menuName: prop(() => 'Shell'),
             defaultShow: prop(() => true),
             children: [
-              SideNavMenuItem({
-                text: prop(() => 'App'),
-                href: prop(() => '/ui/shell/app'),
-                isActive: prop(() => pathname() === '/ui/shell/app'),
-              }),
               SideNavMenuItem({
                 text: prop(() => 'Body'),
                 href: prop(() => '/ui/shell/body'),
