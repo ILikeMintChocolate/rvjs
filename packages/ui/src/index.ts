@@ -12,6 +12,7 @@ export { default as Flex } from '@layout/flex/Flex.ts'
 export { default as Grid } from '@layout/grid/Grid.ts'
 export { default as Section } from '@layout/section/Section.ts'
 
+export { default as Spinner } from '@overlay/spinner/Spinner.ts'
 export { default as Tooltip } from '@overlay/tooltip/Tooltip.ts'
 
 export { default as Shell } from '@shell/shell/Shell.ts'
