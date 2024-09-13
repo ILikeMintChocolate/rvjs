@@ -26,6 +26,8 @@ import { textInputRenderProps } from '@form/textInput/TextInput.props.ts'
 import TextInput from '@form/textInput/TextInput.ts'
 import { sectionRenderProps } from '@layout/section/Section.props.ts'
 import Section from '@layout/section/Section.ts'
+import { spinnerRenderProps } from '@overlay/spinner/Spinner.props.ts'
+import Spinner from '@overlay/spinner/Spinner.ts'
 import { tooltipRenderProps } from '@overlay/tooltip/Tooltip.props.ts'
 import Tooltip from '@overlay/tooltip/Tooltip.ts'
 import { Children, RefObject, textNode } from '@rvjs/core'
@@ -78,6 +80,7 @@ export const componentFnMap = {
   Button: Button,
   TextInput: TextInput,
   Section: Section,
+  Spinner: Spinner,
   Tooltip: Tooltip,
   CodeSnippet: CodeSnippet,
   Highlight: Highlight,
@@ -122,6 +125,7 @@ export const componentRenderPropsMap = {
   Button: buttonRenderProps,
   TextInput: textInputRenderProps,
   Section: sectionRenderProps,
+  Spinner: spinnerRenderProps,
   Tooltip: tooltipRenderProps,
   CodeSnippet: codeSnippetRenderProps,
   Highlight: highlightRenderProps,
