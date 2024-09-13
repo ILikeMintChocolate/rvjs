@@ -32,6 +32,14 @@ export const spinner_recipe = recipe({
         borderTop: `0.1875rem solid ${vars.color.interactive}`,
         borderLeft: `0.1875rem solid ${vars.color.interactive}`,
       },
+      md: {
+        width: vars.spacing['08'],
+        height: vars.spacing['08'],
+        border: `${vars.spacing['02']} solid transparent`,
+        borderTop: `${vars.spacing['02']} solid ${vars.color.interactive}`,
+        borderLeft: `${vars.spacing['02']} solid ${vars.color.interactive}`,
+        borderBottom: `${vars.spacing['02']} solid ${vars.color.interactive}`,
+      },
       lg: {
         width: vars.spacing['11'],
         height: vars.spacing['11'],
