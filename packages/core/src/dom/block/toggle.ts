@@ -12,29 +12,24 @@ export interface ToggleProps<Bool> {
 }
 
 export class ToggleBlock<Bool> extends Block {
-  #child: Block | null
-  #dependency: ToggleProps<Bool>['dependency']
-  #render: ToggleProps<Bool>['render']
+  dependency: ToggleProps<Bool>['dependency']
+  render: ToggleProps<Bool>['render']
 
   constructor(props: ToggleProps<Bool>) {
     const { dependency, render } = props
     super({ type: 'TOGGLE' })
-    this.#dependency = dependency
-    this.#render = render
-    this.#child = null
-    this.#initialRender()
+    this.dependency = dependency
+    this.render = render
+    this.child = null
+    this.initialRender()
   }
 
-  get child(): Block | null {
-    return this.#child
+  initialRender() {
+    this.renderByItem(true)
   }
 
-  #initialRender() {
-    this.#renderByItem(true)
-  }
-
-  #reRender() {
-    const { newBlock, deletable, increased } = this.#renderByItem(false)
+  reRender() {
+    const { newBlock, deletable, increased } = this.renderByItem(false)
     this.parent.requestDOMSwapUpdate(
       this,
       this.parent,
@@ -50,7 +45,7 @@ export class ToggleBlock<Bool> extends Block {
     }
   }
 
-  #renderByItem(isInitial: boolean) {
+  renderByItem(isInitial: boolean) {
     const item = (() => {
       if (isInitial) {
         subscribeStateContext.set({
@@ -58,23 +53,23 @@ export class ToggleBlock<Bool> extends Block {
           type: 'flowRender',
           property: 'flowRender',
           value: () => {
-            this.#reRender()
+            this.reRender()
           },
         })
-        const item = isGetState(this.#dependency)
-          ? this.#dependency()
-          : this.#dependency
+        const item = isGetState(this.dependency)
+          ? this.dependency()
+          : this.dependency
         subscribeStateContext.set(null)
         return item
       } else {
-        return (this.#dependency as GetState<Bool>)()
+        return (this.dependency as GetState<Bool>)()
       }
     })()
-    const deletable = this.#child
+    const deletable = this.child
     const newNestedNodes: NestedArray<HTMLNode> = []
     const rerenderableChildren = []
-    const child = item ? this.#renderBlock() : null
-    this.#child = child
+    const child = item ? this.renderBlock() : null
+    this.child = child
     if (child) {
       if (isElementBlock(child) || isTextNodeBlock(child)) {
         newNestedNodes.push(child.element)
@@ -93,8 +88,8 @@ export class ToggleBlock<Bool> extends Block {
     return { newBlock: child, deletable, increased }
   }
 
-  #renderBlock() {
-    const child = this.#render()
+  renderBlock() {
+    const child = this.render()
     if (child) {
       child.parent = this
     }

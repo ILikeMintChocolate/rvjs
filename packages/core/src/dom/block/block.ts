@@ -72,7 +72,7 @@ export class Block extends RouteContext(
     }
   }
 
-  #commit() {
+  commit() {
     const onMountQueue = new Queue<ComponentBlock>()
     this.traverseChildren(this, (child) => {
       if (isComponentBlock(child)) {
@@ -89,10 +89,10 @@ export class Block extends RouteContext(
   }
 
   triggerCommit() {
-    this.#commit()
+    this.commit()
   }
 
-  #destroy() {
+  destroy() {
     this.traverseChildren(this, (child) => {
       if (isComponentBlock(child)) {
         child.triggerOnDestroy()
@@ -106,6 +106,6 @@ export class Block extends RouteContext(
   }
 
   triggerDestroy() {
-    this.#destroy()
+    this.destroy()
   }
 }

@@ -12,29 +12,24 @@ export interface SwitchProps<Item> {
 }
 
 export class SwitchBlock<Item> extends Block {
-  #child: Block | null
-  #dependency: SwitchProps<Item>['dependency']
-  #render: SwitchProps<Item>['render']
+  dependency: SwitchProps<Item>['dependency']
+  render: SwitchProps<Item>['render']
 
   constructor(props: SwitchProps<Item>) {
     const { dependency, render } = props
     super({ type: 'SWITCH' })
-    this.#dependency = dependency
-    this.#render = render
-    this.#child = null
-    this.#initialRender()
+    this.dependency = dependency
+    this.render = render
+    this.child = null
+    this.initialRender()
   }
 
-  get child(): Block | null {
-    return this.#child
+  initialRender() {
+    this.renderByItem(true)
   }
 
-  #initialRender() {
-    this.#renderByItem(true)
-  }
-
-  #reRender() {
-    const { newBlock, deletable, increased } = this.#renderByItem(false)
+  reRender() {
+    const { newBlock, deletable, increased } = this.renderByItem(false)
     this.parent.requestDOMSwapUpdate(
       this,
       this.parent,
@@ -50,7 +45,7 @@ export class SwitchBlock<Item> extends Block {
     }
   }
 
-  #renderByItem(isInitial: boolean) {
+  renderByItem(isInitial: boolean) {
     const item = (() => {
       if (isInitial) {
         subscribeStateContext.set({
@@ -58,23 +53,23 @@ export class SwitchBlock<Item> extends Block {
           type: 'flowRender',
           property: 'flowRender',
           value: () => {
-            this.#reRender()
+            this.reRender()
           },
         })
-        const item = isGetState(this.#dependency)
-          ? this.#dependency()
-          : this.#dependency
+        const item = isGetState(this.dependency)
+          ? this.dependency()
+          : this.dependency
         subscribeStateContext.set(null)
         return item
       } else {
-        return (this.#dependency as GetState<Item>)()
+        return (this.dependency as GetState<Item>)()
       }
     })()
-    const deletable = this.#child
+    const deletable = this.child
     const newNestedNodes: NestedArray<HTMLNode> = []
     const rerenderableChildren = []
-    const child = this.#renderBlock(item)
-    this.#child = child
+    const child = this.renderBlock(item)
+    this.child = child
     if (child) {
       if (isElementBlock(child) || isTextNodeBlock(child)) {
         newNestedNodes.push(child.element)
@@ -93,8 +88,8 @@ export class SwitchBlock<Item> extends Block {
     return { newBlock: child, deletable, increased }
   }
 
-  #renderBlock(item: Item) {
-    const child = this.#render(item)
+  renderBlock(item: Item) {
+    const child = this.render(item)
     if (child) {
       child.parent = this
     }

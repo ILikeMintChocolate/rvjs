@@ -4,38 +4,38 @@ export const LifecycleHandlers = <TBase extends Constructor<Empty>>(
   Base: TBase,
 ) => {
   return class extends Base {
-    #lifecycleHandlers: {
+    lifecycleHandlers: {
       onMount: Function | null
       onDestroy: Function | null
     }
 
     constructor(...args: any[]) {
       super(...args)
-      this.#lifecycleHandlers = {
+      this.lifecycleHandlers = {
         onMount: null,
         onDestroy: null,
       }
     }
 
     setOnMountHandler(onMount: Function) {
-      this.#lifecycleHandlers.onMount = onMount
+      this.lifecycleHandlers.onMount = onMount
     }
 
     setOnDestroyHandler(onDestroy: Function) {
-      this.#lifecycleHandlers.onDestroy = onDestroy
+      this.lifecycleHandlers.onDestroy = onDestroy
     }
 
     triggerOnMount() {
-      if (this.#lifecycleHandlers.onMount) {
-        this.#lifecycleHandlers.onMount()
-        this.#lifecycleHandlers.onMount = null
+      if (this.lifecycleHandlers.onMount) {
+        this.lifecycleHandlers.onMount()
+        this.lifecycleHandlers.onMount = null
       }
     }
 
     triggerOnDestroy() {
-      if (this.#lifecycleHandlers.onDestroy) {
-        this.#lifecycleHandlers.onDestroy()
-        this.#lifecycleHandlers.onDestroy = null
+      if (this.lifecycleHandlers.onDestroy) {
+        this.lifecycleHandlers.onDestroy()
+        this.lifecycleHandlers.onDestroy = null
       }
     }
   }

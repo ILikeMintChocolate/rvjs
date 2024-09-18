@@ -18,25 +18,25 @@ interface IndexedObject {
 }
 
 export class ForBlock<Item> extends Block {
-  #dependency: ForProps<Item>['dependency']
-  #render: ForProps<Item>['render']
-  #orderMap: ArrayMap<Item, IndexedObject>
+  dependency: ForProps<Item>['dependency']
+  render: ForProps<Item>['render']
+  orderMap: ArrayMap<Item, IndexedObject>
 
   constructor(props: ForProps<Item>) {
     const { dependency, render } = props
     super({ type: 'FOR' })
-    this.#dependency = dependency
-    this.#render = render
-    this.#orderMap = new ArrayMap()
-    this.#initialRender()
+    this.dependency = dependency
+    this.render = render
+    this.orderMap = new ArrayMap()
+    this.initialRender()
   }
 
-  #initialRender() {
-    this.#renderByItem(true)
+  initialRender() {
+    this.renderByItem(true)
   }
 
-  #reRender() {
-    const { triggerBlocks, deletable, increased } = this.#renderByItem(false)
+  reRender() {
+    const { triggerBlocks, deletable, increased } = this.renderByItem(false)
     this.parent.requestDOMSwapUpdate(
       this,
       this.parent,
@@ -52,7 +52,7 @@ export class ForBlock<Item> extends Block {
     }
   }
 
-  #renderByItem(isInitial: boolean) {
+  renderByItem(isInitial: boolean) {
     const items = (() => {
       if (isInitial) {
         subscribeStateContext.set({
@@ -60,19 +60,19 @@ export class ForBlock<Item> extends Block {
           type: 'flowRender',
           property: 'flowRender',
           value: () => {
-            this.#reRender()
+            this.reRender()
           },
         })
-        const items = isGetState(this.#dependency)
-          ? this.#dependency()
-          : this.#dependency
+        const items = isGetState(this.dependency)
+          ? this.dependency()
+          : this.dependency
         subscribeStateContext.set(null)
         return items
       } else {
-        return (this.#dependency as GetState<Item[]>)()
+        return (this.dependency as GetState<Item[]>)()
       }
     })()
-    const prevOrderMap = this.#orderMap
+    const prevOrderMap = this.orderMap
     const currOrderMap = new ArrayMap<Item, IndexedObject>()
     const newNestedNodes: NestedArray<HTMLNode> = []
     const newChildren: Block[] = []
@@ -86,7 +86,7 @@ export class ForBlock<Item> extends Block {
       const isExist = prevOrderMap.has(item)
       const child = isExist
         ? prevOrderMap.pop(item).block
-        : this.#renderBlock(item, i)
+        : this.renderBlock(item, i)
       if (isExist) {
         deletable.delete(child)
       } else {
@@ -109,14 +109,14 @@ export class ForBlock<Item> extends Block {
     const increased = newNestedNodesLength - this.domLength
     this.nestedNodes = newNestedNodes
     this.children = newChildren
-    this.#orderMap = currOrderMap
+    this.orderMap = currOrderMap
     this.domLength = newNestedNodesLength
     this.rerenderableChildren = rerenderableChildren
     return { triggerBlocks, deletable, increased }
   }
 
-  #renderBlock(item: Item, index: number) {
-    const child = this.#render(item, index)
+  renderBlock(item: Item, index: number) {
+    const child = this.render(item, index)
     if (child) {
       child.parent = this
     }
