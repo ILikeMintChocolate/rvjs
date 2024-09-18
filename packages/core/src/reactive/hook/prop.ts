@@ -11,10 +11,10 @@ export type PropFn<Value> = RvjsFunction<() => Value>
 export const prop = <Value>(fn: () => Value) => {
   const propFn = fn as PropFn<Value>
   propFn.$$typeof = RVJS_PROP_SYMBOL
-  isUsingState.set([])
+  isUsingState.clear()
   const propResult = propFn()
-  const parentGetStates = isUsingState.get()!
-  isUsingState.set([])
+  const parentGetStates = [...isUsingState]
+  isUsingState.clear()
   if (parentGetStates.length) {
     const [newState, setState] = useState(propResult)
     useEffect(() => {

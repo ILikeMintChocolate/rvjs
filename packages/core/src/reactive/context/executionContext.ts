@@ -19,4 +19,4 @@ export interface StateContext {
 
 export const subscribeStateContext = new Context<StateContext>()
 export const componentContext = new Context<ComponentBlock>()
-export const isUsingState = new Context<GetState[]>([])
+export const isUsingState = new Set<GetState>([])

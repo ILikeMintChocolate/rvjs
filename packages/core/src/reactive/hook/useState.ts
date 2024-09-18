@@ -40,7 +40,7 @@ export const useState = <State>(
         subscribers.subscribeState(stateContext)
       }
     }
-    isUsingState.set([...(isUsingState.get() ?? []), getState])
+    isUsingState.add(getState)
     return state
   }
   getState.$$typeof = RVJS_GET_STATE_SYMBOL
@@ -90,18 +90,23 @@ const notifyWhenStateChange = (subscribers: StateObserver) => {
     values.classesProperty.forEach((classes) => {
       const { classFn, removePrevClassFn } = classes
       const className = classFn() as string
-
       removePrevClassFn()
       if (isElementBlock(block)) {
-        className.split(' ').forEach((classString) => {
-          block.element.classList.add(classString)
-        })
+        const splitedClasses = className.split(' ')
+        for (let j = 0; j < splitedClasses.length; j++) {
+          if (splitedClasses[j] !== '') {
+            block.element.classList.add(splitedClasses[j])
+          }
+        }
       }
       classes.removePrevClassFn = () => {
         if (isElementBlock(block)) {
-          className.split(' ').forEach((classString) => {
-            block.element.classList.remove(classString)
-          })
+          const splitedClasses = className.split(' ')
+          for (let j = 0; j < splitedClasses.length; j++) {
+            if (splitedClasses[j] !== '') {
+              block.element.classList.remove(splitedClasses[j])
+            }
+          }
         }
       }
     })

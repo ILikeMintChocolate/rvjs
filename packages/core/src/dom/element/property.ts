@@ -100,7 +100,8 @@ const customProps = {
     block.element.classList.add(...splitedClassNames)
   },
   classes: (parent: ElementBlock, classes: CustomProps['classes']) => {
-    classes.forEach((cls) => {
+    for (let i = 0; i < classes.length; i++) {
+      const cls = classes[i]
       if (isDynamic(cls)) {
         const clsString = cls()
         subscribeStateContext.set({
@@ -110,23 +111,32 @@ const customProps = {
           value: {
             classFn: cls,
             removePrevClassFn: () => {
-              clsString.split(' ').forEach((classString) => {
-                parent.element.classList.remove(classString)
-              })
+              const splitedClasses = clsString.split(' ')
+              for (let j = 0; j < splitedClasses.length; j++) {
+                if (splitedClasses[j] !== '') {
+                  parent.element.classList.remove(splitedClasses[j])
+                }
+              }
             },
           },
         })
         const classesString = cls()
-        classesString.split(' ').forEach((classString) => {
-          parent.element.classList.add(classString)
-        })
+        const splitedClasses = classesString.split(' ')
+        for (let j = 0; j < splitedClasses.length; j++) {
+          if (splitedClasses[j] !== '') {
+            parent.element.classList.add(splitedClasses[j])
+          }
+        }
         subscribeStateContext.set(null)
       } else if (isString(cls)) {
-        cls.split(' ').forEach((cls) => {
-          parent.element.classList.add(cls)
-        })
+        const splitedClasses = cls.split(' ')
+        for (let j = 0; j < splitedClasses.length; j++) {
+          if (splitedClasses[j] !== '') {
+            parent.element.classList.add(splitedClasses[j])
+          }
+        }
       }
-    })
+    }
   },
 }
 
