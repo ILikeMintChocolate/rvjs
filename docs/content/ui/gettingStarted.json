@@ -23,7 +23,24 @@
                   "type": "text",
                   "name": "text",
                   "props": {
-                    "text": "@rvjs/core 기반의 UI 컴포넌트 라이브러리입니다."
+                    "text": "@rvjs/core 기반의 UI 컴포넌트 라이브러리입니다. "
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "Link",
+                  "props": {
+                    "as": "span",
+                    "inline": true,
+                    "href": "https://carbondesignsystem.com/",
+                    "text": "IBM Carbon Design System"
+                  }
+                },
+                {
+                  "type": "text",
+                  "name": "text",
+                  "props": {
+                    "text": "을 기반으로 만들었습니다."
                   }
                 }
               ]
@@ -187,10 +204,19 @@
                         "props": {
                           "children": [
                             {
+                              "type": "component",
+                              "name": "CodeSnippet",
+                              "props": {
+                                "codeText": "RvjsUIProvider",
+                                "language": "javascript",
+                                "type": "inline"
+                              }
+                            },
+                            {
                               "type": "text",
                               "name": "text",
                               "props": {
-                                "text": "RvjsUIProvider 함수는 내부적으로 컴포넌트 간의 상태를 공유하도록 지원합니다."
+                                "text": " 함수는 내부적으로 컴포넌트 간의 상태를 공유하도록 지원합니다."
                               }
                             }
                           ],
@@ -223,7 +249,23 @@
                               "type": "text",
                               "name": "text",
                               "props": {
-                                "text": " 파일 가져오기를 통해 @rvjs/ui의 기본 스타일을 추가합니다."
+                                "text": " 파일 가져오기를 통해 "
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "CodeSnippet",
+                              "props": {
+                                "codeText": "@rvjs/ui",
+                                "language": "javascript",
+                                "type": "inline"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "name": "text",
+                              "props": {
+                                "text": "의 기본 스타일을 추가합니다."
                               }
                             }
                           ],
