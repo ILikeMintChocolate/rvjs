@@ -58,6 +58,11 @@ const CoreSideNav = () => {
                 href: prop(() => '/core/dom/toggle'),
                 isActive: prop(() => pathname() === '/core/dom/toggle'),
               }),
+              SideNavMenuItem({
+                text: prop(() => 'Suspense'),
+                href: prop(() => '/core/dom/suspense'),
+                isActive: prop(() => pathname() === '/core/dom/suspense'),
+              }),
             ],
           }),
           SideNavMenu({
