@@ -1,10 +1,20 @@
+import { dynamicContext } from '@context/executionContext.ts'
+import { StateContext } from '@hook/useState.ts'
 import { isRvjsFunction } from '@type/guard.ts'
 import { RVJS_DYNAMIC_RENDER_SYMBOL } from '@util/symbol.ts'
 
-export type Dynamic<Result = unknown> = () => Result
+export type Dynamic<Result = unknown> = (context?: StateContext) => Result
 
-export const dynamic = <Result>(resultFn: () => Result) => {
-  const dynamicRender = () => {
+export const dynamic = <Result>(
+  resultFn: (context?: StateContext) => Result,
+) => {
+  const dynamicRender = (context?: StateContext) => {
+    if (context) {
+      dynamicContext.set(context)
+      const result = resultFn()
+      dynamicContext.set(null)
+      return result
+    }
     return resultFn()
   }
   dynamicRender.$$typeof = RVJS_DYNAMIC_RENDER_SYMBOL

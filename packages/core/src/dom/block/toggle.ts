@@ -1,5 +1,4 @@
 import { Block } from '@block/block.ts'
-import { subscribeStateContext } from '@context/executionContext.ts'
 import { HTMLNode } from '@element/type.ts'
 import { Prop } from '@hook/prop.ts'
 import { GetState, isGetState } from '@hook/useState.ts'
@@ -48,18 +47,16 @@ export class ToggleBlock<Bool> extends Block {
   renderByItem(isInitial: boolean) {
     const item = (() => {
       if (isInitial) {
-        subscribeStateContext.set({
-          block: this,
-          type: 'flowRender',
-          property: 'flowRender',
-          value: () => {
-            this.reRender()
-          },
-        })
         const item = isGetState(this.dependency)
-          ? this.dependency()
+          ? this.dependency({
+            block: this,
+            type: 'flowRender',
+            property: 'flowRender',
+            value: () => {
+              this.reRender()
+            },
+          })
           : this.dependency
-        subscribeStateContext.set(null)
         return item
       } else {
         return (this.dependency as GetState<Bool>)()

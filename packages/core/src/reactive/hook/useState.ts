@@ -1,11 +1,8 @@
 import { Block } from '@block/block.ts'
-import {
-  isUsingState,
-  StateContext,
-  subscribeStateContext,
-} from '@context/executionContext.ts'
+import { dynamicContext, isUsingState } from '@context/executionContext.ts'
 import { setProperty, setStyleProperty } from '@element/property.ts'
 import { AllElementProps } from '@element/type.ts'
+import { Dynamic } from '@hook/dynamic.ts'
 import {
   isArray,
   isFunction,
@@ -17,11 +14,28 @@ import { Queue } from '@util/dataStructure/queue.ts'
 import { Observer } from '@util/observer.ts'
 import { RVJS_GET_STATE_SYMBOL } from '@util/symbol.ts'
 
-export type GetState<State = unknown> = RvjsFunction<() => State>
+export type GetState<State = unknown> = RvjsFunction<
+  (context?: StateContext) => State
+>
+
 export type SetState<State = unknown> = RvjsFunction<
   (newState: State | SetStateCallback<State>) => void
 >
+
 type SetStateCallback<State = unknown> = (oldState: State) => State
+
+export interface StateContext {
+  block?: Block
+  type:
+    | 'useEffect'
+    | 'childrenRender'
+    | 'domProperty'
+    | 'styleProperty'
+    | 'classesProperty'
+    | 'flowRender'
+  property: string
+  value: Dynamic | any
+}
 
 export const useState = <State>(
   initialState: State,
@@ -31,13 +45,14 @@ export const useState = <State>(
   let isNotifying = false
   const lazySubscribeQueue = new Queue<StateContext>()
 
-  const getState: GetState<State> = () => {
-    if (subscribeStateContext.has()) {
-      const stateContext = subscribeStateContext.get()!
+  const getState: GetState<State> = (subscribeStateContext?: StateContext) => {
+    if (subscribeStateContext || dynamicContext.has()) {
       if (isNotifying) {
-        lazySubscribeQueue.push(stateContext)
+        lazySubscribeQueue.push(subscribeStateContext ?? dynamicContext.get())
       } else {
-        subscribers.subscribeState(stateContext)
+        subscribers.subscribeState(
+          subscribeStateContext ?? dynamicContext.get(),
+        )
       }
     }
     isUsingState.add(getState)
@@ -89,24 +104,14 @@ const notifyWhenStateChange = (subscribers: StateObserver) => {
     })
     values.classesProperty.forEach((classes) => {
       const { classFn, removePrevClassFn } = classes
-      const className = classFn() as string
+      const singleClassString = classFn() as string
       removePrevClassFn()
-      if (isElementBlock(block)) {
-        const splitedClasses = className.split(' ')
-        for (let j = 0; j < splitedClasses.length; j++) {
-          if (splitedClasses[j] !== '') {
-            block.element.classList.add(splitedClasses[j])
-          }
-        }
+      if (isElementBlock(block) && singleClassString !== '') {
+        block.element.classList.add(singleClassString)
       }
       classes.removePrevClassFn = () => {
-        if (isElementBlock(block)) {
-          const splitedClasses = className.split(' ')
-          for (let j = 0; j < splitedClasses.length; j++) {
-            if (splitedClasses[j] !== '') {
-              block.element.classList.remove(splitedClasses[j])
-            }
-          }
+        if (isElementBlock(block) && singleClassString !== '') {
+          block.element.classList.remove(singleClassString)
         }
       }
     })

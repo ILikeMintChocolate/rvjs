@@ -1,9 +1,7 @@
 import { ElementBlock } from '@block/element.ts'
-import { subscribeStateContext } from '@context/executionContext.ts'
 import { AllElementProps, StyleProps } from '@element/type.ts'
 import { Dynamic, isDynamic } from '@hook/dynamic.ts'
 import { RefObject } from '@hook/useRef.ts'
-import { isString } from '@type/guard.ts'
 import { Children } from '@type/type.ts'
 
 export const applyPropsToElement = <Props extends Partial<AllElementProps>>(
@@ -43,14 +41,16 @@ export const setDynamicProperty = (
   key: keyof AllElementProps,
   value: Dynamic<AllElementProps[keyof AllElementProps]>,
 ) => {
-  subscribeStateContext.set({
-    block: block,
-    type: 'domProperty',
-    property: key,
-    value,
-  })
-  setProperty(block, key, value())
-  subscribeStateContext.set(null)
+  setProperty(
+    block,
+    key,
+    value({
+      block: block,
+      type: 'domProperty',
+      property: key,
+      value,
+    }),
+  )
 }
 
 export interface CustomProps {
@@ -77,15 +77,12 @@ const customProps = {
   style: (parent: ElementBlock, style: CustomProps['style']) => {
     Object.entries(style).forEach(([property, value]) => {
       if (isDynamic(value)) {
-        subscribeStateContext.set({
+        parent.element.style[property] = value({
           block: parent,
           type: 'styleProperty',
           property: property,
           value,
         })
-        // @ts-ignore
-        parent.element.style[property] = value()
-        subscribeStateContext.set(null)
       } else {
         // @ts-ignore
         parent.element.style[property] = value
@@ -95,46 +92,29 @@ const customProps = {
   animation: (parent: ElementBlock, animation: CustomProps['animation']) => {
     parent.element.animate(animation.keyframes, animation.options)
   },
-  className: (block: ElementBlock, className: CustomProps['className']) => {
-    const splitedClassNames = className.split(' ')
-    block.element.classList.add(...splitedClassNames)
-  },
   classes: (parent: ElementBlock, classes: CustomProps['classes']) => {
     for (let i = 0; i < classes.length; i++) {
-      const cls = classes[i]
-      if (isDynamic(cls)) {
-        const clsString = cls()
-        subscribeStateContext.set({
+      const singleClass = classes[i]
+      if (isDynamic(singleClass)) {
+        const prevClassString = singleClass()
+        const singleClassString = singleClass({
           block: parent,
           type: 'classesProperty',
           property: 'classes',
           value: {
-            classFn: cls,
+            classFn: singleClass,
             removePrevClassFn: () => {
-              const splitedClasses = clsString.split(' ')
-              for (let j = 0; j < splitedClasses.length; j++) {
-                if (splitedClasses[j] !== '') {
-                  parent.element.classList.remove(splitedClasses[j])
-                }
+              if (prevClassString !== '') {
+                parent.element.classList.remove(prevClassString)
               }
             },
           },
         })
-        const classesString = cls()
-        const splitedClasses = classesString.split(' ')
-        for (let j = 0; j < splitedClasses.length; j++) {
-          if (splitedClasses[j] !== '') {
-            parent.element.classList.add(splitedClasses[j])
-          }
+        if (singleClassString !== '') {
+          parent.element.classList.add(singleClassString)
         }
-        subscribeStateContext.set(null)
-      } else if (isString(cls)) {
-        const splitedClasses = cls.split(' ')
-        for (let j = 0; j < splitedClasses.length; j++) {
-          if (splitedClasses[j] !== '') {
-            parent.element.classList.add(splitedClasses[j])
-          }
-        }
+      } else {
+        parent.element.classList.add(singleClass)
       }
     }
   },

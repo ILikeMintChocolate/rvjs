@@ -1,4 +1,3 @@
-import { subscribeStateContext } from '@context/executionContext.ts'
 import { GetState, isGetState } from '@hook/useState.ts'
 
 export const useEffect = (
@@ -7,13 +6,11 @@ export const useEffect = (
 ) => {
   dependencies.forEach((dependency) => {
     if (isGetState(dependency)) {
-      subscribeStateContext.set({
+      dependency({
         type: 'useEffect',
         property: 'useEffect',
         value: callback,
       })
-      dependency()
-      subscribeStateContext.set(null)
     }
   })
 }
