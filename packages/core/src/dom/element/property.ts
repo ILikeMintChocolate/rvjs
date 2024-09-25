@@ -2,6 +2,7 @@ import { ElementBlock } from '@block/element.ts'
 import { AllElementProps, StyleProps } from '@element/type.ts'
 import { Dynamic, isDynamic } from '@hook/dynamic.ts'
 import { RefObject } from '@hook/useRef.ts'
+import { isArray } from '@type/guard.ts'
 import { Children } from '@type/type.ts'
 
 export const applyPropsToElement = <Props extends Partial<AllElementProps>>(
@@ -62,7 +63,13 @@ export interface CustomProps {
     options?: number | KeyframeAnimationOptions
   }
   className: string
-  classes: (string | Dynamic<string>)[]
+  classes: (
+    | string
+    | string[]
+    | Dynamic<string>
+    | Dynamic<string[]>
+    | Dynamic<string | string[]>
+  )[]
 }
 
 const customProps = {
@@ -97,24 +104,20 @@ const customProps = {
       const singleClass = classes[i]
       if (isDynamic(singleClass)) {
         const prevClassString = singleClass()
-        const singleClassString = singleClass({
+        singleClass({
           block: parent,
           type: 'classesProperty',
           property: 'classes',
           value: {
             classFn: singleClass,
             removePrevClassFn: () => {
-              if (prevClassString !== '') {
-                parent.element.classList.remove(prevClassString)
-              }
+              removeClasses(parent.element, prevClassString)
             },
           },
         })
-        if (singleClassString !== '') {
-          parent.element.classList.add(singleClassString)
-        }
+        setClasses(parent.element, prevClassString)
       } else {
-        parent.element.classList.add(singleClass)
+        setClasses(parent.element, singleClass)
       }
     }
   },
@@ -131,5 +134,27 @@ export const setStyleProperty = (
   } else {
     // @ts-ignore
     elementBlock.element.style[property] = value
+  }
+}
+
+export const setClasses = (
+  element: HTMLElement,
+  cls: Array<string> | string,
+) => {
+  if (isArray(cls)) {
+    element.classList.add(...cls.filter(Boolean))
+  } else if (cls !== '') {
+    element.classList.add(cls)
+  }
+}
+
+export const removeClasses = (
+  element: HTMLElement,
+  cls: Array<string> | string,
+) => {
+  if (isArray(cls)) {
+    element.classList.remove(...cls.filter(Boolean))
+  } else if (cls !== '') {
+    element.classList.remove(cls)
   }
 }
