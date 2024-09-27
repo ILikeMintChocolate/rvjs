@@ -57,9 +57,9 @@ export const DOMController = <TBase extends Constructor<Empty>>(
       this.domLength += increased
     }
 
-    requestDOMSwapUpdate(
+    requestDOMUpdate(
       caller: Block,
-      me: Block,
+      self: Block,
       newNodes: HTMLNode[],
       deletable: Block[],
       rerenderableIndex: number,
@@ -67,10 +67,10 @@ export const DOMController = <TBase extends Constructor<Empty>>(
       domLength: number,
       increased: number,
     ) {
-      const parent = me.parent
-      if (isElementBlock(me)) {
+      const parent = self.parent
+      if (isElementBlock(self)) {
         const { domIndex: localDOMIndex } =
-          me.rerenderableChildren[rerenderableIndex]
+          self.rerenderableChildren[rerenderableIndex]
         for (let i = 0; i < deletable.length; i++) {
           const deletableParent = deletable[i]
           const deletableElements: HTMLNode[] = []
@@ -94,38 +94,71 @@ export const DOMController = <TBase extends Constructor<Empty>>(
             deletableElements[j].remove()
           }
         }
-        const prevNodes = [...me.element.childNodes].slice(
+        const prevNodes = [...self.element.childNodes].slice(
           domIndex + localDOMIndex,
           domIndex + localDOMIndex + domLength,
-        )
-        let pNodeIndex = 0
-        newNodes.forEach((nNode) => {
-          const pNode = prevNodes[pNodeIndex]
-          if (nNode === pNode) {
-            pNodeIndex++
-          } else {
-            if (isElementBlock(me)) {
-              me.element.insertBefore(nNode, pNode)
-            }
-          }
-        })
-        me.requestRerenderableChildrenUpdate(me, increased)
+        ) as HTMLNode[]
+        this.updateDOM(self.element, prevNodes, newNodes)
+        self.requestRerenderableChildrenUpdate(self, increased)
       } else {
         const { domIndex: localDOMIndex } =
-          me.rerenderableChildren[rerenderableIndex]
-        me.nestedNodes[caller.domIndex] = caller.nestedNodes
-        me.domLength += increased
-        parent.requestDOMSwapUpdate(
-          me,
+          self.rerenderableChildren[rerenderableIndex]
+        self.nestedNodes[caller.domIndex] = caller.nestedNodes
+        self.domLength += increased
+        parent.requestDOMUpdate(
+          self,
           parent,
           newNodes,
           deletable,
-          me.rerenderableIndex,
+          self.rerenderableIndex,
           domIndex + localDOMIndex,
           domLength,
           increased,
         )
-        me.requestRerenderableChildrenUpdate(me, increased)
+        self.requestRerenderableChildrenUpdate(self, increased)
+      }
+    }
+
+    updateDOM(
+      element: HTMLElement,
+      oldChildren: HTMLNode[],
+      newChildren: HTMLNode[],
+    ) {
+      let oldStart = 0
+      let oldEnd = oldChildren.length - 1
+      let newStart = 0
+      let newEnd = newChildren.length - 1
+
+      while (oldStart <= oldEnd && newStart <= newEnd) {
+        if (oldChildren[oldStart] === newChildren[newStart]) {
+          oldStart++
+          newStart++
+        } else if (oldChildren[oldEnd] === newChildren[newEnd]) {
+          oldEnd--
+          newEnd--
+        } else if (oldChildren[oldStart] === newChildren[newEnd]) {
+          element.insertBefore(
+            oldChildren[oldStart],
+            oldChildren[oldEnd].nextSibling,
+          )
+          oldStart++
+          newEnd--
+        } else if (oldChildren[oldEnd] === newChildren[newStart]) {
+          element.insertBefore(oldChildren[oldEnd], oldChildren[oldStart])
+          oldEnd--
+          newStart++
+        } else {
+          element.insertBefore(newChildren[newStart], oldChildren[oldStart])
+          newStart++
+        }
+      }
+      while (oldStart <= oldEnd) {
+        element.removeChild(oldChildren[oldStart])
+        oldStart++
+      }
+      while (newStart <= newEnd) {
+        element.appendChild(newChildren[newStart])
+        newStart++
       }
     }
   }
