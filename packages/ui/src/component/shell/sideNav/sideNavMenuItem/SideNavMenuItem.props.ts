@@ -12,7 +12,7 @@ export const sideNavMenuItemPropsType = {
   href: isProp(isString),
   text: isProp(isString),
   isActive: isOptional(isProp(isBoolean)),
-  tabIndex: isProp(isProp(isNumber)),
+  tabIndex: isOptional(isProp(isProp(isNumber))),
 }
 
 export const sideNavMenuItemRenderProps = {
