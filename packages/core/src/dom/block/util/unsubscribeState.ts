@@ -4,32 +4,32 @@ export const UnsubscribeState = <TBase extends Constructor<Empty>>(
   Base: TBase,
 ) => {
   return class extends Base {
-    #unsubscribeHandlers: {
+    unsubscribeHandlers: {
       state: Function[]
       globalState: Function[]
     }
 
     constructor(...args: any[]) {
       super(...args)
-      this.#unsubscribeHandlers = {
+      this.unsubscribeHandlers = {
         state: [],
         globalState: [],
       }
     }
 
     addStateUnsubscribeHandler(unsubscribeHandler: Function) {
-      this.#unsubscribeHandlers.state.push(unsubscribeHandler)
+      this.unsubscribeHandlers.state.push(unsubscribeHandler)
     }
 
     addUnsubscribeGlobalStateHandler(unsubscribeHandler: Function) {
-      this.#unsubscribeHandlers.globalState.push(unsubscribeHandler)
+      this.unsubscribeHandlers.globalState.push(unsubscribeHandler)
     }
 
     cleanUpUnsubscribeState() {
-      this.#unsubscribeHandlers.state.forEach((unsubscribeHandler) =>
+      this.unsubscribeHandlers.state.forEach((unsubscribeHandler) =>
         unsubscribeHandler(this),
       )
-      this.#unsubscribeHandlers.globalState.forEach((unsubscribeHandler) => {
+      this.unsubscribeHandlers.globalState.forEach((unsubscribeHandler) => {
         unsubscribeHandler(this)
       })
     }

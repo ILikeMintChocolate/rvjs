@@ -9,74 +9,26 @@ export const DOMController = <TBase extends Constructor<Empty>>(
   Base: TBase,
 ) => {
   return class extends Base {
-    #element: HTMLElement | null
-    #nestedNodes: NestedArray<HTMLNode>
-    #domIndex: number
-    #domLength: number
-    #rerenderableIndex: number
-    #rerenderableChildren: Block[]
+    element: HTMLElement | null
+    nestedNodes: NestedArray<HTMLNode>
+    domIndex: number
+    domLength: number
+    rerenderableIndex: number
+    rerenderableChildren: Block[]
 
     constructor(...args: any[]) {
       super(...args)
       const { element } = args[0] as { element: HTMLElement }
       this.element = element
-      this.#nestedNodes = []
-      this.#domIndex = 0
-      this.#domLength = 0
-      this.#rerenderableIndex = 0
-      this.#rerenderableChildren = []
-    }
-
-    get element() {
-      return this.#element
-    }
-
-    set element(element: HTMLElement) {
-      this.#element = element
-    }
-
-    get nestedNodes() {
-      return this.#nestedNodes
-    }
-
-    set nestedNodes(nestedNodes: NestedArray<HTMLNode>) {
-      this.#nestedNodes = nestedNodes
+      this.nestedNodes = []
+      this.domIndex = 0
+      this.domLength = 0
+      this.rerenderableIndex = 0
+      this.rerenderableChildren = []
     }
 
     get nodes() {
-      return (this.#nestedNodes as any[]).flat(Infinity)
-    }
-
-    get domIndex() {
-      return this.#domIndex
-    }
-
-    set domIndex(domIndex: number) {
-      this.#domIndex = domIndex
-    }
-
-    get domLength() {
-      return this.#domLength
-    }
-
-    set domLength(length: number) {
-      this.#domLength = length
-    }
-
-    get rerenderableIndex() {
-      return this.#rerenderableIndex
-    }
-
-    set rerenderableIndex(rerenderableIndex: number) {
-      this.#rerenderableIndex = rerenderableIndex
-    }
-
-    get rerenderableChildren() {
-      return this.#rerenderableChildren
-    }
-
-    set rerenderableChildren(children: Block[]) {
-      this.#rerenderableChildren = children
+      return (this.nestedNodes as any[]).flat(Infinity)
     }
 
     initialDOMUpdate(block: Block) {
@@ -92,7 +44,7 @@ export const DOMController = <TBase extends Constructor<Empty>>(
       const fragment = document.createDocumentFragment()
       fragment.append(...newNodes)
       if (block.$$typeof === RVJS_ELEMENT_BLOCK_SYMBOL) {
-        block.#element.append(fragment)
+        block.element.append(fragment)
       }
     }
 

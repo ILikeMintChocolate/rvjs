@@ -14,8 +14,8 @@ import { NestedArray } from '@type/util.ts'
 export class ComponentBlock extends ContextHook(
   RouteContext(LifecycleHandlers(Block)),
 ) {
-  #key: string | null
-  #lazyRenderContext: {
+  key: string | null
+  lazyRenderContext: {
     tempElement: Comment
     isRendered: boolean
     renderFn: Function
@@ -24,35 +24,27 @@ export class ComponentBlock extends ContextHook(
 
   constructor() {
     super({ type: 'COMPONENT' })
-    this.#key = null
-    this.#lazyRenderContext = {
+    this.key = null
+    this.lazyRenderContext = {
       tempElement: null,
       isRendered: false,
       renderFn: null,
       previousComponent: null,
     }
-    this.#initialRender()
-  }
-
-  set key(value: string | null) {
-    this.#key = value
-  }
-
-  get key() {
-    return this.#key
+    this.initialRender()
   }
 
   set renderFn(renderFn: Function) {
-    this.#lazyRenderContext.renderFn = renderFn
+    this.lazyRenderContext.renderFn = renderFn
   }
 
   get tempElement() {
-    return this.#lazyRenderContext.tempElement
+    return this.lazyRenderContext.tempElement
   }
 
-  #initialRender() {
+  initialRender() {
     const comment = document.createComment('lazy-component')
-    this.#lazyRenderContext.tempElement = comment
+    this.lazyRenderContext.tempElement = comment
     this.nestedNodes = [comment]
     this.domLength = 1
   }
@@ -64,21 +56,21 @@ export class ComponentBlock extends ContextHook(
       this.shortcutParent.addShortcutChild(this)
     }
     componentContext.set(this)
-    const renderedChild = this.#lazyRenderContext.renderFn()
-    this.#lazyRenderContext.renderFn = null
-    this.#lazyRenderContext.isRendered = true
-    if (isComponentBlock(this.#lazyRenderContext.previousComponent)) {
-      componentContext.set(this.#lazyRenderContext.previousComponent)
+    const renderedChild = this.lazyRenderContext.renderFn()
+    this.lazyRenderContext.renderFn = null
+    this.lazyRenderContext.isRendered = true
+    if (isComponentBlock(this.lazyRenderContext.previousComponent)) {
+      componentContext.set(this.lazyRenderContext.previousComponent)
     }
-    this.#swapNodesForLazyRender(renderedChild)
+    this.swapNodesForLazyRender(renderedChild)
     this.triggerLazySetOutlet()
   }
 
   isRendered() {
-    return this.#lazyRenderContext.isRendered
+    return this.lazyRenderContext.isRendered
   }
 
-  #swapNodesForLazyRender(child: Block) {
+  swapNodesForLazyRender(child: Block) {
     this.child = child
     this.domLength = child.domLength
     child.parent = this
