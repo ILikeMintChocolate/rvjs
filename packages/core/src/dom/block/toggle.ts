@@ -29,7 +29,7 @@ export class ToggleBlock<Bool> extends Block {
 
   reRender() {
     const { newBlock, deletable, increased } = this.renderByItem(false)
-    this.parent.requestDOMSwapUpdate(
+    this.parent.requestDOMUpdate(
       this,
       this.parent,
       this.nodes,
@@ -49,13 +49,13 @@ export class ToggleBlock<Bool> extends Block {
       if (isInitial) {
         const item = isGetState(this.dependency)
           ? this.dependency({
-            block: this,
-            type: 'flowRender',
-            property: 'flowRender',
-            value: () => {
-              this.reRender()
-            },
-          })
+              block: this,
+              type: 'flowRender',
+              property: 'flowRender',
+              value: () => {
+                this.reRender()
+              },
+            })
           : this.dependency
         return item
       } else {

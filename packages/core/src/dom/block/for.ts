@@ -36,7 +36,7 @@ export class ForBlock<Item> extends Block {
 
   reRender() {
     const { triggerBlocks, deletable, increased } = this.renderByItem(false)
-    this.parent.requestDOMSwapUpdate(
+    this.parent.requestDOMUpdate(
       this,
       this.parent,
       this.nodes,

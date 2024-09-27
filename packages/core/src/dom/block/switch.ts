@@ -29,7 +29,7 @@ export class SwitchBlock<Item> extends Block {
 
   reRender() {
     const { newBlock, deletable, increased } = this.renderByItem(false)
-    this.parent.requestDOMSwapUpdate(
+    this.parent.requestDOMUpdate(
       this,
       this.parent,
       this.nodes,
