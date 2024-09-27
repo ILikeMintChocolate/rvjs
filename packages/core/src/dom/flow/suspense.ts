@@ -1,5 +1,6 @@
 import { ComponentBlock } from '@block/component.ts'
 import { ElementBlock } from '@block/element.ts'
+import { SwitchBlock } from '@block/switch.ts'
 import { Switch } from '@flow/switch.ts'
 import { useState } from '@hook/useState.ts'
 import { Child } from '@type/type.ts'
@@ -12,7 +13,7 @@ interface SuspenseProps {
 
 type Status = 'pending' | 'resolved' | 'rejected'
 
-export const Suspense = (props: SuspenseProps) => {
+export const Suspense = (props: SuspenseProps): SwitchBlock<unknown> => {
   const { loading, error, content } = props
   const [status, setStatus] = useState<Status>('pending')
   const [contentEl, setContentEl] = useState<Child | null>(null)

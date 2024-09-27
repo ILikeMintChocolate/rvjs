@@ -4,6 +4,7 @@ import { DOMController } from '@block/util/domController.ts'
 import { Empty } from '@block/util/mixin.ts'
 import { RouteContext } from '@block/util/routeContext.ts'
 import { UnsubscribeState } from '@block/util/unsubscribeState.ts'
+import { HTMLNode } from '@element/type.ts'
 import {
   isComponentBlock,
   isElementBlock,
@@ -33,7 +34,7 @@ export const blockTypes = {
 
 export interface BlockProps {
   type: keyof typeof blockTypes
-  element?: HTMLElement
+  element?: HTMLNode
 }
 
 export class Block extends RouteContext(

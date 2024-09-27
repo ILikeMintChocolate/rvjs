@@ -1,6 +1,11 @@
 import { Block } from '@block/block.ts'
 import { dynamicContext, isUsingState } from '@context/executionContext.ts'
-import { setProperty, setStyleProperty } from '@element/property.ts'
+import {
+  removeClasses,
+  setClasses,
+  setProperty,
+  setStyleProperty,
+} from '@element/property.ts'
 import { AllElementProps } from '@element/type.ts'
 import { Dynamic } from '@hook/dynamic.ts'
 import {
@@ -104,14 +109,14 @@ const notifyWhenStateChange = (subscribers: StateObserver) => {
     })
     values.classesProperty.forEach((classes) => {
       const { classFn, removePrevClassFn } = classes
-      const singleClassString = classFn() as string
+      const singleClassString = classFn() as string | string[]
       removePrevClassFn()
-      if (isElementBlock(block) && singleClassString !== '') {
-        block.element.classList.add(singleClassString)
+      if (isElementBlock(block)) {
+        setClasses(block.element, singleClassString)
       }
       classes.removePrevClassFn = () => {
-        if (isElementBlock(block) && singleClassString !== '') {
-          block.element.classList.remove(singleClassString)
+        if (isElementBlock(block)) {
+          removeClasses(block.element, singleClassString)
         }
       }
     })
