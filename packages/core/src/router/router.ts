@@ -1,5 +1,6 @@
 import { Block } from '@block/block.ts'
 import { ComponentBlock } from '@block/component.ts'
+import { SwitchBlock } from '@block/switch.ts'
 import { component } from '@component/component.ts'
 import { div } from '@element/elementMap.ts'
 import { Switch } from '@flow/switch.ts'
@@ -58,7 +59,10 @@ export interface MatchedRouteFn {
 
 type ComponentFn = () => ComponentBlock
 
-const Router = (routerProps: RouterProps, options?: RouterOptions) => {
+const Router = (
+  routerProps: RouterProps,
+  options?: RouterOptions,
+): SwitchBlock<unknown> => {
   let router = normalizeRouter(routerProps)
   const [routerOutlet, setRouterOutlet] = useState<Block | null>(null)
   const { getRoutes, setRoutes, onPathChange } = getPathEventInstance({
