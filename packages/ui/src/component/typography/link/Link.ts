@@ -31,7 +31,9 @@ const Link = (props: LinkProps) => {
   const [visited, setVisited] = useState(false)
 
   return a({
-    classes: [dynamic(() => link_anchor_recipe({ inline: inline() }))],
+    classes: [
+      dynamic(() => link_anchor_recipe({ inline: inline() }).split(' ')),
+    ],
     tabIndex: 0,
     onclick: (event: MouseEvent) => {
       event.preventDefault()
@@ -53,7 +55,10 @@ const Link = (props: LinkProps) => {
           color: prop(() => 'linkPrimary'),
           classes: [
             prop(() =>
-              link_text_recipe({ disabled: disabled(), visited: visited() }),
+              link_text_recipe({
+                disabled: disabled(),
+                visited: visited(),
+              }).split(' '),
             ),
           ],
         }),
@@ -67,7 +72,7 @@ const Link = (props: LinkProps) => {
                 disabled: disabled(),
                 visited: visited(),
                 size: size(),
-              }),
+              }).split(' '),
             ),
           ],
         })

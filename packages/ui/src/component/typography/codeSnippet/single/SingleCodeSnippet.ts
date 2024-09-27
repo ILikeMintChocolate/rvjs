@@ -46,7 +46,9 @@ const SingleCodeSnippet = (props: SingleCodeSnippetProps) => {
         children: [
           span({
             innerHTML: highlightedCodeHTML,
-            classes: [dynamic(() => text_recipe({ kind: 'code-01' }))],
+            classes: [
+              dynamic(() => text_recipe({ kind: 'code-01' }).split(' ')),
+            ],
           }),
         ],
       }),

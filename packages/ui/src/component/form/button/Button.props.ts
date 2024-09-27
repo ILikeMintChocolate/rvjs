@@ -1,6 +1,7 @@
 import { ButtonStyleProps } from '@form/button/Button.css.ts'
 import { ElementBlock, prop, Prop, svg } from '@rvjs/core'
 import {
+  isAny,
   isArray,
   isBoolean,
   isChild,
@@ -14,7 +15,7 @@ import { EventHandlers } from '@type/event.ts'
 
 export interface ButtonProps extends ButtonStyleProps {
   text?: Prop<string>
-  classes?: Prop<string>[]
+  classes?: (Prop<string> | Prop<string[]>)[]
   disabled?: Prop<boolean>
   tabIndex?: Prop<number>
   type?: Prop<'button' | 'reset' | 'submit'>
@@ -29,7 +30,7 @@ export interface ButtonProps extends ButtonStyleProps {
 
 export const buttonPropsType = {
   text: isOptional(isProp(isString)),
-  classes: isOptional(isArray(isProp(isString))),
+  classes: isOptional(isArray(isProp(isAny))),
   disabled: isOptional(isProp(isBoolean)),
   tabIndex: isOptional(isProp(isNumber)),
   type: isOptional(isProp(isString)),

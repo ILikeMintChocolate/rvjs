@@ -31,7 +31,9 @@ const HeaderGlobalAction = (props: HeaderGlobalActionProps) => {
               onclick: onClick,
               classes: [
                 dynamic(() =>
-                  headerGlobalAction_button_recipe({ isActive: isActive() }),
+                  headerGlobalAction_button_recipe({
+                    isActive: isActive(),
+                  }).split(' '),
                 ),
               ],
               children,
@@ -43,7 +45,9 @@ const HeaderGlobalAction = (props: HeaderGlobalActionProps) => {
             onclick: onClick,
             classes: [
               dynamic(() =>
-                headerGlobalAction_button_recipe({ isActive: isActive() }),
+                headerGlobalAction_button_recipe({
+                  isActive: isActive(),
+                }).split(' '),
               ),
             ],
             children,

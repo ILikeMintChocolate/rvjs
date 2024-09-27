@@ -28,7 +28,7 @@
     "dist"
   ],
   "dependencies": {
-    "@rvjs/core": "^0.2.14",
+    "@rvjs/core": "^0.2.21",
     "@rvjs/is": "^0.1.32",
     "@types/prismjs": "^1.26.4",
     "@vanilla-extract/css": "^1.15.2",

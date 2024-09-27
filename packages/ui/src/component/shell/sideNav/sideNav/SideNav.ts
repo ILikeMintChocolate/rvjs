@@ -32,7 +32,7 @@ const SideNav = component<SideNavProps>((props) => {
       prop(() =>
         sideNav_wrapper_recipe({
           isOpen: showSideNav(),
-        }),
+        }).split(' '),
       ),
       prop(() => coolScrollBar_style),
     ],
@@ -44,7 +44,7 @@ const SideNav = component<SideNavProps>((props) => {
           prop(() =>
             sideNav_nav_recipe({
               isOpen: showSideNav(),
-            }),
+            }).split(' '),
           ),
         ],
         children,

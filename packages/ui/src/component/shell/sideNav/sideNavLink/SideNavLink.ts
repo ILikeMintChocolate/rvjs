@@ -2,7 +2,7 @@ import Flex from '@layout/flex/Flex.ts'
 import { a, dynamic, prop, useNavigate } from '@rvjs/core'
 import { checkProps } from '@rvjs/is'
 import {
-  sideNavLink_anchor_style,
+  sideNavLink_anchor_recipe,
   sideNavLink_style,
   sideNavLink_text_recipe,
 } from '@shell/sideNav/sideNavLink/SideNavLink.css.ts'
@@ -30,7 +30,9 @@ const SideNavLink = (props: SideNavLinkProps) => {
         href: prop(() => href()),
         tabIndex: dynamic(() => tabIndex()),
         classes: [
-          dynamic(() => sideNavLink_anchor_style({ isActive: isActive() })),
+          dynamic(() =>
+            sideNavLink_anchor_recipe({ isActive: isActive() }).split(' '),
+          ),
         ],
         onclick: (event: Event) => {
           event.preventDefault()
@@ -42,7 +44,9 @@ const SideNavLink = (props: SideNavLinkProps) => {
             kind: prop(() => 'heading-compact-01'),
             color: prop(() => 'textSecondary'),
             classes: [
-              prop(() => sideNavLink_text_recipe({ isActive: isActive() })),
+              prop(() =>
+                sideNavLink_text_recipe({ isActive: isActive() }).split(' '),
+              ),
             ],
           }),
         ],

@@ -41,13 +41,13 @@ const LinkCodeSnippet = (props: LineCodeSnippetProps) => {
       code({
         innerHTML: highlightedCodeHTML,
         classes: [
-          dynamic(() => text_recipe({ kind: 'code-01' })),
+          dynamic(() => text_recipe({ kind: 'code-01' }).split(' ')),
           dynamic(() => linkCodeSnippet_code_style),
           dynamic(() =>
             link_text_recipe({
               disabled: false,
               visited: visited(),
-            }),
+            }).split(' '),
           ),
         ],
       }),

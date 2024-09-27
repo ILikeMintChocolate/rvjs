@@ -58,12 +58,12 @@ const Button = (props: ButtonProps) => {
       dynamic(() =>
         button_kind_recipe({
           kind: hasIconOnly() && kind() === 'ghost' ? 'ghostIconOnly' : kind(),
-        }),
+        }).split(' '),
       ),
       dynamic(() =>
         button_size_recipe({
           size: hasIconOnly() ? `${size()}IconOnly` : size(),
-        }),
+        }).split(' '),
       ),
       ...classes.map((cls) => dynamic(() => cls())),
     ],
@@ -79,7 +79,9 @@ const Button = (props: ButtonProps) => {
           as: 'span',
           text: prop(() => text()),
           kind: prop(() => 'body-compact-01'),
-          classes: [prop(() => button_text_recipe({ kind: kind() }))],
+          classes: [
+            prop(() => button_text_recipe({ kind: kind() }).split(' ')),
+          ],
         }),
       ),
       renderIcon !== null
@@ -91,7 +93,7 @@ const Button = (props: ButtonProps) => {
                     hasIconOnly() && kind() === 'ghost'
                       ? 'ghostIconOnly'
                       : kind(),
-                }),
+                }).split(' '),
               ),
             ],
           })

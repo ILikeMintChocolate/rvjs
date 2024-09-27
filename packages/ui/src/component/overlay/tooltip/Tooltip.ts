@@ -51,7 +51,7 @@ const Tooltip = (props: TooltipProps) => {
       trigger,
       Box({
         ref: tooltipRef,
-        classes: [prop(() => tooltip_backdrop_recipe({ kind }))],
+        classes: [prop(() => tooltip_backdrop_recipe({ kind }).split(' '))],
         style: {
           display: dynamic(() => (showTooltip() ? 'block' : 'none')),
         },
@@ -60,7 +60,11 @@ const Tooltip = (props: TooltipProps) => {
             classes: [dynamic(() => tooltip_arrow_style)],
           }),
           Box({
-            classes: [prop(() => tooltip_descriptionWrapper_recipe({ kind }))],
+            classes: [
+              prop(() =>
+                tooltip_descriptionWrapper_recipe({ kind }).split(' '),
+              ),
+            ],
             children: [
               Text({
                 text: prop(() => description()),

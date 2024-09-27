@@ -7,7 +7,7 @@ export const sideNavLink_style = style({
   width: '100%',
 })
 
-export const sideNavLink_anchor_style = recipe({
+export const sideNavLink_anchor_recipe = recipe({
   base: {
     display: 'flex',
     flexDirection: 'row',
@@ -40,24 +40,6 @@ export const sideNavLink_anchor_style = recipe({
         ':focus': {
           boxShadow: `inset 0.25rem 0 0 ${vars.color.borderInteractive}, inset 0 0 0 0.125rem ${vars.color.focus}`,
         },
-      },
-    },
-  },
-})
-
-export const sideNavLink_icon_recipe = recipe({
-  base: {
-    ':hover': {
-      color: `${vars.color.iconPrimary} !important`,
-    },
-  },
-  variants: {
-    isActive: {
-      true: {
-        fill: `${vars.color.iconPrimary} !important`,
-      },
-      false: {
-        fill: `${vars.color.iconSecondary} !important`,
       },
     },
   },

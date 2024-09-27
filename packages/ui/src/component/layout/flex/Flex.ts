@@ -14,7 +14,7 @@ import { HTMLDivType } from '@type/element.ts'
 interface FlexProps extends FlexStyleProps, HTMLDivType {
   as?: ElementType
   children?: Children
-  classes?: Prop<string>[]
+  classes?: (Prop<string> | Prop<string[]>)[]
   style?: Partial<StyleProps>
   ref?: RefObject<HTMLDivElement>
 }
@@ -139,7 +139,7 @@ const Flex = (props: FlexProps) => {
         px,
         py,
         bgColor,
-      }),
+      }).split(' '),
       ...classes.map((cls) => dynamic(() => cls())),
     ],
     children,

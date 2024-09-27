@@ -2,9 +2,9 @@ import { WarningAltFilledIcon, WarningFilledIcon } from '@content/icon/Icons.ts'
 import {
   textInput_helper_recipe,
   textInput_input_recipe,
-  textInput_inputWrapper_style,
+  textInput_inputWrapper_recipe,
   textInput_invalidIcon_style,
-  textInput_label_style,
+  textInput_label_recipe,
   textInput_style,
   textInput_warnIcon_style,
 } from '@form/textInput/TextInput.css.ts'
@@ -56,7 +56,9 @@ const TextInput = component<TextInputProps>((props) => {
               kind: prop(() => 'label-01'),
               color: prop(() => 'textSecondary'),
               classes: [
-                prop(() => textInput_label_style({ disabled: disabled() })),
+                prop(() =>
+                  textInput_label_recipe({ disabled: disabled() }).split(' '),
+                ),
               ],
             }),
           ),
@@ -75,10 +77,10 @@ const TextInput = component<TextInputProps>((props) => {
         align: 'center',
         classes: [
           prop(() =>
-            textInput_inputWrapper_style({
+            textInput_inputWrapper_recipe({
               size: size(),
               disabled: disabled(),
-            }),
+            }).split(' '),
           ),
         ],
         style: {
@@ -93,7 +95,9 @@ const TextInput = component<TextInputProps>((props) => {
             ref: inputRef,
             type,
             classes: [
-              dynamic(() => textInput_input_recipe({ disabled: disabled() })),
+              dynamic(() =>
+                textInput_input_recipe({ disabled: disabled() }).split(' '),
+              ),
             ],
             placeholder: dynamic(() => placeholder()),
             readOnly: dynamic(() => readOnly()),
@@ -131,7 +135,9 @@ const TextInput = component<TextInputProps>((props) => {
             text: invalidText,
             kind: prop(() => 'helper-text-01'),
             classes: [
-              prop(() => textInput_helper_recipe({ disabled: disabled() })),
+              prop(() =>
+                textInput_helper_recipe({ disabled: disabled() }).split(' '),
+              ),
             ],
           })
         } else if (status() === 'warn') {
@@ -139,7 +145,9 @@ const TextInput = component<TextInputProps>((props) => {
             text: warnText,
             kind: prop(() => 'helper-text-01'),
             classes: [
-              prop(() => textInput_helper_recipe({ disabled: disabled() })),
+              prop(() =>
+                textInput_helper_recipe({ disabled: disabled() }).split(' '),
+              ),
             ],
           })
         } else if (status() === 'valid' && helperText !== undefined) {
@@ -147,7 +155,9 @@ const TextInput = component<TextInputProps>((props) => {
             text: helperText,
             kind: prop(() => 'helper-text-01'),
             classes: [
-              prop(() => textInput_helper_recipe({ disabled: disabled() })),
+              prop(() =>
+                textInput_helper_recipe({ disabled: disabled() }).split(' '),
+              ),
             ],
           })
         }
