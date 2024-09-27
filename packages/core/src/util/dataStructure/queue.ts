@@ -1,7 +1,7 @@
 export class Queue<Value> {
-  private data: Record<number, Value>
-  private front: number
-  private end: number
+  data: Record<number, Value>
+  front: number
+  end: number
 
   constructor() {
     this.data = {}

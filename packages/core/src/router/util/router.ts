@@ -1,7 +1,6 @@
 import type { Router, RouterProps } from '@router/router.ts'
 
 export const normalizeRouter = (routerProps: RouterProps) => {
-  console.log('routerProps', routerProps)
   let router: Router = {
     static: {},
   }
