@@ -89,10 +89,6 @@ export class Block extends RouteContext(
     })
   }
 
-  triggerCommit() {
-    this.commit()
-  }
-
   destroy() {
     this.traverseChildren(this, (child) => {
       if (isComponentBlock(child)) {

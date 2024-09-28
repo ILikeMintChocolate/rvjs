@@ -45,7 +45,6 @@ export class ComponentBlock extends ContextHook(
   initialRender() {
     const comment = document.createComment('lazy-component')
     this.lazyRenderContext.tempElement = comment
-    this.nestedNodes = [comment]
     this.domLength = 1
   }
 
@@ -71,21 +70,18 @@ export class ComponentBlock extends ContextHook(
   }
 
   swapNodesForLazyRender(child: Block) {
-    this.child = child
+    this.addChild(child)
     this.domLength = child.domLength
-    child.parent = this
     const newNestedNodes: NestedArray<HTMLNode> = []
     const rerenderableChildren = []
     if (isElementBlock(child) || isTextNodeBlock(child)) {
       newNestedNodes.push(child.element)
     } else {
-      newNestedNodes.push(child.nestedNodes)
       rerenderableChildren.push(child)
     }
-    this.nestedNodes = newNestedNodes
     this.rerenderableChildren = rerenderableChildren
     const fragment = document.createDocumentFragment()
-    fragment.append(...this.nodes)
+    fragment.append(...child.getChildNodes())
     this.tempElement.replaceWith(fragment)
     this.parent.requestRerenderableChildrenUpdate(this, child.domLength - 1)
   }
