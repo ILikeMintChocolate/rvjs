@@ -1,3 +1,5 @@
+import { colorChipRenderProps } from '@content/colorChip/ColorChip.props.ts'
+import ColorChip from '@content/colorChip/ColorChip.ts'
 import {
   ArrowRightIcon,
   ChevronDownIcon,
@@ -73,6 +75,7 @@ import { textRenderProps } from '@typography/text/Text.props.ts'
 import Text from '@typography/text/Text.ts'
 
 export const componentFnMap = {
+  ColorChip: ColorChip,
   Iframe: Iframe,
   OrderedList: OrderedList,
   UnorderedList: UnorderedList,
@@ -118,6 +121,7 @@ export const componentFnMap = {
 } as any
 
 export const componentRenderPropsMap = {
+  ColorChip: colorChipRenderProps,
   Iframe: iframeRenderProps,
   OrderedList: orderedListRenderProps,
   UnorderedList: unorderedListRenderProps,

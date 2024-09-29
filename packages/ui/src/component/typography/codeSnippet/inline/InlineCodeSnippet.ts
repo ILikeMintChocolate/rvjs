@@ -1,11 +1,11 @@
 import { button, code, dynamic, prop } from '@rvjs/core'
 import { CodeSnippetProps } from '@typography/codeSnippet/CodeSnippet.props.ts'
-import { copyToClipboard } from '@typography/codeSnippet/CodeSnippet.util.ts'
 import {
   inlineCodeSnippet_button_style,
   inlineCodeSnippet_code_style,
 } from '@typography/codeSnippet/inline/InlineCodeSnippet.css.ts'
 import { text_recipe } from '@typography/text/Text.css.ts'
+import { copyToClipboard } from '@util/clipboard.ts'
 import { highlight, languages } from 'prismjs'
 
 type InlineCodeSnippetProps = Pick<

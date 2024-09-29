@@ -1,3 +1,4 @@
+export { default as ColorChip } from '@content/colorChip/ColorChip.ts'
 export * from '@content/icon/Icons.ts'
 export { default as Iframe } from '@content/iframe/Iframe.ts'
 export { default as OrderedList } from '@content/list/orderedList/OrderedList.ts'
