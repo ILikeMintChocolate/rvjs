@@ -4,7 +4,6 @@ import Flex from '@layout/flex/Flex.ts'
 import Tooltip from '@overlay/tooltip/Tooltip.ts'
 import { code, dynamic, pre, prop, useState } from '@rvjs/core'
 import { CodeSnippetProps } from '@typography/codeSnippet/CodeSnippet.props.ts'
-import { copyToClipboard } from '@typography/codeSnippet/CodeSnippet.util.ts'
 import {
   multiCodeSnippet_codeWrapper_style,
   multiCodeSnippet_pre_style,
@@ -14,6 +13,7 @@ import {
 import { calcHeight } from '@typography/codeSnippet/multi/MultiCodeSnippet.util.ts'
 import { text_recipe } from '@typography/text/Text.css.ts'
 import { ifIs } from '@util/array.ts'
+import { copyToClipboard } from '@util/clipboard.ts'
 import { highlight, languages } from 'prismjs'
 
 type SingleCodeSnippetProps = CodeSnippetProps
