@@ -11,7 +11,14 @@ import { EventHandlers } from '@type/event.ts'
 
 export interface CodeSnippetProps {
   codeText: Prop<string>
-  language: 'javascript' | 'typescript' | 'html' | 'css' | 'bash' | 'json'
+  language:
+    | 'javascript'
+    | 'typescript'
+    | 'html'
+    | 'css'
+    | 'bash'
+    | 'json'
+    | 'plain'
   type?: 'single' | 'inline' | 'multi' | 'link'
   collapsedNumberOfRows?: Prop<number>
   copyButtonDescription?: Prop<string>
