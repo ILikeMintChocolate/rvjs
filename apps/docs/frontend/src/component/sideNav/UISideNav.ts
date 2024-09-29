@@ -20,6 +20,32 @@ const UISideNav = () => {
             isActive: prop(() => pathname() === '/ui/gettingStarted'),
           }),
           SideNavMenu({
+            menuName: prop(() => 'CSS Variables'),
+            defaultShow: prop(() => true),
+            children: [
+              SideNavMenuItem({
+                text: prop(() => 'color'),
+                href: prop(() => '/ui/vars/color'),
+                isActive: prop(() => pathname() === '/ui/vars/color'),
+              }),
+              SideNavMenuItem({
+                text: prop(() => 'font'),
+                href: prop(() => '/ui/vars/font'),
+                isActive: prop(() => pathname() === '/ui/vars/font'),
+              }),
+              SideNavMenuItem({
+                text: prop(() => 'opacity'),
+                href: prop(() => '/ui/vars/opacity'),
+                isActive: prop(() => pathname() === '/ui/vars/opacity'),
+              }),
+              SideNavMenuItem({
+                text: prop(() => 'spacing'),
+                href: prop(() => '/ui/vars/spacing'),
+                isActive: prop(() => pathname() === '/ui/vars/spacing'),
+              }),
+            ],
+          }),
+          SideNavMenu({
             menuName: prop(() => 'Layout'),
             defaultShow: prop(() => true),
             children: [
