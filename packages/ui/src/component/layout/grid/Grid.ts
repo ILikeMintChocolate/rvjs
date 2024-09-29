@@ -14,7 +14,7 @@ import { HTMLDivType } from '@type/element.ts'
 interface BoxProps extends GridStyleProps, HTMLDivType {
   as?: ElementType
   children?: Children
-  classes?: Prop<string>[]
+  classes?: (Prop<string> | Prop<string[]>)[]
   style?: Partial<StyleProps>
   ref?: RefObject<HTMLDivElement>
 }
@@ -123,7 +123,7 @@ const Grid = (props: BoxProps) => {
         px,
         py,
         bgColor,
-      }),
+      }).split(' '),
       ...classes.map((cls) => dynamic(() => cls())),
     ],
     children,

@@ -37,7 +37,9 @@ const SubMenu = component<SubMenuProps>((props) => {
     children: [
       button({
         ref: focusRef,
-        classes: [dynamic(() => subMenu_recipe({ isSelected: showItems() }))],
+        classes: [
+          dynamic(() => subMenu_recipe({ isSelected: showItems() }).split(' ')),
+        ],
         onclick: onClickHandler,
         onblur: onBlurHandler,
         tabIndex,

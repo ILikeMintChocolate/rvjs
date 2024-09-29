@@ -30,7 +30,7 @@ const SideNavMenuItem = (props: SideNavMenuItemProps) => {
         href,
         classes: [
           dynamic(() =>
-            sideNavMenuItem_anchor_recipe({ isActive: isActive() }),
+            sideNavMenuItem_anchor_recipe({ isActive: isActive() }).split(' '),
           ),
         ],
         tabIndex: dynamic(() => tabIndex()),
@@ -44,7 +44,11 @@ const SideNavMenuItem = (props: SideNavMenuItemProps) => {
             kind: prop(() => 'body-compact-01'),
             color: prop(() => 'textSecondary'),
             classes: [
-              prop(() => sideNavMenuItem_text_recipe({ isActive: isActive() })),
+              prop(() =>
+                sideNavMenuItem_text_recipe({ isActive: isActive() }).split(
+                  ' ',
+                ),
+              ),
             ],
           }),
         ],

@@ -9,7 +9,7 @@ import { Block, GetState, useEffect, useElement, useRef } from '@rvjs/core'
 
 export const useTooltip = (showTooltip: GetState<boolean>, trigger: Block) => {
   const tooltipRef = useRef<HTMLDivElement>()
-  const triggerElement = useElement(trigger)!
+  const triggerElement = useElement(trigger)[0]
   let previousZoom: number = -1
 
   useEffect(() => {

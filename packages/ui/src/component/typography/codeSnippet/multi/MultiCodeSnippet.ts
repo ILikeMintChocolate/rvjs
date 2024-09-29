@@ -49,13 +49,15 @@ const MultiCodeSnippet = (props: SingleCodeSnippetProps) => {
         children: [
           code({
             innerHTML: highlightedCodeHTML,
-            classes: [dynamic(() => text_recipe({ kind: 'code-01' }))],
+            classes: [
+              dynamic(() => text_recipe({ kind: 'code-01' }).split(' ')),
+            ],
           }),
         ],
       })
     : code({
         innerHTML: highlightedCodeHTML,
-        classes: [dynamic(() => text_recipe({ kind: 'code-01' }))],
+        classes: [dynamic(() => text_recipe({ kind: 'code-01' }).split(' '))],
       })
 
   return Flex({
@@ -103,7 +105,7 @@ const MultiCodeSnippet = (props: SingleCodeSnippetProps) => {
                 dynamic(() =>
                   multiCodeSnippet_showMoreIcon_recipe({
                     showMore: showMore(),
-                  }),
+                  }).split(' '),
                 ),
               ],
             }),

@@ -18,7 +18,7 @@ const ListItem = (props: ListItemProps) => {
   return li({
     classes: [
       listItem_li_style,
-      dynamic(() => text_recipe({ kind: 'body-01' })),
+      dynamic(() => text_recipe({ kind: 'body-01' }).split(' ')),
     ],
     children: [
       ...ifIs(!!text, () =>

@@ -6,7 +6,7 @@ export const textInput_style = style({
   backgroundColor: vars.color.transparent,
 })
 
-export const textInput_label_style = recipe({
+export const textInput_label_recipe = recipe({
   base: {
     marginBottom: `${vars.spacing['03']} !important`,
   },
@@ -22,7 +22,7 @@ export const textInput_label_style = recipe({
   },
 })
 
-export const textInput_inputWrapper_style = recipe({
+export const textInput_inputWrapper_recipe = recipe({
   base: {
     backgroundColor: vars.color.field01,
     border: 'none',

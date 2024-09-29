@@ -1,5 +1,6 @@
 import { Children, Prop, prop } from '@rvjs/core'
 import {
+  isAny,
   isArray,
   isBoolean,
   isChildren,
@@ -12,7 +13,7 @@ import { EventHandlers } from '@type/event.ts'
 
 export interface HeaderGlobalActionProps {
   children: Children
-  classes?: Prop<string>[]
+  classes?: (Prop<string> | Prop<string[]>)[]
   isActive?: Prop<boolean>
   onClick?: EventHandlers['onClick']
   tooltip?: Prop<string>
@@ -21,7 +22,7 @@ export interface HeaderGlobalActionProps {
 
 export const headerGlobalActionPropsType = {
   children: isChildren,
-  classes: isOptional(isArray(isProp(isString))),
+  classes: isOptional(isArray(isProp(isAny))),
   isActive: isOptional(isProp(isBoolean)),
   onClick: isOptional(isFunctionType),
   tooltip: isOptional(isProp(isString)),

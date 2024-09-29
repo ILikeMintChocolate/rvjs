@@ -24,7 +24,7 @@ const Spinner = (props: SpinnerProps) => {
           prop(() =>
             spinner_recipe({
               size: size(),
-            }),
+            }).split(' '),
           ),
         ],
       }),

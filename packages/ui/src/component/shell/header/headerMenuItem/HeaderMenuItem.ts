@@ -28,7 +28,9 @@ const HeaderMenuItem = (props: HeaderMenuItemProps) => {
     children: [
       a({
         classes: [
-          dynamic(() => headerMenuItem_anchor_recipe({ isActive: isActive() })),
+          dynamic(() =>
+            headerMenuItem_anchor_recipe({ isActive: isActive() }).split(' '),
+          ),
         ],
         href,
         tabIndex: dynamic(() => tabIndex()),
@@ -42,7 +44,9 @@ const HeaderMenuItem = (props: HeaderMenuItemProps) => {
             kind: prop(() => 'body-compact-01'),
             color: prop(() => 'textSecondary'),
             classes: [
-              prop(() => headerMenuItem_text_recipe({ isActive: isActive() })),
+              prop(() =>
+                headerMenuItem_text_recipe({ isActive: isActive() }).split(' '),
+              ),
             ],
           }),
         ],

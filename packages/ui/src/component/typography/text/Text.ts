@@ -16,8 +16,8 @@ const Text = (props: TextProps) => {
 
   return element(as, {
     classes: [
-      dynamic(() => text_recipe({ kind: kind() })),
-      dynamic(() => textSprinkles({ color: color() })),
+      dynamic(() => text_recipe({ kind: kind() }).split(' ')),
+      dynamic(() => textSprinkles({ color: color() }).split(' ')),
       ...classes.map((cls) => dynamic(() => cls())),
     ],
     ...ifIs(!!text, () => ({

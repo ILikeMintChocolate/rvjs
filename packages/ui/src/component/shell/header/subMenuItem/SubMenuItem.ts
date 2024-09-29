@@ -29,7 +29,9 @@ const SubMenuItem = component<SubMenuItemProps>((props) => {
     tabIndex: -1,
     children: [
       a({
-        classes: [subMenuItem_anchor_recipe({ isActive: isActive() })],
+        classes: [
+          subMenuItem_anchor_recipe({ isActive: isActive() }).split(' '),
+        ],
         href,
         tabIndex: dynamic(() => tabIndex()),
         onclick: (event: Event) => {
@@ -43,7 +45,9 @@ const SubMenuItem = component<SubMenuItemProps>((props) => {
             kind: prop(() => 'body-compact-01'),
             color: prop(() => 'textSecondary'),
             classes: [
-              prop(() => subMenuItem_text_recipe({ isActive: isActive() })),
+              prop(() =>
+                subMenuItem_text_recipe({ isActive: isActive() }).split(' '),
+              ),
             ],
           }),
         ],

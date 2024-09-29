@@ -39,7 +39,7 @@ const InlineCodeSnippet = (props: InlineCodeSnippetProps) => {
       code({
         innerHTML: highlightedCodeHTML,
         classes: [
-          dynamic(() => text_recipe({ kind: 'code-01' })),
+          dynamic(() => text_recipe({ kind: 'code-01' }).split(' ')),
           dynamic(() => inlineCodeSnippet_code_style),
         ],
       }),
