@@ -12,7 +12,7 @@ export const sideNavLinkPropsType = {
   text: isProp(isString),
   href: isProp(isString),
   isActive: isOptional(isProp(isBoolean)),
-  tabIndex: isProp(isProp(isNumber)),
+  tabIndex: isOptional(isProp(isProp(isNumber))),
 }
 
 export const sideNavLinkRenderProps = {
