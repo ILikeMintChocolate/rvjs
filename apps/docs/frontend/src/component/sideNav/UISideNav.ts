@@ -141,6 +141,11 @@ const UISideNav = () => {
             defaultShow: prop(() => true),
             children: [
               SideNavMenuItem({
+                text: prop(() => 'ColorChip'),
+                href: prop(() => '/ui/content/colorChip'),
+                isActive: prop(() => pathname() === '/ui/content/colorChip'),
+              }),
+              SideNavMenuItem({
                 text: prop(() => 'Icon'),
                 href: prop(() => '/ui/content/icon'),
                 isActive: prop(() => pathname() === '/ui/content/icon'),
