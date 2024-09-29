@@ -7,6 +7,7 @@ export const BlockRelations = <TBase extends Constructor<Empty>>(
 ) => {
   return class extends Base {
     parent: Block | null
+    child: Block
     children: Block[]
     componentShortcut: {
       parent: ComponentBlock | null
@@ -16,6 +17,7 @@ export const BlockRelations = <TBase extends Constructor<Empty>>(
     constructor(...args: any[]) {
       super(...args)
       this.parent = null
+      this.child = null
       this.children = []
       this.componentShortcut = {
         parent: null,
@@ -23,16 +25,19 @@ export const BlockRelations = <TBase extends Constructor<Empty>>(
       }
     }
 
-    get child() {
-      return this.children[0]
-    }
-
-    set child(child: Block) {
-      this.children[0] = child
-    }
-
     addChild(child: Block) {
+      this.child = child
+      child.parent = this as unknown as Block
+    }
+
+    removeChild(child: Block) {
+      this.child = null
+      child.parent = null
+    }
+
+    addChildren(child: Block) {
       this.children.push(child)
+      child.parent = this as unknown as Block
     }
 
     get shortcutParent() {

@@ -1,122 +1,148 @@
 import { Block } from '@block/block.ts'
-import { HTMLNode } from '@element/type.ts'
 import { Prop } from '@hook/prop.ts'
 import { GetState, isGetState } from '@hook/useState.ts'
 import { isElementBlock, isTextNodeBlock } from '@type/rvjs.ts'
-import { NestedArray } from '@type/util.ts'
-import { ArrayMap } from '@util/dataStructure/arrayMap.ts'
 
 export interface ForProps<Item> {
   dependency: Item[] | GetState<Item[]> | Prop<Item[]>
   render: (item: Item, index: number) => Block | null
 }
 
-interface IndexedObject {
-  index: number
-  block: Block
-}
-
 export class ForBlock<Item> extends Block {
   dependency: ForProps<Item>['dependency']
   render: ForProps<Item>['render']
-  orderMap: ArrayMap<Item, IndexedObject>
+  itemMap: Map<Item, Block>
 
   constructor(props: ForProps<Item>) {
     const { dependency, render } = props
     super({ type: 'FOR' })
     this.dependency = dependency
     this.render = render
-    this.orderMap = new ArrayMap()
+    this.itemMap = new Map()
     this.initialRender()
   }
 
   initialRender() {
-    this.renderByItem(true)
+    const items = this.getItems(true)
+    this.renderChildren(items)
   }
 
   reRender() {
-    const { triggerBlocks, deletable, increased } = this.renderByItem(false)
+    const items = this.getItems(false)
+    const { newNodes, deletable, triggerBlocks, increased } =
+      this.renderChildren(items)
+    const deletableBlock = [...deletable]
+    for (let i = 0; i < deletableBlock.length; i++) {
+      this.destroyBlock(deletableBlock[i])
+    }
     this.parent.requestDOMUpdate(
-      this,
       this.parent,
-      this.nodes,
-      [...deletable],
+      newNodes,
       this.rerenderableIndex,
       0,
       this.domLength,
       increased,
     )
     for (let i = 0; i < triggerBlocks.length; i++) {
-      triggerBlocks[i].triggerCommit()
+      triggerBlocks[i].commit()
     }
   }
 
-  renderByItem(isInitial: boolean) {
-    const items = (() => {
-      if (isInitial) {
-        const items = isGetState(this.dependency)
-          ? this.dependency({
-              block: this,
-              type: 'flowRender',
-              property: 'flowRender',
-              value: () => {
-                this.reRender()
-              },
-            })
-          : this.dependency
-        return items
-      } else {
-        return (this.dependency as GetState<Item[]>)()
-      }
-    })()
-    const prevOrderMap = this.orderMap
-    const currOrderMap = new ArrayMap<Item, IndexedObject>()
-    const newNestedNodes: NestedArray<HTMLNode> = []
-    const newChildren: Block[] = []
-    const triggerBlocks = []
-    const deletable = new Set(this.children)
-    const rerenderableChildren = []
+  getItems(isInitial: boolean) {
+    if (!isGetState(this.dependency)) {
+      return this.dependency
+    }
+    if (!isInitial) {
+      return this.dependency()
+    }
+    return this.dependency({
+      block: this,
+      type: 'flowRender',
+      property: 'flowRender',
+      value: () => {
+        this.reRender()
+      },
+    })
+  }
+
+  renderChildren(items: Item[]) {
     let domIndex = 0
     let rerenderableIndex = 0
+    let newChildrenLength = 0
+    const newNodes = []
+    const triggerBlocks = []
+    const prevItemMap = this.itemMap
+    const prevChildrenLength = this.itemMap.size
+    this.itemMap = new Map()
+    const deletable = new Set(this.children)
+    this.rerenderableChildren = []
     for (let i = 0; i < items.length; i++) {
       const item = items[i]
-      const isExist = prevOrderMap.has(item)
-      const child = isExist
-        ? prevOrderMap.pop(item).block
-        : this.renderBlock(item, i)
+      const isExist = prevItemMap.has(item)
+      let child
       if (isExist) {
+        child = prevItemMap.get(item)
         deletable.delete(child)
       } else {
-        triggerBlocks.push(child)
+        child = this.render(item, i)
+        this.addChildren(child)
       }
-      newChildren.push(child)
-      currOrderMap.push(item, { index: i, block: child })
-      if (isElementBlock(child) || isTextNodeBlock(child)) {
-        domIndex += 1
-        newNestedNodes.push(child.element)
-      } else {
-        child.rerenderableIndex = rerenderableIndex++
-        child.domIndex = domIndex
-        domIndex += child.domLength
-        rerenderableChildren.push(child)
-        newNestedNodes.push(child.nestedNodes)
+      if (child) {
+        this.itemMap.set(item, child)
+        this.addChildren(child)
+        triggerBlocks.push(child)
+        newChildrenLength++
+        if (isElementBlock(child) || isTextNodeBlock(child)) {
+          domIndex += 1
+          newNodes.push(child.element)
+        } else {
+          child.rerenderableIndex = rerenderableIndex++
+          child.domIndex = domIndex
+          domIndex += child.domLength
+          this.rerenderableChildren.push(child)
+          newNodes.push(...child.getChildNodes())
+        }
       }
     }
-    const newNestedNodesLength = (newNestedNodes as any[]).flat(Infinity).length
-    const increased = newNestedNodesLength - this.domLength
-    this.nestedNodes = newNestedNodes
-    this.children = newChildren
-    this.orderMap = currOrderMap
-    this.domLength = newNestedNodesLength
-    this.rerenderableChildren = rerenderableChildren
-    return { triggerBlocks, deletable, increased }
+    this.domLength = newNodes.length
+    return {
+      newNodes,
+      deletable,
+      triggerBlocks,
+      increased: newChildrenLength - prevChildrenLength,
+    }
   }
 
-  renderBlock(item: Item, index: number) {
-    const child = this.render(item, index)
-    if (child) {
-      child.parent = this
-    }
-    return child
-  }
+  // renderChildren(items: Item[]) {
+  //   const prevOrderMap = this.orderMap
+  //   for (let i = 0; i < items.length; i++) {
+  //     const item = items[i]
+  //     const isExist = prevOrderMap.has(item)
+  //     const child = isExist
+  //       ? prevOrderMap.pop(item).block
+  //       : this.renderBlock(item, i)
+  //     if (isExist) {
+  //       deletable.delete(child)
+  //     } else {
+  //       triggerBlocks.push(child)
+  //     }
+  //   }
+  //
+  //   const child = this.render(item, index)
+  //   this.rerenderableChildren = []
+  //   const newNodes = []
+  //   if (child) {
+  //     this.addChild(child)
+  //     child.domIndex = 0
+  //     if (isElementBlock(child) || isTextNodeBlock(child)) {
+  //       newNodes.push(child.element)
+  //     } else {
+  //       child.rerenderableIndex = 0
+  //       this.rerenderableChildren.push(child)
+  //       newNodes.push(...child.getChildNodes())
+  //     }
+  //     this.domLength = newNodes.length
+  //   }
+  //   return { child, newNodes }
+  // }
 }

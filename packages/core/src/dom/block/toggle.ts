@@ -1,9 +1,7 @@
 import { Block } from '@block/block.ts'
-import { HTMLNode } from '@element/type.ts'
 import { Prop } from '@hook/prop.ts'
 import { GetState, isGetState } from '@hook/useState.ts'
 import { isElementBlock, isTextNodeBlock } from '@type/rvjs.ts'
-import { NestedArray } from '@type/util.ts'
 
 export interface ToggleProps<Bool> {
   dependency: Bool | GetState<Bool> | Prop<Bool>
@@ -19,77 +17,76 @@ export class ToggleBlock<Bool> extends Block {
     super({ type: 'TOGGLE' })
     this.dependency = dependency
     this.render = render
-    this.child = null
     this.initialRender()
   }
 
   initialRender() {
-    this.renderByItem(true)
+    const bool = this.getBool(true)
+    if (bool) {
+      this.renderChild()
+    }
   }
 
   reRender() {
-    const { newBlock, deletable, increased } = this.renderByItem(false)
-    this.parent.requestDOMUpdate(
-      this,
-      this.parent,
-      this.nodes,
-      [deletable],
-      this.rerenderableIndex,
-      0,
-      this.domLength,
-      increased,
-    )
-    if (newBlock) {
-      newBlock.triggerCommit()
+    const hasPrevChild = this.child
+    this.destroyBlock(this.child)
+    const bool = this.getBool(false)
+    if (bool) {
+      const { child, newNodes } = this.renderChild()
+      let increased = 0
+      if (child) {
+        increased = hasPrevChild ? 0 : 1
+      } else {
+        this.domLength = 0
+        increased = hasPrevChild ? -1 : 0
+      }
+      this.parent.requestDOMUpdate(
+        this.parent,
+        newNodes,
+        this.rerenderableIndex,
+        0,
+        this.domLength,
+        increased,
+      )
+      if (child) {
+        child.commit()
+      }
     }
   }
 
-  renderByItem(isInitial: boolean) {
-    const item = (() => {
-      if (isInitial) {
-        const item = isGetState(this.dependency)
-          ? this.dependency({
-              block: this,
-              type: 'flowRender',
-              property: 'flowRender',
-              value: () => {
-                this.reRender()
-              },
-            })
-          : this.dependency
-        return item
-      } else {
-        return (this.dependency as GetState<Bool>)()
-      }
-    })()
-    const deletable = this.child
-    const newNestedNodes: NestedArray<HTMLNode> = []
-    const rerenderableChildren = []
-    const child = item ? this.renderBlock() : null
-    this.child = child
-    if (child) {
-      if (isElementBlock(child) || isTextNodeBlock(child)) {
-        newNestedNodes.push(child.element)
-      } else {
-        child.domIndex = 0
-        child.rerenderableIndex = 0
-        rerenderableChildren.push(child)
-        newNestedNodes.push(child.nestedNodes)
-      }
+  getBool(isInitial: boolean) {
+    if (!isGetState(this.dependency)) {
+      return this.dependency
     }
-    const newNestedNodesLength = (newNestedNodes as any[]).flat(Infinity).length
-    const increased = newNestedNodesLength - this.domLength
-    this.nestedNodes = newNestedNodes
-    this.domLength = newNestedNodesLength
-    this.rerenderableChildren = rerenderableChildren
-    return { newBlock: child, deletable, increased }
+    if (!isInitial) {
+      return this.dependency()
+    }
+    return this.dependency({
+      block: this,
+      type: 'flowRender',
+      property: 'flowRender',
+      value: () => {
+        this.reRender()
+      },
+    })
   }
 
-  renderBlock() {
+  renderChild() {
     const child = this.render()
+    this.rerenderableChildren = []
+    const newNodes = []
     if (child) {
-      child.parent = this
+      this.addChild(child)
+      child.domIndex = 0
+      if (isElementBlock(child) || isTextNodeBlock(child)) {
+        newNodes.push(child.element)
+      } else {
+        child.rerenderableIndex = 0
+        this.rerenderableChildren.push(child)
+        newNodes.push(...child.getChildNodes())
+      }
+      this.domLength = newNodes.length
     }
-    return child
+    return { child, newNodes }
   }
 }

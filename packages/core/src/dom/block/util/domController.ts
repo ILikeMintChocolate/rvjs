@@ -1,16 +1,18 @@
 import { Block } from '@block/block.ts'
 import { Constructor, Empty } from '@block/util/mixin.ts'
 import { HTMLNode } from '@element/type.ts'
-import { isElementBlock, isForFlowBlock, isTextNodeBlock } from '@type/rvjs.ts'
-import { NestedArray } from '@type/util.ts'
-import { RVJS_ELEMENT_BLOCK_SYMBOL } from '@util/symbol.ts'
+import {
+  isComponentBlock,
+  isElementBlock,
+  isForFlowBlock,
+  isTextNodeBlock,
+} from '@type/rvjs.ts'
 
 export const DOMController = <TBase extends Constructor<Empty>>(
   Base: TBase,
 ) => {
   return class extends Base {
     element: HTMLElement | null
-    nestedNodes: NestedArray<HTMLNode>
     domIndex: number
     domLength: number
     rerenderableIndex: number
@@ -20,32 +22,38 @@ export const DOMController = <TBase extends Constructor<Empty>>(
       super(...args)
       const { element } = args[0] as { element: HTMLElement }
       this.element = element
-      this.nestedNodes = []
       this.domIndex = 0
       this.domLength = 0
       this.rerenderableIndex = 0
       this.rerenderableChildren = []
     }
 
-    get nodes() {
-      return (this.nestedNodes as any[]).flat(Infinity)
-    }
-
-    initialDOMUpdate(block: Block) {
-      const parent = block.parent
-      if (parent.$$typeof === RVJS_ELEMENT_BLOCK_SYMBOL) {
-        parent.requestDOMPushUpdate(parent, parent.nodes)
-      } else {
-        parent.initialDOMUpdate(parent)
+    getChildNodes() {
+      const elements: HTMLElement[] = []
+      const blockStack: Block[] = [this as unknown as Block]
+      while (blockStack.length > 0) {
+        const block = blockStack.pop()
+        if (!block) {
+          continue
+        }
+        if (isElementBlock(block) || isTextNodeBlock(block)) {
+          elements.push(block.element)
+        } else if (isForFlowBlock(block)) {
+          for (let i = block.children.length - 1; i >= 0; i--) {
+            blockStack.push(block.children[i])
+          }
+        } else if (isComponentBlock(block)) {
+          if (block.lazyRenderContext.isRendered) {
+            blockStack.push(block.child)
+          } else {
+            // @ts-ignore
+            elements.push(block.tempElement)
+          }
+        } else {
+          blockStack.push(block.child)
+        }
       }
-    }
-
-    requestDOMPushUpdate(block: Block, newNodes: HTMLNode[]) {
-      const fragment = document.createDocumentFragment()
-      fragment.append(...newNodes)
-      if (block.$$typeof === RVJS_ELEMENT_BLOCK_SYMBOL) {
-        block.element.append(fragment)
-      }
+      return elements
     }
 
     requestRerenderableChildrenUpdate(child: Block, increased: number) {
@@ -58,10 +66,8 @@ export const DOMController = <TBase extends Constructor<Empty>>(
     }
 
     requestDOMUpdate(
-      caller: Block,
       self: Block,
       newNodes: HTMLNode[],
-      deletable: Block[],
       rerenderableIndex: number,
       domIndex: number,
       domLength: number,
@@ -71,29 +77,6 @@ export const DOMController = <TBase extends Constructor<Empty>>(
       if (isElementBlock(self)) {
         const { domIndex: localDOMIndex } =
           self.rerenderableChildren[rerenderableIndex]
-        for (let i = 0; i < deletable.length; i++) {
-          const deletableParent = deletable[i]
-          const deletableElements: HTMLNode[] = []
-          const findElementChild = (child: Block) => {
-            if (!child) {
-              return
-            }
-            if (isElementBlock(child) || isTextNodeBlock(child)) {
-              deletableElements.push(child.element)
-            } else if (isForFlowBlock(child)) {
-              for (let i = 0; i < child.children.length; i++) {
-                findElementChild(child.children[i])
-              }
-            } else {
-              findElementChild(child.child)
-            }
-          }
-          findElementChild(deletableParent)
-          deletableParent?.triggerDestroy()
-          for (let j = 0; j < deletableElements.length; j++) {
-            deletableElements[j].remove()
-          }
-        }
         const prevNodes = [...self.element.childNodes].slice(
           domIndex + localDOMIndex,
           domIndex + localDOMIndex + domLength,
@@ -103,13 +86,10 @@ export const DOMController = <TBase extends Constructor<Empty>>(
       } else {
         const { domIndex: localDOMIndex } =
           self.rerenderableChildren[rerenderableIndex]
-        self.nestedNodes[caller.domIndex] = caller.nestedNodes
         self.domLength += increased
         parent.requestDOMUpdate(
-          self,
           parent,
           newNodes,
-          deletable,
           self.rerenderableIndex,
           domIndex + localDOMIndex,
           domLength,
@@ -128,7 +108,6 @@ export const DOMController = <TBase extends Constructor<Empty>>(
       let oldEnd = oldChildren.length - 1
       let newStart = 0
       let newEnd = newChildren.length - 1
-
       while (oldStart <= oldEnd && newStart <= newEnd) {
         if (oldChildren[oldStart] === newChildren[newStart]) {
           oldStart++
@@ -152,13 +131,21 @@ export const DOMController = <TBase extends Constructor<Empty>>(
           newStart++
         }
       }
-      while (oldStart <= oldEnd) {
-        element.removeChild(oldChildren[oldStart])
-        oldStart++
-      }
       while (newStart <= newEnd) {
         element.appendChild(newChildren[newStart])
         newStart++
+      }
+    }
+
+    destroyBlock(block: Block) {
+      const self = this as unknown as Block
+      if (block) {
+        self.removeChild(block)
+        const nodes = block.getChildNodes()
+        block.triggerDestroy()
+        for (let i = 0; i < nodes.length; i++) {
+          nodes[i].remove()
+        }
       }
     }
   }

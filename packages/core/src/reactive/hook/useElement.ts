@@ -1,10 +1,12 @@
 import { Block } from '@block/block.ts'
-import { isElementBlock, isTextNodeBlock } from '@type/rvjs.ts'
+import { isElementBlock, isForFlowBlock, isTextNodeBlock } from '@type/rvjs.ts'
 
 export const useElement = (block: Block) => {
   if (isElementBlock(block) || isTextNodeBlock(block)) {
     return block.element
+  } else if (isForFlowBlock(block)) {
+    return block.children
   } else {
-    return block.nodes[0]
+    return block.child
   }
 }

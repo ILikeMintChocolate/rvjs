@@ -1,8 +1,6 @@
 import { Block } from '@block/block.ts'
-import { HTMLNode } from '@element/type.ts'
 import { isElementBlock, isTextNodeBlock } from '@type/rvjs.ts'
 import { Children } from '@type/type.ts'
-import { NestedArray } from '@type/util.ts'
 
 export class ElementBlock extends Block {
   constructor(...args: any[]) {
@@ -17,29 +15,25 @@ export class ElementBlock extends Block {
     let domIndex = 0
     let rerenderableIndex = 0
     const rerenderableChildren = []
-    const newNestedNodes: NestedArray<HTMLNode> = []
+    const fragment = document.createDocumentFragment()
     for (let i = 0; i < children.length; i++) {
       const child = children[i]
       if (!child) {
         continue
       }
-      child.parent = this
-      this.addChild(child)
+      this.addChildren(child)
       if (isElementBlock(child) || isTextNodeBlock(child)) {
-        newNestedNodes.push(child.element)
+        fragment.appendChild(child.element)
         domIndex += 1
       } else {
         child.rerenderableIndex = rerenderableIndex++
         rerenderableChildren.push(child)
         child.domIndex = domIndex
         domIndex += child.domLength
-        newNestedNodes.push(child.nestedNodes)
+        fragment.append(...child.getChildNodes())
       }
     }
     this.rerenderableChildren = rerenderableChildren
-    this.nestedNodes = newNestedNodes
-    const fragment = document.createDocumentFragment()
-    fragment.append(...this.nodes)
     this.element.appendChild(fragment)
   }
 }
