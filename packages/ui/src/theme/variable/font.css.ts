@@ -41,7 +41,7 @@ const fontVars = createGlobalTheme(':root', {
   letterSpacing: {
     '00': '0rem',
     '01': '0.01rem',
-    '02': '0.02em',
+    '02': '0.02rem',
   },
 })
 
