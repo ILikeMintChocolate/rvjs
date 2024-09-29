@@ -53,7 +53,7 @@ const Header = component(() => {
           HeaderGlobalAction({
             tooltip: prop(() => 'Github'),
             onClick: () => {
-              navigate('https://github.com')
+              navigate('https://github.com/ILikeMintChocolate/rvjs')
             },
             children: [
               svg(githubSvg, {
@@ -67,7 +67,7 @@ const Header = component(() => {
           HeaderGlobalAction({
             tooltip: prop(() => 'npm'),
             onClick: () => {
-              navigate('https://npmjs.com')
+              navigate('https://npmjs.com/package/@rvjs/core')
             },
             children: [
               svg(npmSvg, {
