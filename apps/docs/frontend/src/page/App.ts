@@ -27,6 +27,9 @@ const App = () => {
               '/gettingStarted': {
                 componentFn: () => ContentPage(),
               },
+              '/benchmark': {
+                componentFn: () => ContentPage(),
+              },
               '/:cId': {
                 componentFn: () => CategoryPage(),
                 router: {
