@@ -6,7 +6,7 @@ import {
   ColorChipProps,
   colorChipPropsType,
 } from '@content/colorChip/ColorChip.props.ts'
-import { button, dynamic, prop, useRef } from '@rvjs/core'
+import { div, dynamic, prop, useRef } from '@rvjs/core'
 import { checkProps } from '@rvjs/is'
 import { copyToClipboard } from '@util/clipboard.ts'
 import { colorToHex } from '@util/color.ts'
@@ -16,10 +16,10 @@ const ColorChip = (props: ColorChipProps) => {
     props,
     colorChipPropsType,
   )
-  const buttonRef = useRef<HTMLButtonElement>()
+  const colorChipRef = useRef<HTMLButtonElement>()
 
-  return button({
-    ref: buttonRef,
+  return div({
+    ref: colorChipRef,
     classes: [
       dynamic(() => colorChip_recipe({ size: size() }).split(' ')),
       dynamic(() =>
@@ -27,7 +27,7 @@ const ColorChip = (props: ColorChipProps) => {
       ),
     ],
     onclick: async () => {
-      const style = getComputedStyle(buttonRef.current)
+      const style = getComputedStyle(colorChipRef.current)
       const color = style.getPropertyValue('background-color')
       const hex = colorToHex(color)
       await copyToClipboard(hex)
