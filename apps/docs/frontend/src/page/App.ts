@@ -1,8 +1,8 @@
 import NoContentError from '@component/error/NoContentError.ts'
 import Header from '@component/header/Header.ts'
-import Loading from '@component/loading/Loading.js'
+import Loading from '@component/loading/Loading.ts'
 import SideNav from '@component/sideNav/SideNav.ts'
-import ContentData from '@page/Content.js'
+import ContentData from '@page/Content.ts'
 import {
   component,
   onMount,
