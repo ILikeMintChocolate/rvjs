@@ -21,7 +21,7 @@ const App = () => {
       panel: SideNav(),
       body: Router(
         {
-          '/:pId': {
+          '/:package': {
             componentFn: () => MainBody(),
             router: {
               '/gettingStarted': {
@@ -30,10 +30,10 @@ const App = () => {
               '/benchmark': {
                 componentFn: () => ContentPage(),
               },
-              '/:cId': {
+              '/:category': {
                 componentFn: () => CategoryPage(),
                 router: {
-                  '/:fId': {
+                  '/:functionName': {
                     componentFn: () => ContentPage(),
                   },
                 },

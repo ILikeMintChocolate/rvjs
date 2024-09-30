@@ -2,12 +2,11 @@ import Content from '@component/content/Content.ts'
 import { useTableOfContentsRoot } from '@component/tableOfContents/sideBar/TableOfContents.hook.ts'
 import TableOfContents from '@component/tableOfContents/sideBar/TableOfContents.ts'
 import { useGetContent } from '@hook/useContent.ts'
-import { usePathParams, useState } from '@rvjs/core'
+import { useState } from '@rvjs/core'
 import { Flex } from '@rvjs/ui'
 
 const ContentData = async () => {
-  const { pId, cId = 'gettingStarted', fId } = usePathParams()!
-  const requestPath = [pId, cId, fId].filter(Boolean).join('/')
+  const requestPath = document.location.hash.replace('#/', '')
   const { content, headingIndex } = await useGetContent(requestPath)
   const [activeIndex, setActiveIndex] = useState<number>(0)
   const headingIndexWithoutTitle = headingIndex.slice(1)
