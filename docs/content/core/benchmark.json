@@ -60,6 +60,7 @@
             "type": "component",
             "name": "Text",
             "props": {
+              "kind": "heading-compact-01",
               "children": [
                 {
                   "type": "text",
@@ -196,6 +197,7 @@
             "type": "component",
             "name": "Text",
             "props": {
+              "kind": "heading-compact-01",
               "children": [
                 {
                   "type": "text",
