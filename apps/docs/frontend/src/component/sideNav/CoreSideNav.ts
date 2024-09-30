@@ -19,6 +19,11 @@ const CoreSideNav = () => {
             href: prop(() => '/core/gettingStarted'),
             isActive: prop(() => pathname() === '/core/gettingStarted'),
           }),
+          SideNavLink({
+            text: prop(() => 'Benchmark'),
+            href: prop(() => '/core/benchmark'),
+            isActive: prop(() => pathname() === '/core/benchmark'),
+          }),
           SideNavMenu({
             menuName: prop(() => 'DOM'),
             defaultShow: prop(() => true),
