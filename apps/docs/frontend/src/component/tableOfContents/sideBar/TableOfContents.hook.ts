@@ -3,7 +3,7 @@ import { debounce } from '@util/debounce.ts'
 
 export const useTableOfContents = (headingIndex: Block[]) => {
   const headings = headingIndex.map((heading) => {
-    const element = useElement(heading)
+    const element = useElement(heading)[0]
     return { element, title: element.textContent }
   })
   return headings
@@ -41,7 +41,7 @@ export const useTableOfContentsRoot = (
     }
     const observer = createObserver()
     headingIndex.forEach((heading) => {
-      const element = useElement(heading)
+      const element = useElement(heading)[0]
       observer.observe(element)
     })
     currentObserver = observer
