@@ -1,9 +1,20 @@
 import { resolve } from 'path'
 import { defineConfig } from 'vite'
+import circleDependency from 'vite-plugin-circular-dependency'
+import dtsPlugin from 'vite-plugin-dts'
 import vitePluginRvjs from 'vite-plugin-rvjs'
 
 export default defineConfig({
-  plugins: [vitePluginRvjs()],
+  plugins: [
+    dtsPlugin({
+      outDir: 'dist/type',
+      exclude: ['src/main.ts', 'src/example'],
+    }),
+    circleDependency({
+      outputFilePath: './circleDep',
+    }),
+    vitePluginRvjs(),
+  ],
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
