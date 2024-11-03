@@ -1,14 +1,9 @@
 import { resolve } from 'path'
 import { defineConfig } from 'vite'
-import dts from 'vite-plugin-dts'
+import vitePluginRvjs from 'vite-plugin-rvjs'
 
 export default defineConfig({
-  plugins: [
-    dts({
-      outDir: 'dist/type',
-      exclude: ['src/main.ts', 'src/example', 'src/test'],
-    }),
-  ],
+  plugins: [vitePluginRvjs()],
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
@@ -31,32 +26,28 @@ export default defineConfig({
   resolve: {
     alias: [
       {
+        find: '@',
+        replacement: resolve(__dirname, 'src'),
+      },
+      {
         find: '@block',
-        replacement: resolve(__dirname, 'src/dom/block'),
+        replacement: resolve(__dirname, 'src/block'),
       },
       {
         find: '@component',
-        replacement: resolve(__dirname, 'src/dom/component'),
-      },
-      {
-        find: '@element',
-        replacement: resolve(__dirname, 'src/dom/element'),
-      },
-      {
-        find: '@flow',
-        replacement: resolve(__dirname, 'src/dom/flow'),
+        replacement: resolve(__dirname, 'src/component'),
       },
       {
         find: '@context',
-        replacement: resolve(__dirname, 'src/reactive/context'),
+        replacement: resolve(__dirname, 'src/context'),
       },
       {
         find: '@hook',
-        replacement: resolve(__dirname, 'src/reactive/hook'),
+        replacement: resolve(__dirname, 'src/hook'),
       },
       {
-        find: '@lifecycle',
-        replacement: resolve(__dirname, 'src/reactive/lifecycle'),
+        find: '@jsx',
+        replacement: resolve(__dirname, 'src/jsx'),
       },
       {
         find: '@router',
