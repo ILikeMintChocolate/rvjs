@@ -56,7 +56,7 @@ const MainBody = component(() => {
 
   onMount(() => {
     if (pathname() === '') {
-      navigate('/core/gettingStarted')
+      navigate('/core-v0.3.x/gettingStarted')
     }
   })
 
