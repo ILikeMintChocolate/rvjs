@@ -39,6 +39,7 @@ export const headerMenuItem_anchor_recipe = recipe({
 export const headerMenuItem_text_recipe = recipe({
   base: {
     transition: `all ${vars.motion.productive}`,
+    textWrap: 'nowrap',
     selectors: {
       [`${headerMenuItem_li_style}:hover &`]: {
         color: `${vars.color.textPrimary} !important`,

@@ -19,6 +19,8 @@ export interface CodeSnippetProps {
     | 'bash'
     | 'json'
     | 'plain'
+    | 'jsx'
+    | 'tsx'
   type?: 'single' | 'inline' | 'multi' | 'link'
   collapsedNumberOfRows?: Prop<number>
   copyButtonDescription?: Prop<string>
