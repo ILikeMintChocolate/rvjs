@@ -1,5 +1,9 @@
-export const isInCorePage = (pathname: string) => {
-  return /^\/core/.test(pathname)
+export const isInCoreV03xPage = (pathname: string) => {
+  return /^\/core-v0.3.x/.test(pathname)
+}
+
+export const isInCoreV02xPage = (pathname: string) => {
+  return /^\/core-v0.2.x/.test(pathname)
 }
 
 export const isInUIPage = (pathname: string) => {

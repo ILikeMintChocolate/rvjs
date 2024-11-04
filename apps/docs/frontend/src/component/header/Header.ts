@@ -12,7 +12,12 @@ import {
   HeaderName,
   HeaderNavigation,
 } from '@rvjs/ui'
-import { isInCorePage, isInIsPage, isInUIPage } from '@util/path.ts'
+import {
+  isInCoreV02xPage,
+  isInCoreV03xPage,
+  isInIsPage,
+  isInUIPage,
+} from '@util/path.ts'
 
 const Header = component(() => {
   const navigate = useNavigate()
@@ -25,16 +30,21 @@ const Header = component(() => {
       }),
       HeaderName({
         title: prop(() => 'Documentation'),
-        href: prop(() => '/core/gettingStarted'),
+        href: prop(() => '/core-v0.3.x/gettingStarted'),
         prefix: prop(() => 'rvjs'),
       }),
       HeaderHr(),
       HeaderNavigation({
         children: [
           HeaderMenuItem({
-            text: prop(() => 'Core'),
-            href: prop(() => '/core/gettingStarted'),
-            isActive: prop(() => isInCorePage(pathname())),
+            text: prop(() => 'Core-v0.3.x'),
+            href: prop(() => '/core-v0.3.x/gettingStarted'),
+            isActive: prop(() => isInCoreV03xPage(pathname())),
+          }),
+          HeaderMenuItem({
+            text: prop(() => 'Core-v0.2.x'),
+            href: prop(() => '/core-v0.2.x/gettingStarted'),
+            isActive: prop(() => isInCoreV02xPage(pathname())),
           }),
           HeaderMenuItem({
             text: prop(() => 'UI'),
