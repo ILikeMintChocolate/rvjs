@@ -10,6 +10,9 @@ import SingleCodeSnippet from '@typography/codeSnippet/single/SingleCodeSnippet.
 import 'prismjs/themes/prism-coy.css'
 import 'prismjs/components/prism-bash'
 import 'prismjs/components/prism-typescript'
+import 'prismjs/components/prism-jsx'
+import 'prismjs/components/prism-tsx'
+import 'prismjs/components/prism-json'
 
 const CodeSnippet = (props: CodeSnippetProps) => {
   const {
