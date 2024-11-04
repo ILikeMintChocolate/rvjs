@@ -50,7 +50,7 @@
             "type": "component",
             "name": "CodeSnippet",
             "props": {
-              "codeText": "npm install @rvjs/core",
+              "codeText": "npm install @rvjs/core@0.2.21",
               "language": "bash",
               "type": "single",
               "width": "100%",

@@ -50,7 +50,10 @@
             "type": "component",
             "name": "Iframe",
             "props": {
-              "src": "https://rvjs.xyz/example/ui/shell/header/ex1/"
+              "src": "https://rvjs.xyz/example/ui/shell/header/ex1/",
+              "style": {
+                "height": "16rem"
+              }
             }
           },
           {
