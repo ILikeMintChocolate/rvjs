@@ -26,7 +26,7 @@
                     "codeText": "@rvjs/core",
                     "language": "javascript",
                     "type": "link",
-                    "href": "/core/gettingStarted"
+                    "href": "/core-v0.2.x/gettingStarted"
                   }
                 },
                 {
@@ -106,7 +106,7 @@
                                       "codeText": "ElementBlock",
                                       "language": "javascript",
                                       "type": "link",
-                                      "href": "/core/dom/element"
+                                      "href": "/core-v0.2.x/dom/element"
                                     }
                                   },
                                   {
@@ -170,7 +170,7 @@
                                       "codeText": "ComponentBlock",
                                       "language": "javascript",
                                       "type": "link",
-                                      "href": "/core/dom/component"
+                                      "href": "/core-v0.2.x/dom/component"
                                     }
                                   },
                                   {
@@ -234,7 +234,7 @@
                                       "codeText": "ForBlock",
                                       "language": "javascript",
                                       "type": "link",
-                                      "href": "/core/dom/for"
+                                      "href": "/core-v0.2.x/dom/for"
                                     }
                                   },
                                   {
@@ -298,7 +298,7 @@
                                       "codeText": "SwitchBlock",
                                       "language": "javascript",
                                       "type": "link",
-                                      "href": "/core/dom/switch"
+                                      "href": "/core-v0.2.x/dom/switch"
                                     }
                                   },
                                   {
@@ -362,7 +362,7 @@
                                       "codeText": "ToggleBlock",
                                       "language": "javascript",
                                       "type": "link",
-                                      "href": "/core/dom/toggle"
+                                      "href": "/core-v0.2.x/dom/toggle"
                                     }
                                   },
                                   {
@@ -426,7 +426,7 @@
                                       "codeText": "TextNodeBlock",
                                       "language": "javascript",
                                       "type": "link",
-                                      "href": "/core/dom/textNode"
+                                      "href": "/core-v0.2.x/dom/textNode"
                                     }
                                   },
                                   {
@@ -776,7 +776,7 @@
                                       "codeText": "useState",
                                       "language": "javascript",
                                       "type": "link",
-                                      "href": "/core/reactive/useState"
+                                      "href": "/core-v0.2.x/reactive/useState"
                                     }
                                   },
                                   {
@@ -968,7 +968,7 @@
                                       "codeText": "prop",
                                       "language": "javascript",
                                       "type": "link",
-                                      "href": "/core/reactive/prop"
+                                      "href": "/core-v0.2.x/reactive/prop"
                                     }
                                   },
                                   {

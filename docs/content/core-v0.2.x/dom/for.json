@@ -50,7 +50,7 @@
             "type": "component",
             "name": "Iframe",
             "props": {
-              "src": "https://rvjs.xyz/example/core/dom/for/ex1/",
+              "src": "https://rvjs.xyz/example/core-v0.2.x/dom/for/ex1/",
               "height": "15rem"
             }
           },
@@ -385,7 +385,7 @@
       "type": "component",
       "name": "Link",
       "props": {
-        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/core/dom/for.json",
+        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/core-v0.2.x/dom/for.json",
         "children": [
           {
             "type": "component",

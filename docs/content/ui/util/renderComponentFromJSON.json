@@ -307,7 +307,7 @@
                                                   "codeText": "@rvjs/core",
                                                   "language": "javascript",
                                                   "type": "link",
-                                                  "href": "/core/gettingStarted"
+                                                  "href": "/core-v0.2.x/gettingStarted"
                                                 }
                                               },
                                               {
@@ -892,7 +892,7 @@
                     "codeText": "prop",
                     "language": "javascript",
                     "type": "link",
-                    "href": "/core/reactive/prop"
+                    "href": "/core-v0.2.x/reactive/prop"
                   }
                 },
                 {

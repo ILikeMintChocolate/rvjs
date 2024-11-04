@@ -75,7 +75,7 @@
             "type": "component",
             "name": "Iframe",
             "props": {
-              "src": "https://rvjs.xyz/example/core/reactive/useElement/ex1/"
+              "src": "https://rvjs.xyz/example/core-v0.2.x/reactive/useElement/ex1/"
             }
           },
           {
@@ -206,7 +206,7 @@
                                       "codeText": "element",
                                       "language": "javascript",
                                       "type": "link",
-                                      "href": "/core/dom/element"
+                                      "href": "/core-v0.2.x/dom/element"
                                     }
                                   },
                                   {
@@ -223,7 +223,7 @@
                                       "codeText": "component",
                                       "language": "javascript",
                                       "type": "link",
-                                      "href": "/core/dom/component"
+                                      "href": "/core-v0.2.x/dom/component"
                                     }
                                   },
                                   {
@@ -357,7 +357,7 @@
       "type": "component",
       "name": "Link",
       "props": {
-        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/core/reactive/useElement.json",
+        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/core-v0.2.x/reactive/useElement.json",
         "children": [
           {
             "type": "component",

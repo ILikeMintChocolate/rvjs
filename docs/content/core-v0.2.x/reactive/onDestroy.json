@@ -50,7 +50,7 @@
             "type": "component",
             "name": "Iframe",
             "props": {
-              "src": "https://rvjs.xyz/example/core/reactive/onDestroy/ex1/"
+              "src": "https://rvjs.xyz/example/core-v0.2.x/reactive/onDestroy/ex1/"
             }
           },
           {
@@ -236,7 +236,7 @@
       "type": "component",
       "name": "Link",
       "props": {
-        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/core/reactive/onDestroy.json",
+        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/core-v0.2.x/reactive/onDestroy.json",
         "children": [
           {
             "type": "component",

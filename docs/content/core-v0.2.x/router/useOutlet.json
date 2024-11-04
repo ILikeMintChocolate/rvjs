@@ -147,7 +147,7 @@
             "type": "component",
             "name": "Iframe",
             "props": {
-              "src": "https://rvjs.xyz/example/core/router/useOutlet/ex1/"
+              "src": "https://rvjs.xyz/example/core-v0.2.x/router/useOutlet/ex1/"
             }
           },
           {
@@ -242,7 +242,7 @@
                                 "codeText": "Switch",
                                 "language": "javascript",
                                 "type": "link",
-                                "href": "/core/dom/switch"
+                                "href": "/core-v0.2.x/dom/switch"
                               }
                             },
                             {
@@ -278,7 +278,7 @@
       "type": "component",
       "name": "Link",
       "props": {
-        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/core/router/useOutlet.json",
+        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/core-v0.2.x/router/useOutlet.json",
         "children": [
           {
             "type": "component",

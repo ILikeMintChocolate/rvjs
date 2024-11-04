@@ -57,7 +57,7 @@
             "type": "component",
             "name": "CodeSnippet",
             "props": {
-              "codeText": "import { p, prop, textNode } from '@rvjs/core'\nimport { CodeSnippet } from '@rvjs/ui'\n\nconst LinkCodeSnippetExample = () => {\n  return p({\n    children: [\n      textNode('반응성을 사용하려면 '),\n      CodeSnippet({\n        type: 'link',\n        language: 'javascript',\n        codeText: prop(() => 'useState'),\n        href: prop(() => 'https://rvjs.xyz/#/core/reactive/useState'),\n      }),\n      textNode(' 함수를 사용해보세요.'),\n    ],\n  })\n}\n\nexport default LinkCodeSnippetExample",
+              "codeText": "import { p, prop, textNode } from '@rvjs/core'\nimport { CodeSnippet } from '@rvjs/ui'\n\nconst LinkCodeSnippetExample = () => {\n  return p({\n    children: [\n      textNode('반응성을 사용하려면 '),\n      CodeSnippet({\n        type: 'link',\n        language: 'javascript',\n        codeText: prop(() => 'useState'),\n        href: prop(() => 'https://rvjs.xyz/#/core-v0.2.x/reactive/useState'),\n      }),\n      textNode(' 함수를 사용해보세요.'),\n    ],\n  })\n}\n\nexport default LinkCodeSnippetExample",
               "language": "javascript",
               "type": "multi",
               "width": "100%",

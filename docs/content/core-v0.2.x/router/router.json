@@ -33,7 +33,7 @@
                     "codeText": "@rvjs/core",
                     "language": "javascript",
                     "type": "link",
-                    "href": "/core/gettingStarted"
+                    "href": "/core-v0.2.x/gettingStarted"
                   }
                 },
                 {
@@ -67,7 +67,7 @@
             "type": "component",
             "name": "Iframe",
             "props": {
-              "src": "https://rvjs.xyz/example/core/router/router/ex1/"
+              "src": "https://rvjs.xyz/example/core-v0.2.x/router/router/ex1/"
             }
           },
           {
@@ -624,7 +624,7 @@
       "type": "component",
       "name": "Link",
       "props": {
-        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/core/router/router.json",
+        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/core-v0.2.x/router/router.json",
         "children": [
           {
             "type": "component",

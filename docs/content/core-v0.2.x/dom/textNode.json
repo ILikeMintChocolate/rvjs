@@ -66,7 +66,7 @@
             "type": "component",
             "name": "Iframe",
             "props": {
-              "src": "https://rvjs.xyz/example/core/dom/textNode/ex1/"
+              "src": "https://rvjs.xyz/example/core-v0.2.x/dom/textNode/ex1/"
             }
           },
           {

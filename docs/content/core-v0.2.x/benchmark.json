@@ -351,7 +351,7 @@
             "type": "element",
             "name": "img",
             "props": {
-              "src": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/core/benchmarkResult.png?raw=true",
+              "src": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/core-v0.2.x/benchmarkResult.png?raw=true",
               "style": {
                 "width": "100%",
                 "padding-inline": "2rem",
@@ -375,7 +375,7 @@
       "type": "component",
       "name": "Link",
       "props": {
-        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/core/benchmark.json",
+        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/core-v0.2.x/benchmark.json",
         "children": [
           {
             "type": "component",
