@@ -54,17 +54,10 @@ const CoreV02xSideNav = () => {
                 ),
               }),
               SideNavMenuItem({
-                text: prop(() => 'Switch'),
-                href: prop(() => '/core-v0.3.x/component/switch'),
+                text: prop(() => 'Switch / Case'),
+                href: prop(() => '/core-v0.3.x/component/switchCase'),
                 isActive: prop(
-                  () => pathname() === '/core-v0.3.x/component/switch',
-                ),
-              }),
-              SideNavMenuItem({
-                text: prop(() => 'Case'),
-                href: prop(() => '/core-v0.3.x/component/case'),
-                isActive: prop(
-                  () => pathname() === '/core-v0.3.x/component/case',
+                  () => pathname() === '/core-v0.3.x/component/switchCase',
                 ),
               }),
               SideNavMenuItem({
