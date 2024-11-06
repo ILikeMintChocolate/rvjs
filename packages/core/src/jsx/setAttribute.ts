@@ -6,8 +6,8 @@ export const setAttribute = (
   value: string,
 ) => {
   if (key === 'element') {
-    // @ts-ignore
-    ;(value as ElementObject<typeof element>).current = element
+    ;(value as unknown as ElementObject<HTMLElement>).current = element
+  } else {
+    element.setAttribute(key, value)
   }
-  element.setAttribute(key, value)
 }
