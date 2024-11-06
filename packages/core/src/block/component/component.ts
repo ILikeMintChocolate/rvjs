@@ -11,20 +11,13 @@ export class Component extends Renderer(
 ) {
   $$typeof: symbol
   $$componentType: symbol
-  type:
-    | 'BLOCK_COMPONENT'
-    | 'SWITCH_COMPONENT'
-    | 'CASE_COMPONENT'
-    | 'FOR_COMPONENT'
-    | 'TOGGLE_COMPONENT'
   key: string
 
   constructor(...args: any[]) {
     // @ts-ignore
     super(...args)
-    const [_, type, key] = args
+    const [_, key] = args
     this.$$typeof = RVJS_COMPONENT_IDENTIFIER
-    this.type = type
     this.key = key
   }
 }

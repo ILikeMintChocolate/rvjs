@@ -4,15 +4,12 @@ import { Component } from '@block/component/component.ts'
 import { ForComponent } from '@block/component/for.ts'
 import { SwitchComponent } from '@block/component/switch.ts'
 import { ToggleComponent } from '@block/component/toggle.ts'
-import { Case } from '@component/case.ts'
-import { For } from '@component/for.ts'
-import { Switch } from '@component/switch.ts'
-import { Toggle } from '@component/toggle.ts'
 import { GetState, SetState } from '@hook/useState.ts'
 import { RvjsObject } from '@type/rvjs.ts'
 import {
   RVJS_BLOCK_COMPONENT_IDENTIFIER,
   RVJS_CASE_COMPONENT_IDENTIFIER,
+  RVJS_COMPONENT_FN_IDENTIFIER,
   RVJS_COMPONENT_IDENTIFIER,
   RVJS_FOR_COMPONENT_IDENTIFIER,
   RVJS_GET_STATE_IDENTIFIER,
@@ -98,20 +95,8 @@ export const isToggleComponent = (value: unknown): value is ToggleComponent => {
   )
 }
 
-export const isSwitchComponentFn = (value: unknown): value is typeof Switch => {
-  return value === Switch
-}
-
-export const isCaseComponentFn = (value: unknown): value is typeof Case => {
-  return value === Case
-}
-
-export const isForComponentFn = (value: unknown): value is typeof For => {
-  return value === For
-}
-
-export const isToggleComponentFn = (value: unknown): value is typeof Toggle => {
-  return value === Toggle
+export const isComponentFn = (value: unknown) => {
+  return isRvjsFunction(value) && RVJS_COMPONENT_FN_IDENTIFIER
 }
 
 export const isHTMLElement = (value: unknown): value is HTMLElement => {
