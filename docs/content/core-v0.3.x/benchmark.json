@@ -66,6 +66,144 @@
                   "type": "text",
                   "name": "text",
                   "props": {
+                    "text": "v0.3.1"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "component",
+            "name": "UnorderedList",
+            "props": {
+              "children": [
+                {
+                  "type": "component",
+                  "name": "ListItem",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "element",
+                        "name": "div",
+                        "props": {
+                          "style": {
+                            "display": "grid",
+                            "gridTemplateColumns": "20% 80%"
+                          },
+                          "children": [
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "name": "text",
+                                    "props": {
+                                      "text": "For 렌더링 관련"
+                                    }
+                                  }
+                                ],
+                                "as": "span"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "children": [
+                                  {
+                                    "type": "component",
+                                    "name": "CodeSnippet",
+                                    "props": {
+                                      "codeText": "For",
+                                      "language": "javascript",
+                                      "type": "link",
+                                      "href": "/core-v0.3.x/component/for"
+                                    }
+                                  },
+                                  {
+                                    "type": "text",
+                                    "name": "text",
+                                    "props": {
+                                      "text": " 컴포넌트에 중복된 원시 타입 값을 허용하도록 수정했습니다."
+                                    }
+                                  }
+                                ],
+                                "as": "span"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "ListItem",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "element",
+                        "name": "div",
+                        "props": {
+                          "style": {
+                            "display": "grid",
+                            "gridTemplateColumns": "20% 80%"
+                          },
+                          "children": [
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "name": "text",
+                                    "props": {
+                                      "text": "빌드 관련"
+                                    }
+                                  }
+                                ],
+                                "as": "span"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "name": "text",
+                                    "props": {
+                                      "text": "내부 모듈 구조를 수정해 트리 셰이킹이 가능하도록 하고, 코드 압축을 통해 배포 크기를 최적화했습니다."
+                                    }
+                                  }
+                                ],
+                                "as": "span"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "kind": "heading-compact-01",
+              "children": [
+                {
+                  "type": "text",
+                  "name": "text",
+                  "props": {
                     "text": "v0.3.0"
                   }
                 }
@@ -168,7 +306,7 @@
                                     "type": "text",
                                     "name": "text",
                                     "props": {
-                                      "text": "0.2.21 버전에서 발생했던 특정 상황에서의 메모리 누수를 해결하였습니다."
+                                      "text": "0.2.21 버전에서 발생했던 특정 상황에서의 메모리 누수를 해결했습니다."
                                     }
                                   }
                                 ],
