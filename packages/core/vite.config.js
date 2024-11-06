@@ -14,7 +14,7 @@ export default defineConfig(({ mode }) => {
       circleDependency({
         outputFilePath: './circleDep',
       }),
-      mode === 'development' && vitePluginRvjs(),
+      mode !== 'production' && vitePluginRvjs(),
     ],
     build: {
       lib: {
