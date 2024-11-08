@@ -721,7 +721,7 @@
             "type": "component",
             "name": "Link",
             "props": {
-              "href": "https://github.com/ILikeMintChocolate/rvjs/tree/core-v0.2.x/dev/packages/core",
+              "href": "https://github.com/ILikeMintChocolate/rvjs/tree/core/dev",
               "text": "GitHub"
             }
           },
@@ -729,7 +729,7 @@
             "type": "component",
             "name": "Link",
             "props": {
-              "href": "https://www.npmjs.com/package/@rvjs/core",
+              "href": "https://www.npmjs.com/package/@rvjs/core/v/0.2.21",
               "text": "npm"
             }
           }

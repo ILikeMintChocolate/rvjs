@@ -136,6 +136,39 @@
       }
     },
     {
+      "type": "component",
+      "name": "Section",
+      "props": {
+        "children": [
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "text": "링크",
+              "kind": "heading-03",
+              "as": "h4"
+            }
+          },
+          {
+            "type": "component",
+            "name": "Link",
+            "props": {
+              "href": "https://github.com/ILikeMintChocolate/rvjs/tree/core/v0.3/dev",
+              "text": "GitHub"
+            }
+          },
+          {
+            "type": "component",
+            "name": "Link",
+            "props": {
+              "href": "https://www.npmjs.com/package/@rvjs/core",
+              "text": "npm"
+            }
+          }
+        ]
+      }
+    },
+    {
       "type": "element",
       "name": "div",
       "props": {
