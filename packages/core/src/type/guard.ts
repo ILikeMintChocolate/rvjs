@@ -2,6 +2,7 @@ import { BlockComponent } from '@block/component/block.ts'
 import { CaseComponent } from '@block/component/case.ts'
 import { Component } from '@block/component/component.ts'
 import { ForComponent } from '@block/component/for.ts'
+import { RefreshComponent } from '@block/component/refresh.ts'
 import { SwitchComponent } from '@block/component/switch.ts'
 import { ToggleComponent } from '@block/component/toggle.ts'
 import { GetState, SetState } from '@hook/useState.ts'
@@ -13,6 +14,7 @@ import {
   RVJS_COMPONENT_IDENTIFIER,
   RVJS_FOR_COMPONENT_IDENTIFIER,
   RVJS_GET_STATE_IDENTIFIER,
+  RVJS_REFRESH_COMPONENT_IDENTIFIER,
   RVJS_SET_STATE_IDENTIFIER,
   RVJS_SWITCH_COMPONENT_IDENTIFIER,
   RVJS_TOGGLE_COMPONENT_IDENTIFIER,
@@ -92,6 +94,15 @@ export const isToggleComponent = (value: unknown): value is ToggleComponent => {
   return (
     isComponent(value) &&
     value.$$componentType === RVJS_TOGGLE_COMPONENT_IDENTIFIER
+  )
+}
+
+export const isRefreshComponent = (
+  value: unknown,
+): value is RefreshComponent => {
+  return (
+    isComponent(value) &&
+    value.$$componentType === RVJS_REFRESH_COMPONENT_IDENTIFIER
   )
 }
 

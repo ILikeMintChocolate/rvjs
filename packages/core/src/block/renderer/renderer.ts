@@ -5,6 +5,7 @@ import {
   isBlockComponent,
   isForComponent,
   isHTMLElement,
+  isRefreshComponent,
   isSwitchComponent,
   isToggleComponent,
 } from '@type/guard.ts'
@@ -41,7 +42,8 @@ export const Renderer = <TBase extends Constructor<Empty>>(Base: TBase) => {
         } else if (
           isSwitchComponent(this.self) ||
           isForComponent(this.self) ||
-          isToggleComponent(this.self)
+          isToggleComponent(this.self) ||
+          isRefreshComponent(this.self)
         ) {
           nodes.push(this.self.startNode, this.self.endNode)
         }
@@ -51,7 +53,8 @@ export const Renderer = <TBase extends Constructor<Empty>>(Base: TBase) => {
         } else if (
           isSwitchComponent(this.self) ||
           isForComponent(this.self) ||
-          isToggleComponent(this.self)
+          isToggleComponent(this.self) ||
+          isRefreshComponent(this.self)
         ) {
           let startNode = this.self.startNode
           nodes.push(this.self.startNode)
