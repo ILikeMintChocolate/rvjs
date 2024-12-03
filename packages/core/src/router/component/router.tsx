@@ -61,9 +61,7 @@ export const useRouter = (): [GetState<string[]>, SetState<string[]>] => {
 
   onMount(() => {
     handleHashChange()
-    window.addEventListener('hashchange', () => {
-      handleHashChange()
-    })
+    window.addEventListener('hashchange', handleHashChange)
   })
 
   onDestroy(() => {
