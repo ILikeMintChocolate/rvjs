@@ -2,6 +2,7 @@ import { root } from '@component/root.ts'
 import { createContext } from '@hook/createContext.ts'
 import { useEffect } from '@hook/useEffect.ts'
 import { useState } from '@hook/useState.ts'
+import { useTest } from '@test/utilForTest.jsx'
 import { beforeEach, describe, expect, test } from 'vitest'
 
 describe('createContext', () => {
@@ -11,7 +12,7 @@ describe('createContext', () => {
   let isShow2, setShow2
 
   beforeEach(() => {
-    rootElement = document.createElement('main')
+    ;({ rootElement } = useTest())
     log1 = []
     log2 = []
     log3 = []

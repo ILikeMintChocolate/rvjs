@@ -1,6 +1,7 @@
 import { root } from '@component/root.ts'
 import { useEffect } from '@hook/useEffect.ts'
 import { useState } from '@hook/useState.ts'
+import { useTest } from '@test/utilForTest.jsx'
 import { beforeEach, describe, expect, test } from 'vitest'
 
 describe('useEffect', () => {
@@ -8,7 +9,7 @@ describe('useEffect', () => {
   let log1, log2
 
   beforeEach(() => {
-    rootElement = document.createElement('main')
+    ;({ rootElement } = useTest())
     log1 = []
     log2 = []
   })

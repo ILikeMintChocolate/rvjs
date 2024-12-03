@@ -1,5 +1,6 @@
 import { root } from '@component/root.ts'
 import { useState } from '@hook/useState.ts'
+import { useTest } from '@test/utilForTest.jsx'
 import { beforeEach, describe, expect, test } from 'vitest'
 
 describe('conditionalExpressions', () => {
@@ -27,7 +28,7 @@ describe('conditionalExpressions', () => {
   }
 
   beforeEach(() => {
-    rootElement = document.createElement('main')
+    ;({ rootElement } = useTest())
     primitive = 'primitive'
     ;[getCount, setCount] = useState(0)
     ;[isTrue1, setTrue1] = useState(false)

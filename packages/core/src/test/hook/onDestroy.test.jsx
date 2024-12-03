@@ -5,45 +5,35 @@ import { Switch } from '@component/switch.ts'
 import { Toggle } from '@component/toggle.ts'
 import { onDestroy } from '@hook/onDestroy.ts'
 import { useState } from '@hook/useState.ts'
+import {
+  createComponents,
+  mockWindowLocationHash,
+  useTest,
+} from '@test/utilForTest.jsx'
 import { beforeEach, describe, expect, test } from 'vitest'
 
 describe('onDestroy', () => {
-  const component = (order, key) => {
-    return (props) => {
-      onDestroy(() => {
-        order.push(props.key || key)
-      })
-      return (
-        <div>
-          <span>{key}</span>
-          {...props.children}
-        </div>
-      )
-    }
-  }
-  const components = (order, count) => {
-    return Array.from({ length: count }, (_, i) =>
-      component(order, String.fromCharCode(65 + i)),
-    )
-  }
   const Num = (props) => {
     onDestroy(() => {
-      props.order.push(props.key)
+      props.onDestroyOrder.push(props.id)
     })
     return <div>{...props.children}</div>
   }
 
-  let order
+  let rootElement, onDestroyOrder, clearOnDestroyOrder
 
   beforeEach(() => {
-    order = []
+    ;({ rootElement, onDestroyOrder, clearOnDestroyOrder } = useTest())
+    mockWindowLocationHash()
   })
 
   test('Switch case - 1', () => {
-    const [A, B, C] = components(order, 3)
+    const [A, B, C] = createComponents(3, {
+      onDestroyOrder,
+    })
     const [type, setType] = useState('B')
     root(
-      document.createElement('div'),
+      rootElement,
       <A>
         <Switch>
           <Case is={type() === 'B'}>
@@ -55,19 +45,23 @@ describe('onDestroy', () => {
         </Switch>
       </A>,
     )
-    expect(order).toEqual([])
+    expect(onDestroyOrder).toEqual([])
+    clearOnDestroyOrder()
     setType('C')
-    expect(order).toEqual(['B'])
+    expect(onDestroyOrder).toEqual(['B'])
+    clearOnDestroyOrder()
     setType('B')
-    expect(order).toEqual(['B', 'C'])
+    expect(onDestroyOrder).toEqual(['C'])
   })
 
   test('Switch case - 2', () => {
-    const [A, B, C, D, E, F, G] = components(order, 7)
+    const [A, B, C, D, E, F, G] = createComponents(7, {
+      onDestroyOrder,
+    })
     const [type1, setType1] = useState('B')
     const [type2, setType2] = useState('E')
     root(
-      document.createElement('div'),
+      rootElement,
       <A>
         <Switch>
           <Case is={type1() === 'B'}>
@@ -94,41 +88,51 @@ describe('onDestroy', () => {
         </Switch>
       </A>,
     )
-    expect(order).toEqual([])
+    expect(onDestroyOrder).toEqual([])
+    clearOnDestroyOrder()
     setType1('C')
-    expect(order).toEqual(['B'])
+    expect(onDestroyOrder).toEqual(['B'])
+    clearOnDestroyOrder()
     setType1('D')
-    expect(order).toEqual(['B', 'C'])
+    expect(onDestroyOrder).toEqual(['C'])
+    clearOnDestroyOrder()
     setType2('F')
-    expect(order).toEqual(['B', 'C', 'E'])
+    expect(onDestroyOrder).toEqual(['E'])
+    clearOnDestroyOrder()
     setType1('G')
-    expect(order).toEqual(['B', 'C', 'E', 'D', 'F'])
+    expect(onDestroyOrder).toEqual(['D', 'F'])
   })
 
   test('Toggle case - 1', () => {
-    const [A, B] = components(order, 2)
+    const [A, B] = createComponents(2, {
+      onDestroyOrder,
+    })
     const [isShow, setShow] = useState(false)
     root(
-      document.createElement('div'),
+      rootElement,
       <A>
         <Toggle is={isShow()}>
           <B />
         </Toggle>
       </A>,
     )
-    expect(order).toEqual([])
+    expect(onDestroyOrder).toEqual([])
+    clearOnDestroyOrder()
     setShow(true)
-    expect(order).toEqual([])
+    expect(onDestroyOrder).toEqual([])
+    clearOnDestroyOrder()
     setShow(false)
-    expect(order).toEqual(['B'])
+    expect(onDestroyOrder).toEqual(['B'])
   })
 
   test('Toggle case - 2', () => {
-    const [A, B, C] = components(order, 3)
+    const [A, B, C] = createComponents(3, {
+      onDestroyOrder,
+    })
     const [isShow1, setShow1] = useState(true)
     const [isShow2, setShow2] = useState(true)
     root(
-      document.createElement('div'),
+      rootElement,
       <A>
         <Toggle is={isShow1()}>
           <B>
@@ -139,51 +143,67 @@ describe('onDestroy', () => {
         </Toggle>
       </A>,
     )
-    expect(order).toEqual([])
+    expect(onDestroyOrder).toEqual([])
+    clearOnDestroyOrder()
     setShow2(false)
-    expect(order).toEqual(['C'])
+    expect(onDestroyOrder).toEqual(['C'])
+    clearOnDestroyOrder()
     setShow2(true)
-    expect(order).toEqual(['C'])
+    expect(onDestroyOrder).toEqual([])
+    clearOnDestroyOrder()
     setShow1(false)
-    expect(order).toEqual(['C', 'B', 'C'])
+    expect(onDestroyOrder).toEqual(['B', 'C'])
+    clearOnDestroyOrder()
     setShow1(true)
-    expect(order).toEqual(['C', 'B', 'C'])
+    expect(onDestroyOrder).toEqual([])
+    clearOnDestroyOrder()
   })
 
   test('For case - 1', () => {
-    const [A] = components(order, 1)
+    const [A] = createComponents(1, {
+      onDestroyOrder,
+    })
     const [nums, setNums] = useState([1, 2, 3, 4, 5])
     root(
-      document.createElement('div'),
+      rootElement,
       <A>
         <For each={nums()}>
           {(n) => {
-            return <Num key={`F1-${n}`} order={order} />
+            return <Num id={`F1-${n}`} onDestroyOrder={onDestroyOrder} />
           }}
         </For>
       </A>,
     )
-    expect(order).toEqual([])
+    expect(onDestroyOrder).toEqual([])
+    clearOnDestroyOrder()
     setNums([2, 3, 4])
-    expect(order).toEqual(['F1-1', 'F1-5'])
+    expect(onDestroyOrder).toEqual(['F1-1', 'F1-5'])
+    clearOnDestroyOrder()
     setNums([1, 2, 3, 6])
-    expect(order).toEqual(['F1-1', 'F1-5', 'F1-4'])
+    expect(onDestroyOrder).toEqual(['F1-4'])
   })
 
   test('For case - 2', () => {
-    const [A] = components(order, 1)
+    const [A] = createComponents(1, {
+      onDestroyOrder,
+    })
     const [nums1, setNums1] = useState([1, 2])
     const [nums2, setNums2] = useState([1, 2, 3])
     root(
-      document.createElement('div'),
+      rootElement,
       <A>
         <For each={nums1()}>
           {(n1) => {
             return (
-              <Num key={`F-${n1}`} order={order}>
+              <Num id={`F-${n1}`} onDestroyOrder={onDestroyOrder}>
                 <For each={nums2()}>
                   {(n2) => {
-                    return <Num key={`F-${n1}-${n2}`} order={order} />
+                    return (
+                      <Num
+                        id={`F-${n1}-${n2}`}
+                        onDestroyOrder={onDestroyOrder}
+                      />
+                    )
                   }}
                 </For>
               </Num>
@@ -192,75 +212,68 @@ describe('onDestroy', () => {
         </For>
       </A>,
     )
-    expect(order).toEqual([])
+    expect(onDestroyOrder).toEqual([])
+    clearOnDestroyOrder()
     setNums2([2])
-    expect(order).toEqual(['F-1-1', 'F-1-3', 'F-2-1', 'F-2-3'])
+    expect(onDestroyOrder).toEqual(['F-1-1', 'F-1-3', 'F-2-1', 'F-2-3'])
+    clearOnDestroyOrder()
     setNums1([1, 3])
-    expect(order).toEqual(['F-1-1', 'F-1-3', 'F-2-1', 'F-2-3', 'F-2', 'F-2-2'])
+    expect(onDestroyOrder).toEqual(['F-2', 'F-2-2'])
+    clearOnDestroyOrder()
     setNums2([3, 4])
-    expect(order).toEqual([
-      'F-1-1',
-      'F-1-3',
-      'F-2-1',
-      'F-2-3',
-      'F-2',
-      'F-2-2',
-      'F-1-2',
-      'F-3-2',
-    ])
+    expect(onDestroyOrder).toEqual(['F-1-2', 'F-3-2'])
   })
 
   test('complex case - 1', () => {
-    const [A, B, C, D] = components(order, 4)
+    const [A, B, C, D] = createComponents(4, {
+      onDestroyOrder,
+    })
     const [nums1, setNums1] = useState([1, 2, 3])
     const [nums2, setNums2] = useState([1, 2])
     const [type, setType] = useState('A')
     const [isVisible, setVisible] = useState(true)
     const [showInner, setShowInner] = useState(true)
     root(
-      document.createElement('div'),
+      rootElement,
       <For each={nums1()}>
         {(num1) => (
-          <Num key={`N-${num1}`} order={order}>
+          <Num id={`N-${num1}`} onDestroyOrder={onDestroyOrder}>
             <Switch>
               <Case is={type() === 'A'}>
-                <A key={`A-${num1}`}>
+                <A id={`A-${num1}`}>
                   <Toggle is={showInner()}>
-                    <B key={`A-B-${num1}`} />
+                    <B id={`A-B-${num1}`} />
                   </Toggle>
                 </A>
               </Case>
               <Case is={type() === 'B'}>
-                <B key={`B-${num1}`}>
+                <B id={`B-${num1}`}>
                   <For each={nums2()}>
                     {(num2) => (
                       <Toggle is={isVisible()}>
-                        <C key={`B-C-${num1}-${num2}`} />
+                        <C id={`B-C-${num1}-${num2}`} />
                       </Toggle>
                     )}
                   </For>
                 </B>
               </Case>
               <Case is={type() === 'C'}>
-                <D key={`D-${num1}`} />
+                <D id={`D-${num1}`} />
               </Case>
             </Switch>
           </Num>
         )}
       </For>,
     )
+    expect(onDestroyOrder).toEqual([])
     setShowInner(false)
-    expect(order).toEqual(['A-B-1', 'A-B-2', 'A-B-3'])
+    expect(onDestroyOrder).toEqual(['A-B-1', 'A-B-2', 'A-B-3'])
+    clearOnDestroyOrder()
     setType('B')
-    expect(order).toEqual(['A-B-1', 'A-B-2', 'A-B-3', 'A-1', 'A-2', 'A-3'])
+    expect(onDestroyOrder).toEqual(['A-1', 'A-2', 'A-3'])
+    clearOnDestroyOrder()
     setVisible(false)
-    expect(order).toEqual([
-      'A-B-1',
-      'A-B-2',
-      'A-B-3',
-      'A-1',
-      'A-2',
-      'A-3',
+    expect(onDestroyOrder).toEqual([
       'B-C-1-1',
       'B-C-1-2',
       'B-C-2-1',
@@ -268,41 +281,11 @@ describe('onDestroy', () => {
       'B-C-3-1',
       'B-C-3-2',
     ])
+    clearOnDestroyOrder()
     setNums1([2, 3])
-    expect(order).toEqual([
-      'A-B-1',
-      'A-B-2',
-      'A-B-3',
-      'A-1',
-      'A-2',
-      'A-3',
-      'B-C-1-1',
-      'B-C-1-2',
-      'B-C-2-1',
-      'B-C-2-2',
-      'B-C-3-1',
-      'B-C-3-2',
-      'N-1',
-      'B-1',
-    ])
+    expect(onDestroyOrder).toEqual(['N-1', 'B-1'])
+    clearOnDestroyOrder()
     setType('C')
-    expect(order).toEqual([
-      'A-B-1',
-      'A-B-2',
-      'A-B-3',
-      'A-1',
-      'A-2',
-      'A-3',
-      'B-C-1-1',
-      'B-C-1-2',
-      'B-C-2-1',
-      'B-C-2-2',
-      'B-C-3-1',
-      'B-C-3-2',
-      'N-1',
-      'B-1',
-      'B-2',
-      'B-3',
-    ])
+    expect(onDestroyOrder).toEqual(['B-2', 'B-3'])
   })
 })

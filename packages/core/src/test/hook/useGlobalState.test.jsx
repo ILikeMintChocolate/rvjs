@@ -3,6 +3,7 @@ import { Toggle } from '@component/toggle.ts'
 import { useEffect } from '@hook/useEffect.ts'
 import { useGlobalState } from '@hook/useGlobalState.ts'
 import { useState } from '@hook/useState.ts'
+import { useTest } from '@test/utilForTest.jsx'
 import { beforeEach, describe, expect, test } from 'vitest'
 
 describe('useGlobalState', () => {
@@ -12,7 +13,7 @@ describe('useGlobalState', () => {
   let isShow2, setShow2
 
   beforeEach(() => {
-    rootElement = document.createElement('main')
+    ;({ rootElement } = useTest())
     log1 = []
     log2 = []
     log3 = []
