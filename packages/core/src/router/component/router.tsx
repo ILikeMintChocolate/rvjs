@@ -23,8 +23,10 @@ export interface RouteMap {
 
 export interface Route {
   path: string
+  type: 'STATIC' | 'DYNAMIC'
   getElement: Component | Node
   element: Component | Node
+  dynamicKey?: string
   childRouteMap: RouteMap
 }
 
