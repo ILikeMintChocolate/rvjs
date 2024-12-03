@@ -17,6 +17,7 @@ export const Renderer = <TBase extends Constructor<Empty>>(Base: TBase) => {
     self: Component
     parentNode: Node
     isRendered: boolean
+    isCommited: boolean
     componentFn: (
       props?: Record<string, any>,
     ) => Node | Component | (Node | Component)[]
@@ -28,6 +29,7 @@ export const Renderer = <TBase extends Constructor<Empty>>(Base: TBase) => {
       this.self.componentFn = componentFn
       this.self.parentNode = null
       this.self.isRendered = false
+      this.self.isCommited = false
     }
 
     renderFn() {
@@ -83,8 +85,9 @@ export const Renderer = <TBase extends Constructor<Empty>>(Base: TBase) => {
 
     commit() {
       this.self.traverseChildren((child) => {
-        if (child.onMountHandler) {
+        if (child.onMountHandler && !child.isCommited) {
           child.onMountHandler()
+          child.isCommited = true
         }
         return true
       })
