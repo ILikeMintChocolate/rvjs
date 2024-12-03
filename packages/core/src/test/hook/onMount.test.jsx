@@ -5,59 +5,53 @@ import { Switch } from '@component/switch.ts'
 import { Toggle } from '@component/toggle.ts'
 import { onMount } from '@hook/onMount.ts'
 import { useState } from '@hook/useState.ts'
+import {
+  createComponents,
+  mockWindowLocationHash,
+  useTest,
+} from '@test/utilForTest.jsx'
 import { beforeEach, describe, expect, test } from 'vitest'
 
 describe('onMount', () => {
-  const component = (order, key) => {
-    return (props) => {
-      onMount(() => {
-        order.push(props.key || key)
-      })
-      return (
-        <div>
-          <span>{key}</span>
-          {...props.children}
-        </div>
-      )
-    }
-  }
-  const components = (order, count) => {
-    return Array.from({ length: count }, (_, i) =>
-      component(order, String.fromCharCode(65 + i)),
-    )
-  }
   const Num = (props) => {
     onMount(() => {
-      props.order.push(props.key)
+      props.onMountOrder.push(props.id)
     })
     return <div>{...props.children}</div>
   }
 
-  let order
+  let rootElement, onMountOrder, clearOnMountOrder
 
   beforeEach(() => {
-    order = []
+    ;({ rootElement, onMountOrder, clearOnMountOrder } = useTest())
+    mockWindowLocationHash()
   })
 
   test('basic case - 1', () => {
-    const [A] = components(order, 1)
+    const [A] = createComponents(1, {
+      onMountOrder,
+    })
     root(document.createElement('div'), <A />)
-    expect(order).toEqual(['A'])
+    expect(onMountOrder).toEqual(['A'])
   })
 
   test('basic case - 2', () => {
-    const [A, B] = components(order, 2)
+    const [A, B] = createComponents(2, {
+      onMountOrder,
+    })
     root(
       document.createElement('div'),
       <A>
         <B />
       </A>,
     )
-    expect(order).toEqual(['A', 'B'])
+    expect(onMountOrder).toEqual(['A', 'B'])
   })
 
   test('basic case - 3', () => {
-    const [A, B, C] = components(order, 3)
+    const [A, B, C] = createComponents(3, {
+      onMountOrder,
+    })
     const app = document.createElement('div')
     root(
       app,
@@ -66,11 +60,13 @@ describe('onMount', () => {
         <C />
       </A>,
     )
-    expect(order).toEqual(['A', 'B', 'C'])
+    expect(onMountOrder).toEqual(['A', 'B', 'C'])
   })
 
   test('basic case - 4', () => {
-    const [A, B, C, D] = components(order, 4)
+    const [A, B, C, D] = createComponents(4, {
+      onMountOrder,
+    })
     root(
       document.createElement('div'),
       <A>
@@ -80,11 +76,13 @@ describe('onMount', () => {
         <D />
       </A>,
     )
-    expect(order).toEqual(['A', 'B', 'C', 'D'])
+    expect(onMountOrder).toEqual(['A', 'B', 'C', 'D'])
   })
 
   test('Switch case - 1', () => {
-    const [A, B, C] = components(order, 3)
+    const [A, B, C] = createComponents(3, {
+      onMountOrder,
+    })
     const [type, setType] = useState('B')
     root(
       document.createElement('div'),
@@ -99,13 +97,16 @@ describe('onMount', () => {
         </Switch>
       </A>,
     )
-    expect(order).toEqual(['A', 'B'])
+    expect(onMountOrder).toEqual(['A', 'B'])
+    clearOnMountOrder()
     setType('C')
-    expect(order).toEqual(['A', 'B', 'C'])
+    expect(onMountOrder).toEqual(['C'])
   })
 
   test('Switch case - 2', () => {
-    const [A, B, C, D, E, F, G] = components(order, 7)
+    const [A, B, C, D, E, F, G] = createComponents(7, {
+      onMountOrder,
+    })
     const [type1, setType1] = useState('B')
     const [type2, setType2] = useState('E')
     root(
@@ -136,19 +137,25 @@ describe('onMount', () => {
         </Switch>
       </A>,
     )
-    expect(order).toEqual(['A', 'B'])
+    expect(onMountOrder).toEqual(['A', 'B'])
+    clearOnMountOrder()
     setType1('C')
-    expect(order).toEqual(['A', 'B', 'C'])
+    expect(onMountOrder).toEqual(['C'])
+    clearOnMountOrder()
     setType1('D')
-    expect(order).toEqual(['A', 'B', 'C', 'D', 'E'])
+    expect(onMountOrder).toEqual(['D', 'E'])
+    clearOnMountOrder()
     setType2('F')
-    expect(order).toEqual(['A', 'B', 'C', 'D', 'E', 'F'])
+    expect(onMountOrder).toEqual(['F'])
+    clearOnMountOrder()
     setType1('G')
-    expect(order).toEqual(['A', 'B', 'C', 'D', 'E', 'F', 'G'])
+    expect(onMountOrder).toEqual(['G'])
   })
 
   test('Toggle case - 1', () => {
-    const [A, B] = components(order, 2)
+    const [A, B] = createComponents(2, {
+      onMountOrder,
+    })
     const [isShow, setShow] = useState(false)
     root(
       document.createElement('div'),
@@ -158,17 +165,22 @@ describe('onMount', () => {
         </Toggle>
       </A>,
     )
-    expect(order).toEqual(['A'])
+    expect(onMountOrder).toEqual(['A'])
+    clearOnMountOrder()
     setShow(true)
-    expect(order).toEqual(['A', 'B'])
+    expect(onMountOrder).toEqual(['B'])
+    clearOnMountOrder()
     setShow(false)
-    expect(order).toEqual(['A', 'B'])
+    expect(onMountOrder).toEqual([])
+    clearOnMountOrder()
     setShow(true)
-    expect(order).toEqual(['A', 'B', 'B'])
+    expect(onMountOrder).toEqual(['B'])
   })
 
   test('Toggle case - 2', () => {
-    const [A, B, C] = components(order, 3)
+    const [A, B, C] = createComponents(3, {
+      onMountOrder,
+    })
     const [isShow1, setShow1] = useState(true)
     const [isShow2, setShow2] = useState(true)
     root(
@@ -183,41 +195,45 @@ describe('onMount', () => {
         </Toggle>
       </A>,
     )
-    expect(order).toEqual(['A', 'B', 'C'])
+    expect(onMountOrder).toEqual(['A', 'B', 'C'])
     setShow2(false)
-    expect(order).toEqual(['A', 'B', 'C'])
+    expect(onMountOrder).toEqual(['A', 'B', 'C'])
     setShow2(true)
-    expect(order).toEqual(['A', 'B', 'C', 'C'])
+    expect(onMountOrder).toEqual(['A', 'B', 'C', 'C'])
     setShow1(false)
-    expect(order).toEqual(['A', 'B', 'C', 'C'])
+    expect(onMountOrder).toEqual(['A', 'B', 'C', 'C'])
     setShow1(true)
-    expect(order).toEqual(['A', 'B', 'C', 'C', 'B', 'C'])
+    expect(onMountOrder).toEqual(['A', 'B', 'C', 'C', 'B', 'C'])
   })
 
   test('For case - 1', () => {
-    const [A] = components(order, 1)
+    const [A] = createComponents(1, {
+      onMountOrder,
+    })
     const [nums, setNums] = useState([1, 2, 3, 4, 5])
     root(
       document.createElement('div'),
       <A>
         <For each={nums()}>
           {(n) => {
-            return <Num key={`F1-${n}`} order={order} />
+            return <Num id={`F1-${n}`} onMountOrder={onMountOrder} />
           }}
         </For>
       </A>,
     )
-    expect(order).toEqual(['A', 'F1-1', 'F1-2', 'F1-3', 'F1-4', 'F1-5'])
-    order.length = 0
+    expect(onMountOrder).toEqual(['A', 'F1-1', 'F1-2', 'F1-3', 'F1-4', 'F1-5'])
+    clearOnMountOrder()
     setNums([2, 3, 4])
-    expect(order).toEqual([])
-    order.length = 0
+    expect(onMountOrder).toEqual([])
+    clearOnMountOrder()
     setNums([1, 2, 3, 4, 6])
-    expect(order).toEqual(['F1-1', 'F1-6'])
+    expect(onMountOrder).toEqual(['F1-1', 'F1-6'])
   })
 
   test('For case - 2', () => {
-    const [A] = components(order, 1)
+    const [A] = createComponents(1, {
+      onMountOrder,
+    })
     const [nums1, setNums1] = useState([1, 2])
     const [nums2, setNums2] = useState([1, 2, 3])
     root(
@@ -226,10 +242,12 @@ describe('onMount', () => {
         <For each={nums1()}>
           {(n1) => {
             return (
-              <Num key={`F-${n1}`} order={order}>
+              <Num id={`F-${n1}`} onMountOrder={onMountOrder}>
                 <For each={nums2()}>
                   {(n2) => {
-                    return <Num key={`F-${n1}-${n2}`} order={order} />
+                    return (
+                      <Num id={`F-${n1}-${n2}`} onMountOrder={onMountOrder} />
+                    )
                   }}
                 </For>
               </Num>
@@ -238,7 +256,7 @@ describe('onMount', () => {
         </For>
       </A>,
     )
-    expect(order).toEqual([
+    expect(onMountOrder).toEqual([
       'A',
       'F-1',
       'F-1-1',
@@ -249,45 +267,15 @@ describe('onMount', () => {
       'F-2-2',
       'F-2-3',
     ])
+    clearOnMountOrder()
     setNums2([2])
-    expect(order).toEqual([
-      'A',
-      'F-1',
-      'F-1-1',
-      'F-1-2',
-      'F-1-3',
-      'F-2',
-      'F-2-1',
-      'F-2-2',
-      'F-2-3',
-    ])
+    expect(onMountOrder).toEqual([])
+    clearOnMountOrder()
     setNums1([1, 2, 3])
-    expect(order).toEqual([
-      'A',
-      'F-1',
-      'F-1-1',
-      'F-1-2',
-      'F-1-3',
-      'F-2',
-      'F-2-1',
-      'F-2-2',
-      'F-2-3',
-      'F-3',
-      'F-3-2',
-    ])
+    expect(onMountOrder).toEqual(['F-3', 'F-3-2'])
+    clearOnMountOrder()
     setNums2([3, 4])
-    expect(order).toEqual([
-      'A',
-      'F-1',
-      'F-1-1',
-      'F-1-2',
-      'F-1-3',
-      'F-2',
-      'F-2-1',
-      'F-2-2',
-      'F-2-3',
-      'F-3',
-      'F-3-2',
+    expect(onMountOrder).toEqual([
       'F-1-3',
       'F-1-4',
       'F-2-3',
@@ -298,7 +286,9 @@ describe('onMount', () => {
   })
 
   test('complex case - 1', () => {
-    const [A, B, C, D] = components(order, 4)
+    const [A, B, C, D] = createComponents(4, {
+      onMountOrder,
+    })
     const [nums1, setNums1] = useState([1, 2, 3])
     const [nums2, setNums2] = useState([1, 2])
     const [type, setType] = useState('A')
@@ -308,35 +298,35 @@ describe('onMount', () => {
       document.createElement('div'),
       <For each={nums1()}>
         {(num1) => (
-          <Num key={`N-${num1}`} order={order}>
+          <Num id={`N-${num1}`} onMountOrder={onMountOrder}>
             <Switch>
               <Case is={type() === 'A'}>
-                <A key={`A-${num1}`}>
+                <A id={`A-${num1}`}>
                   <Toggle is={showInner()}>
-                    <B key={`A-B-${num1}`} />
+                    <B id={`A-B-${num1}`} />
                   </Toggle>
                 </A>
               </Case>
               <Case is={type() === 'B'}>
-                <B key={`B-${num1}`}>
+                <B id={`B-${num1}`}>
                   <For each={nums2()}>
                     {(num2) => (
                       <Toggle is={isVisible()}>
-                        <C key={`B-C-${num1}-${num2}`} />
+                        <C id={`B-C-${num1}-${num2}`} />
                       </Toggle>
                     )}
                   </For>
                 </B>
               </Case>
               <Case is={type() === 'C'}>
-                <D key={`D-${num1}`} />
+                <D id={`D-${num1}`} />
               </Case>
             </Switch>
           </Num>
         )}
       </For>,
     )
-    expect(order).toEqual([
+    expect(onMountOrder).toEqual([
       'N-1',
       'A-1',
       'A-B-1',
@@ -347,9 +337,9 @@ describe('onMount', () => {
       'A-3',
       'A-B-3',
     ])
-    order.length = 0
+    clearOnMountOrder()
     setType('B')
-    expect(order).toEqual([
+    expect(onMountOrder).toEqual([
       'B-1',
       'B-C-1-1',
       'B-C-1-2',
@@ -360,8 +350,8 @@ describe('onMount', () => {
       'B-C-3-1',
       'B-C-3-2',
     ])
-    order.length = 0
+    clearOnMountOrder()
     setType('C')
-    expect(order).toEqual(['D-1', 'D-2', 'D-3'])
+    expect(onMountOrder).toEqual(['D-1', 'D-2', 'D-3'])
   })
 })

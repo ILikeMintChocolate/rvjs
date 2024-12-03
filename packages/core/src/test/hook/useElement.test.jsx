@@ -1,6 +1,7 @@
 import { root } from '@component/root.ts'
 import { onMount } from '@hook/onMount.ts'
 import { useElement } from '@hook/useElement.ts'
+import { useTest } from '@test/utilForTest.jsx'
 import { beforeEach, describe, expect, test } from 'vitest'
 
 describe('useElement', () => {
@@ -8,7 +9,7 @@ describe('useElement', () => {
   let tagName
 
   beforeEach(() => {
-    rootElement = document.createElement('main')
+    ;({ rootElement } = useTest())
   })
 
   test('case - 1', () => {
