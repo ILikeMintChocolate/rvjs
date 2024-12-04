@@ -7,7 +7,7 @@ import { routerContext } from '@router/context/router.ts'
 import {
   findDynamicKey,
   findDynamicPath,
-  isDynamicPath,
+  findPathType,
 } from '@router/util/path.ts'
 import { isComponent } from '@type/guard.ts'
 import { toArray } from '@util/data.ts'
@@ -25,7 +25,7 @@ export const createRouteMap = (childRoutes: RawRoute[]) => {
       const routeContext = {
         path,
         childRouteMap,
-        type: isDynamicPath(path) ? 'DYNAMIC' : 'STATIC',
+        type: findPathType(path),
       }
       copyGetter(childRoute, 'element', routeContext, 'getElement')
       // @ts-ignore
@@ -41,12 +41,15 @@ export const createRouteMap = (childRoutes: RawRoute[]) => {
 
 export const createMatchedRoutes = (routeMap: RouteMap, paths: string[]) => {
   let currentRouteMap: RouteMap = routeMap
-  const matchedRoutes = paths.reduce((routes, path) => {
+  const matchedRoutes: Route[] = []
+  for (let i = 0; i < paths.length; i++) {
+    const path = paths[i]
     const matchedRoute = (() => {
       if (currentRouteMap[path]) {
         return currentRouteMap[path]
-      } else {
-        const dynamicRoute = findDynamicRoute(currentRouteMap)
+      }
+      const dynamicRoute = findDynamicRoute(currentRouteMap)
+      if (dynamicRoute) {
         const route = {
           path: path,
           type: dynamicRoute.type,
@@ -56,11 +59,23 @@ export const createMatchedRoutes = (routeMap: RouteMap, paths: string[]) => {
         copyGetter(dynamicRoute, 'getElement', route, 'getElement')
         return route as Route
       }
+      const anyRoute = findAnyRoute(currentRouteMap)
+      if (anyRoute) {
+        const route = {
+          path: path,
+          type: anyRoute.type,
+          childRouteMap: anyRoute.childRouteMap,
+        }
+        copyGetter(anyRoute, 'getElement', route, 'getElement')
+        return route as Route
+      }
     })()
-    routes.push(matchedRoute)
+    if (!matchedRoute) {
+      break
+    }
+    matchedRoutes.push(matchedRoute)
     currentRouteMap = matchedRoute.childRouteMap
-    return routes
-  }, [] as Route[])
+  }
   return matchedRoutes
 }
 
@@ -141,9 +156,6 @@ export const updateRoutes = (
       // @ts-ignore
       route.element.outlet = <Refresh by={outlet()}>{outlet()}</Refresh>
       route.element.setOutlet = setOutlet
-      // routerContext.set()
-      // console.log(route.path)
-      // route.element.currentPath
       if (route.type === 'DYNAMIC') {
         context[route.dynamicKey] = findDynamicPath(route.path)
       }
@@ -155,12 +167,13 @@ export const updateRoutes = (
 }
 
 const isRouteEqual = (prevRoute: Route, newRoute: Route) => {
-  if (prevRoute.path === newRoute.path) {
-    return true
-  }
-  return false
+  return prevRoute.path === newRoute.path
 }
 
 const findDynamicRoute = (routeMap: RouteMap) => {
   return Object.values(routeMap).find((route) => route.type === 'DYNAMIC')
+}
+
+const findAnyRoute = (routeMap: RouteMap) => {
+  return routeMap['*']
 }
