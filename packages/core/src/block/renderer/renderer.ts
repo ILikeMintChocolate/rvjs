@@ -85,7 +85,10 @@ export const Renderer = <TBase extends Constructor<Empty>>(Base: TBase) => {
 
     commit() {
       this.self.traverseChildren((child) => {
-        if (child.onMountHandler && !child.isCommited) {
+        if (child.isCommited) {
+          return false
+        }
+        if (child.onMountHandler) {
           child.onMountHandler()
           child.isCommited = true
         }

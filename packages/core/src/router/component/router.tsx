@@ -23,8 +23,10 @@ export interface RouteMap {
 
 export interface Route {
   path: string
+  type: 'STATIC' | 'DYNAMIC' | 'ANY'
   getElement: Component | Node
   element: Component | Node
+  dynamicKey?: string
   childRouteMap: RouteMap
 }
 
@@ -61,9 +63,7 @@ export const useRouter = (): [GetState<string[]>, SetState<string[]>] => {
 
   onMount(() => {
     handleHashChange()
-    window.addEventListener('hashchange', () => {
-      handleHashChange()
-    })
+    window.addEventListener('hashchange', handleHashChange)
   })
 
   onDestroy(() => {
