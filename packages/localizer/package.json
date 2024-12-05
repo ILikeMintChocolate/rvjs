@@ -1,0 +1,19 @@
+{
+  "name": "@rvjs/localizer",
+  "description": "A localization library for rvjs",
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "typescript": "~5.6.2",
+    "vite": "^6.0.1",
+    "vite-plugin-rvjs": "^0.0.1"
+  },
+  "dependencies": {
+    "@rvjs/core": "^0.3.21"
+  }
+}
