@@ -1,105 +1,82 @@
 import {
-  ComponentBlock,
-  ElementBlock,
-  ForBlock,
+  BlockComponent,
+  CaseComponent,
+  Component,
+  ForComponent,
   GetState,
-  isRvjsFunction,
-  isRvjsObject,
-  Prop,
-  RVJS_COMPONENT_BLOCK_SYMBOL,
-  RVJS_ELEMENT_BLOCK_SYMBOL,
-  RVJS_FOR_FLOW_BLOCK_SYMBOL,
-  RVJS_GET_STATE_SYMBOL,
-  RVJS_PROP_SYMBOL,
-  RVJS_SET_STATE_SYMBOL,
-  RVJS_SWITCH_FLOW_BLOCK_SYMBOL,
-  RVJS_TEXT_NODE_BLOCK_SYMBOL,
-  RVJS_TOGGLE_FLOW_BLOCK_SYMBOL,
+  isBlockComponent as _isBlockComponent,
+  isCaseComponent as _isCaseComponent,
+  isComponent as _isComponent,
+  isForComponent as _isForComponent,
+  isGetState as _isGetState,
+  isRefreshComponent as _isRefreshComponent,
+  isSetState as _isSetState,
+  isSwitchComponent as _isSwitchComponent,
+  isToggleComponent as _isToggleComponent,
+  RefreshComponent,
   SetState,
-  SwitchBlock,
-  TextNodeBlock,
-  ToggleBlock,
+  SwitchComponent,
+  ToggleComponent,
 } from '@rvjs/core'
-import { checkContext } from '../checkProps/context.ts'
+import { checkContext } from '../checkProps/context.js'
 import {
   printInvalidError,
   printNoValidatorError,
-} from '../checkProps/error.ts'
+} from '../checkProps/error.js'
 import { isArrayType } from './reference.ts'
-import { Validator } from './type.ts'
+import { Validator } from './type.js'
 
-export const isElementBlock = (value: unknown): value is ElementBlock => {
-  return isRvjsObject(value) && value.$$typeof === RVJS_ELEMENT_BLOCK_SYMBOL
+export const isElement = (value: unknown): value is HTMLElement => {
+  return value instanceof HTMLElement
 }
 
-export const isComponentBlock = (value: unknown): value is ComponentBlock => {
-  return isRvjsObject(value) && value.$$typeof === RVJS_COMPONENT_BLOCK_SYMBOL
+export const isComponent = (value: unknown): value is Component => {
+  return _isComponent(value)
 }
 
-export const isForFlowBlock = (value: unknown): value is ForBlock<unknown> => {
-  return isRvjsObject(value) && value.$$typeof === RVJS_FOR_FLOW_BLOCK_SYMBOL
+export const isBlockComponent = (value: unknown): value is BlockComponent => {
+  return _isBlockComponent(value)
 }
 
-export const isSwitchFlowBlock = (
+export const isForComponent = (value: unknown): value is ForComponent => {
+  return _isForComponent(value)
+}
+
+export const isSwitchComponent = (value: unknown): value is SwitchComponent => {
+  return _isSwitchComponent(value)
+}
+
+export const isCaseComponent = (value: unknown): value is CaseComponent => {
+  return _isCaseComponent(value)
+}
+
+export const isToggleComponent = (value: unknown): value is ToggleComponent => {
+  return _isToggleComponent(value)
+}
+
+export const isRefreshComponent = (
   value: unknown,
-): value is SwitchBlock<unknown> => {
-  return isRvjsObject(value) && value.$$typeof === RVJS_SWITCH_FLOW_BLOCK_SYMBOL
+): value is RefreshComponent => {
+  return _isRefreshComponent(value)
 }
 
-export const isToggleFlowBlock = (
-  value: unknown,
-): value is ToggleBlock<unknown> => {
-  return isRvjsObject(value) && value.$$typeof === RVJS_TOGGLE_FLOW_BLOCK_SYMBOL
+export const isChild = (value: unknown): value is Component | HTMLElement => {
+  return isElement(value) || isComponent(value)
 }
 
-export const isTextNodeBlock = (value: unknown): value is TextNodeBlock => {
-  return isRvjsObject(value) && value.$$typeof === RVJS_TEXT_NODE_BLOCK_SYMBOL
-}
-
-export const isChild = (
-  value: unknown,
-): value is
-  | ElementBlock
-  | ComponentBlock
-  | ForBlock<unknown>
-  | SwitchBlock<unknown>
-  | ToggleBlock<unknown>
-  | TextNodeBlock => {
-  return (
-    isElementBlock(value) ||
-    isComponentBlock(value) ||
-    isForFlowBlock(value) ||
-    isSwitchFlowBlock(value) ||
-    isToggleFlowBlock(value) ||
-    isTextNodeBlock(value)
-  )
-}
-
-export const isChildren = (
-  value: unknown,
-): value is (
-  | ElementBlock
-  | ComponentBlock
-  | ForBlock<unknown>
-  | SwitchBlock<unknown>
-  | ToggleBlock<unknown>
-  | TextNodeBlock
-)[] => {
+export const isChildren = (value: unknown): value is Component[] => {
   if (!value) {
     return false
   }
   return isArrayType(value) && value.every(isChild)
 }
 
-export const isGetStateType = (value: unknown): value is GetState => {
-  return isRvjsFunction(value) && value?.$$typeof === RVJS_GET_STATE_SYMBOL
+export const isGetStateType = (value: unknown): value is GetState<unknown> => {
+  return _isGetState(value)
 }
 
-export const isPropType = (value: unknown): value is Prop<unknown> => {
-  if (isGetStateType(value)) {
-    return true
-  }
-  return isRvjsFunction(value) && value?.$$typeof === RVJS_PROP_SYMBOL
+export const isSetStateType = (value: unknown): value is SetState<unknown> => {
+  return _isSetState(value)
 }
 
 export const isGetState = (validator: Validator) => (value: unknown) => {
@@ -111,28 +88,6 @@ export const isGetState = (validator: Validator) => (value: unknown) => {
     return false
   }
   if (!isGetStateType(value)) {
-    printInvalidError()
-    return false
-  }
-  return validator(value()) as boolean
-}
-
-export const isSetState = (value: unknown): value is SetState => {
-  return isRvjsFunction(value) && value?.$$typeof === RVJS_SET_STATE_SYMBOL
-}
-
-export const isProp = (validator: Validator) => (value: unknown) => {
-  if (!checkContext.isContinue) {
-    return false
-  }
-  if (!validator) {
-    printNoValidatorError()
-    return false
-  }
-  if (isGetStateType(value)) {
-    return validator(value()) as boolean
-  }
-  if (!isPropType(value)) {
     printInvalidError()
     return false
   }
