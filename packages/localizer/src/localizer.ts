@@ -8,7 +8,7 @@ import {
 
 export interface LocalizerOption<T> {
   defaultLanguage: string
-  languages: Record<string, LanguageOption<T>>
+  resources: Record<string, LanguageOption<T>>
 }
 
 interface LanguageOption<T> {
@@ -60,10 +60,10 @@ export const getLocale = () => {
   return locale
 }
 
-export const updateLocale = (locale: string) => {
-  const { setLocale, localeSet } = localeContext!
+export const setLocale = (locale: string) => {
+  const { setLocale: _setLocale, localeSet } = localeContext!
   if (!localeSet.has(locale)) {
     return
   }
-  setLocale(locale)
+  _setLocale(locale)
 }

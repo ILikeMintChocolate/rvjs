@@ -16,11 +16,11 @@ export const detectUserLocale = <T>(
   for (const locale of userLocales) {
     if (hasCountry(locale)) {
       const [language, country] = splitLocale(locale)
-      if (option.languages[language]?.countries[country]) {
+      if (option.resources[language]?.countries[country]) {
         return locale
       }
     } else {
-      if (option.languages[locale]?.default) {
+      if (option.resources[locale]?.default) {
         return locale
       }
     }

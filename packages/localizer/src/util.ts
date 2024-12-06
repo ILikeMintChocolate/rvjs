@@ -22,20 +22,20 @@ export const findContentByKey = <T>(resource: T, key: string) => {
 export const findResource = <T>(locale: string, option: LocalizerOption<T>) => {
   if (hasCountry(locale)) {
     const [language, country] = splitLocale(locale)
-    return option.languages[language].countries[country]
+    return option.resources[language].countries[country]
   } else {
-    return option.languages[locale].default
+    return option.resources[locale].default
   }
 }
 
 export const getAllLocales = <T>(option: LocalizerOption<T>) => {
-  const { languages } = option
+  const { resources } = option
   const locales = []
-  for (const language in languages) {
-    locales.push(language)
-    const { countries } = languages[language]
+  for (const resource in resources) {
+    locales.push(resource)
+    const { countries } = resources[resource]
     for (const country in countries) {
-      locales.push(`${language}-${country}`)
+      locales.push(`${resource}-${country}`)
     }
   }
   return locales
