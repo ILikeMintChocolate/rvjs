@@ -1,13 +1,13 @@
 import { componentContext } from '@context/component.ts'
 import { GetState, SetState, StateAccessors, useState } from '@hook/useState.ts'
 
-interface GlobalStateContext {
+interface GlobalStateContext<T> {
   count: number
-  getState: GetState<unknown>
-  setState: SetState<unknown>
+  getState: GetState<T>
+  setState: SetState<T>
 }
 
-const globalStateMap = new Map<string, GlobalStateContext>()
+const globalStateMap = new Map<string, GlobalStateContext<unknown>>()
 
 export const useGlobalState = <State>(
   key: string,

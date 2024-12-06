@@ -33,4 +33,26 @@ export { spread } from '@jsx/spread.ts'
 export { template } from '@jsx/template.ts'
 export { use } from '@jsx/use.ts'
 
-export * from '@type/guard.ts'
+export {
+  isRvjsFunction,
+  isRvjsObject,
+  isGetState,
+  isSetState,
+  isComponent,
+  isBlockComponent,
+  isSwitchComponent,
+  isCaseComponent,
+  isForComponent,
+  isToggleComponent,
+  isRefreshComponent,
+} from '@type/guard.ts'
+
+export type {
+  ContextAccessors,
+  GetContext,
+  SetContext,
+} from '@hook/createContext.ts'
+
+export type { ElementObject } from '@hook/useElement.ts'
+
+export type { StateAccessors, GetState, SetState } from '@hook/useState.ts'
