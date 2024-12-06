@@ -30,10 +30,11 @@
   "devDependencies": {
     "typescript": "^5.2.2",
     "vite": "^5.2.0",
+    "vite-plugin-rvjs": "^0.0.1",
     "vitest": "^1.3.1"
   },
   "peerDependencies": {
-    "@rvjs/core": ">=0.2.11",
+    "@rvjs/core": "^0.3.11",
     "@types/node": "^20.11.26"
   },
   "dependencies": {
