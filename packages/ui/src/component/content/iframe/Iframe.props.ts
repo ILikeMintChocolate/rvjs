@@ -1,25 +1,9 @@
-import { ElementProps, Prop, prop } from '@rvjs/core'
-import { isOptional, isProp, isString } from '@rvjs/is'
-import { Properties } from 'csstype'
+import { HTMLElementProperties } from '@type/element.ts'
 
-export interface IframeProps extends HTMLIframeType {
-  src: Prop<string>
-  width?: Prop<Properties['width']>
-  height?: Prop<Properties['height']>
-}
-
-type HTMLIframeType = Partial<
-  Omit<ElementProps<'iframe'>, 'src' | 'width' | 'height'>
->
-
-export const iframePropsType = {
-  src: isProp(isString),
-  width: isOptional(isProp(isString)),
-  height: isOptional(isProp(isString)),
-}
+export interface IframeProps extends HTMLElementProperties<HTMLIFrameElement> {}
 
 export const iframeRenderProps = {
-  src: (p: string) => prop(() => p),
-  width: (p: string) => prop(() => p),
-  height: (p: string) => prop(() => p),
+  src: (p: IframeProps['src']) => p,
+  width: (p: IframeProps['width']) => p,
+  height: (p: IframeProps['height']) => p,
 }
