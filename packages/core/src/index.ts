@@ -30,6 +30,7 @@ export { memo } from '@jsx/memo.ts'
 export { mergeProps } from '@jsx/mergeProps.ts'
 export { setAttribute } from '@jsx/setAttribute.ts'
 export { spread } from '@jsx/spread.ts'
+export { style } from '@jsx/style.ts'
 export { template } from '@jsx/template.ts'
 export { use } from '@jsx/use.ts'
 
