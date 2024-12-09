@@ -1,17 +1,11 @@
-import { Children, Prop, prop } from '@rvjs/core'
-import { isChildren, isOptional, isProp, isString } from '@rvjs/is'
+import { Component } from '@rvjs/core'
 
 export interface UnorderedListProps {
-  children: Children
-  type?: Prop<'disc' | 'square'>
-}
-
-export const unorderedListPropsType = {
-  children: isChildren,
-  type: isOptional(isProp(isString)),
+  children: (Component | Node)[]
+  type?: 'disc' | 'square'
 }
 
 export const unorderedListRenderProps = {
-  children: (p: Children) => p,
-  type: (p: string) => prop(() => p),
+  children: (p: UnorderedListProps['children']) => p,
+  type: (p: UnorderedListProps['type']) => p,
 }
