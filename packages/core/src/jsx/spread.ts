@@ -30,9 +30,8 @@ export const spread = (element: HTMLElement, props: Object) => {
     stateContext.clear()
   }
   for (const key in props) {
-    if (props.hasOwnProperty(key)) {
-      // @ts-ignore
-      customProps(key)(element, props)
+    if (customProps.hasOwnProperty(key)) {
+      customProps[key](element, props)
     } else if (!excludeProps.has(key) && key in element) {
       setAttribute(element, key, props[key])
     }
