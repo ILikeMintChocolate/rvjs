@@ -12,6 +12,7 @@ export { For } from '@component/for.ts'
 export { Refresh } from '@component/refresh.ts'
 export { root } from '@component/root.ts'
 export { Switch } from '@component/switch.ts'
+export { Tag } from '@component/tag.ts'
 export { Toggle } from '@component/toggle.ts'
 
 export { createContext } from '@hook/createContext.ts'

@@ -3,6 +3,8 @@ import { stateContext } from '@context/state.ts'
 import { setAttribute } from '@jsx/setAttribute.ts'
 import { style } from '@jsx/style.ts'
 
+const excludeProps = new Set(['style', 'as', 'children'])
+
 export const spread = (element: HTMLElement, props: Object) => {
   if (Object.getOwnPropertyDescriptor(props, 'style')) {
     const effectFn = () => {
@@ -20,7 +22,7 @@ export const spread = (element: HTMLElement, props: Object) => {
     stateContext.clear()
   }
   for (const key in props) {
-    if (key !== 'style') {
+    if (!excludeProps.has(key) && key in element) {
       setAttribute(element, key, props[key])
     }
   }
