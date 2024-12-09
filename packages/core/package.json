@@ -1,7 +1,7 @@
 {
   "name": "@rvjs/core",
   "description": "Javascript library for building reactive web applications",
-  "version": "0.3.12",
+  "version": "0.3.13",
   "repository": {
     "type": "git",
     "url": "https://github.com/ILikeMintChocolate/rvjs.git",
