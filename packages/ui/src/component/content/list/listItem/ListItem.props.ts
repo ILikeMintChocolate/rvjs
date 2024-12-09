@@ -1,17 +1,9 @@
-import { Children, Prop, prop } from '@rvjs/core'
-import { isChildren, isOptional, isProp, isString } from '@rvjs/is'
+import { Component } from '@rvjs/core'
 
 export interface ListItemProps {
-  text?: Prop<string>
-  children?: Children
-}
-
-export const listItemPropsType = {
-  text: isOptional(isProp(isString)),
-  children: isOptional(isChildren),
+  children?: (Component | Node)[]
 }
 
 export const listItemRenderProps = {
-  text: (p: string) => prop(() => p),
-  children: (p: Children) => p,
+  children: (p: ListItemProps['children']) => p,
 }
