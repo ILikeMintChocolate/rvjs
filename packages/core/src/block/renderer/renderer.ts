@@ -5,6 +5,7 @@ import {
   isBlockComponent,
   isForComponent,
   isHTMLElement,
+  isNode,
   isRefreshComponent,
   isSwitchComponent,
   isToggleComponent,
@@ -100,6 +101,8 @@ export const Renderer = <TBase extends Constructor<Empty>>(Base: TBase) => {
       this.self.getNodes().forEach((node) => {
         if (isHTMLElement(node)) {
           node.remove()
+        } else if (isNode(node)) {
+          node.parentNode.removeChild(node)
         }
       })
     }
