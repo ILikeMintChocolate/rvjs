@@ -3,13 +3,19 @@ import { stateContext } from '@context/state.ts'
 import { effect } from '@jsx/effect.ts'
 import { setAttribute } from '@jsx/setAttribute.ts'
 import { style } from '@jsx/style.ts'
+import { isHTMLElement, isSVGElement } from '@type/guard.ts'
 
 const excludeProps = new Set(['style', 'as', 'children'])
 
 const customProps = {
-  className: (element: HTMLElement, props: Object) => {
-    // @ts-ignore
-    effect(() => (element.className = props.className))
+  className: (element: Node, props: Object) => {
+    if (isHTMLElement(element)) {
+      // @ts-ignore
+      effect(() => (element.className = props.className))
+    } else if (isSVGElement(element)) {
+      // @ts-ignore
+      effect(() => element.setAttribute('class', props.className))
+    }
   },
 }
 
