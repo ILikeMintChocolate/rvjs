@@ -113,3 +113,7 @@ export const isComponentFn = (value: unknown) => {
 export const isHTMLElement = (value: unknown): value is HTMLElement => {
   return value instanceof HTMLElement
 }
+
+export const isSVGElement = (value: unknown): value is SVGElement => {
+  return value instanceof SVGElement
+}
