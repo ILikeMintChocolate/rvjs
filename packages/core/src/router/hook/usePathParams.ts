@@ -1,5 +1,5 @@
 import { routerContext } from '@router/context/router.ts'
 
-export const useParams = () => {
+export const usePathParams = () => {
   return routerContext.get()
 }
