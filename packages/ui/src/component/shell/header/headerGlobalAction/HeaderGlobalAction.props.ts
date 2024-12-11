@@ -1,39 +1,20 @@
-import { Children, Prop, prop } from '@rvjs/core'
-import {
-  isAny,
-  isArray,
-  isBoolean,
-  isChildren,
-  isFunctionType,
-  isOptional,
-  isProp,
-  isString,
-} from '@rvjs/is'
+import { Component } from '@rvjs/core'
 import { EventHandlers } from '@type/event.ts'
 
 export interface HeaderGlobalActionProps {
-  children: Children
-  classes?: (Prop<string> | Prop<string[]>)[]
-  isActive?: Prop<boolean>
-  onClick?: EventHandlers['onClick']
-  tooltip?: Prop<string>
+  children: (Component | Node)[]
+  onClick: EventHandlers['onClick']
+  className?: string
+  isActive?: boolean
+  tooltip?: string
   tooltipAlignment?: 'start' | 'center' | 'end'
 }
 
-export const headerGlobalActionPropsType = {
-  children: isChildren,
-  classes: isOptional(isArray(isProp(isAny))),
-  isActive: isOptional(isProp(isBoolean)),
-  onClick: isOptional(isFunctionType),
-  tooltip: isOptional(isProp(isString)),
-  tooltipAlignment: isOptional(isString),
-}
-
 export const headerGlobalActionRenderProps = {
-  children: (p: Children) => p,
-  classes: (p: string[]) => p.map((cls) => prop(() => cls)),
-  isActive: (p: boolean) => prop(() => p),
-  onClick: (p: Function) => p,
-  tooltip: (p: string) => prop(() => p),
-  tooltipAlignment: (p: string) => p,
+  children: (p: HeaderGlobalActionProps['children']) => p,
+  className: (p: HeaderGlobalActionProps['className']) => p,
+  isActive: (p: HeaderGlobalActionProps['isActive']) => p,
+  onClick: (p: HeaderGlobalActionProps['onClick']) => p,
+  tooltip: (p: HeaderGlobalActionProps['tooltip']) => p,
+  tooltipAlignment: (p: HeaderGlobalActionProps['tooltipAlignment']) => p,
 }
