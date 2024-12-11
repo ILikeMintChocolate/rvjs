@@ -1,4 +1,3 @@
-import { BlockComponent } from '@block/component/block.ts'
 import { Component } from '@block/component/component.ts'
 import { ToggleComponent } from '@block/component/toggle.ts'
 import { Constructor, Empty } from '@block/util/mixin.ts'
@@ -50,18 +49,13 @@ export const ToggleRenderer = <TBase extends Constructor<Empty>>(
     }
 
     renderItem(children: (Component | Node)[]) {
-      const child = new BlockComponent(() => children, 'BLOCK_COMPONENT')
-      this.self.setParentChildRelation(child)
-      return child
+      return children
     }
 
     commitItem() {
-      const child = this.self.childComponents[0]
-      if (!child) {
-        return
-      }
-      child.renderTree(true)
-      child.commit()
+      this.self.isRendered = false
+      this.self.renderTree(false)
+      this.self.commit()
     }
 
     deleteItem() {
