@@ -36,7 +36,7 @@ export { template } from '@jsx/template.ts'
 export { use } from '@jsx/use.ts'
 
 export { Route } from '@router/component/route.ts'
-export { Router } from '@router/component/router.tsx'
+export { Router } from '@router/component/router.ts'
 export { useNavigate } from '@router/hook/useNavigate.ts'
 export { useOutlet } from '@router/hook/useOutlet.ts'
 export { usePathname } from '@router/hook/usePathname.ts'

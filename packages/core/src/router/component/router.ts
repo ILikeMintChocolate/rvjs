@@ -1,4 +1,5 @@
 import { Component } from '@block/component/component.ts'
+import { createComponent } from '@component/component.ts'
 import { Refresh } from '@component/refresh.ts'
 import { onDestroy } from '@hook/onDestroy.ts'
 import { onMount } from '@hook/onMount.ts'
@@ -11,7 +12,7 @@ import {
   createMatchedRoutes,
   createRouteMap,
   updateRoutes,
-} from '@router/util/route.tsx'
+} from '@router/util/route.ts'
 import { toArray } from '@util/data.ts'
 
 interface RouterProps {
@@ -53,8 +54,14 @@ export const Router = (props: RouterProps) => {
 
   useEffect(renderRoutes, [paths])
 
-  // @ts-ignore
-  return <Refresh by={rootOutlet()}>{rootOutlet()}</Refresh>
+  return createComponent(Refresh, {
+    get by() {
+      return rootOutlet()
+    },
+    get children() {
+      return rootOutlet()
+    },
+  })
 }
 
 export const useRouter = (): [GetState<string[]>, SetState<string[]>] => {

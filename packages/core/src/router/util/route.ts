@@ -1,4 +1,5 @@
 import { Component } from '@block/component/component.ts'
+import { createComponent } from '@component/component.ts'
 import { Refresh } from '@component/refresh.ts'
 import { SetState, useState } from '@hook/useState.ts'
 import { RawRoute } from '@router/component/route.ts'
@@ -171,8 +172,14 @@ export const updateRoutes = (
     route.element = route.getElement
     if (isComponent(route.element)) {
       const [outlet, setOutlet] = useState(childRoute?.element ?? null)
-      // @ts-ignore
-      route.element.outlet = <Refresh by={outlet()}>{outlet()}</Refresh>
+      route.element.outlet = createComponent(Refresh, {
+        get by() {
+          return outlet()
+        },
+        get children() {
+          return outlet()
+        },
+      })
       route.element.setOutlet = setOutlet
       if (route.type === 'DYNAMIC') {
         context.dynamicKeys[route.dynamicKey] = findDynamicPath(route.path)

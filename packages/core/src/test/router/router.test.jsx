@@ -1,6 +1,6 @@
 import { root } from '@component/root.ts'
 import { Route } from '@router/component/route.ts'
-import { Router } from '@router/component/router.tsx'
+import { Router } from '@router/component/router.ts'
 import {
   createComponents,
   findAllSpanTexts,
