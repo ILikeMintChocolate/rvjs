@@ -3,6 +3,7 @@ import { Refresh } from '@component/refresh.ts'
 import { onDestroy } from '@hook/onDestroy.ts'
 import { onMount } from '@hook/onMount.ts'
 import { useEffect } from '@hook/useEffect.ts'
+import { useGlobalState } from '@hook/useGlobalState.ts'
 import { GetState, SetState, useState } from '@hook/useState.ts'
 import { RawRoute } from '@router/component/route.ts'
 import {
@@ -50,7 +51,7 @@ export const Router = (props: RouterProps) => {
 }
 
 export const useRouter = (): [GetState<string[]>, SetState<string[]>] => {
-  const [paths, setPaths] = useState<string[]>([])
+  const [paths, setPaths] = useGlobalState<string[]>('RVJS_ROUTER_PATHS', [])
 
   const handleHashChange = () => {
     const hash = (window.location.hash || '#/').replace('#/', '/')
