@@ -1,14 +1,9 @@
-import { Children } from '@rvjs/core'
-import { isChildren } from '@rvjs/is'
+import { Component } from '@rvjs/core'
 
 export interface HeaderProps {
-  children?: Children
-}
-
-export const headerPropsType = {
-  children: isChildren,
+  children?: (Component | Node)[]
 }
 
 export const headerRenderProps = {
-  children: (p: Children) => p,
+  children: (p: HeaderProps['children']) => p,
 }
