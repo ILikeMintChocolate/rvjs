@@ -5,8 +5,8 @@ import {
   isBlockComponent,
   isForComponent,
   isHTMLElement,
-  isNode,
   isRefreshComponent,
+  isSvgElement,
   isSwitchComponent,
   isToggleComponent,
 } from '@type/guard.ts'
@@ -101,7 +101,7 @@ export const Renderer = <TBase extends Constructor<Empty>>(Base: TBase) => {
       this.self.getNodes().forEach((node) => {
         if (isHTMLElement(node)) {
           node.remove()
-        } else if (isNode(node)) {
+        } else if (isSvgElement(node)) {
           node.parentNode.removeChild(node)
         }
       })
