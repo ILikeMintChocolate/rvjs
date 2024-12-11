@@ -1,17 +1,11 @@
-import { Children, ElementType } from '@rvjs/core'
-import { isChildren, isOptional, isString } from '@rvjs/is'
+import { Component } from '@rvjs/core'
 
 export interface BodyProps {
-  as?: ElementType
-  children: Children
-}
-
-export const bodyPropsType = {
-  as: isOptional(isString),
-  children: isChildren,
+  as?: keyof HTMLElementTagNameMap
+  children: (Component | Node)[]
 }
 
 export const bodyRenderProps = {
-  as: (p: ElementType) => p,
-  children: (p: Children) => p,
+  as: (p: BodyProps['as']) => p,
+  children: (p: BodyProps['children']) => p,
 }
