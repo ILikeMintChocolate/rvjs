@@ -1,4 +1,4 @@
-export const useNavigate = (newPath: string) => {
+export const useNavigate = () => (newPath: string) => {
   if (newPath.startsWith('#')) {
     window.location.hash = newPath
   } else {
