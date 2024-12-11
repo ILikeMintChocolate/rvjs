@@ -10,3 +10,7 @@ export const isDefined = (value: unknown) => {
 export const isHTMLElement = (value: unknown): value is HTMLElement => {
   return value instanceof HTMLElement
 }
+
+export const isString = (value: unknown): value is string => {
+  return typeof value === 'string'
+}
