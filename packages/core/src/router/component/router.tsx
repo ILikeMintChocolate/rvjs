@@ -24,10 +24,14 @@ export interface RouteMap {
 
 export interface Route {
   path: string
+  rawPath: string
   type: 'STATIC' | 'DYNAMIC' | 'ANY'
   getElement: Component | Node
   element: Component | Node
   dynamicKey?: string
+  queries: {
+    [key: string]: string
+  }
   childRouteMap: RouteMap
 }
 
@@ -39,9 +43,12 @@ export const Router = (props: RouterProps) => {
 
   const renderRoutes = () => {
     const newMatchedRoutes = createMatchedRoutes(routeMap, paths())
-    const renderRouteContext = compareRoutes(matchedRoutes, newMatchedRoutes)
-    updateRoutes(renderRouteContext, setRootOutlet)
-    matchedRoutes = newMatchedRoutes
+    const { routeToRetain, routeToRender, routeToRemove } = compareRoutes(
+      matchedRoutes,
+      newMatchedRoutes,
+    )
+    updateRoutes({ routeToRetain, routeToRender, routeToRemove }, setRootOutlet)
+    matchedRoutes = [...routeToRetain, ...routeToRender]
   }
 
   useEffect(renderRoutes, [paths])

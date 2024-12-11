@@ -23,3 +23,24 @@ export const findDynamicKey = (path: string) => {
 export const findDynamicPath = (path: string) => {
   return path.replace('/', '')
 }
+
+export const findQuery = (path: string) => {
+  const queryStartIndex = path.indexOf('?')
+  if (queryStartIndex === -1) {
+    return {}
+  }
+  const queryString = path.substring(queryStartIndex + 1)
+  const queryEntries = queryString
+    .split('&')
+    .map((pair) => pair.split('='))
+    .filter(([key, value]) => key && value)
+  return Object.fromEntries(queryEntries)
+}
+
+export const findPath = (path: string) => {
+  const queryStartIndex = path.indexOf('?')
+  if (queryStartIndex === -1) {
+    return path
+  }
+  return path.substring(0, queryStartIndex)
+}
