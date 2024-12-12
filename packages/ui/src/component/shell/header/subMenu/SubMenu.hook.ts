@@ -1,35 +1,42 @@
 import {
   createContext,
+  defineProps,
   GetState,
   onDestroy,
   onMount,
   SetState,
-  useRef,
+  useElement,
   useState,
 } from '@rvjs/core'
 import { SubMenuProps } from '@shell/header/subMenu/SubMenu.props.ts'
 
-interface SubMenuContext {
+export const subMenuContext = createContext<{
   showItems: GetState<boolean>
   setShowItems: SetState<boolean>
+}>()
+
+export const useSubMenuProps = (props: SubMenuProps) => {
+  const newProps = defineProps(props, {
+    get ariaLabel() {
+      return props.ariaLabel ?? null
+    },
+    get tabIndex() {
+      return props.tabIndex ?? 0
+    },
+  })
+
+  return newProps
 }
 
-export const subMenuContext = createContext<SubMenuContext>()
-
-interface UseSubMenuProps {
-  onClick: SubMenuProps['onClick']
-  onBlur: SubMenuProps['onBlur']
-}
-
-const useSubMenu = (props: UseSubMenuProps) => {
+export const useSubMenuToggle = (props: SubMenuProps) => {
   const { onClick, onBlur } = props
   const [showItems, setShowItems] = useState(false)
-  const subMenuRef = useRef<HTMLDivElement>()
+  const subMenuElement = useElement<HTMLDivElement>()
   subMenuContext.setContext({ showItems, setShowItems })
 
   const handleClickOutside = (event: MouseEvent) => {
-    if (subMenuRef.current && event.target) {
-      if (!subMenuRef.current.contains(event.target as Node)) {
+    if (subMenuElement.current && event.target) {
+      if (!subMenuElement.current.contains(event.target as Node)) {
         setShowItems(false)
       }
     }
@@ -56,7 +63,5 @@ const useSubMenu = (props: UseSubMenuProps) => {
     document.removeEventListener('mousedown', handleClickOutside)
   })
 
-  return { showItems, subMenuRef, onClickHandler, onBlurHandler }
+  return { showItems, subMenuElement, onClickHandler, onBlurHandler }
 }
-
-export default useSubMenu

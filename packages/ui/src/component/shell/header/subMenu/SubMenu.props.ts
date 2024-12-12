@@ -1,41 +1,22 @@
-import { Children, prop, Prop, RefObject } from '@rvjs/core'
-import {
-  isChildren,
-  isFunction,
-  isNumber,
-  isObjectType,
-  isOptional,
-  isProp,
-  isString,
-} from '@rvjs/is'
+import { Component, ElementObject } from '@rvjs/core'
 import { EventHandlers } from '@type/event.ts'
 
 export interface SubMenuProps {
-  menuName: Prop<string>
-  children: Children
-  ariaLabel?: Prop<string>
-  focusRef?: RefObject<HTMLButtonElement>
+  menuName: string
+  children: (Component | Node)[]
+  ariaLabel?: string
+  focusElement?: ElementObject<HTMLButtonElement>
   onBlur?: EventHandlers['onBlur']
   onClick?: EventHandlers['onClick']
-  tabIndex?: Prop<number>
-}
-
-export const subMenuPropsType = {
-  menuName: isProp(isString),
-  children: isChildren,
-  ariaLabel: isOptional(isProp(isString)),
-  focusRef: isOptional(isObjectType),
-  onBlur: isOptional(isFunction),
-  onClick: isOptional(isFunction),
-  tabIndex: isOptional(isProp(isNumber)),
+  tabIndex?: number
 }
 
 export const subMenuRenderProps = {
-  menuName: (p: string) => prop(() => p),
-  children: (p: Children) => p,
-  ariaLabel: (p: string) => prop(() => p),
-  focusRef: (p: Object) => p,
-  onBlur: (p: Function) => p,
-  onClick: (p: Function) => p,
-  tabIndex: (p: number) => prop(() => p),
+  menuName: (p: SubMenuProps['menuName']) => p,
+  children: (p: SubMenuProps['children']) => p,
+  ariaLabel: (p: SubMenuProps['ariaLabel']) => p,
+  focusElement: (p: SubMenuProps['focusElement']) => p,
+  onBlur: (p: SubMenuProps['onBlur']) => p,
+  onClick: (p: SubMenuProps['onClick']) => p,
+  tabIndex: (p: SubMenuProps['tabIndex']) => p,
 }
