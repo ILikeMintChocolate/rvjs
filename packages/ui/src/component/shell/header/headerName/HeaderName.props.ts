@@ -1,20 +1,11 @@
-import { prop, Prop } from '@rvjs/core'
-import { isOptional, isProp, isString } from '@rvjs/is'
-
 export interface HeaderNameProps {
-  title: Prop<string>
-  href: Prop<string>
-  prefix?: Prop<string>
-}
-
-export const headerNamePropsType = {
-  title: isProp(isString),
-  href: isProp(isString),
-  prefix: isOptional(isProp(isString)),
+  title: string
+  href: string
+  prefix?: string
 }
 
 export const headerNameRenderProps = {
-  title: (p: string) => prop(() => p),
-  href: (p: string) => prop(() => p),
-  prefix: (p: string) => prop(() => p),
+  title: (p: HeaderNameProps['title']) => p,
+  href: (p: HeaderNameProps['href']) => p,
+  prefix: (p: HeaderNameProps['prefix']) => p,
 }
