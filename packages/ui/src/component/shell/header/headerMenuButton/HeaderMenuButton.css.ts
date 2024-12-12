@@ -28,5 +28,7 @@ export const headerMenuButton_button_style = style({
 })
 
 export const headerMenuButton_icon_style = style({
+  width: '1.25rem',
+  height: '1.25rem',
   fill: vars.color.iconPrimary,
 })

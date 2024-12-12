@@ -1,15 +1,4 @@
-import {
-  Child,
-  component,
-  createContext,
-  GetState,
-  SetState,
-  useState,
-} from '@rvjs/core'
-
-interface StartRvjsUIProps {
-  child: Child
-}
+import { createContext, GetState, SetState, useState } from '@rvjs/core'
 
 interface ThemeContext {
   showSideNav: GetState<boolean>
@@ -18,8 +7,7 @@ interface ThemeContext {
 
 export const rvjsUIThemeContext = createContext<ThemeContext>()
 
-const RvjsUIProvider = component<StartRvjsUIProps>((props) => {
-  const { child } = props
+const RvjsUIProvider = (props) => {
   const [showSideNav, setShowSideNav] = useState(false)
 
   rvjsUIThemeContext.setContext({
@@ -27,7 +15,7 @@ const RvjsUIProvider = component<StartRvjsUIProps>((props) => {
     setShowSideNav,
   })
 
-  return child
-})
+  return props.children
+}
 
 export default RvjsUIProvider
