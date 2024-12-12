@@ -3,6 +3,7 @@ import { style } from '@vanilla-extract/css'
 import { recipe } from '@vanilla-extract/recipes'
 
 export const headerMenuItem_li_style = style({
+  display: 'flex',
   width: '100%',
 })
 
