@@ -1,14 +1,9 @@
-import { Children } from '@rvjs/core'
-import { isChildren } from '@rvjs/is'
+import { Component } from '@rvjs/core'
 
 export interface SideNavItemsProps {
-  children: Children
-}
-
-export const sideNavItemsType = {
-  children: isChildren,
+  children: (Component | Node)[]
 }
 
 export const sideNavItemsProps = {
-  children: (p: Children) => p,
+  children: (p: SideNavItemsProps['children']) => p,
 }
