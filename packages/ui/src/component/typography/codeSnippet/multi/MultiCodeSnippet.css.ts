@@ -3,12 +3,15 @@ import { style } from '@vanilla-extract/css'
 import { recipe } from '@vanilla-extract/recipes'
 
 export const multiCodeSnippet_wrapper_style = style({
+  display: 'flex',
+  justifyContent: 'space-between',
   width: 'fit-content',
   maxWidth: '48rem',
   backgroundColor: vars.color.layer01,
 })
 
 export const multiCodeSnippet_codeWrapper_style = style({
+  display: 'flex',
   flex: 1,
   alignItems: 'center',
   height: 'fit-content',
@@ -23,6 +26,12 @@ export const multiCodeSnippet_codeWrapper_style = style({
   ':focus-visible': {
     outline: 'none',
   },
+})
+
+export const multiCodeSnippet_buttonWrapper_style = style({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'space-between',
 })
 
 export const multiCodeSnippet_pre_style = style({
@@ -44,4 +53,9 @@ export const multiCodeSnippet_showMoreIcon_recipe = recipe({
       },
     },
   },
+})
+
+export const multiCodeSnippet_copyIcon_style = style({
+  width: vars.spacing['05'],
+  height: vars.spacing['05'],
 })
