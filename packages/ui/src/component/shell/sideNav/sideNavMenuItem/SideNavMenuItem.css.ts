@@ -2,7 +2,8 @@ import vars from '@theme/variable/vars.css.ts'
 import { style } from '@vanilla-extract/css'
 import { recipe } from '@vanilla-extract/recipes'
 
-export const sideNavMenuItem_style = style({
+export const sideNavMenuItem_wrapper_style = style({
+  display: 'flex',
   position: 'relative',
   width: '100%',
 })
@@ -45,32 +46,14 @@ export const sideNavMenuItem_anchor_recipe = recipe({
   },
 })
 
-export const sideNavMenuItem_icon_recipe = recipe({
-  base: {
-    ':hover': {
-      color: `${vars.color.iconPrimary} !important`,
-    },
-  },
-  variants: {
-    isActive: {
-      true: {
-        fill: `${vars.color.iconPrimary} !important`,
-      },
-      false: {
-        fill: `${vars.color.iconSecondary} !important`,
-      },
-    },
-  },
-})
-
 export const sideNavMenuItem_text_recipe = recipe({
   base: {
     transition: `all ${vars.motion.productive}`,
     selectors: {
-      [`${sideNavMenuItem_style}:hover &`]: {
+      [`${sideNavMenuItem_wrapper_style}:hover &`]: {
         color: `${vars.color.textPrimary} !important`,
       },
-      [`${sideNavMenuItem_style}:active &`]: {
+      [`${sideNavMenuItem_wrapper_style}:active &`]: {
         color: `${vars.color.textPrimary} !important`,
       },
     },
