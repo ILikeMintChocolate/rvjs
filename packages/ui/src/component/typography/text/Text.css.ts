@@ -1,11 +1,10 @@
-import { Prop } from '@rvjs/core'
 import { ibmPlexSans, jetBrainsMono } from '@theme/font/fontFace.css.ts'
 import vars from '@theme/variable/vars.css.ts'
 import { recipe } from '@vanilla-extract/recipes'
 import { createSprinkles, defineProperties } from '@vanilla-extract/sprinkles'
 
 export interface TextStyleProps {
-  kind?: Prop<
+  kind?:
     | 'body-compact-01'
     | 'body-compact-02'
     | 'body-01'
@@ -27,8 +26,7 @@ export interface TextStyleProps {
     | 'heading-05'
     | 'heading-06'
     | 'heading-07'
-  >
-  color?: Prop<keyof typeof vars.color>
+  color?: keyof typeof vars.color
 }
 
 export const text_recipe = recipe({

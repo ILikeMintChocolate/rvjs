@@ -1,14 +1,9 @@
-import { Children } from '@rvjs/core'
-import { isChildren } from '@rvjs/is'
+import { Component } from '@rvjs/core'
 
 export interface HighlightProps {
-  children: Children
-}
-
-export const highlightPropsType = {
-  children: isChildren,
+  children: (Component | Node)[]
 }
 
 export const highlightRenderProps = {
-  children: (p: Children) => p,
+  children: (p: HighlightProps['children']) => p,
 }

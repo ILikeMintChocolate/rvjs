@@ -1,23 +1,13 @@
-import { prop, Prop } from '@rvjs/core'
-import { isBoolean, isNumber, isOptional, isProp, isString } from '@rvjs/is'
-
 export interface SideNavLinkProps {
-  text: Prop<string>
-  href: Prop<string>
-  isActive?: Prop<boolean>
-  tabIndex?: Prop<number>
-}
-
-export const sideNavLinkPropsType = {
-  text: isProp(isString),
-  href: isProp(isString),
-  isActive: isOptional(isProp(isBoolean)),
-  tabIndex: isOptional(isProp(isProp(isNumber))),
+  text: string
+  href: string
+  isActive?: boolean
+  tabIndex?: number
 }
 
 export const sideNavLinkRenderProps = {
-  href: (p: string) => prop(() => p),
-  text: (p: string) => prop(() => p),
-  isActive: (p: boolean) => prop(() => p),
-  tabIndex: (p: number) => prop(() => p),
+  href: (p: SideNavLinkProps['href']) => p,
+  text: (p: SideNavLinkProps['text']) => p,
+  isActive: (p: SideNavLinkProps['isActive']) => p,
+  tabIndex: (p: SideNavLinkProps['tabIndex']) => p,
 }

@@ -1,10 +1,9 @@
-import { Prop } from '@rvjs/core'
 import vars from '@theme/variable/vars.css.ts'
 import { keyframes, style } from '@vanilla-extract/css'
 import { recipe } from '@vanilla-extract/recipes'
 
 export interface SpinnerStyleProps {
-  size?: Prop<'sm' | 'md' | 'lg'>
+  size?: 'sm' | 'md' | 'lg'
 }
 
 export const spinner_wrapper_style = style({

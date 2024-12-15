@@ -1,26 +1,15 @@
 import { ButtonStyleProps } from '@form/button/Button.css.ts'
-import { ElementBlock, prop, Prop, svg } from '@rvjs/core'
-import {
-  isAny,
-  isArray,
-  isBoolean,
-  isChild,
-  isFunctionType,
-  isNumber,
-  isOptional,
-  isProp,
-  isString,
-} from '@rvjs/is'
+import { Component } from '@rvjs/core'
 import { EventHandlers } from '@type/event.ts'
 
 export interface ButtonProps extends ButtonStyleProps {
-  text?: Prop<string>
-  classes?: (Prop<string> | Prop<string[]>)[]
-  disabled?: Prop<boolean>
-  tabIndex?: Prop<number>
-  type?: Prop<'button' | 'reset' | 'submit'>
-  hasIconOnly?: Prop<boolean>
-  renderIcon?: ElementBlock
+  text?: string
+  className?: string
+  disabled?: boolean
+  tabIndex?: number
+  type?: 'button' | 'reset' | 'submit'
+  hasIconOnly?: boolean
+  renderIcon?: Component | Node
   onBlur?: EventHandlers['onBlur']
   onClick?: EventHandlers['onClick']
   onFocus?: EventHandlers['onFocus']
@@ -28,34 +17,17 @@ export interface ButtonProps extends ButtonStyleProps {
   onMouseLeave?: EventHandlers['onMouseLeave']
 }
 
-export const buttonPropsType = {
-  text: isOptional(isProp(isString)),
-  classes: isOptional(isArray(isProp(isAny))),
-  disabled: isOptional(isProp(isBoolean)),
-  tabIndex: isOptional(isProp(isNumber)),
-  type: isOptional(isProp(isString)),
-  hasIconOnly: isOptional(isProp(isBoolean)),
-  renderIcon: isOptional(isChild),
-  onBlur: isOptional(isFunctionType),
-  onClick: isOptional(isFunctionType),
-  onFocus: isOptional(isFunctionType),
-  onMouseEnter: isOptional(isFunctionType),
-  onMouseLeave: isOptional(isFunctionType),
-  size: isOptional(isProp(isString)),
-  kind: isOptional(isProp(isString)),
-}
-
 export const buttonRenderProps = {
-  text: (p: string) => prop(() => p),
-  classes: (p: string[]) => p.map((cls) => prop(() => cls)),
-  disabled: (p: boolean) => prop(() => p),
-  tabIndex: (p: number) => prop(() => p),
-  type: (p: string) => prop(() => p),
-  hasIconOnly: (p: boolean) => prop(() => p),
-  renderIcon: (p: SVGElement) => svg(p),
-  onBlur: (p: Function) => p,
-  onClick: (p: Function) => p,
-  onFocus: (p: Function) => p,
-  onMouseEnter: (p: Function) => p,
-  onMouseLeave: (p: Function) => p,
+  text: (p: ButtonProps['text']) => p,
+  className: (p: ButtonProps['className']) => p,
+  disabled: (p: ButtonProps['disabled']) => p,
+  tabIndex: (p: ButtonProps['tabIndex']) => p,
+  type: (p: ButtonProps['type']) => p,
+  hasIconOnly: (p: ButtonProps['hasIconOnly']) => p,
+  renderIcon: (p: ButtonProps['renderIcon']) => p,
+  onBlur: (p: ButtonProps['onBlur']) => p,
+  onClick: (p: ButtonProps['onClick']) => p,
+  onFocus: (p: ButtonProps['onFocus']) => p,
+  onMouseEnter: (p: ButtonProps['onMouseEnter']) => p,
+  onMouseLeave: (p: ButtonProps['onMouseLeave']) => p,
 }

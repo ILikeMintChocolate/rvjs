@@ -3,6 +3,7 @@ import { style } from '@vanilla-extract/css'
 import { recipe } from '@vanilla-extract/recipes'
 
 export const headerGlobalAction_li_style = style({
+  display: 'flex',
   height: vars.component.header.height,
   aspectRatio: '1/1',
 })

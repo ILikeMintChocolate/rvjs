@@ -3,6 +3,7 @@ import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 import importSvg from 'vite-plugin-import-svg'
+import rvjsPlugin from 'vite-plugin-rvjs'
 
 export default defineConfig({
   plugins: [
@@ -12,6 +13,7 @@ export default defineConfig({
       outDir: 'dist/type',
       exclude: ['src/main.ts', 'src/example'],
     }),
+    rvjsPlugin(),
   ],
   build: {
     lib: {

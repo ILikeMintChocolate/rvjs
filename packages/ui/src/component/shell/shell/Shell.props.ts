@@ -1,20 +1,13 @@
-import { Child } from '@rvjs/core'
-import { isChild, isOptional } from '@rvjs/is'
+import { Component } from '@rvjs/core'
 
 export interface ShellProps {
-  header: Child
-  body: Child
-  panel?: Child
-}
-
-export const shellPropsType = {
-  header: isChild,
-  body: isChild,
-  panel: isOptional(isChild),
+  header: Component | Node
+  body: Component | Node
+  panel?: Component | Node
 }
 
 export const shellRenderProps = {
-  header: (p: Child) => p,
-  body: (p: Child) => p,
-  panel: (p: Child) => p,
+  header: (p: ShellProps['header']) => p,
+  body: (p: ShellProps['body']) => p,
+  panel: (p: ShellProps['panel']) => p,
 }

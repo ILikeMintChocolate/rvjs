@@ -1,14 +1,9 @@
-import { Children } from '@rvjs/core'
-import { isChildren } from '@rvjs/is'
+import { Component } from '@rvjs/core'
 
 export interface SectionProps {
-  children: Children
-}
-
-export const sectionPropsType = {
-  children: isChildren,
+  children: (Component | Node)[]
 }
 
 export const sectionRenderProps = {
-  children: (p: Children) => p,
+  children: (p: SectionProps['children']) => p,
 }

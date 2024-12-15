@@ -8,7 +8,9 @@ export const subMenuItem_li_style = style({
 
 export const subMenuItem_anchor_recipe = recipe({
   base: {
+    display: 'flex',
     width: '100%',
+    boxSizing: 'border-box',
     textDecoration: 'none',
     paddingLeft: vars.spacing['05'],
     paddingRight: vars.spacing['05'],

@@ -1,10 +1,9 @@
-import { Prop } from '@rvjs/core'
 import vars from '@theme/variable/vars.css.ts'
 import { recipe } from '@vanilla-extract/recipes'
 
 export interface ButtonStyleProps {
-  size?: Prop<'sm' | 'md' | 'lg' | 'xl' | '2xl'>
-  kind?: Prop<
+  size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl'
+  kind?:
     | 'primary'
     | 'secondary'
     | 'tertiary'
@@ -12,7 +11,6 @@ export interface ButtonStyleProps {
     | 'dangerPrimary'
     | 'dangerGhost'
     | 'dangerTertiary'
-  >
 }
 
 export const button_kind_recipe = recipe({

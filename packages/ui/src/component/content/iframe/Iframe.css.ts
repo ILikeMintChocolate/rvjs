@@ -16,6 +16,6 @@ export const iframe_wrapper_style = style({
 export const iframe_style = style({
   width: '100%',
   height: '100%',
-  border: 'none',
+  // border: 'none',
   backgroundColor: vars.color.background,
 })

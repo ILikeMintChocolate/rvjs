@@ -1,5 +1,5 @@
-import { ElementProps } from '@rvjs/core'
-
 export type HTMLDivType = Partial<
-  Omit<ElementProps<'div'>, 'align' | 'classes' | 'children' | 'style' | 'ref'>
+  Omit<HTMLDivElement, 'align' | 'classes' | 'children' | 'style' | 'ref'>
 >
+
+export type HTMLElementProperties<T> = Partial<T>

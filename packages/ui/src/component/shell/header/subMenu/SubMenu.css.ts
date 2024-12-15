@@ -2,7 +2,11 @@ import vars from '@theme/variable/vars.css.ts'
 import { style } from '@vanilla-extract/css'
 import { recipe } from '@vanilla-extract/recipes'
 
-export const subMenu_recipe = recipe({
+export const subMenu_wrapper_style = style({
+  display: 'flex',
+})
+
+export const subMenu_button_recipe = recipe({
   base: {
     display: 'flex',
     flexDirection: 'row',
@@ -42,43 +46,70 @@ export const subMenu_recipe = recipe({
 export const subMenu_text_style = style({
   transition: `all ${vars.motion.productive}`,
   selectors: {
-    [`${subMenu_recipe.classNames.base}:hover &`]: {
+    [`${subMenu_button_recipe.classNames.base}:hover &`]: {
       color: `${vars.color.textPrimary} !important`,
     },
-    [`${subMenu_recipe.classNames.base}:active &`]: {
+    [`${subMenu_button_recipe.classNames.base}:active &`]: {
       color: `${vars.color.textPrimary} !important`,
     },
   },
 })
 
 export const subMenu_iconWrapper_style = style({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
   position: 'relative',
   top: '50%',
   height: '100%',
   transform: 'translateY(-50%)',
 })
 
-export const subMenu_icon_style = style({
-  width: vars.spacing['05'],
-  height: vars.spacing['05'],
-  fill: vars.color.iconSecondary,
-
-  selectors: {
-    [`${subMenu_recipe.classNames.base}:hover &`]: {
-      fill: vars.color.iconPrimary,
+export const subMenu_icon_recipe = recipe({
+  base: {
+    width: vars.spacing['05'],
+    height: vars.spacing['05'],
+    fill: vars.color.iconSecondary,
+    transition: `transform ${vars.motion.productive}`,
+    selectors: {
+      [`${subMenu_button_recipe.classNames.base}:hover &`]: {
+        fill: vars.color.iconPrimary,
+      },
+      [`${subMenu_button_recipe.classNames.base}:active &`]: {
+        fill: vars.color.iconPrimary,
+      },
     },
-    [`${subMenu_recipe.classNames.base}:active &`]: {
-      fill: vars.color.iconPrimary,
+  },
+  variants: {
+    isSelected: {
+      true: {
+        transform: 'rotate(180deg)',
+      },
     },
   },
 })
 
-export const subMenu_dropDown_style = style({
-  position: 'absolute',
-  top: vars.spacing['09'],
-  padding: 0,
-  margin: 0,
-  inlineSize: '12.5rem',
-  zIndex: 250,
-  boxShadow: `0 0.25rem 0.5rem 0 rgba(0, 0, 0, 0.5)`,
+export const subMenu_dropDown_recipe = recipe({
+  base: {
+    position: 'absolute',
+    display: 'flex',
+    flexDirection: 'column',
+    top: vars.spacing['09'],
+    padding: 0,
+    margin: 0,
+    inlineSize: '12.5rem',
+    zIndex: 250,
+    boxShadow: `0 0.25rem 0.5rem 0 rgba(0, 0, 0, 0.5)`,
+    listStyleType: 'none',
+  },
+  variants: {
+    isSelected: {
+      true: {
+        display: 'flex',
+      },
+      false: {
+        display: 'none',
+      },
+    },
+  },
 })

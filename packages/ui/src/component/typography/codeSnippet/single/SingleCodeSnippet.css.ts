@@ -2,12 +2,15 @@ import vars from '@theme/variable/vars.css.ts'
 import { style } from '@vanilla-extract/css'
 
 export const singleCodeSnippet_wrapper_style = style({
+  display: 'flex',
+  justifyContent: 'space-between',
   maxWidth: '48rem',
   height: vars.spacing['08'],
   backgroundColor: vars.color.layer01,
 })
 
 export const singleCodeSnippet_codeWrapper_style = style({
+  display: 'flex',
   flex: 1,
   alignItems: 'center',
   paddingLeft: vars.spacing['05'],
@@ -19,4 +22,9 @@ export const singleCodeSnippet_codeWrapper_style = style({
   ':focus-visible': {
     outline: 'none',
   },
+})
+
+export const singleCodeSnippet_copyIcon_style = style({
+  width: vars.spacing['05'],
+  height: vars.spacing['05'],
 })

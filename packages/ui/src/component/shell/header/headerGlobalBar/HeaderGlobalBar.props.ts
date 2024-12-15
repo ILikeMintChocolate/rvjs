@@ -1,14 +1,9 @@
-import { Children } from '@rvjs/core'
-import { isChildren } from '@rvjs/is'
+import { Component } from '@rvjs/core'
 
 export interface HeaderGlobalBarProps {
-  children: Children
-}
-
-export const headerGlobalPropsType = {
-  children: isChildren,
+  children: (Component | Node)[]
 }
 
 export const headerGlobalRenderProps = {
-  children: (p: Children) => p,
+  children: (p: HeaderGlobalBarProps['children']) => p,
 }

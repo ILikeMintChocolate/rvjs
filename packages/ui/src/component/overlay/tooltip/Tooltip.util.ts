@@ -2,48 +2,140 @@ export const getZoomLevel = () => {
   return Math.floor(((window.outerWidth - 10) / window.innerWidth) * 100)
 }
 
-export const calcTooltipPosition = (
+export const repositionElement = (
+  element: HTMLElement | SVGElement,
+  position: { left?: string; right?: string; top?: string; bottom?: string },
+) => {
+  const { left, right, top, bottom } = position
+  if (left) {
+    element.style.left = left
+  }
+  if (right) {
+    element.style.right = right
+  }
+  if (top) {
+    element.style.top = top
+  }
+  if (bottom) {
+    element.style.bottom = bottom
+  }
+}
+
+export const setTooltipAlignCenter = (
   trigger: HTMLElement,
   tooltip: HTMLElement,
+  arrow: SVGElement,
+) => {
+  const { left: tooltipLeft } = calcElementAlignCenterPosition(
+    trigger,
+    tooltip,
+    'absolute',
+  )
+  repositionElement(tooltip, { left: `${tooltipLeft}px` })
+  const { left: arrowLeft } = calcElementAlignCenterPosition(
+    tooltip,
+    arrow,
+    'relative',
+  )
+  repositionElement(arrow, { left: `${arrowLeft}px` })
+}
+
+export const setTooltipAlignRight = (
+  trigger: HTMLElement,
+  tooltip: HTMLElement,
+  arrow: SVGElement,
+) => {
+  const { left: tooltipLeft } = calcElementAlignRightPosition(
+    trigger,
+    tooltip,
+    'absolute',
+  )
+  repositionElement(tooltip, { left: `${tooltipLeft}px` })
+  const { left: arrowLeft } = calcArrowAlignRightPosition(
+    trigger,
+    tooltip,
+    arrow,
+  )
+  repositionElement(arrow, { left: `${arrowLeft}px` })
+}
+
+export const setTooltipAlignLeft = (
+  trigger: HTMLElement,
+  tooltip: HTMLElement,
+  arrow: SVGElement,
+) => {
+  repositionElement(tooltip, { left: '0px' })
+  const { left: arrowLeft } = calcArrowAlignRightPosition(
+    trigger,
+    tooltip,
+    arrow,
+  )
+  repositionElement(arrow, { left: `${arrowLeft}px` })
+}
+
+export const isTooltipOverflowRight = (tooltip: HTMLElement) => {
+  const { right } = tooltip.getBoundingClientRect()
+  return window.innerWidth < right
+}
+
+export const isTooltipOverflowLeft = (tooltip: HTMLElement) => {
+  const { left } = tooltip.getBoundingClientRect()
+  return left < 0
+}
+
+export const calcElementAlignCenterPosition = (
+  anchor: HTMLElement,
+  target: HTMLElement | SVGElement,
+  position: 'absolute' | 'relative',
 ) => {
   const {
-    left: trLeft,
-    top: trTop,
-    width: trWidth,
-    height: trHeight,
-  } = trigger.getBoundingClientRect()
-  const { width: tlWidth } = tooltip.getBoundingClientRect()
-
-  const left = Math.floor(trLeft + trWidth / 2 - tlWidth / 2)
-  const top = Math.floor(trTop + trHeight)
-
-  return { left, top }
+    left: anchorLeft,
+    width: anchorWidth,
+    top: anchorTop,
+    height: anchorHeight,
+  } = anchor.getBoundingClientRect()
+  const { width: targetWidth } = target.getBoundingClientRect()
+  if (position === 'absolute') {
+    const newLeft = Math.floor(anchorLeft + anchorWidth / 2 - targetWidth / 2)
+    const newTop = Math.floor(anchorTop + anchorHeight)
+    return { left: newLeft, top: newTop }
+  } else if (position === 'relative') {
+    const newLeft = Math.floor(anchorWidth / 2 - targetWidth / 2)
+    const newTop = Math.floor(anchorTop + anchorHeight)
+    return { left: newLeft, top: newTop }
+  }
 }
 
-export const calcArrowPosition = (tooltip: HTMLElement, arrow: SVGElement) => {
-  const { width: tlWidth } = tooltip.getBoundingClientRect()
-  const { width: aWidth } = arrow.getBoundingClientRect()
-
-  const left = Math.floor(tlWidth / 2) - Math.floor(aWidth / 2)
-
-  return { left }
+export const calcElementAlignRightPosition = (
+  anchor: HTMLElement,
+  target: HTMLElement | SVGElement,
+  position: 'absolute',
+) => {
+  const {
+    right: anchorRight,
+    top: anchorTop,
+    height: anchorHeight,
+  } = anchor.getBoundingClientRect()
+  const { width: targetWidth } = target.getBoundingClientRect()
+  if (position === 'absolute') {
+    const newLeft = Math.floor(anchorRight - targetWidth)
+    const newTop = Math.floor(anchorTop + anchorHeight)
+    return { left: newLeft, top: newTop }
+  }
 }
 
-export const repositionTooltip = (
+export const calcArrowAlignRightPosition = (
+  trigger: HTMLElement,
   tooltip: HTMLElement,
-  position: { left: number; top: number },
-) => {
-  const { left, top } = position
-
-  tooltip.style.left = `${left}px`
-  tooltip.style.top = `${top}px`
-}
-
-export const repositionArrow = (
   arrow: SVGElement,
-  position: { left: number },
 ) => {
-  const { left } = position
-
-  arrow.style.left = `${left}px`
+  const { left: triggerLeft } = trigger.getBoundingClientRect()
+  const { left: tooltipLeft } = tooltip.getBoundingClientRect()
+  const { left: arrowLeft } = calcElementAlignCenterPosition(
+    trigger,
+    arrow,
+    'relative',
+  )
+  const newLeft = Math.floor(arrowLeft + (triggerLeft - tooltipLeft))
+  return { left: newLeft }
 }

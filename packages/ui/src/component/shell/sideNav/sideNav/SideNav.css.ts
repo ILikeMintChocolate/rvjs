@@ -4,6 +4,7 @@ import { recipe } from '@vanilla-extract/recipes'
 
 export const sideNav_wrapper_recipe = recipe({
   base: {
+    display: 'flex',
     width: vars.component.sideNav.width,
     backgroundColor: vars.color.background,
     overflowY: 'scroll',
@@ -38,6 +39,8 @@ export const sideNav_wrapper_recipe = recipe({
 
 export const sideNav_nav_recipe = recipe({
   base: {
+    display: 'flex',
+    flexDirection: 'column',
     width: '100%',
   },
   variants: {
