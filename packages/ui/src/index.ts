@@ -8,6 +8,8 @@ export { default as ListItem } from '@content/list/listItem/ListItem.tsx'
 export { default as Button } from '@form/button/Button.tsx'
 export { default as TextInput } from '@form/textInput/TextInput.tsx'
 
+export { default as Section } from '@layout/section/Section.tsx'
+
 export { default as Spinner } from '@overlay/spinner/Spinner.tsx'
 export { default as Tooltip } from '@overlay/tooltip/Tooltip.tsx'
 
@@ -34,9 +36,4 @@ export { default as Highlight } from '@typography/highlight/Highlight.tsx'
 export { default as CodeSnippet } from '@typography/codeSnippet/CodeSnippet.tsx'
 export { default as Link } from '@typography/link/Link.tsx'
 
-// export { startRvjsUI } from '@system/launch.ts'
 export { default as RvjsUIProvider } from '@system/provider.tsx'
-
-// export { renderComponentFromJSON } from '@util/render.ts'
-// export { ifIs } from '@util/array.ts'
-// export type { RenderJSON } from '@util/render.ts'
