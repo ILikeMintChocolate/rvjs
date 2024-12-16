@@ -19,7 +19,8 @@ import Text from '@typography/text/Text.tsx'
 
 const SideNavMenu = (_props: SideNavMenuProps) => {
   const props = useSideNavMenuProps(_props)
-  const { onClickHandler, onBlurHandler } = useSideNavMenuToggle(props)
+  const { showItems, onClickHandler, onBlurHandler } =
+    useSideNavMenuToggle(props)
 
   return (
     <div className={sideNavMenu_wrapper_style} aria-label={props.ariaLabel}>
