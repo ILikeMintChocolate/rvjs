@@ -6,9 +6,12 @@ export const usePathname = () => {
   const [paths] = useGlobalState<string[]>('RVJS_ROUTER_PATHS')
   const [path, setPath] = useState<string>(null)
 
-  useEffect(() => {
+  const setPathEffect = () => {
     setPath((window.location.hash || '#/').replace('#/', '/'))
-  }, [paths])
+  }
+
+  useEffect(setPathEffect, [paths])
+  setPathEffect()
 
   return path
 }
