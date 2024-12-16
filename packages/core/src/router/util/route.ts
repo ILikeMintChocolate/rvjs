@@ -48,6 +48,19 @@ export const createMatchedRoutes = (routeMap: RouteMap, paths: string[]) => {
   for (let i = 0; i < paths.length; i++) {
     const path = paths[i]
     const matchedRoute = (() => {
+      if (currentRouteMap[path] || currentRouteMap[findPath(path)]) {
+        const staticRoute = currentRouteMap[findPath(path)]
+        const route = {
+          path: findPath(path),
+          rawPath: path,
+          queries: findQuery(path),
+          dynamicKey: {},
+          type: 'STATIC',
+          ...staticRoute,
+        }
+        copyGetter(staticRoute, 'getElement', route, 'getElement')
+        return route
+      }
       const dynamicRoute = findDynamicRoute(currentRouteMap)
       if (dynamicRoute) {
         const route = {
@@ -70,19 +83,6 @@ export const createMatchedRoutes = (routeMap: RouteMap, paths: string[]) => {
           childRouteMap: anyRoute.childRouteMap,
         }
         copyGetter(anyRoute, 'getElement', route, 'getElement')
-        return route
-      }
-      if (currentRouteMap[path] || findPath(path)) {
-        const staticRoute = currentRouteMap[findPath(path)]
-        const route = {
-          path: findPath(path),
-          rawPath: path,
-          queries: findQuery(path),
-          dynamicKey: {},
-          type: 'STATIC',
-          ...staticRoute,
-        }
-        copyGetter(staticRoute, 'getElement', route, 'getElement')
         return route
       }
     })()
@@ -167,6 +167,12 @@ export const updateRoutes = (
     dynamicKeys: {} as Record<string, string>,
     queries: {} as Record<string, string>,
   }
+  routeToRetain.forEach((route) => {
+    if (route.type === 'DYNAMIC') {
+      context.dynamicKeys[route.dynamicKey] = findDynamicPath(route.path)
+    }
+    Object.assign(context.queries, route.queries)
+  })
   ;[...routeToRender].reverse().forEach((route) => {
     // @ts-ignore
     route.element = route.getElement
