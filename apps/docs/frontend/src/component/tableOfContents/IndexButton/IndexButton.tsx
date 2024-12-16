@@ -1,0 +1,36 @@
+import {
+  indexButton_button_style,
+  indexButton_text_style,
+} from '@component/tableOfContents/IndexButton/IndexButton.css.ts'
+import { useIndexButtonScrollTo } from '@component/tableOfContents/IndexButton/IndexButton.hook.ts'
+import { SetState } from '@rvjs/core'
+import { Text } from '@rvjs/ui'
+
+export interface IndexButtonProps {
+  heading: HTMLHeadingElement
+  currentIndex: number
+  activeIndex: number
+  setActiveIndex: SetState<number>
+}
+
+const IndexButton = (props: IndexButtonProps) => {
+  const onClickHandler = useIndexButtonScrollTo(props)
+
+  return (
+    <button className={indexButton_button_style} onClick={onClickHandler}>
+      <Text
+        as="span"
+        kind={
+          props.activeIndex === props.currentIndex
+            ? 'heading-compact-01'
+            : 'body-01'
+        }
+        className={indexButton_text_style}
+      >
+        {props.heading.textContent}
+      </Text>
+    </button>
+  )
+}
+
+export default IndexButton

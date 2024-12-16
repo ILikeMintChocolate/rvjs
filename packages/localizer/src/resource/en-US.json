@@ -1,0 +1,16 @@
+{
+  "common": {
+    "greeting": "Hello US",
+    "farewell": "Goodbye"
+  },
+  "page": {
+    "home": {
+      "title": "Welcome to Home US",
+      "description": "This is the homepage"
+    },
+    "about": {
+      "title": "About Us",
+      "description": "Learn more about us"
+    }
+  }
+}
