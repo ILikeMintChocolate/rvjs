@@ -1,3 +1,4 @@
+import { BlockComponent } from '@block/component/block.ts'
 import { Component } from '@block/component/component.ts'
 import { ToggleComponent } from '@block/component/toggle.ts'
 import { Constructor, Empty } from '@block/util/mixin.ts'
@@ -35,12 +36,12 @@ export const ToggleRenderer = <TBase extends Constructor<Empty>>(
         this.self.clearDom(this.self.startNode, this.self.endNode)
         return
       }
-      const child = (this.self.renderFn() as Component[])[0]
+      const children = this.self.renderFn() as Component[]
       this.self.updateDom(
         this.self.parentNode ?? this.self.startNode.parentNode,
         this.self.startNode,
         this.self.endNode,
-        convertToNodes([child]),
+        convertToNodes(children),
         this.self.startNode.nextSibling === this.self.endNode,
       )
       if (!isInitial) {
@@ -49,7 +50,12 @@ export const ToggleRenderer = <TBase extends Constructor<Empty>>(
     }
 
     renderItem(children: (Component | Node)[]) {
-      return children
+      if (!children.filter(Boolean).length) {
+        return null
+      }
+      const child = new BlockComponent(() => children, 'BLOCK_COMPONENT')
+      this.self.setParentChildRelation(child)
+      return child
     }
 
     commitItem() {
