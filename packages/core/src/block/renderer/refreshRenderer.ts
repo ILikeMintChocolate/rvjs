@@ -55,12 +55,8 @@ export const RefreshRenderer = <TBase extends Constructor<Empty>>(
     }
 
     commitItem() {
-      const child = this.self.childComponents[0]
-      if (!child) {
-        return
-      }
-      child.renderTree(true)
-      child.commit()
+      this.self.renderTree(false)
+      this.self.commit()
     }
 
     deleteItem() {
