@@ -2,9 +2,10 @@ import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin'
 import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import importSvg from 'vite-plugin-import-svg'
+import vitePluginRvjs from 'vite-plugin-rvjs'
 
 export default defineConfig({
-  plugins: [importSvg(), vanillaExtractPlugin()],
+  plugins: [importSvg(), vanillaExtractPlugin(), vitePluginRvjs()],
   resolve: {
     alias: [
       {
