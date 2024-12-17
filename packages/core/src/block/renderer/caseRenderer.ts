@@ -5,6 +5,7 @@ import { SwitchComponent } from '@block/component/switch.ts'
 import { Constructor, Empty } from '@block/util/mixin.ts'
 import { componentContext } from '@context/component.ts'
 import { stateContext } from '@context/state.ts'
+import { Children } from '@type/jsx.ts'
 import { convertToNodes } from '@util/block.ts'
 
 export const CaseRenderer = <TBase extends Constructor<Empty>>(Base: TBase) => {
@@ -49,7 +50,7 @@ export const CaseRenderer = <TBase extends Constructor<Empty>>(Base: TBase) => {
       }
     }
 
-    renderItem(children: (Component | Node)[]) {
+    renderItem(children: Children) {
       const child = new BlockComponent(() => children, 'BLOCK_COMPONENT')
       this.self.setParentChildRelation(child)
       return child

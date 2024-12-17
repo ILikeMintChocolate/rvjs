@@ -10,6 +10,7 @@ import {
   isSwitchComponent,
   isToggleComponent,
 } from '@type/guard.ts'
+import { Children } from '@type/jsx.ts'
 import { convertToNodes } from '@util/block.ts'
 import { toArray } from '@util/data.ts'
 
@@ -19,9 +20,7 @@ export const Renderer = <TBase extends Constructor<Empty>>(Base: TBase) => {
     parentNode: Node
     isRendered: boolean
     isCommited: boolean
-    componentFn: (
-      props?: Record<string, any>,
-    ) => Node | Component | (Node | Component)[]
+    componentFn: (props?: Record<string, any>) => Children
 
     constructor(...args: any[]) {
       super(...args)

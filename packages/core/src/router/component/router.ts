@@ -1,4 +1,3 @@
-import { Component } from '@block/component/component.ts'
 import { createComponent } from '@component/component.ts'
 import { Refresh } from '@component/refresh.ts'
 import { onDestroy } from '@hook/onDestroy.ts'
@@ -6,17 +5,17 @@ import { onMount } from '@hook/onMount.ts'
 import { useEffect } from '@hook/useEffect.ts'
 import { useGlobalState } from '@hook/useGlobalState.ts'
 import { GetState, SetState, useState } from '@hook/useState.ts'
-import { RawRoute } from '@router/component/route.ts'
 import {
   compareRoutes,
   createMatchedRoutes,
   createRouteMap,
   updateRoutes,
 } from '@router/util/route.ts'
+import { Children } from '@type/jsx.ts'
 import { toArray } from '@util/data.ts'
 
 interface RouterProps {
-  children: RawRoute[]
+  children: Children
 }
 
 export interface RouteMap {
@@ -27,8 +26,8 @@ export interface Route {
   path: string
   rawPath: string
   type: 'STATIC' | 'DYNAMIC' | 'ANY'
-  getElement: Component | Node
-  element: Component | Node
+  getElement: Children
+  element: Children
   dynamicKey?: string
   queries: {
     [key: string]: string
@@ -39,7 +38,7 @@ export interface Route {
 export const Router = (props: RouterProps) => {
   const [paths] = useRouter()
   const [rootOutlet, setRootOutlet] = useState(null)
-  const routeMap = createRouteMap(toArray(props.children))
+  const routeMap = createRouteMap(toArray(props.children as []))
   let matchedRoutes = []
 
   const renderRoutes = () => {
@@ -54,6 +53,7 @@ export const Router = (props: RouterProps) => {
 
   useEffect(renderRoutes, [paths])
 
+  // @ts-ignore
   return createComponent(Refresh, {
     get by() {
       return rootOutlet()
