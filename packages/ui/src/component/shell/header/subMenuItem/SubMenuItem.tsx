@@ -15,7 +15,7 @@ const SubMenuItem = (_props: SubMenuItemProps) => {
   const onClickHandler = useSubMenuNavigation(props)
 
   return (
-    <li className={subMenuItem_li_style} tabIndex="-1">
+    <li className={subMenuItem_li_style} tabIndex={-1}>
       <a
         className={subMenuItem_anchor_recipe({ isActive: props.isActive })}
         href={props.href}

@@ -15,7 +15,7 @@ const SideNavMenuItem = (_props: SideNavMenuItemProps) => {
   const onClickHandler = useSideNavMenuItemNavigation(props)
 
   return (
-    <li className={sideNavMenuItem_wrapper_style} tabIndex="-1">
+    <li className={sideNavMenuItem_wrapper_style} tabIndex={-1}>
       <a
         href={props.href}
         className={sideNavMenuItem_anchor_recipe({ isActive: props.isActive })}
