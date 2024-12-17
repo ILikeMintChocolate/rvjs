@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import { TooltipArrowIcon } from '@content/icon/Icons.tsx'
 import {
   tooltip_arrow_style,

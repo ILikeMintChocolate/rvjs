@@ -1,7 +1,7 @@
-import { Component } from '@rvjs/core'
+import { Children } from '@rvjs/core'
 
 export interface OrderedListProps {
-  children: (Component | Node)[]
+  children: Children
   type?: '1' | 'a' | 'A' | 'i' | 'I'
 }
 

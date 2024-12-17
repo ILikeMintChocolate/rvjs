@@ -1,10 +1,10 @@
-import { Component } from '@rvjs/core'
+import { Children } from '@rvjs/core'
 import { TextStyleProps } from '@typography/text/Text.css.ts'
 
 export interface TextProps extends TextStyleProps {
   as?: keyof HTMLElementTagNameMap
   className?: string
-  children?: (Component | Node)[]
+  children?: Children
 }
 
 export const textRenderProps = {

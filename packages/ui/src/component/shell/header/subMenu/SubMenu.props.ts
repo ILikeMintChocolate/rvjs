@@ -1,9 +1,9 @@
-import { Component, ElementObject } from '@rvjs/core'
+import { Children, ElementObject } from '@rvjs/core'
 import { EventHandlers } from '@type/event.ts'
 
 export interface SubMenuProps {
   menuName: string
-  children: (Component | Node)[]
+  children: Children
   ariaLabel?: string
   focusElement?: ElementObject<HTMLButtonElement>
   onBlur?: EventHandlers['onBlur']

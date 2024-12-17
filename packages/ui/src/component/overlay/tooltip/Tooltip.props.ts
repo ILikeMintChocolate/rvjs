@@ -1,8 +1,8 @@
-import { Component } from '@rvjs/core'
+import { Children } from '@rvjs/core'
 
 export interface TooltipProps {
   description: string
-  children: (Component | Node)[]
+  children: Children
   kind?: 'standard' | 'iconButton' | 'definition'
   showOnHoverOrClick?: 'hover' | 'click'
 }

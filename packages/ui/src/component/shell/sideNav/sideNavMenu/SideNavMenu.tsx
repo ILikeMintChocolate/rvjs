@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import { ChevronDownIcon } from '@content/icon/Icons.tsx'
 import {
   sideNavMenu_button_style,

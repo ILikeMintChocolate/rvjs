@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import Tooltip from '@overlay/tooltip/Tooltip.tsx'
 import { Case, Switch } from '@rvjs/core'
 import {
