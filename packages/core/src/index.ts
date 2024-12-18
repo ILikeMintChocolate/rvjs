@@ -1,5 +1,3 @@
-export * from '@type/jsx.ts'
-
 export { BlockComponent } from '@block/component/block.ts'
 export { CaseComponent } from '@block/component/case.ts'
 export { Component } from '@block/component/component.ts'
