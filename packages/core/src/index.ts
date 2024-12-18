@@ -57,6 +57,8 @@ export {
   isRefreshComponent,
 } from '@type/guard.ts'
 
+export { defineProps } from '@util/props.ts'
+
 export type {
   ContextAccessors,
   GetContext,
