@@ -1,0 +1,392 @@
+{
+  "content": [
+    {
+      "type": "component",
+      "name": "Text",
+      "props": {
+        "as": "h1",
+        "text": "Suspense",
+        "kind": "heading-06"
+      }
+    },
+    {
+      "type": "component",
+      "name": "Section",
+      "props": {
+        "children": [
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "children": [
+                {
+                  "type": "text",
+                  "name": "text",
+                  "props": {
+                    "text": "비동기 데이터가 로드될 때까지 대기하며, 로딩 상태 또는 에러 상태를 처리하는 UI를 제공합니다."
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "component",
+      "name": "Section",
+      "props": {
+        "children": [
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "text": "예시",
+              "kind": "heading-03",
+              "as": "h4"
+            }
+          },
+          {
+            "type": "component",
+            "name": "Iframe",
+            "props": {
+              "src": "https://rvjs.xyz/example/core-js/dom/suspense/ex1/"
+            }
+          },
+          {
+            "type": "component",
+            "name": "CodeSnippet",
+            "props": {
+              "codeText": "import { div, h4, Suspense } from '@rvjs/core'\n\nconst SuspenseExample = () => {\n  return div({\n    children: [\n      Suspense({\n        content: () => Content(),\n        loading: h4({ textContent: 'Loading' }),\n        error: h4({ textContent: 'Error' }),\n      }),\n    ],\n  })\n}\n\nconst Content = async () => {\n  const delay = (ms: number) => {\n    return new Promise((resolve) => setTimeout(resolve, ms))\n  }\n  await delay(3000)\n\n  return h4({\n    textContent: 'Loaded',\n  })\n}\n\nexport default SuspenseExample",
+              "language": "javascript",
+              "type": "multi",
+              "width": "100%",
+              "defaultShow": true
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "component",
+      "name": "Section",
+      "props": {
+        "children": [
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "text": "레퍼런스",
+              "kind": "heading-03",
+              "as": "h4"
+            }
+          },
+          {
+            "type": "component",
+            "name": "CodeSnippet",
+            "props": {
+              "codeText": "function Suspense (\n  content: () => Promise<Child>,\n  loading?: Child,\n  error?: Child,\n): Child",
+              "language": "typescript",
+              "type": "multi",
+              "width": "100%",
+              "defaultShow": true
+            }
+          },
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "text": "매개변수",
+              "kind": "heading-compact-01"
+            }
+          },
+          {
+            "type": "component",
+            "name": "UnorderedList",
+            "props": {
+              "children": [
+                {
+                  "type": "component",
+                  "name": "ListItem",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "element",
+                        "name": "div",
+                        "props": {
+                          "style": {
+                            "display": "grid",
+                            "gridTemplateColumns": "20% 80%"
+                          },
+                          "children": [
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "children": [
+                                  {
+                                    "type": "component",
+                                    "name": "CodeSnippet",
+                                    "props": {
+                                      "codeText": "content",
+                                      "language": "javascript",
+                                      "type": "inline"
+                                    }
+                                  }
+                                ],
+                                "as": "span"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "children": [
+                                  {
+                                    "type": "component",
+                                    "name": "CodeSnippet",
+                                    "props": {
+                                      "codeText": "Child",
+                                      "language": "javascript",
+                                      "type": "inline"
+                                    }
+                                  },
+                                  {
+                                    "type": "text",
+                                    "name": "text",
+                                    "props": {
+                                      "text": "를 반환하는 비동기 함수를 전달합니다."
+                                    }
+                                  }
+                                ],
+                                "as": "span"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "ListItem",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "element",
+                        "name": "div",
+                        "props": {
+                          "style": {
+                            "display": "grid",
+                            "gridTemplateColumns": "20% 80%"
+                          },
+                          "children": [
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "children": [
+                                  {
+                                    "type": "component",
+                                    "name": "CodeSnippet",
+                                    "props": {
+                                      "codeText": "loading?",
+                                      "language": "javascript",
+                                      "type": "inline"
+                                    }
+                                  }
+                                ],
+                                "as": "span"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "name": "text",
+                                    "props": {
+                                      "text": "비동기 작업이 진행 중일 때 표시될 UI를 정의합니다."
+                                    }
+                                  }
+                                ],
+                                "as": "span"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "ListItem",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "element",
+                        "name": "div",
+                        "props": {
+                          "style": {
+                            "display": "grid",
+                            "gridTemplateColumns": "20% 80%"
+                          },
+                          "children": [
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "children": [
+                                  {
+                                    "type": "component",
+                                    "name": "CodeSnippet",
+                                    "props": {
+                                      "codeText": "error?",
+                                      "language": "javascript",
+                                      "type": "inline"
+                                    }
+                                  }
+                                ],
+                                "as": "span"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "name": "text",
+                                    "props": {
+                                      "text": "비동기 작업이 실패할 때 표시될 UI를 정의합니다."
+                                    }
+                                  }
+                                ],
+                                "as": "span"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "text": "반환 값",
+              "kind": "heading-compact-01"
+            }
+          },
+          {
+            "type": "component",
+            "name": "UnorderedList",
+            "props": {
+              "children": [
+                {
+                  "type": "component",
+                  "name": "ListItem",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "element",
+                        "name": "div",
+                        "props": {
+                          "style": {
+                            "display": "grid",
+                            "gridTemplateColumns": "20% 80%"
+                          },
+                          "children": [
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "children": [
+                                  {
+                                    "type": "component",
+                                    "name": "CodeSnippet",
+                                    "props": {
+                                      "codeText": "Child",
+                                      "language": "javascript",
+                                      "type": "inline"
+                                    }
+                                  }
+                                ],
+                                "as": "span"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "name": "text",
+                                    "props": {
+                                      "text": "로딩, 성공, 또는 실패 상태에 따라 각각의 UI를 반환합니다."
+                                    }
+                                  }
+                                ],
+                                "as": "span"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "element",
+      "name": "div",
+      "props": {
+        "style": {
+          "height": "60vh"
+        }
+      }
+    },
+    {
+      "type": "component",
+      "name": "Link",
+      "props": {
+        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/core-js/dom/suspense.json",
+        "children": [
+          {
+            "type": "component",
+            "name": "DocumentIcon",
+            "props": {
+              "style": {
+                "width": "1rem",
+                "filter": "brightness(0) saturate(100%) invert(25%) sepia(69%) saturate(3617%) hue-rotate(218deg) brightness(100%) contrast(104%)"
+              }
+            }
+          },
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "text": "Raw Data From Github",
+              "color": "linkPrimary"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

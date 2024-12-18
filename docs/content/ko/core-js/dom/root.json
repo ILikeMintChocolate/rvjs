@@ -1,0 +1,328 @@
+{
+  "content": [
+    {
+      "type": "component",
+      "name": "Text",
+      "props": {
+        "as": "h1",
+        "text": "root",
+        "kind": "heading-06"
+      }
+    },
+    {
+      "type": "component",
+      "name": "Section",
+      "props": {
+        "children": [
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "children": [
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "@rvjs/core",
+                    "language": "javascript",
+                    "type": "link",
+                    "href": "/core-js/overview/gettingStarted"
+                  }
+                },
+                {
+                  "type": "text",
+                  "name": "text",
+                  "props": {
+                    "text": "를 사용하기 위해 최상단에 호출하는 함수입니다."
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "component",
+      "name": "Section",
+      "props": {
+        "children": [
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "text": "예시",
+              "kind": "heading-03",
+              "as": "h4"
+            }
+          },
+          {
+            "type": "component",
+            "name": "Iframe",
+            "props": {
+              "src": "https://rvjs.xyz/example/core-js/dom/root/ex1/"
+            }
+          },
+          {
+            "type": "component",
+            "name": "CodeSnippet",
+            "props": {
+              "codeText": "import { div, root } from '@rvjs/core'\n\nconst App = () => {\n  return div({\n    textContent: 'Hello World',\n  })\n}\n\nroot(document.getElementById('app'), App())",
+              "language": "javascript",
+              "type": "multi",
+              "width": "100%",
+              "defaultShow": true
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "component",
+      "name": "Section",
+      "props": {
+        "children": [
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "text": "레퍼런스",
+              "kind": "heading-03",
+              "as": "h4"
+            }
+          },
+          {
+            "type": "component",
+            "name": "CodeSnippet",
+            "props": {
+              "codeText": "function root(\n  domNode: HTMLElement, \n  block: Element | Component\n): void",
+              "language": "typescript",
+              "type": "multi",
+              "width": "100%",
+              "defaultShow": true
+            }
+          },
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "text": "매개변수",
+              "kind": "heading-compact-01"
+            }
+          },
+          {
+            "type": "component",
+            "name": "UnorderedList",
+            "props": {
+              "children": [
+                {
+                  "type": "component",
+                  "name": "ListItem",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "element",
+                        "name": "div",
+                        "props": {
+                          "style": {
+                            "display": "grid",
+                            "gridTemplateColumns": "20% 80%"
+                          },
+                          "children": [
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "children": [
+                                  {
+                                    "type": "component",
+                                    "name": "CodeSnippet",
+                                    "props": {
+                                      "codeText": "domNode",
+                                      "language": "javascript",
+                                      "type": "inline"
+                                    }
+                                  }
+                                ],
+                                "as": "span"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "name": "text",
+                                    "props": {
+                                      "text": "실제 DOM에 있는 요소를 전달합니다."
+                                    }
+                                  }
+                                ],
+                                "as": "span"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "ListItem",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "element",
+                        "name": "div",
+                        "props": {
+                          "style": {
+                            "display": "grid",
+                            "gridTemplateColumns": "20% 80%"
+                          },
+                          "children": [
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "children": [
+                                  {
+                                    "type": "component",
+                                    "name": "CodeSnippet",
+                                    "props": {
+                                      "codeText": "block",
+                                      "language": "javascript",
+                                      "type": "inline"
+                                    }
+                                  }
+                                ],
+                                "as": "span"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "children": [
+                                  {
+                                    "type": "component",
+                                    "name": "CodeSnippet",
+                                    "props": {
+                                      "codeText": "div",
+                                      "language": "javascript",
+                                      "type": "inline"
+                                    }
+                                  },
+                                  {
+                                    "type": "text",
+                                    "name": "text",
+                                    "props": {
+                                      "text": ", "
+                                    }
+                                  },
+                                  {
+                                    "type": "component",
+                                    "name": "CodeSnippet",
+                                    "props": {
+                                      "codeText": "h1",
+                                      "language": "javascript",
+                                      "type": "inline"
+                                    }
+                                  },
+                                  {
+                                    "type": "text",
+                                    "name": "text",
+                                    "props": {
+                                      "text": " 같은 "
+                                    }
+                                  },
+                                  {
+                                    "type": "component",
+                                    "name": "CodeSnippet",
+                                    "props": {
+                                      "codeText": "element",
+                                      "language": "javascript",
+                                      "type": "link",
+                                      "href": "/core-js/dom/element"
+                                    }
+                                  },
+                                  {
+                                    "type": "text",
+                                    "name": "text",
+                                    "props": {
+                                      "text": " 또는 "
+                                    }
+                                  },
+                                  {
+                                    "type": "component",
+                                    "name": "CodeSnippet",
+                                    "props": {
+                                      "codeText": "component",
+                                      "language": "javascript",
+                                      "type": "link",
+                                      "href": "/core-js/dom/component"
+                                    }
+                                  },
+                                  {
+                                    "type": "text",
+                                    "name": "text",
+                                    "props": {
+                                      "text": " 함수를 통해 생성한 컴포넌트를 전달합니다."
+                                    }
+                                  }
+                                ],
+                                "as": "span"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "element",
+      "name": "div",
+      "props": {
+        "style": {
+          "height": "60vh"
+        }
+      }
+    },
+    {
+      "type": "component",
+      "name": "Link",
+      "props": {
+        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/core-js/dom/root.json",
+        "children": [
+          {
+            "type": "component",
+            "name": "DocumentIcon",
+            "props": {
+              "style": {
+                "width": "1rem",
+                "filter": "brightness(0) saturate(100%) invert(25%) sepia(69%) saturate(3617%) hue-rotate(218deg) brightness(100%) contrast(104%)"
+              }
+            }
+          },
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "text": "Raw Data From Github",
+              "color": "linkPrimary"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

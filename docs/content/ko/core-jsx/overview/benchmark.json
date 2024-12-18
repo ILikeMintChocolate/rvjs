@@ -1,0 +1,394 @@
+{
+  "content": [
+    {
+      "type": "component",
+      "name": "Text",
+      "props": {
+        "as": "h1",
+        "text": "Benchmark",
+        "kind": "heading-06"
+      }
+    },
+    {
+      "type": "component",
+      "name": "Section",
+      "props": {
+        "children": [
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "children": [
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "js-framework-benchmark",
+                    "language": "javascript",
+                    "type": "link",
+                    "href": "https://github.com/krausest/js-framework-benchmark"
+                  }
+                },
+                {
+                  "type": "text",
+                  "name": "text",
+                  "props": {
+                    "text": "를 사용하여 다양한 라이브러리의 성능을 비교한 결과입니다."
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "component",
+      "name": "Section",
+      "props": {
+        "children": [
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "text": "버전별 이슈 및 성능 개선 내역",
+              "kind": "heading-03",
+              "as": "h4"
+            }
+          },
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "kind": "heading-compact-01",
+              "children": [
+                {
+                  "type": "text",
+                  "name": "text",
+                  "props": {
+                    "text": "v0.3.1"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "component",
+            "name": "UnorderedList",
+            "props": {
+              "children": [
+                {
+                  "type": "component",
+                  "name": "ListItem",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "element",
+                        "name": "div",
+                        "props": {
+                          "style": {
+                            "display": "grid",
+                            "gridTemplateColumns": "20% 80%"
+                          },
+                          "children": [
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "name": "text",
+                                    "props": {
+                                      "text": "For 렌더링 관련"
+                                    }
+                                  }
+                                ],
+                                "as": "span"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "children": [
+                                  {
+                                    "type": "component",
+                                    "name": "CodeSnippet",
+                                    "props": {
+                                      "codeText": "For",
+                                      "language": "javascript",
+                                      "type": "link",
+                                      "href": "/core-jsx/component/for"
+                                    }
+                                  },
+                                  {
+                                    "type": "text",
+                                    "name": "text",
+                                    "props": {
+                                      "text": " 컴포넌트에 중복된 원시 타입 값을 허용하도록 수정했습니다."
+                                    }
+                                  }
+                                ],
+                                "as": "span"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "ListItem",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "element",
+                        "name": "div",
+                        "props": {
+                          "style": {
+                            "display": "grid",
+                            "gridTemplateColumns": "20% 80%"
+                          },
+                          "children": [
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "name": "text",
+                                    "props": {
+                                      "text": "빌드 관련"
+                                    }
+                                  }
+                                ],
+                                "as": "span"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "name": "text",
+                                    "props": {
+                                      "text": "내부 모듈 구조를 수정해 트리 셰이킹이 가능하도록 하고, 코드 압축을 통해 배포 크기를 최적화했습니다."
+                                    }
+                                  }
+                                ],
+                                "as": "span"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "kind": "heading-compact-01",
+              "children": [
+                {
+                  "type": "text",
+                  "name": "text",
+                  "props": {
+                    "text": "v0.3.0"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "component",
+            "name": "UnorderedList",
+            "props": {
+              "children": [
+                {
+                  "type": "component",
+                  "name": "ListItem",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "element",
+                        "name": "div",
+                        "props": {
+                          "style": {
+                            "display": "grid",
+                            "gridTemplateColumns": "20% 80%"
+                          },
+                          "children": [
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "name": "text",
+                                    "props": {
+                                      "text": "JSX 도입"
+                                    }
+                                  }
+                                ],
+                                "as": "span"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "name": "text",
+                                    "props": {
+                                      "text": "컴파일 단계 최적화를 통해 성능을 개선했습니다."
+                                    }
+                                  }
+                                ],
+                                "as": "span"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "ListItem",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "element",
+                        "name": "div",
+                        "props": {
+                          "style": {
+                            "display": "grid",
+                            "gridTemplateColumns": "20% 80%"
+                          },
+                          "children": [
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "name": "text",
+                                    "props": {
+                                      "text": "메모리 누수 해결"
+                                    }
+                                  }
+                                ],
+                                "as": "span"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "name": "text",
+                                    "props": {
+                                      "text": "0.2.21 버전에서 발생했던 특정 상황에서의 메모리 누수를 해결했습니다."
+                                    }
+                                  }
+                                ],
+                                "as": "span"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "component",
+      "name": "Section",
+      "props": {
+        "children": [
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "text": "결과",
+              "kind": "heading-03",
+              "as": "h4"
+            }
+          },
+          {
+            "type": "element",
+            "name": "img",
+            "props": {
+              "src": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/overview/benchmarkResult.png?raw=true",
+              "style": {
+                "width": "100%",
+                "padding-inline": "2rem",
+                "box-sizing": "border-box"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "element",
+      "name": "div",
+      "props": {
+        "style": {
+          "height": "60vh"
+        }
+      }
+    },
+    {
+      "type": "component",
+      "name": "Link",
+      "props": {
+        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/core-jsx/overview/benchmark.json",
+        "children": [
+          {
+            "type": "component",
+            "name": "DocumentIcon",
+            "props": {
+              "style": {
+                "width": "1rem",
+                "filter": "brightness(0) saturate(100%) invert(25%) sepia(69%) saturate(3617%) hue-rotate(218deg) brightness(100%) contrast(104%)"
+              }
+            }
+          },
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "text": "Raw Data From Github",
+              "color": "linkPrimary"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

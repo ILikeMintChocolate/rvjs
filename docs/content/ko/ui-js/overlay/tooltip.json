@@ -1,0 +1,545 @@
+{
+  "content": [
+    {
+      "type": "component",
+      "name": "Text",
+      "props": {
+        "as": "h1",
+        "text": "Tooltip",
+        "kind": "heading-06"
+      }
+    },
+    {
+      "type": "component",
+      "name": "Section",
+      "props": {
+        "children": [
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "children": [
+                {
+                  "type": "text",
+                  "name": "text",
+                  "props": {
+                    "text": "Tooltip 컴포넌트는 특정 요소에 마우스를 올리거나 클릭할 때 추가 정보를 제공하는 간단한 툴팁을 표시하는 컴포넌트입니다."
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "component",
+      "name": "Section",
+      "props": {
+        "children": [
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "text": "예시",
+              "kind": "heading-03",
+              "as": "h4"
+            }
+          },
+          {
+            "type": "component",
+            "name": "Iframe",
+            "props": {
+              "src": "https://rvjs.xyz/example/ui-js/overlay/tooltip/ex1/",
+              "height": "200px"
+            }
+          },
+          {
+            "type": "component",
+            "name": "CodeSnippet",
+            "props": {
+              "codeText": "import { div, h4, prop } from '@rvjs/core'\nimport { Tooltip } from '@rvjs/ui'\n\nconst TooltipExample = () => {\n  return div({\n    children: [\n      Tooltip({\n        trigger: h4({\n          style: {\n            color: '#0c8ce9',\n            cursor: 'help',\n          },\n          textContent: 'Hover Me',\n        }),\n        description: prop(() => 'Hello!'),\n      }),\n    ],\n  })\n}\n\nexport default TooltipExample",
+              "language": "javascript",
+              "type": "multi",
+              "width": "100%",
+              "defaultShow": true
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "component",
+      "name": "Section",
+      "props": {
+        "children": [
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "text": "속성",
+              "kind": "heading-03",
+              "as": "h4"
+            }
+          },
+          {
+            "type": "element",
+            "name": "ul",
+            "props": {
+              "style": {
+                "display": "flex",
+                "flexDirection": "column",
+                "gap": "1rem",
+                "padding": "0"
+              },
+              "children": [
+                {
+                  "type": "element",
+                  "name": "li",
+                  "props": {
+                    "style": {
+                      "display": "flex",
+                      "flexDirection": "column"
+                    },
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "description",
+                          "language": "javascript",
+                          "type": "inline",
+                          "size": "lg"
+                        }
+                      },
+                      {
+                        "type": "element",
+                        "name": "div",
+                        "props": {
+                          "style": {
+                            "display": "grid",
+                            "gridTemplateColumns": "15% 85%",
+                            "padding": "1rem",
+                            "gap": "1rem"
+                          },
+                          "children": [
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "kind": "heading-compact-01",
+                                "text": "설명"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "name": "text",
+                                    "props": {
+                                      "text": "툴팁에 표시할 내용을 지정합니다."
+                                    }
+                                  }
+                                ],
+                                "as": "span"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "kind": "heading-compact-01",
+                                "text": "타입"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "children": [
+                                  {
+                                    "type": "component",
+                                    "name": "CodeSnippet",
+                                    "props": {
+                                      "codeText": "Prop<string>",
+                                      "language": "typescript",
+                                      "type": "inline"
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "li",
+                  "props": {
+                    "style": {
+                      "display": "flex",
+                      "flexDirection": "column"
+                    },
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "trigger",
+                          "language": "javascript",
+                          "type": "inline",
+                          "size": "lg"
+                        }
+                      },
+                      {
+                        "type": "element",
+                        "name": "div",
+                        "props": {
+                          "style": {
+                            "display": "grid",
+                            "gridTemplateColumns": "15% 85%",
+                            "padding": "1rem",
+                            "gap": "1rem"
+                          },
+                          "children": [
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "kind": "heading-compact-01",
+                                "text": "설명"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "name": "text",
+                                    "props": {
+                                      "text": "툴팁을 표시할 대상 요소입니다."
+                                    }
+                                  }
+                                ],
+                                "as": "span"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "kind": "heading-compact-01",
+                                "text": "타입"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "children": [
+                                  {
+                                    "type": "component",
+                                    "name": "CodeSnippet",
+                                    "props": {
+                                      "codeText": "Block",
+                                      "language": "typescript",
+                                      "type": "inline"
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "li",
+                  "props": {
+                    "style": {
+                      "display": "flex",
+                      "flexDirection": "column"
+                    },
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "kind?",
+                          "language": "javascript",
+                          "type": "inline",
+                          "size": "lg"
+                        }
+                      },
+                      {
+                        "type": "element",
+                        "name": "div",
+                        "props": {
+                          "style": {
+                            "display": "grid",
+                            "gridTemplateColumns": "15% 85%",
+                            "padding": "1rem",
+                            "gap": "1rem"
+                          },
+                          "children": [
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "kind": "heading-compact-01",
+                                "text": "설명"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "name": "text",
+                                    "props": {
+                                      "text": "툴팁의 스타일 종류를 지정합니다."
+                                    }
+                                  }
+                                ],
+                                "as": "span"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "kind": "heading-compact-01",
+                                "text": "타입"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "children": [
+                                  {
+                                    "type": "component",
+                                    "name": "CodeSnippet",
+                                    "props": {
+                                      "codeText": "'standard' | 'iconButton' | 'definition'",
+                                      "language": "typescript",
+                                      "type": "inline"
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "kind": "heading-compact-01",
+                                "text": "기본 값"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "children": [
+                                  {
+                                    "type": "component",
+                                    "name": "CodeSnippet",
+                                    "props": {
+                                      "codeText": "'standard'",
+                                      "language": "javascript",
+                                      "type": "inline"
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "li",
+                  "props": {
+                    "style": {
+                      "display": "flex",
+                      "flexDirection": "column"
+                    },
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "showOnHoverOrClick?",
+                          "language": "javascript",
+                          "type": "inline",
+                          "size": "lg"
+                        }
+                      },
+                      {
+                        "type": "element",
+                        "name": "div",
+                        "props": {
+                          "style": {
+                            "display": "grid",
+                            "gridTemplateColumns": "15% 85%",
+                            "padding": "1rem",
+                            "gap": "1rem"
+                          },
+                          "children": [
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "kind": "heading-compact-01",
+                                "text": "설명"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "name": "text",
+                                    "props": {
+                                      "text": "툴팁을 마우스 오버 또는 클릭 시에 표시할지 설정합니다."
+                                    }
+                                  }
+                                ],
+                                "as": "span"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "kind": "heading-compact-01",
+                                "text": "타입"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "children": [
+                                  {
+                                    "type": "component",
+                                    "name": "CodeSnippet",
+                                    "props": {
+                                      "codeText": "'hover' | 'click'",
+                                      "language": "typescript",
+                                      "type": "inline"
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "kind": "heading-compact-01",
+                                "text": "기본 값"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "children": [
+                                  {
+                                    "type": "component",
+                                    "name": "CodeSnippet",
+                                    "props": {
+                                      "codeText": "'hover'",
+                                      "language": "javascript",
+                                      "type": "inline"
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "element",
+      "name": "div",
+      "props": {
+        "style": {
+          "height": "60vh"
+        }
+      }
+    },
+    {
+      "type": "component",
+      "name": "Link",
+      "props": {
+        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/ui-js/overlay/tooltip.json",
+        "children": [
+          {
+            "type": "component",
+            "name": "DocumentIcon",
+            "props": {
+              "style": {
+                "width": "1rem",
+                "filter": "brightness(0) saturate(100%) invert(25%) sepia(69%) saturate(3617%) hue-rotate(218deg) brightness(100%) contrast(104%)"
+              }
+            }
+          },
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "text": "Raw Data From Github",
+              "color": "linkPrimary"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

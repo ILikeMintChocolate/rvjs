@@ -1,0 +1,354 @@
+{
+  "content": [
+    {
+      "type": "component",
+      "name": "Text",
+      "props": {
+        "as": "h1",
+        "text": "Switch",
+        "kind": "heading-06"
+      }
+    },
+    {
+      "type": "component",
+      "name": "Section",
+      "props": {
+        "children": [
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "children": [
+                {
+                  "type": "text",
+                  "name": "text",
+                  "props": {
+                    "text": "상태에 따라 동적으로 요소를 생성할 때 사용합니다."
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "component",
+      "name": "Section",
+      "props": {
+        "children": [
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "text": "예시",
+              "kind": "heading-03",
+              "as": "h4"
+            }
+          },
+          {
+            "type": "component",
+            "name": "Iframe",
+            "props": {
+              "src": "https://rvjs.xyz/example/core-js/dom/switch/ex1/"
+            }
+          },
+          {
+            "type": "component",
+            "name": "CodeSnippet",
+            "props": {
+              "codeText": "import { button, div, p, root, Switch, useState } from '@rvjs/core'\n\nconst App = () => {\n  const [status, setStatus] = useState('Loading')\n\n  return div({\n    children: [\n      button({\n        textContent: 'loading',\n        onclick: () => setStatus('Loading'),\n      }),\n      button({\n        textContent: 'loaded',\n        onclick: () => setStatus('Loaded'),\n      }),\n      button({\n        textContent: 'error',\n        onclick: () => setStatus('Error'),\n      }),\n      Switch(status, (status) => {\n        switch (status) {\n          case 'Loading':\n            return Loading()\n          case 'Loaded':\n            return Loaded()\n          case 'Error':\n            return Error()\n          default:\n            return null\n        }\n      }),\n    ],\n  })\n}\n\nconst Loading = () => {\n  return p({\n    textContent: `Loading`,\n  })\n}\n\nconst Loaded = () => {\n  return p({\n    textContent: `Loaded`,\n  })\n}\n\nconst Error = () => {\n  return p({\n    textContent: `Error`,\n  })\n}\n\nroot(document.getElementById('app'), App())\n",
+              "language": "javascript",
+              "type": "multi",
+              "width": "100%",
+              "defaultShow": true
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "component",
+      "name": "Section",
+      "props": {
+        "children": [
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "text": "레퍼런스",
+              "kind": "heading-03",
+              "as": "h4"
+            }
+          },
+          {
+            "type": "component",
+            "name": "CodeSnippet",
+            "props": {
+              "codeText": "function Switch<T>(\n  state: GetState<T>,\n  render: (value:T) => Child,\n): SwitchRender",
+              "language": "typescript",
+              "type": "multi",
+              "width": "100%",
+              "defaultShow": true
+            }
+          },
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "text": "매개변수",
+              "kind": "heading-compact-01"
+            }
+          },
+          {
+            "type": "component",
+            "name": "UnorderedList",
+            "props": {
+              "children": [
+                {
+                  "type": "component",
+                  "name": "ListItem",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "element",
+                        "name": "div",
+                        "props": {
+                          "style": {
+                            "display": "grid",
+                            "gridTemplateColumns": "20% 80%"
+                          },
+                          "children": [
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "children": [
+                                  {
+                                    "type": "component",
+                                    "name": "CodeSnippet",
+                                    "props": {
+                                      "codeText": "value",
+                                      "language": "javascript",
+                                      "type": "inline"
+                                    }
+                                  }
+                                ],
+                                "as": "span"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "name": "text",
+                                    "props": {
+                                      "text": "상태를 전달합니다."
+                                    }
+                                  }
+                                ],
+                                "as": "span"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "ListItem",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "element",
+                        "name": "div",
+                        "props": {
+                          "style": {
+                            "display": "grid",
+                            "gridTemplateColumns": "20% 80%"
+                          },
+                          "children": [
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "children": [
+                                  {
+                                    "type": "component",
+                                    "name": "CodeSnippet",
+                                    "props": {
+                                      "codeText": "render",
+                                      "language": "javascript",
+                                      "type": "inline"
+                                    }
+                                  }
+                                ],
+                                "as": "span"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "name": "text",
+                                    "props": {
+                                      "text": "상태가 변하면 이를 바탕으로 요소를 생성하여 반환하는 함수입니다."
+                                    }
+                                  }
+                                ],
+                                "as": "span"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "text": "반환 값",
+              "kind": "heading-compact-01"
+            }
+          },
+          {
+            "type": "component",
+            "name": "UnorderedList",
+            "props": {
+              "children": [
+                {
+                  "type": "component",
+                  "name": "ListItem",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "element",
+                        "name": "div",
+                        "props": {
+                          "style": {
+                            "display": "grid",
+                            "gridTemplateColumns": "20% 80%"
+                          },
+                          "children": [
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "children": [
+                                  {
+                                    "type": "component",
+                                    "name": "CodeSnippet",
+                                    "props": {
+                                      "codeText": "SwitchRender",
+                                      "language": "javascript",
+                                      "type": "inline"
+                                    }
+                                  }
+                                ],
+                                "as": "span"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "children": [
+                                  {
+                                    "type": "component",
+                                    "name": "CodeSnippet",
+                                    "props": {
+                                      "codeText": "Child",
+                                      "language": "javascript",
+                                      "type": "inline"
+                                    }
+                                  },
+                                  {
+                                    "type": "text",
+                                    "name": "text",
+                                    "props": {
+                                      "text": " 또는 "
+                                    }
+                                  },
+                                  {
+                                    "type": "component",
+                                    "name": "CodeSnippet",
+                                    "props": {
+                                      "codeText": "Children",
+                                      "language": "javascript",
+                                      "type": "inline"
+                                    }
+                                  },
+                                  {
+                                    "type": "text",
+                                    "name": "text",
+                                    "props": {
+                                      "text": " 타입에 포함되는 요소입니다."
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "element",
+      "name": "div",
+      "props": {
+        "style": {
+          "height": "60vh"
+        }
+      }
+    },
+    {
+      "type": "component",
+      "name": "Link",
+      "props": {
+        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/core-js/dom/switch.json",
+        "children": [
+          {
+            "type": "component",
+            "name": "DocumentIcon",
+            "props": {
+              "style": {
+                "width": "1rem",
+                "filter": "brightness(0) saturate(100%) invert(25%) sepia(69%) saturate(3617%) hue-rotate(218deg) brightness(100%) contrast(104%)"
+              }
+            }
+          },
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "text": "Raw Data From Github",
+              "color": "linkPrimary"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,305 @@
+{
+  "content": [
+    {
+      "type": "component",
+      "name": "Text",
+      "props": {
+        "as": "h1",
+        "text": "primitive",
+        "kind": "heading-06"
+      }
+    },
+    {
+      "type": "component",
+      "name": "Section",
+      "props": {
+        "children": [
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "children": [
+                {
+                  "type": "text",
+                  "name": "text",
+                  "props": {
+                    "text": "값이 특정 원시 타입인지 확인합니다."
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "component",
+      "name": "Section",
+      "props": {
+        "children": [
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "text": "종류",
+              "kind": "heading-03",
+              "as": "h4"
+            }
+          },
+          {
+            "type": "component",
+            "name": "UnorderedList",
+            "props": {
+              "children": [
+                {
+                  "type": "component",
+                  "name": "ListItem",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "Text",
+                        "props": {
+                          "as": "span",
+                          "children": [
+                            {
+                              "type": "component",
+                              "name": "CodeSnippet",
+                              "props": {
+                                "codeText": "isString",
+                                "language": "javascript",
+                                "type": "inline"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "ListItem",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "Text",
+                        "props": {
+                          "as": "span",
+                          "children": [
+                            {
+                              "type": "component",
+                              "name": "CodeSnippet",
+                              "props": {
+                                "codeText": "isNumber",
+                                "language": "javascript",
+                                "type": "inline"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "ListItem",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "Text",
+                        "props": {
+                          "as": "span",
+                          "children": [
+                            {
+                              "type": "component",
+                              "name": "CodeSnippet",
+                              "props": {
+                                "codeText": "isBigint",
+                                "language": "javascript",
+                                "type": "inline"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "ListItem",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "Text",
+                        "props": {
+                          "as": "span",
+                          "children": [
+                            {
+                              "type": "component",
+                              "name": "CodeSnippet",
+                              "props": {
+                                "codeText": "isBoolean",
+                                "language": "javascript",
+                                "type": "inline"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "ListItem",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "Text",
+                        "props": {
+                          "as": "span",
+                          "children": [
+                            {
+                              "type": "component",
+                              "name": "CodeSnippet",
+                              "props": {
+                                "codeText": "isUndefined",
+                                "language": "javascript",
+                                "type": "inline"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "ListItem",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "Text",
+                        "props": {
+                          "as": "span",
+                          "children": [
+                            {
+                              "type": "component",
+                              "name": "CodeSnippet",
+                              "props": {
+                                "codeText": "isSymbol",
+                                "language": "javascript",
+                                "type": "inline"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "ListItem",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "Text",
+                        "props": {
+                          "as": "span",
+                          "children": [
+                            {
+                              "type": "component",
+                              "name": "CodeSnippet",
+                              "props": {
+                                "codeText": "isNull",
+                                "language": "javascript",
+                                "type": "inline"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "ListItem",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "Text",
+                        "props": {
+                          "as": "span",
+                          "children": [
+                            {
+                              "type": "component",
+                              "name": "CodeSnippet",
+                              "props": {
+                                "codeText": "isAny",
+                                "language": "javascript",
+                                "type": "inline"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "element",
+      "name": "div",
+      "props": {
+        "style": {
+          "height": "60vh"
+        }
+      }
+    },
+    {
+      "type": "component",
+      "name": "Link",
+      "props": {
+        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/is-js/type/primitive.json",
+        "children": [
+          {
+            "type": "component",
+            "name": "DocumentIcon",
+            "props": {
+              "style": {
+                "width": "1rem",
+                "filter": "brightness(0) saturate(100%) invert(25%) sepia(69%) saturate(3617%) hue-rotate(218deg) brightness(100%) contrast(104%)"
+              }
+            }
+          },
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "text": "Raw Data From Github",
+              "color": "linkPrimary"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,3928 @@
+{
+  "content": [
+    {
+      "type": "component",
+      "name": "Text",
+      "props": {
+        "as": "h1",
+        "text": "color",
+        "kind": "heading-06"
+      }
+    },
+    {
+      "type": "component",
+      "name": "Section",
+      "props": {
+        "children": [
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "children": [
+                {
+                  "type": "text",
+                  "name": "text",
+                  "props": {
+                    "text": "라이브러리에서 사용할 색상 팔레트를 정의한 CSS 변수를 제공합니다."
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "component",
+      "name": "Section",
+      "props": {
+        "children": [
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "text": "변수 목록",
+              "kind": "heading-03",
+              "as": "h4"
+            }
+          },
+          {
+            "type": "element",
+            "name": "div",
+            "props": {
+              "style": {
+                "display": "grid",
+                "gridTemplateColumns": "30% 70%",
+                "gap": "1rem"
+              },
+              "children": [
+                {
+                  "type": "component",
+                  "name": "Text",
+                  "props": {
+                    "as": "span",
+                    "text": "변수명",
+                    "kind": "heading-compact-01"
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "Text",
+                  "props": {
+                    "as": "span",
+                    "text": "값",
+                    "kind": "heading-compact-01"
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "transparent",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "transparent",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "transparent",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "background",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "background",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#ffffff",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "backgroundHover",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "backgroundHover",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#8d8d8d1f",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "backgroundActive",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "backgroundActive",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#8d8d8d80",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "backgroundSelected",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "backgroundSelected",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#8d8d8d33",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "backgroundSelectedHover",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "backgroundSelectedHover",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#8d8d8d52",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "backgroundBrand",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "backgroundBrand",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#0f62fe",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "backgroundInverse",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "backgroundInverse",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#393939",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "backgroundInverseHover",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "backgroundInverseHover",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#474747",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "layer01",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "layer01",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#f4f4f4",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "layer02",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "layer02",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#ffffff",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "layer03",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "layer03",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#f4f4f4",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "layerHover01",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "layerHover01",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#e8e8e8",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "layerHover02",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "layerHover02",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#e8e8e8",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "layerHover03",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "layerHover03",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#e8e8e8",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "layerActive01",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "layerActive01",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#c6c6c6",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "layerActive02",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "layerActive02",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#c6c6c6",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "layerActive03",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "layerActive03",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#c6c6c6",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "layerSelected01",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "layerSelected01",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#e0e0e0",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "layerSelected02",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "layerSelected02",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#e0e0e0",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "layerSelected03",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "layerSelected03",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#e0e0e0",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "layerSelectedHover01",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "layerSelectedHover01",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#d1d1d1",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "layerSelectedHover02",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "layerSelectedHover02",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#d1d1d1",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "layerSelectedHover03",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "layerSelectedHover03",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#d1d1d1",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "layerSelectedDisabled",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "layerSelectedDisabled",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#8d8d8d",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "layerAccent01",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "layerAccent01",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#e0e0e0",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "layerAccent02",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "layerAccent02",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#e0e0e0",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "layerAccent03",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "layerAccent03",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#e0e0e0",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "layerAccentHover01",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "layerAccentHover01",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#d1d1d1",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "layerAccentHover02",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "layerAccentHover02",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#d1d1d1",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "layerAccentHover03",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "layerAccentHover03",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#d1d1d1",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "layerAccentActive01",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "layerAccentActive01",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#a8a8a8",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "layerAccentActive02",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "layerAccentActive02",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#a8a8a8",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "layerAccentActive03",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "layerAccentActive03",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#a8a8a8",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "field01",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "field01",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#f4f4f4",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "field02",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "field02",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#ffffff",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "field03",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "field03",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#ffffff",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "fieldHover01",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "fieldHover01",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#e8e8e8",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "fieldHover02",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "fieldHover02",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#e8e8e8",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "fieldHover03",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "fieldHover03",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#e8e8e8",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "borderSubtle00",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "borderSubtle00",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#e0e0e0",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "borderSubtle01",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "borderSubtle01",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#c6c6c6",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "borderSubtle02",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "borderSubtle02",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#e0e0e0",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "borderSubtle03",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "borderSubtle03",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#c6c6c6",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "borderSubtleSelected01",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "borderSubtleSelected01",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#c6c6c6",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "borderSubtleSelected02",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "borderSubtleSelected02",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#c6c6c6",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "borderSubtleSelected03",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "borderSubtleSelected03",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#c6c6c6",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "borderStrong01",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "borderStrong01",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#8d8d8d",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "borderStrong02",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "borderStrong02",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#8d8d8d",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "borderStrong03",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "borderStrong03",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#8d8d8d",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "borderInverse",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "borderInverse",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#161616",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "borderInteractive",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "borderInteractive",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#0f62fe",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "borderDisabled",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "borderDisabled",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#c6c6c6",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "borderTitle01",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "borderTitle01",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#c6c6c6",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "borderTitle02",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "borderTitle02",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#a8a8a8",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "borderTitle03",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "borderTitle03",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#c6c6c6",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "textPrimary",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "textPrimary",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#161616",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "textSecondary",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "textSecondary",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#525252",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "textPlaceholder",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "textPlaceholder",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#a8a8a8",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "textOnColor",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "textOnColor",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#ffffff",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "textHelper",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "textHelper",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#6f6f6f",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "textError",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "textError",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#da1e28",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "textInverse",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "textInverse",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#ffffff",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "textDisabled",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "textDisabled",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#16161640",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "textOnColorDisabled",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "textOnColorDisabled",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#8d8d8d",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "linkPrimary",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "linkPrimary",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#0f62fe",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "linkPrimaryHover",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "linkPrimaryHover",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#0043ce",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "linkSecondary",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "linkSecondary",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#0043ce",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "linkInverse",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "linkInverse",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#78a9ff",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "linkVisited",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "linkVisited",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#8a3ffc",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "iconPrimary",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "iconPrimary",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#161616",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "iconSecondary",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "iconSecondary",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#525252",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "iconOnColor",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "iconOnColor",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#ffffff",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "iconInverse",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "iconInverse",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#ffffff",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "iconOnColorDisabled",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "iconOnColorDisabled",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#8d8d8d",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "iconDisabled",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "iconDisabled",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#16161640",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "iconInteractive",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "iconInteractive",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#0f62fe",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "supportError",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "supportError",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#da1e28",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "supportSuccess",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "supportSuccess",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#24a148",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "supportWarning",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "supportWarning",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#f1c21b",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "supportInfo",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "supportInfo",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#0043ce",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "supportErrorInverse",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "supportErrorInverse",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#fa4d56",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "supportSuccessInverse",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "supportSuccessInverse",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#42be65",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "supportWarningInverse",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "supportWarningInverse",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#f1c21b",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "supportInfoInverse",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "supportInfoInverse",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#4589ff",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "supportCautionMajor",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "supportCautionMajor",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#ff832b",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "supportCautionMinor",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "supportCautionMinor",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#f1c21b",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "supportUndefined",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "supportUndefined",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#8a3ffc",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "focus",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "focus",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#0f62fe",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "focusInset",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "focusInset",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#ffffff",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "focusInverse",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "focusInverse",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#ffffff",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "interactive",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "interactive",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#0f62fe",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "highlight",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "highlight",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#d0e2ff",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "overlay",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "overlay",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#8d8d8d80",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "skeletonBackground",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "skeletonBackground",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#e8e8e8",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "skeletonElement",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "skeletonElement",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#c6c6c6",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "toggleOff",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "toggleOff",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#8d8d8d",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "buttonPrimary",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "buttonPrimary",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#0f62fe",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "buttonPrimaryHover",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "buttonPrimaryHover",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#0050e6",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "buttonPrimaryActive",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "buttonPrimaryActive",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#002d9c",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "buttonSecondary",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "buttonSecondary",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#393939",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "buttonSecondaryHover",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "buttonSecondaryHover",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#474747",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "buttonSecondaryActive",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "buttonSecondaryActive",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#6f6f6f",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "buttonTertiary",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "buttonTertiary",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#0f62fe",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "buttonTertiaryHover",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "buttonTertiaryHover",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#0050e6",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "buttonTertiaryActive",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "buttonTertiaryActive",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#002d9c",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "buttonDangerPrimary",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "buttonDangerPrimary",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#da1e28",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "buttonDangerSecondary",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "buttonDangerSecondary",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#0f62fe",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "buttonDangerHover",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "buttonDangerHover",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#b81922",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "buttonDangerActive",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "buttonDangerActive",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#750e13",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "buttonSeparator",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "buttonSeparator",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#e0e0e0",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "buttonDisabled",
+                    "language": "plain",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "ColorChip",
+                        "props": {
+                          "color": "buttonDisabled",
+                          "size": "md"
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "#c6c6c6",
+                          "language": "plain",
+                          "type": "inline"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "element",
+      "name": "div",
+      "props": {
+        "style": {
+          "height": "60vh"
+        }
+      }
+    },
+    {
+      "type": "component",
+      "name": "Link",
+      "props": {
+        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/ui-js/vars/color.json",
+        "children": [
+          {
+            "type": "component",
+            "name": "DocumentIcon",
+            "props": {
+              "style": {
+                "width": "1rem",
+                "filter": "brightness(0) saturate(100%) invert(25%) sepia(69%) saturate(3617%) hue-rotate(218deg) brightness(100%) contrast(104%)"
+              }
+            }
+          },
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "text": "Raw Data From Github",
+              "color": "linkPrimary"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

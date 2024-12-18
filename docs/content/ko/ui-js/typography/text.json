@@ -1,0 +1,774 @@
+{
+  "content": [
+    {
+      "type": "component",
+      "name": "Text",
+      "props": {
+        "as": "h1",
+        "text": "Text",
+        "kind": "heading-06"
+      }
+    },
+    {
+      "type": "component",
+      "name": "Section",
+      "props": {
+        "children": [
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "children": [
+                {
+                  "type": "text",
+                  "name": "text",
+                  "props": {
+                    "text": "Text 컴포넌트는 특정 태그를 사용하여 텍스트를 표시하는 컴포넌트입니다."
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "component",
+      "name": "Section",
+      "props": {
+        "children": [
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "text": "예시",
+              "kind": "heading-03",
+              "as": "h4"
+            }
+          },
+          {
+            "type": "component",
+            "name": "Iframe",
+            "props": {
+              "src": "https://rvjs.xyz/example/ui-js/typography/text/ex1/"
+            }
+          },
+          {
+            "type": "component",
+            "name": "CodeSnippet",
+            "props": {
+              "codeText": "import { div, prop } from '@rvjs/core'\nimport { Text } from '@rvjs/ui'\n\nconst TextExample = () => {\n  return div({\n    children: [\n      Text({\n        text: prop(() => 'body-01'),\n        kind: prop(() => 'body-01'),\n      }),\n      Text({\n        text: prop(() => 'body-02'),\n        kind: prop(() => 'body-02'),\n      }),\n      Text({\n        text: prop(() => 'body-compact-01'),\n        kind: prop(() => 'body-compact-01'),\n      }),\n      Text({\n        text: prop(() => 'body-compact-02'),\n        kind: prop(() => 'body-compact-02'),\n      }),\n      Text({\n        text: prop(() => 'code-01'),\n        kind: prop(() => 'code-01'),\n      }),\n      Text({\n        text: prop(() => 'code-02'),\n        kind: prop(() => 'code-02'),\n      }),\n      Text({\n        text: prop(() => 'label-01'),\n        kind: prop(() => 'label-01'),\n      }),\n      Text({\n        text: prop(() => 'label-02'),\n        kind: prop(() => 'label-02'),\n      }),\n      Text({\n        text: prop(() => 'helper-text-01'),\n        kind: prop(() => 'helper-text-01'),\n      }),\n      Text({\n        text: prop(() => 'helper-text-02'),\n        kind: prop(() => 'helper-text-02'),\n      }),\n      Text({\n        text: prop(() => 'legal-01'),\n        kind: prop(() => 'legal-01'),\n      }),\n      Text({\n        text: prop(() => 'legal-02'),\n        kind: prop(() => 'legal-02'),\n      }),\n      Text({\n        text: prop(() => 'heading-compact-01'),\n        kind: prop(() => 'heading-compact-01'),\n      }),\n      Text({\n        text: prop(() => 'heading-compact-02'),\n        kind: prop(() => 'heading-compact-02'),\n      }),\n      Text({\n        text: prop(() => 'heading-01'),\n        kind: prop(() => 'heading-01'),\n      }),\n      Text({\n        text: prop(() => 'heading-02'),\n        kind: prop(() => 'heading-02'),\n      }),\n      Text({\n        text: prop(() => 'heading-03'),\n        kind: prop(() => 'heading-03'),\n      }),\n      Text({\n        text: prop(() => 'heading-04'),\n        kind: prop(() => 'heading-04'),\n      }),\n      Text({\n        text: prop(() => 'heading-05'),\n        kind: prop(() => 'heading-05'),\n      }),\n      Text({\n        text: prop(() => 'heading-06'),\n        kind: prop(() => 'heading-06'),\n      }),\n      Text({\n        text: prop(() => 'heading-07'),\n        kind: prop(() => 'heading-07'),\n      }),\n    ],\n  })\n}\n\nexport default TextExample",
+              "language": "javascript",
+              "type": "multi",
+              "width": "100%",
+              "defaultShow": true
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "component",
+      "name": "Section",
+      "props": {
+        "children": [
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "text": "속성",
+              "kind": "heading-03",
+              "as": "h4"
+            }
+          },
+          {
+            "type": "element",
+            "name": "ul",
+            "props": {
+              "style": {
+                "display": "flex",
+                "flexDirection": "column",
+                "gap": "1rem",
+                "padding": "0"
+              },
+              "children": [
+                {
+                  "type": "element",
+                  "name": "li",
+                  "props": {
+                    "style": {
+                      "display": "flex",
+                      "flexDirection": "column"
+                    },
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "as?",
+                          "language": "javascript",
+                          "type": "inline",
+                          "size": "lg"
+                        }
+                      },
+                      {
+                        "type": "element",
+                        "name": "div",
+                        "props": {
+                          "style": {
+                            "display": "grid",
+                            "gridTemplateColumns": "15% 85%",
+                            "padding": "1rem",
+                            "gap": "1rem"
+                          },
+                          "children": [
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "kind": "heading-compact-01",
+                                "text": "설명"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "name": "text",
+                                    "props": {
+                                      "text": "사용할 HTML 태그를 지정합니다."
+                                    }
+                                  }
+                                ],
+                                "as": "span"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "kind": "heading-compact-01",
+                                "text": "타입"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "children": [
+                                  {
+                                    "type": "component",
+                                    "name": "CodeSnippet",
+                                    "props": {
+                                      "codeText": "keyof HTMLElementTagNameMap",
+                                      "language": "typescript",
+                                      "type": "inline"
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "kind": "heading-compact-01",
+                                "text": "기본 값"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "children": [
+                                  {
+                                    "type": "component",
+                                    "name": "CodeSnippet",
+                                    "props": {
+                                      "codeText": "'p'",
+                                      "language": "javascript",
+                                      "type": "inline"
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "li",
+                  "props": {
+                    "style": {
+                      "display": "flex",
+                      "flexDirection": "column"
+                    },
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "children?",
+                          "language": "javascript",
+                          "type": "inline",
+                          "size": "lg"
+                        }
+                      },
+                      {
+                        "type": "element",
+                        "name": "div",
+                        "props": {
+                          "style": {
+                            "display": "grid",
+                            "gridTemplateColumns": "15% 85%",
+                            "padding": "1rem",
+                            "gap": "1rem"
+                          },
+                          "children": [
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "kind": "heading-compact-01",
+                                "text": "설명"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "name": "text",
+                                    "props": {
+                                      "text": "텍스트 컴포넌트에 포함될 요소들입니다."
+                                    }
+                                  }
+                                ],
+                                "as": "span"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "kind": "heading-compact-01",
+                                "text": "타입"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "children": [
+                                  {
+                                    "type": "component",
+                                    "name": "CodeSnippet",
+                                    "props": {
+                                      "codeText": "Children",
+                                      "language": "typescript",
+                                      "type": "inline"
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "li",
+                  "props": {
+                    "style": {
+                      "display": "flex",
+                      "flexDirection": "column"
+                    },
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "classes?",
+                          "language": "javascript",
+                          "type": "inline",
+                          "size": "lg"
+                        }
+                      },
+                      {
+                        "type": "element",
+                        "name": "div",
+                        "props": {
+                          "style": {
+                            "display": "grid",
+                            "gridTemplateColumns": "15% 85%",
+                            "padding": "1rem",
+                            "gap": "1rem"
+                          },
+                          "children": [
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "kind": "heading-compact-01",
+                                "text": "설명"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "name": "text",
+                                    "props": {
+                                      "text": "컴포넌트에 적용할 추가 클래스입니다."
+                                    }
+                                  }
+                                ],
+                                "as": "span"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "kind": "heading-compact-01",
+                                "text": "타입"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "children": [
+                                  {
+                                    "type": "component",
+                                    "name": "CodeSnippet",
+                                    "props": {
+                                      "codeText": "Prop<string>[]",
+                                      "language": "typescript",
+                                      "type": "inline"
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "kind": "heading-compact-01",
+                                "text": "기본 값"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "children": [
+                                  {
+                                    "type": "component",
+                                    "name": "CodeSnippet",
+                                    "props": {
+                                      "codeText": "[]",
+                                      "language": "javascript",
+                                      "type": "inline"
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "li",
+                  "props": {
+                    "style": {
+                      "display": "flex",
+                      "flexDirection": "column"
+                    },
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "color?",
+                          "language": "javascript",
+                          "type": "inline",
+                          "size": "lg"
+                        }
+                      },
+                      {
+                        "type": "element",
+                        "name": "div",
+                        "props": {
+                          "style": {
+                            "display": "grid",
+                            "gridTemplateColumns": "15% 85%",
+                            "padding": "1rem",
+                            "gap": "1rem"
+                          },
+                          "children": [
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "kind": "heading-compact-01",
+                                "text": "설명"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "name": "text",
+                                    "props": {
+                                      "text": "텍스트의 색상을 지정합니다."
+                                    }
+                                  }
+                                ],
+                                "as": "span"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "kind": "heading-compact-01",
+                                "text": "타입"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "children": [
+                                  {
+                                    "type": "component",
+                                    "name": "CodeSnippet",
+                                    "props": {
+                                      "codeText": "Prop<keyof typeof vars.color>",
+                                      "language": "typescript",
+                                      "type": "inline"
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "kind": "heading-compact-01",
+                                "text": "기본 값"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "children": [
+                                  {
+                                    "type": "component",
+                                    "name": "CodeSnippet",
+                                    "props": {
+                                      "codeText": "prop(() => 'textPrimary')",
+                                      "language": "javascript",
+                                      "type": "inline"
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "li",
+                  "props": {
+                    "style": {
+                      "display": "flex",
+                      "flexDirection": "column"
+                    },
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "kind?",
+                          "language": "javascript",
+                          "type": "inline",
+                          "size": "lg"
+                        }
+                      },
+                      {
+                        "type": "element",
+                        "name": "div",
+                        "props": {
+                          "style": {
+                            "display": "grid",
+                            "gridTemplateColumns": "15% 85%",
+                            "padding": "1rem",
+                            "gap": "1rem"
+                          },
+                          "children": [
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "kind": "heading-compact-01",
+                                "text": "설명"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "name": "text",
+                                    "props": {
+                                      "text": "텍스트의 스타일 종류를 지정합니다."
+                                    }
+                                  }
+                                ],
+                                "as": "span"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "kind": "heading-compact-01",
+                                "text": "타입"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "children": [
+                                  {
+                                    "type": "component",
+                                    "name": "CodeSnippet",
+                                    "props": {
+                                      "codeText": "Prop<'body-compact-01' | 'body-compact-02' | 'body-01' | 'body-02' | 'code-01' | 'code-02' | 'label-01' | 'label-02' | 'helper-text-01' | 'helper-text-02' | 'legal-01' | 'legal-02' | 'heading-compact-01' | 'heading-compact-02' | 'heading-01' | 'heading-02' | 'heading-03' | 'heading-04' | 'heading-05' | 'heading-06' | 'heading-07'>",
+                                      "language": "typescript",
+                                      "type": "inline"
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "kind": "heading-compact-01",
+                                "text": "기본 값"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "children": [
+                                  {
+                                    "type": "component",
+                                    "name": "CodeSnippet",
+                                    "props": {
+                                      "codeText": "prop(() => 'body-01')",
+                                      "language": "javascript",
+                                      "type": "inline"
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "li",
+                  "props": {
+                    "style": {
+                      "display": "flex",
+                      "flexDirection": "column"
+                    },
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "text?",
+                          "language": "javascript",
+                          "type": "inline",
+                          "size": "lg"
+                        }
+                      },
+                      {
+                        "type": "element",
+                        "name": "div",
+                        "props": {
+                          "style": {
+                            "display": "grid",
+                            "gridTemplateColumns": "15% 85%",
+                            "padding": "1rem",
+                            "gap": "1rem"
+                          },
+                          "children": [
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "kind": "heading-compact-01",
+                                "text": "설명"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "name": "text",
+                                    "props": {
+                                      "text": "표시할 텍스트 내용을 지정합니다."
+                                    }
+                                  }
+                                ],
+                                "as": "span"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "kind": "heading-compact-01",
+                                "text": "타입"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "children": [
+                                  {
+                                    "type": "component",
+                                    "name": "CodeSnippet",
+                                    "props": {
+                                      "codeText": "Prop<string>",
+                                      "language": "typescript",
+                                      "type": "inline"
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "element",
+      "name": "div",
+      "props": {
+        "style": {
+          "height": "60vh"
+        }
+      }
+    },
+    {
+      "type": "component",
+      "name": "Link",
+      "props": {
+        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/ui-js/typography/text.json",
+        "children": [
+          {
+            "type": "component",
+            "name": "DocumentIcon",
+            "props": {
+              "style": {
+                "width": "1rem",
+                "filter": "brightness(0) saturate(100%) invert(25%) sepia(69%) saturate(3617%) hue-rotate(218deg) brightness(100%) contrast(104%)"
+              }
+            }
+          },
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "text": "Raw Data From Github",
+              "color": "linkPrimary"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
