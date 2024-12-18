@@ -28,6 +28,10 @@ export const isFunction = (value: unknown): value is Function => {
   return typeof value === 'function'
 }
 
+export const isSvgElement = (value: unknown): value is SVGElement => {
+  return value instanceof SVGElement
+}
+
 export const isNode = (value: unknown): value is Node => {
   return value instanceof Node
 }

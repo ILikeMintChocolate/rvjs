@@ -56,9 +56,8 @@ export const CaseRenderer = <TBase extends Constructor<Empty>>(Base: TBase) => {
     }
 
     commitItem() {
-      const child = this.self.childComponents[0]
-      child.renderTree(true)
-      child.commit()
+      this.self.renderTree(false)
+      this.self.commit()
     }
 
     deleteItem() {

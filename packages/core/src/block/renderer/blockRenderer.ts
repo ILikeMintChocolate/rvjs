@@ -26,8 +26,9 @@ export const BlockRenderer = <TBase extends Constructor<Empty>>(
           this.self.setParentChildRelation(child)
         }
       })
-      this.self.childNodes = children
-      this.self.replaceTempNodes(convertToNodes(children))
+      const childNodes = convertToNodes(children)
+      this.self.childNodes = childNodes
+      this.self.replaceTempNodes(childNodes)
     }
 
     replaceTempNodes(nodes: Node[]) {

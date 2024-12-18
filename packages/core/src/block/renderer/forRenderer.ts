@@ -4,6 +4,8 @@ import { ForComponent } from '@block/component/for.ts'
 import { Constructor, Empty } from '@block/util/mixin.ts'
 import { componentContext } from '@context/component.ts'
 import { stateContext } from '@context/state.ts'
+import { GetState, useState } from '@hook/useState.ts'
+import { Children } from '@type/jsx.ts'
 import { convertToNodes } from '@util/block.ts'
 
 export const ForRenderer = <TBase extends Constructor<Empty>>(Base: TBase) => {
@@ -12,7 +14,17 @@ export const ForRenderer = <TBase extends Constructor<Empty>>(Base: TBase) => {
     each: unknown[]
     startNode: Comment
     endNode: Comment
-    itemMap: Map<unknown, { items: Component[]; index: number }>
+    itemMap: Map<
+      unknown,
+      {
+        items: {
+          component: Component
+          index: GetState<number>
+          setIndex: GetState<number>
+        }[]
+        index: number
+      }
+    >
     countMap: Map<unknown, number>
     deletable: Component[]
     committable: Component[]
@@ -29,13 +41,13 @@ export const ForRenderer = <TBase extends Constructor<Empty>>(Base: TBase) => {
     }
 
     render(isInitial: boolean) {
-      if (isInitial) {
+      if(isInitial) {
         this.self.subscribeDependency()
       }
       const children = this.self.renderFn() as Component[]
       this.self.childComponents = children
       this.self.deleteItems(children)
-      if (children.length > 0) {
+      if(children.length > 0) {
         this.self.updateDom(
           this.self.parentNode ?? this.self.startNode.parentNode,
           this.self.startNode,
@@ -43,45 +55,62 @@ export const ForRenderer = <TBase extends Constructor<Empty>>(Base: TBase) => {
           convertToNodes(children),
           this.self.startNode.nextSibling === this.self.endNode,
         )
-        if (!isInitial) {
+        if(!isInitial) {
           this.self.commitItems()
         }
         this.committable.length = 0
       }
     }
 
-    renderItems(renderFn: (item: unknown) => (Component | Node)[]) {
+    renderItems(renderFn: (item: unknown, index?: GetState<number>) => Children) {
       const newItemMap = new Map<
         unknown,
-        { items: Component[]; index: number }
+        {
+          items: {
+            component: Component
+            index: GetState<number>
+            setIndex: GetState<number>
+          }[]
+          index: number
+        }
       >()
       const newCountMap = new Map<unknown, number>()
       const children = []
-      for (let i = 0; i < this.self.each.length; i++) {
+      for(let i = 0; i < this.self.each.length; i++) {
         const item = this.self.each[i]
         let itemData = newItemMap.get(item)
-        if (!itemData) {
+        if(!itemData) {
           itemData = { items: [], index: 0 }
           newItemMap.set(item, itemData)
         }
-        let child
-        if ((this.self.countMap.get(item) ?? 0) !== 0) {
+        let itemContext
+        if((this.self.countMap.get(item) ?? 0) !== 0) {
           const existingItem = this.self.itemMap.get(item)
-          child = existingItem.items[existingItem.index++]
+          itemContext = existingItem.items[existingItem.index++]
+          itemContext.setIndex(i)
           this.self.countMap.set(item, (this.self.countMap.get(item) ?? 1) - 1)
         } else {
-          child = new BlockComponent(() => renderFn(item), 'BLOCK_COMPONENT')
+          const [index, setIndex] = useState(i)
+          const child = new BlockComponent(
+            () => renderFn(item, index),
+            'BLOCK_COMPONENT',
+          )
+          itemContext = {
+            component: child,
+            index,
+            setIndex,
+          }
           this.self.setParentChildRelation(child)
           this.committable.push(child)
         }
-        children.push(child)
-        itemData.items.push(child)
+        children.push(itemContext.component)
+        itemData.items.push(itemContext)
         newCountMap.set(item, (newCountMap.get(item) ?? 0) + 1)
       }
       const itemMapValues = [...this.self.itemMap.values()]
-      this.self.deletable = itemMapValues.flatMap(({ items, index }) =>
-        items.slice(index),
-      )
+      this.self.deletable = itemMapValues
+        .flatMap(({ items, index }) => items.slice(index))
+        .map((context) => context.component)
       this.self.itemMap = newItemMap
       this.self.countMap = newCountMap
       return children
@@ -98,7 +127,7 @@ export const ForRenderer = <TBase extends Constructor<Empty>>(Base: TBase) => {
     }
 
     deleteItems(children: Component[]) {
-      if (children.length === 0) {
+      if(children.length === 0) {
         this.self.deletable.forEach((child) => {
           child.destroyComponent()
         })
@@ -106,7 +135,7 @@ export const ForRenderer = <TBase extends Constructor<Empty>>(Base: TBase) => {
       } else {
         this.self.deletable.forEach((child) => {
           child.destroyComponent()
-          if (children.length > 0) {
+          if(children.length > 0) {
             child.destroyNode()
           }
         })
