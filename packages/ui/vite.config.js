@@ -23,7 +23,7 @@ export default defineConfig({
       fileName: (format) => `rvjs-ui.${format}.js`,
     },
     rollupOptions: {
-      external: (id) => id === '@rvjs/core' || id === '@rvjs/is',
+      external: (id) => id === '@rvjs/core',
       output: {
         entryFileNames: 'entry.[format].js',
         chunkFileNames: 'chunk/[name].[format].js',
@@ -31,7 +31,7 @@ export default defineConfig({
     },
   },
   optimizeDeps: {
-    exclude: ['@rvjs/core', '@rvjs/is'],
+    exclude: ['@rvjs/core'],
   },
   resolve: {
     alias: [
