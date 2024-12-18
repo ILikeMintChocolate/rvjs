@@ -1,3 +1,5 @@
+export * from '@type/jsx.ts'
+
 export { BlockComponent } from '@block/component/block.ts'
 export { CaseComponent } from '@block/component/case.ts'
 export { Component } from '@block/component/component.ts'
@@ -68,3 +70,5 @@ export type {
 export type { ElementObject } from '@hook/useElement.ts'
 
 export type { StateAccessors, GetState, SetState } from '@hook/useState.ts'
+
+export type { Children, SVG, DOMAttributes } from '@type/jsx.ts'

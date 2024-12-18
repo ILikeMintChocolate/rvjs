@@ -1,8 +1,9 @@
 import { insert } from '@jsx/insert.ts'
 import { spread } from '@jsx/spread.ts'
 import { template } from '@jsx/template.ts'
+import { DOMAttributes } from '@type/jsx.ts'
 
-interface TagProps extends Partial<HTMLElement> {
+interface TagProps extends DOMAttributes<HTMLElement> {
   as: keyof HTMLElementTagNameMap
 }
 

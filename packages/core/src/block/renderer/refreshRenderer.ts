@@ -5,6 +5,7 @@ import { Constructor, Empty } from '@block/util/mixin.ts'
 import { componentContext } from '@context/component.ts'
 import { stateContext } from '@context/state.ts'
 import { GetState } from '@hook/useState.ts'
+import { Children } from '@type/jsx.ts'
 import { convertToNodes } from '@util/block.ts'
 
 export const RefreshRenderer = <TBase extends Constructor<Empty>>(
@@ -45,8 +46,8 @@ export const RefreshRenderer = <TBase extends Constructor<Empty>>(
       }
     }
 
-    renderItem(children: (Component | Node)[]) {
-      if (!children.filter(Boolean).length) {
+    renderItem(children: Children) {
+      if (!(children as []).filter(Boolean).length) {
         return null
       }
       const child = new BlockComponent(() => children, 'BLOCK_COMPONENT')

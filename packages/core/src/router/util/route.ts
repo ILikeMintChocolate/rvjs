@@ -1,4 +1,3 @@
-import { Component } from '@block/component/component.ts'
 import { createComponent } from '@component/component.ts'
 import { Refresh } from '@component/refresh.ts'
 import { SetState, useState } from '@hook/useState.ts'
@@ -13,6 +12,7 @@ import {
   findQuery,
 } from '@router/util/path.ts'
 import { isComponent } from '@type/guard.ts'
+import { Children } from '@type/jsx.ts'
 import { toArray } from '@util/data.ts'
 import { copyGetter } from '@util/function.ts'
 
@@ -136,15 +136,16 @@ export const updateRoutes = (
     routeToRender: Route[]
     routeToRemove: Route[]
   },
-  setRootOutlet: SetState<Component | Node>,
+  setRootOutlet: SetState<Children>,
 ) => {
   const setComponentToRootOutlet = (
     routeToRetain: Route[],
     routeToRender: Route[],
-    setRootOutlet: SetState<Component | Node>,
+    setRootOutlet: SetState<Children>,
   ) => {
     const rootRouteToRetain = routeToRetain.at(-1)
     if (rootRouteToRetain && isComponent(rootRouteToRetain?.element)) {
+      // @ts-ignore
       rootRouteToRetain.element.setOutlet(routeToRender[0].element)
     } else {
       setRootOutlet(routeToRender[0].element)
@@ -178,6 +179,7 @@ export const updateRoutes = (
     route.element = route.getElement
     if (isComponent(route.element)) {
       const [outlet, setOutlet] = useState(childRoute?.element ?? null)
+      // @ts-ignore
       route.element.outlet = createComponent(Refresh, {
         get by() {
           return outlet()

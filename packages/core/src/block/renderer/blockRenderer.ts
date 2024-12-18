@@ -1,7 +1,7 @@
 import { BlockComponent } from '@block/component/block.ts'
-import { Component } from '@block/component/component.ts'
 import { Constructor, Empty } from '@block/util/mixin.ts'
 import { isComponent } from '@type/guard.ts'
+import { Children } from '@type/jsx.ts'
 import { convertToNodes } from '@util/block.ts'
 
 export const BlockRenderer = <TBase extends Constructor<Empty>>(
@@ -10,7 +10,7 @@ export const BlockRenderer = <TBase extends Constructor<Empty>>(
   return class extends Base {
     self: BlockComponent
     tempNode: Comment
-    childNodes: (Node | Component)[]
+    childNodes: Children
 
     constructor(...args: any[]) {
       super(...args)

@@ -5,36 +5,16 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./src/*"
-      ],
-      "@block/*": [
-        "./src/block/*"
-      ],
-      "@component/*": [
-        "src/component/*"
-      ],
-      "@context/*": [
-        "src/context/*"
-      ],
-      "@hook/*": [
-        "src/hook/*"
-      ],
-      "@jsx/*": [
-        "src/jsx/*"
-      ],
-      "@router/*": [
-        "src/router/*"
-      ],
-      "@test/*": [
-        "src/test/*"
-      ],
-      "@type/*": [
-        "src/type/*"
-      ],
-      "@util/*": [
-        "src/util/*"
-      ]
+      "@/*": ["./src/*"],
+      "@block/*": ["./src/block/*"],
+      "@component/*": ["src/component/*"],
+      "@context/*": ["src/context/*"],
+      "@hook/*": ["src/hook/*"],
+      "@jsx/*": ["src/jsx/*"],
+      "@router/*": ["src/router/*"],
+      "@test/*": ["src/test/*"],
+      "@type/*": ["src/type/*"],
+      "@util/*": ["src/util/*"]
     }
   }
 }
