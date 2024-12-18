@@ -1,8 +1,10 @@
 import { Component } from '@block/component/component.ts'
+import { createComponent } from '@component/component.ts'
 import { Refresh } from '@component/refresh.ts'
 import { onDestroy } from '@hook/onDestroy.ts'
 import { onMount } from '@hook/onMount.ts'
 import { useEffect } from '@hook/useEffect.ts'
+import { useGlobalState } from '@hook/useGlobalState.ts'
 import { GetState, SetState, useState } from '@hook/useState.ts'
 import { RawRoute } from '@router/component/route.ts'
 import {
@@ -10,7 +12,7 @@ import {
   createMatchedRoutes,
   createRouteMap,
   updateRoutes,
-} from '@router/util/route.tsx'
+} from '@router/util/route.ts'
 import { toArray } from '@util/data.ts'
 
 interface RouterProps {
@@ -23,10 +25,14 @@ export interface RouteMap {
 
 export interface Route {
   path: string
+  rawPath: string
   type: 'STATIC' | 'DYNAMIC' | 'ANY'
   getElement: Component | Node
   element: Component | Node
   dynamicKey?: string
+  queries: {
+    [key: string]: string
+  }
   childRouteMap: RouteMap
 }
 
@@ -38,19 +44,28 @@ export const Router = (props: RouterProps) => {
 
   const renderRoutes = () => {
     const newMatchedRoutes = createMatchedRoutes(routeMap, paths())
-    const renderRouteContext = compareRoutes(matchedRoutes, newMatchedRoutes)
-    updateRoutes(renderRouteContext, setRootOutlet)
-    matchedRoutes = newMatchedRoutes
+    const { routeToRetain, routeToRender, routeToRemove } = compareRoutes(
+      matchedRoutes,
+      newMatchedRoutes,
+    )
+    updateRoutes({ routeToRetain, routeToRender, routeToRemove }, setRootOutlet)
+    matchedRoutes = [...routeToRetain, ...routeToRender]
   }
 
   useEffect(renderRoutes, [paths])
 
-  // @ts-ignore
-  return <Refresh by={rootOutlet()}>{rootOutlet()}</Refresh>
+  return createComponent(Refresh, {
+    get by() {
+      return rootOutlet()
+    },
+    get children() {
+      return rootOutlet()
+    },
+  })
 }
 
 export const useRouter = (): [GetState<string[]>, SetState<string[]>] => {
-  const [paths, setPaths] = useState<string[]>([])
+  const [paths, setPaths] = useGlobalState<string[]>('RVJS_ROUTER_PATHS', [])
 
   const handleHashChange = () => {
     const hash = (window.location.hash || '#/').replace('#/', '/')

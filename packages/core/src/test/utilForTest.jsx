@@ -59,7 +59,8 @@ export const mockWindowLocationHash = () => {
 }
 
 export const useNavigateMock = (newPath) => {
-  useNavigate(newPath)
+  const navigate = useNavigate()
+  navigate(newPath)
   window.dispatchEvent(new Event('hashchange'))
 }
 

@@ -1,4 +1,5 @@
 import { Component } from '@block/component/component.ts'
+import { createComponent } from '@component/component.ts'
 import { Refresh } from '@component/refresh.ts'
 import { SetState, useState } from '@hook/useState.ts'
 import { RawRoute } from '@router/component/route.ts'
@@ -7,7 +8,9 @@ import { routerContext } from '@router/context/router.ts'
 import {
   findDynamicKey,
   findDynamicPath,
+  findPath,
   findPathType,
+  findQuery,
 } from '@router/util/path.ts'
 import { isComponent } from '@type/guard.ts'
 import { toArray } from '@util/data.ts'
@@ -45,35 +48,48 @@ export const createMatchedRoutes = (routeMap: RouteMap, paths: string[]) => {
   for (let i = 0; i < paths.length; i++) {
     const path = paths[i]
     const matchedRoute = (() => {
-      if (currentRouteMap[path]) {
-        return currentRouteMap[path]
+      if (currentRouteMap[path] || currentRouteMap[findPath(path)]) {
+        const staticRoute = currentRouteMap[findPath(path)]
+        const route = {
+          path: findPath(path),
+          rawPath: path,
+          queries: findQuery(path),
+          dynamicKey: {},
+          type: 'STATIC',
+          ...staticRoute,
+        }
+        copyGetter(staticRoute, 'getElement', route, 'getElement')
+        return route
       }
       const dynamicRoute = findDynamicRoute(currentRouteMap)
       if (dynamicRoute) {
         const route = {
-          path: path,
+          path: findPath(path),
+          rawPath: path,
           type: dynamicRoute.type,
           dynamicKey: findDynamicKey(dynamicRoute.path),
+          queries: findQuery(path),
           childRouteMap: dynamicRoute.childRouteMap,
         }
         copyGetter(dynamicRoute, 'getElement', route, 'getElement')
-        return route as Route
+        return route
       }
       const anyRoute = findAnyRoute(currentRouteMap)
       if (anyRoute) {
         const route = {
           path: path,
           type: anyRoute.type,
+          queries: findQuery(path),
           childRouteMap: anyRoute.childRouteMap,
         }
         copyGetter(anyRoute, 'getElement', route, 'getElement')
-        return route as Route
+        return route
       }
     })()
     if (!matchedRoute) {
       break
     }
-    matchedRoutes.push(matchedRoute)
+    matchedRoutes.push(matchedRoute as Route)
     currentRouteMap = matchedRoute.childRouteMap
   }
   return matchedRoutes
@@ -147,18 +163,34 @@ export const updateRoutes = (
   if (!routeToRender.length) {
     return
   }
-  const context = {}
+  const context = {
+    dynamicKeys: {} as Record<string, string>,
+    queries: {} as Record<string, string>,
+  }
+  routeToRetain.forEach((route) => {
+    if (route.type === 'DYNAMIC') {
+      context.dynamicKeys[route.dynamicKey] = findDynamicPath(route.path)
+    }
+    Object.assign(context.queries, route.queries)
+  })
   ;[...routeToRender].reverse().forEach((route) => {
     // @ts-ignore
     route.element = route.getElement
     if (isComponent(route.element)) {
       const [outlet, setOutlet] = useState(childRoute?.element ?? null)
-      // @ts-ignore
-      route.element.outlet = <Refresh by={outlet()}>{outlet()}</Refresh>
+      route.element.outlet = createComponent(Refresh, {
+        get by() {
+          return outlet()
+        },
+        get children() {
+          return outlet()
+        },
+      })
       route.element.setOutlet = setOutlet
       if (route.type === 'DYNAMIC') {
-        context[route.dynamicKey] = findDynamicPath(route.path)
+        context.dynamicKeys[route.dynamicKey] = findDynamicPath(route.path)
       }
+      Object.assign(context.queries, route.queries)
     }
     childRoute = route
   })
@@ -167,7 +199,7 @@ export const updateRoutes = (
 }
 
 const isRouteEqual = (prevRoute: Route, newRoute: Route) => {
-  return prevRoute.path === newRoute.path
+  return prevRoute.rawPath === newRoute.rawPath
 }
 
 const findDynamicRoute = (routeMap: RouteMap) => {
