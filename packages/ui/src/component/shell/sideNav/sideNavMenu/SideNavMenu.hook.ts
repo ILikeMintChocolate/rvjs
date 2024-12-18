@@ -33,5 +33,5 @@ export const useSideNavMenuToggle = (props: SideNavMenuProps) => {
     }
   }
 
-  return { onClickHandler, onBlurHandler }
+  return { showItems, onClickHandler, onBlurHandler }
 }

@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import { WarningFilledIcon } from '@content/icon/Icons.tsx'
 import {
   textInput_helper_recipe,

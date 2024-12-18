@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import { CloseIcon, MenuIcon } from '@content/icon/Icons.tsx'
 import { Refresh } from '@rvjs/core'
 import {

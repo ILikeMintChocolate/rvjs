@@ -1,6 +1,6 @@
-import { HTMLElementProperties } from '@type/element.ts'
+import { DOMAttributes } from '@rvjs/core'
 
-export interface IframeProps extends HTMLElementProperties<HTMLIFrameElement> {}
+export interface IframeProps extends DOMAttributes<HTMLIFrameElement> {}
 
 export const iframeRenderProps = {
   src: (p: IframeProps['src']) => p,

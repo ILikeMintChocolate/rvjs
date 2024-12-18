@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import { Toggle } from '@rvjs/core'
 import {
   sideNav_backdrop_style,

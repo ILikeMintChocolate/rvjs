@@ -1,8 +1,8 @@
-import { Component } from '@rvjs/core'
+import { Children } from '@rvjs/core'
 
 export interface BodyProps {
   as?: keyof HTMLElementTagNameMap
-  children: (Component | Node)[]
+  children: Children
 }
 
 export const bodyRenderProps = {

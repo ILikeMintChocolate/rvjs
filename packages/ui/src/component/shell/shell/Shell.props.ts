@@ -1,9 +1,9 @@
-import { Component } from '@rvjs/core'
+import { Children } from '@rvjs/core'
 
 export interface ShellProps {
-  header: Component | Node
-  body: Component | Node
-  panel?: Component | Node
+  header: Children
+  body: Children
+  panel?: Children
 }
 
 export const shellRenderProps = {

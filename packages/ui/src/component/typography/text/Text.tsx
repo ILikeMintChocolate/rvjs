@@ -15,7 +15,7 @@ const Text = (_props: TextProps) => {
         props.className,
       ].join(' ')}
     >
-      {props.children}
+      {props.text ?? props.children}
     </Tag>
   )
 }

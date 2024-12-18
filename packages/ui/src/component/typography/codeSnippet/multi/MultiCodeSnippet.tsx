@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import { ChevronDownIcon, CopyIcon } from '@content/icon/Icons.tsx'
 import Button from '@form/button/Button.tsx'
 import Tooltip from '@overlay/tooltip/Tooltip.tsx'
@@ -32,7 +30,7 @@ const MultiCodeSnippet = (_props: MultiCodeSnippetProps) => {
       style={{ width: props.width }}
       aria-label={props.ariaLabel}
     >
-      <div className={multiCodeSnippet_codeWrapper_style} tabIndex="0">
+      <div className={multiCodeSnippet_codeWrapper_style} tabIndex={0}>
         {props.wrapText ? (
           <pre
             className={multiCodeSnippet_pre_style}

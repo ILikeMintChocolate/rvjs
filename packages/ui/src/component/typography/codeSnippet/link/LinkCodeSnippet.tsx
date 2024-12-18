@@ -19,7 +19,7 @@ const LinkCodeSnippet = (_props: LinkCodeSnippetProps) => {
   return (
     <a
       className={linkCodeSnippet_anchor_style}
-      tabIndex="0"
+      tabIndex={0}
       aria-label={props.ariaLabel}
       onClick={onAnchorClickHandler}
     >

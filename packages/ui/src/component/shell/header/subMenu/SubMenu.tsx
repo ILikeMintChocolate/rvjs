@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import { ChevronDownIcon } from '@content/icon/Icons.tsx'
 import {
   subMenu_button_recipe,
@@ -31,8 +29,8 @@ const SubMenu = (_props: SubMenuProps) => {
       <button
         element={props.focusElement}
         className={subMenu_button_recipe({ isSelected: showItems() })}
-        onclick={onClickHandler}
-        onblur={onBlurHandler}
+        onClick={onClickHandler}
+        onBlur={onBlurHandler}
         tabIndex={props.tabIndex}
       >
         <Text

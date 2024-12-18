@@ -1,8 +1,8 @@
-import { Component } from '@rvjs/core'
+import { Children } from '@rvjs/core'
 import { EventHandlers } from '@type/event.ts'
 
 export interface HeaderGlobalActionProps {
-  children: (Component | Node)[]
+  children: Children
   onClick: EventHandlers['onClick']
   className?: string
   isActive?: boolean

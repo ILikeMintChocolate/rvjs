@@ -11,52 +11,51 @@ import tooltipArrowSvg from '@icon/tooltip--arrow.svg?element'
 import warningAltFilledSvg from '@icon/warning--alt--filled.svg?element'
 import warningFilledSvg from '@icon/warning--filled.svg?element'
 import { setSvgProperties } from '@util/svg.ts'
-import { SvgProperties } from 'csstype'
 
-export const ArrowRightIcon = (props?: SvgProperties) => {
+export const ArrowRightIcon = (props?: Partial<SVGElement>) => {
   return setSvgProperties(arrowRightSvg(), props ?? {})
 }
 
-export const ChevronDownIcon = (props?: SvgProperties) => {
+export const ChevronDownIcon = (props?: Partial<SVGElement>) => {
   return setSvgProperties(chevronDownSvg(), props ?? {})
 }
 
-export const CloseIcon = (props?: SvgProperties) => {
+export const CloseIcon = (props?: Partial<SVGElement>) => {
   return setSvgProperties(closeSvg(), props ?? {})
 }
 
-export const CopyIcon = (props?: SvgProperties) => {
+export const CopyIcon = (props?: Partial<SVGElement>) => {
   return setSvgProperties(copySvg(), props ?? {})
 }
 
-export const DocumentIcon = (props?: SvgProperties) => {
+export const DocumentIcon = (props?: Partial<SVGElement>) => {
   return setSvgProperties(documentSvg(), props ?? {})
 }
 
-export const LogoGithubIcon = (props?: SvgProperties) => {
+export const LogoGithubIcon = (props?: Partial<SVGElement>) => {
   return setSvgProperties(logoGithubSvg(), props ?? {})
 }
 
-export const LogoNpmIcon = (props?: SvgProperties) => {
+export const LogoNpmIcon = (props?: Partial<SVGElement>) => {
   return setSvgProperties(logoNpmSvg(), props ?? {})
 }
 
-export const MenuIcon = (props?: SvgProperties) => {
+export const MenuIcon = (props?: Partial<SVGElement>) => {
   return setSvgProperties(menuSvg(), props ?? {})
 }
 
-export const SearchIcon = (props?: SvgProperties) => {
+export const SearchIcon = (props?: Partial<SVGElement>) => {
   return setSvgProperties(searchSvg(), props ?? {})
 }
 
-export const TooltipArrowIcon = (props?: SvgProperties) => {
+export const TooltipArrowIcon = (props?: Partial<SVGElement>) => {
   return setSvgProperties(tooltipArrowSvg(), props ?? {})
 }
 
-export const WarningAltFilledIcon = (props?: SvgProperties) => {
+export const WarningAltFilledIcon = (props?: Partial<SVGElement>) => {
   return setSvgProperties(warningAltFilledSvg(), props ?? {})
 }
 
-export const WarningFilledIcon = (props?: SvgProperties) => {
+export const WarningFilledIcon = (props?: Partial<SVGElement>) => {
   return setSvgProperties(warningFilledSvg(), props ?? {})
 }

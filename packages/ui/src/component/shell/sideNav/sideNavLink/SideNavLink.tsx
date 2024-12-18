@@ -15,7 +15,7 @@ const SideNavLink = (_props: SideNavLinkProps) => {
   const onClickHandler = useSideNavLinkNavigation(props)
 
   return (
-    <li className={sideNavLink_style} tabIndex="-1">
+    <li className={sideNavLink_style} tabIndex={-1}>
       <a
         href={props.href}
         tabIndex={props.tabIndex}

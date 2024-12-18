@@ -1,7 +1,7 @@
-import { Component } from '@rvjs/core'
+import { Children } from '@rvjs/core'
 
 export interface ListItemProps {
-  children?: (Component | Node)[]
+  children?: Children
 }
 
 export const listItemRenderProps = {
