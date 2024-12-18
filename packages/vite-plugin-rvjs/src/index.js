@@ -35,7 +35,7 @@ const vitePluginRvjs = () => {
                 moduleName: '@rvjs/core',
                 delegateEvents: false,
                 wrapConditionals: false,
-                builtIns: ['Switch', 'Case', 'For', 'Toggle'],
+                builtIns: ['Switch', 'Case', 'For', 'Toggle', 'Refresh'],
               },
             ],
           ],
