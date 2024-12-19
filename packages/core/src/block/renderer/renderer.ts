@@ -1,15 +1,7 @@
 import { Component } from '@block/component/component.ts'
 import { Constructor, Empty } from '@block/util/mixin.ts'
 import { componentContext } from '@context/component.ts'
-import {
-  isBlockComponent,
-  isForComponent,
-  isHTMLElement,
-  isRefreshComponent,
-  isSvgElement,
-  isSwitchComponent,
-  isToggleComponent,
-} from '@type/guard.ts'
+import { isBlockComponent, isHTMLElement, isSvgElement } from '@type/guard.ts'
 import { Children } from '@type/jsx.ts'
 import { convertToNodes } from '@util/block.ts'
 import { toArray } from '@util/data.ts'
@@ -41,29 +33,21 @@ export const Renderer = <TBase extends Constructor<Empty>>(Base: TBase) => {
       if (!this.self.isRendered) {
         if (isBlockComponent(this.self)) {
           nodes.push(this.self.tempNode)
-        } else if (
-          isSwitchComponent(this.self) ||
-          isForComponent(this.self) ||
-          isToggleComponent(this.self) ||
-          isRefreshComponent(this.self)
-        ) {
+        } else {
+          // @ts-ignore
           nodes.push(this.self.startNode, this.self.endNode)
         }
       } else {
         if (isBlockComponent(this.self)) {
           nodes.push(...convertToNodes(this.self.childNodes))
-        } else if (
-          isSwitchComponent(this.self) ||
-          isForComponent(this.self) ||
-          isToggleComponent(this.self) ||
-          isRefreshComponent(this.self)
-        ) {
-          let startNode = this.self.startNode
-          nodes.push(this.self.startNode)
-          while (startNode !== this.self.endNode) {
+        } else {
+          // @ts-ignore
+          let { startNode, endNode } = this.self
+          while (startNode !== endNode) {
             nodes.push(startNode.nextSibling)
+            startNode = startNode.nextSibling
           }
-          nodes.push(this.self.endNode)
+          nodes.push(endNode)
         }
       }
       return nodes

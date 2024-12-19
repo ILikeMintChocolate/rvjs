@@ -12,9 +12,10 @@ interface SwitchProps {
 export const Switch = (props: SwitchProps) => {
   const component = new SwitchComponent(
     () => {
+      const { children } = props
       const self = componentContext.get() as SwitchComponent
-      self.renderItems(toArray(props.children) as CaseComponent[])
-      return props.children
+      self.renderItems(toArray(children) as CaseComponent[])
+      return children
     },
     // @ts-ignore
     props.key,
