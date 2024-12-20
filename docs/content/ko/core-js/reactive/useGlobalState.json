@@ -60,7 +60,9 @@
             "name": "Iframe",
             "props": {
               "src": "https://rvjs.xyz/example/core-js/reactive/useGlobalState/ex1/",
-              "height": "15rem"
+              "style": {
+                "height": "15rem"
+              }
             }
           },
           {

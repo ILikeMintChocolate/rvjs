@@ -343,7 +343,7 @@
             "type": "element",
             "name": "img",
             "props": {
-              "src": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/overview/benchmarkResult.png?raw=true",
+              "src": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/core-jsx/overview/benchmarkResult.png?raw=true",
               "style": {
                 "width": "100%",
                 "padding-inline": "2rem",

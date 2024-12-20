@@ -51,7 +51,9 @@
             "name": "Iframe",
             "props": {
               "src": "https://rvjs.xyz/example/ui-js/typography/multiCodeSnippet/ex1/",
-              "height": "300px"
+              "style": {
+                "height": "20rem"
+              }
             }
           },
           {

@@ -125,10 +125,12 @@
                               "props": {
                                 "children": [
                                   {
-                                    "type": "text",
-                                    "name": "text",
+                                    "type": "component",
+                                    "name": "CodeSnippet",
                                     "props": {
-                                      "text": "props"
+                                      "codeText": "props",
+                                      "language": "javascript",
+                                      "type": "inline"
                                     }
                                   }
                                 ],

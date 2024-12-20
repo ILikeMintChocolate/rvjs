@@ -51,7 +51,9 @@
             "name": "Iframe",
             "props": {
               "src": "https://rvjs.xyz/example/core-js/dom/for/ex1/",
-              "height": "15rem"
+              "style": {
+                "height": "15rem"
+              }
             }
           },
           {
