@@ -3,6 +3,15 @@
   "description": "A localization library for rvjs",
   "version": "0.0.1",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ILikeMintChocolate/rvjs.git",
+    "directory": "packages/localizer"
+  },
+  "homepage": "https://rvjs.xyz",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
