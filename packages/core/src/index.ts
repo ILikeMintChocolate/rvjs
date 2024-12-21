@@ -8,6 +8,7 @@ export { ToggleComponent } from '@block/component/toggle.ts'
 
 export { Case } from '@component/case.ts'
 export { createComponent } from '@component/component.ts'
+export { Defined } from '@component/defined.ts'
 export { For } from '@component/for.ts'
 export { Refresh } from '@component/refresh.ts'
 export { root } from '@component/root.ts'
