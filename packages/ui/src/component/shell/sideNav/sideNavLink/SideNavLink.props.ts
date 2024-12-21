@@ -3,6 +3,7 @@ export interface SideNavLinkProps {
   href: string
   isActive?: boolean
   tabIndex?: number
+  isExternal?: boolean
 }
 
 export const sideNavLinkRenderProps = {
@@ -10,4 +11,5 @@ export const sideNavLinkRenderProps = {
   text: (p: SideNavLinkProps['text']) => p,
   isActive: (p: SideNavLinkProps['isActive']) => p,
   tabIndex: (p: SideNavLinkProps['tabIndex']) => p,
+  isExternal: (p: SideNavLinkProps['isExternal']) => p,
 }

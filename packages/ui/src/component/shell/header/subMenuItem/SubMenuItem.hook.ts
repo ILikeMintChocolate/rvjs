@@ -21,7 +21,7 @@ export const useSubMenuNavigation = (props: SubMenuItemProps) => {
 
   const onClickHandler = (event: Event) => {
     event.preventDefault()
-    navigate(props.href)
+    navigate(props.href, props.isExternal)
     setShowItems(false)
   }
 
