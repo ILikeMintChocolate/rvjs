@@ -1,7 +1,14 @@
-export const useNavigate = () => (newPath: string) => {
-  if (newPath.startsWith('#')) {
-    window.location.hash = newPath
+export const useNavigate = () => (newPath: string, isExternal?: boolean) => {
+  if (isExternal) {
+    const externalPath = !/^https?:\/\//.test(newPath)
+      ? `https://${newPath}`
+      : newPath
+    window.open(externalPath, '_blank')
   } else {
-    window.location.hash = `#${newPath}`
+    if (newPath.startsWith('#')) {
+      window.location.hash = newPath
+    } else {
+      window.location.hash = `#${newPath}`
+    }
   }
 }
