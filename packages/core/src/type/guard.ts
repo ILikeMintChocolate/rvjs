@@ -121,3 +121,7 @@ export const isHTMLElement = (value: unknown): value is HTMLElement => {
 export const isSVGElement = (value: unknown): value is SVGElement => {
   return value instanceof SVGElement
 }
+
+export const isDefined = (value: unknown) => {
+  return value !== undefined && value !== null
+}
