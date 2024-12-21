@@ -3,6 +3,7 @@ export interface HeaderMenuItemProps {
   href: string
   isActive?: boolean
   tabIndex?: number
+  isExternal?: boolean
 }
 
 export const headerMenuItemRenderProps = {
@@ -10,4 +11,5 @@ export const headerMenuItemRenderProps = {
   href: (p: HeaderMenuItemProps['href']) => p,
   isActive: (p: HeaderMenuItemProps['isActive']) => p,
   tabIndex: (p: HeaderMenuItemProps['tabIndex']) => p,
+  isExternal: (p: HeaderMenuItemProps['isExternal']) => p,
 }

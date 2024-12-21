@@ -23,6 +23,7 @@ export interface CodeSnippetProps {
   ariaLabel?: string
   defaultShow?: boolean
   href?: string
+  isExternal?: boolean
 }
 
 export const codeSnippetRenderProps = {
@@ -38,4 +39,5 @@ export const codeSnippetRenderProps = {
   ariaLabel: (p: CodeSnippetProps['ariaLabel']) => p,
   defaultShow: (p: CodeSnippetProps['defaultShow']) => p,
   href: (p: CodeSnippetProps['href']) => p,
+  isExternal: (p: CodeSnippetProps['isExternal']) => p,
 }

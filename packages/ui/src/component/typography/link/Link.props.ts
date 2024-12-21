@@ -9,6 +9,7 @@ export interface LinkProps {
   inline?: boolean
   renderIcon?: SVGElement
   size?: 'sm' | 'md' | 'lg'
+  isExternal?: boolean
 }
 
 export const linkRenderProps = {
@@ -19,4 +20,5 @@ export const linkRenderProps = {
   inline: (p: LinkProps['inline']) => p,
   renderIcon: (p: string) => createSvg(p),
   size: (p: LinkProps['size']) => p,
+  isExternal: (p: LinkProps['isExternal']) => p,
 }

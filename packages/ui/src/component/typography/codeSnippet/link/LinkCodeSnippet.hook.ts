@@ -33,7 +33,7 @@ export const useLinkCodeSnippetNavigation = (props: LinkCodeSnippetProps) => {
 
   const onAnchorClickHandler = (event: MouseEvent) => {
     event.preventDefault()
-    navigate(props.href)
+    navigate(props.href, props.isExternal)
     setVisited(true)
   }
 

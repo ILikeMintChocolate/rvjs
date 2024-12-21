@@ -19,7 +19,7 @@ export const useHeaderMenuItemNavigation = (props: HeaderMenuItemProps) => {
 
   const onClickHandler = (event: Event) => {
     event.preventDefault()
-    navigate(props.href)
+    navigate(props.href, props.isExternal)
   }
 
   return onClickHandler

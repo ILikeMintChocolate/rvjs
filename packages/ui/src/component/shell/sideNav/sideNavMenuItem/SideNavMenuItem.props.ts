@@ -3,6 +3,7 @@ export interface SideNavMenuItemProps {
   text: string
   isActive?: boolean
   tabIndex?: number
+  isExternal?: boolean
 }
 
 export const sideNavMenuItemRenderProps = {
@@ -10,4 +11,5 @@ export const sideNavMenuItemRenderProps = {
   text: (p: SideNavMenuItemProps['text']) => p,
   isActive: (p: SideNavMenuItemProps['isActive']) => p,
   tabIndex: (p: SideNavMenuItemProps['tabIndex']) => p,
+  isExternal: (p: SideNavMenuItemProps['isExternal']) => p,
 }

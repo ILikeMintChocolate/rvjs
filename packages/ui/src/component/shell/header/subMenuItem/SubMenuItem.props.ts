@@ -3,6 +3,7 @@ export interface SubMenuItemProps {
   text: string
   isActive?: boolean
   tabIndex?: number
+  isExternal?: boolean
 }
 
 export const subMenuItemRenderProps = {
@@ -10,4 +11,5 @@ export const subMenuItemRenderProps = {
   text: (p: SubMenuItemProps['text']) => p,
   isActive: (p: SubMenuItemProps['isActive']) => p,
   tabIndex: (p: SubMenuItemProps['tabIndex']) => p,
+  isExternal: (p: SubMenuItemProps['isExternal']) => p,
 }
