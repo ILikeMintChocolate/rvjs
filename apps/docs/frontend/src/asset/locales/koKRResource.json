@@ -1,0 +1,130 @@
+{
+  "header": {
+    "title": "개발문서",
+    "prefix": "rvjs",
+    "items": {
+      "language": "한국어",
+      "legacy": "구버전"
+    }
+  },
+  "sideNav": {
+    "coreJSX": {
+      "overview": {
+        "menuName": "개요",
+        "items": {
+          "gettingStarted": "시작하기",
+          "benchmark": "벤치마크"
+        }
+      },
+      "render": {
+        "menuName": "렌더링"
+      },
+      "component": {
+        "menuName": "컴포넌트"
+      },
+      "reactive": {
+        "menuName": "반응성"
+      }
+    },
+    "coreJS": {
+      "overview": {
+        "menuName": "개요",
+        "items": {
+          "gettingStarted": "시작하기",
+          "guide": "가이드",
+          "benchmark": "벤치마크"
+        }
+      },
+      "render": {
+        "menuName": "렌더링"
+      },
+      "reactive": {
+        "menuName": "반응성"
+      },
+      "router": {
+        "menuName": "라우터"
+      }
+    },
+    "uiJS": {
+      "overview": {
+        "menuName": "개요",
+        "items": {
+          "gettingStarted": "시작하기"
+        }
+      },
+      "cssVars": {
+        "menuName": "CSS 변수"
+      },
+      "layout": {
+        "menuName": "레이아웃"
+      },
+      "form": {
+        "menuName": "폼"
+      },
+      "typography": {
+        "menuName": "텍스트"
+      },
+      "content": {
+        "menuName": "컨텐츠"
+      },
+      "shell": {
+        "menuName": "쉘"
+      },
+      "overlay": {
+        "menuName": "오버레이"
+      },
+      "util": {
+        "menuName": "유틸"
+      }
+    },
+    "uiJSX": {
+      "overview": {
+        "menuName": "개요",
+        "items": {
+          "gettingStarted": "시작하기"
+        }
+      },
+      "cssVars": {
+        "menuName": "CSS 변수"
+      },
+      "layout": {
+        "menuName": "레이아웃"
+      },
+      "form": {
+        "menuName": "폼"
+      },
+      "typography": {
+        "menuName": "텍스트"
+      },
+      "content": {
+        "menuName": "컨텐츠"
+      },
+      "shell": {
+        "menuName": "쉘"
+      },
+      "overlay": {
+        "menuName": "오버레이"
+      },
+      "util": {
+        "menuName": "유틸"
+      }
+    },
+    "isJS": {
+      "overview": {
+        "menuName": "개요",
+        "items": {
+          "gettingStarted": "시작하기"
+        }
+      },
+      "type": {
+        "menuName": "타입",
+        "items": {
+          "primitive": "원시 타입",
+          "reference": "참조 타입",
+          "composite": "복합",
+          "@rvjs/core": "@rvjs/core"
+        }
+      }
+    }
+  }
+}

@@ -14,8 +14,9 @@
     "vite": "^5.4.6"
   },
   "dependencies": {
-    "@rvjs/core": "^0.3.21",
-    "@rvjs/ui": "^0.2.0",
+    "@rvjs/core": "^0.3.22",
+    "@rvjs/localizer": "^0.0.2",
+    "@rvjs/ui": "^0.2.1",
     "@vanilla-extract/css": "^1.15.3",
     "vite-plugin-import-svg": "^0.0.4",
     "vite-plugin-rvjs": "^0.0.2"

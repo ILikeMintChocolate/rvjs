@@ -2,12 +2,20 @@ import { onMount, useNavigate, usePathname } from '@rvjs/core'
 
 const legacyPaths = [
   {
-    legacyPath: '/core-v0.2.x/',
-    newPath: '/core-js/',
+    legacyPath: '/core-v0.2.x/gettingStarted',
+    newPath: '/ko/core-js/overview/gettingStarted',
   },
   {
-    legacyPath: '/core-v0.3.x/',
-    newPath: '/core-jsx/',
+    legacyPath: '/core-v0.2.x/benchmark',
+    newPath: '/ko/core-js/overview/benchmark',
+  },
+  {
+    legacyPath: '/core-v0.3.x/gettingStarted',
+    newPath: '/ko/core-jsx/overview/gettingStarted',
+  },
+  {
+    legacyPath: '/core-v0.3.x/benchmark',
+    newPath: '/ko/core-jsx/overview/benchmark',
   },
 ]
 
@@ -26,7 +34,7 @@ export const useRouter = () => {
 
   const redirectInitialPath = (pathname: string) => {
     if (pathname === '/') {
-      navigate('/core-jsx/overview/gettingStarted')
+      navigate('/ko/core-jsx/overview/gettingStarted')
     }
   }
 

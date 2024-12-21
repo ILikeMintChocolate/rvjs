@@ -1,237 +1,266 @@
 import { usePathname } from '@rvjs/core'
+import { getLocale, t } from '@rvjs/localizer'
 import { SideNav, SideNavItems, SideNavMenu, SideNavMenuItem } from '@rvjs/ui'
 
 const UIJSSideNav = () => {
   const pathname = usePathname()
+  const locale = getLocale()
 
   return (
     <SideNav>
       <SideNavItems>
-        <SideNavMenu menuName="Overview" defaultShow={true}>
+        <SideNavMenu
+          menuName={t('sideNav.uiJS.overview.menuName')}
+          defaultShow={true}
+        >
           <SideNavMenuItem
-            text="Getting Started"
-            href="/ui-js/overview/gettingStarted"
+            text={t('sideNav.uiJS.overview.items.gettingStarted')}
+            href={`/${locale()}/ui-js/overview/gettingStarted`}
             isActive={pathname() === '/ui-js/overview/gettingStarted'}
           />
         </SideNavMenu>
-        <SideNavMenu menuName="CSS Variables" defaultShow={true}>
+        <SideNavMenu
+          menuName={t('sideNav.uiJS.cssVars.menuName')}
+          defaultShow={true}
+        >
           <SideNavMenuItem
             text="color"
-            href="/ui-js/vars/color"
+            href={`/${locale()}/ui-js/vars/color`}
             isActive={pathname() === '/ui-js/vars/color'}
           />
           <SideNavMenuItem
             text="font"
-            href="/ui-js/vars/font"
+            href={`/${locale()}/ui-js/vars/font`}
             isActive={pathname() === '/ui-js/vars/font'}
           />
           <SideNavMenuItem
             text="opacity"
-            href="/ui-js/vars/opacity"
+            href={`/${locale()}/ui-js/vars/opacity`}
             isActive={pathname() === '/ui-js/vars/opacity'}
           />
           <SideNavMenuItem
             text="spacing"
-            href="/ui-js/vars/spacing"
+            href={`/${locale()}/ui-js/vars/spacing`}
             isActive={pathname() === '/ui-js/vars/spacing'}
           />
         </SideNavMenu>
-        <SideNavMenu menuName="Layout" defaultShow={true}>
+        <SideNavMenu
+          menuName={t('sideNav.uiJS.layout.menuName')}
+          defaultShow={true}
+        >
           <SideNavMenuItem
             text="Box"
-            href="/ui-js/layout/box"
+            href={`/${locale()}/ui-js/layout/box`}
             isActive={pathname() === '/ui-js/layout/box'}
           />
           <SideNavMenuItem
             text="Flex"
-            href="/ui-js/layout/flex"
+            href={`/${locale()}/ui-js/layout/flex`}
             isActive={pathname() === '/ui-js/layout/flex'}
           />
           <SideNavMenuItem
             text="Grid"
-            href="/ui-js/layout/grid"
+            href={`/${locale()}/ui-js/layout/grid`}
             isActive={pathname() === '/ui-js/layout/grid'}
           />
           <SideNavMenuItem
             text="Section"
-            href="/ui-js/layout/section"
+            href={`/${locale()}/ui-js/layout/section`}
             isActive={pathname() === '/ui-js/layout/section'}
           />
         </SideNavMenu>
-        <SideNavMenu menuName="Form" defaultShow={true}>
+        <SideNavMenu
+          menuName={t('sideNav.uiJS.form.menuName')}
+          defaultShow={true}
+        >
           <SideNavMenuItem
             text="Button"
-            href="/ui-js/form/button"
+            href={`/${locale()}/ui-js/form/button`}
             isActive={pathname() === '/ui-js/form/button'}
           />
           <SideNavMenuItem
             text="TextInput"
-            href="/ui-js/form/textInput"
+            href={`/${locale()}/ui-js/form/textInput`}
             isActive={pathname() === '/ui-js/form/textInput'}
           />
         </SideNavMenu>
-        <SideNavMenu menuName="Typography" defaultShow={true}>
+        <SideNavMenu
+          menuName={t('sideNav.uiJS.typography.menuName')}
+          defaultShow={true}
+        >
           <SideNavMenuItem
             text="Text"
-            href="/ui-js/typography/text"
+            href={`/${locale()}/ui-js/typography/text`}
             isActive={pathname() === '/ui-js/typography/text'}
           />
           <SideNavMenuItem
             text="Highlight"
-            href="/ui-js/typography/highlight"
+            href={`/${locale()}/ui-js/typography/highlight`}
             isActive={pathname() === '/ui-js/typography/highlight'}
           />
           <SideNavMenuItem
             text="Link"
-            href="/ui-js/typography/link"
+            href={`/${locale()}/ui-js/typography/link`}
             isActive={pathname() === '/ui-js/typography/link'}
           />
           <SideNavMenuItem
             text="InlineCodeSnippet"
-            href="/ui-js/typography/inlineCodeSnippet"
+            href={`/${locale()}/ui-js/typography/inlineCodeSnippet`}
             isActive={pathname() === '/ui-js/typography/inlineCodeSnippet'}
           />
           <SideNavMenuItem
             text="LinkCodeSnippet"
-            href="/ui-js/typography/linkCodeSnippet"
+            href={`/${locale()}/ui-js/typography/linkCodeSnippet`}
             isActive={pathname() === '/ui-js/typography/linkCodeSnippet'}
           />
           <SideNavMenuItem
             text="SingleCodeSnippet"
-            href="/ui-js/typography/singleCodeSnippet"
+            href={`/${locale()}/ui-js/typography/singleCodeSnippet`}
             isActive={pathname() === '/ui-js/typography/singleCodeSnippet'}
           />
           <SideNavMenuItem
             text="MultiCodeSnippet"
-            href="/ui-js/typography/multiCodeSnippet"
+            href={`/${locale()}/ui-js/typography/multiCodeSnippet`}
             isActive={pathname() === '/ui-js/typography/multiCodeSnippet'}
           />
         </SideNavMenu>
-        <SideNavMenu menuName="Content" defaultShow={true}>
+        <SideNavMenu
+          menuName={t('sideNav.uiJS.content.menuName')}
+          defaultShow={true}
+        >
           <SideNavMenuItem
             text="ColorChip"
-            href="/ui-js/content/colorChip"
+            href={`/${locale()}/ui-js/content/colorChip`}
             isActive={pathname() === '/ui-js/content/colorChip'}
           />
           <SideNavMenuItem
             text="Icon"
-            href="/ui-js/content/icon"
+            href={`/${locale()}/ui-js/content/icon`}
             isActive={pathname() === '/ui-js/content/icon'}
           />
           <SideNavMenuItem
             text="Iframe"
-            href="/ui-js/content/iframe"
+            href={`/${locale()}/ui-js/content/iframe`}
             isActive={pathname() === '/ui-js/content/iframe'}
           />
           <SideNavMenuItem
             text="OrderedList"
-            href="/ui-js/content/orderedList"
+            href={`/${locale()}/ui-js/content/orderedList`}
             isActive={pathname() === '/ui-js/content/orderedList'}
           />
           <SideNavMenuItem
             text="UnorderedList"
-            href="/ui-js/content/unorderedList"
+            href={`/${locale()}/ui-js/content/unorderedList`}
             isActive={pathname() === '/ui-js/content/unorderedList'}
           />
           <SideNavMenuItem
             text="ListItem"
-            href="/ui-js/content/listItem"
+            href={`/${locale()}/ui-js/content/listItem`}
             isActive={pathname() === '/ui-js/content/listItem'}
           />
         </SideNavMenu>
-        <SideNavMenu menuName="Shell" defaultShow={true}>
+        <SideNavMenu
+          menuName={t('sideNav.uiJS.shell.menuName')}
+          defaultShow={true}
+        >
           <SideNavMenuItem
             text="Body"
-            href="/ui-js/shell/body"
+            href={`/${locale()}/ui-js/shell/body`}
             isActive={pathname() === '/ui-js/shell/body'}
           />
           <SideNavMenuItem
             text="Header"
-            href="/ui-js/shell/header"
+            href={`/${locale()}/ui-js/shell/header`}
             isActive={pathname() === '/ui-js/shell/header'}
           />
           <SideNavMenuItem
             text="HeaderGlobalAction"
-            href="/ui-js/shell/headerGlobalAction"
+            href={`/${locale()}/ui-js/shell/headerGlobalAction`}
             isActive={pathname() === '/ui-js/shell/headerGlobalAction'}
           />
           <SideNavMenuItem
             text="HeaderGlobalBar"
-            href="/ui-js/shell/headerGlobalBar"
+            href={`/${locale()}/ui-js/shell/headerGlobalBar`}
             isActive={pathname() === '/ui-js/shell/headerGlobalBar'}
           />
           <SideNavMenuItem
             text="HeaderHr"
-            href="/ui-js/shell/headerHr"
+            href={`/${locale()}/ui-js/shell/headerHr`}
             isActive={pathname() === '/ui-js/shell/headerHr'}
           />
           <SideNavMenuItem
             text="HeaderMenuButton"
-            href="/ui-js/shell/headerMenuButton"
+            href={`/${locale()}/ui-js/shell/headerMenuButton`}
             isActive={pathname() === '/ui-js/shell/headerMenuButton'}
           />
           <SideNavMenuItem
             text="HeaderMenuItem"
-            href="/ui-js/shell/headerMenuItem"
+            href={`/${locale()}/ui-js/shell/headerMenuItem`}
             isActive={pathname() === '/ui-js/shell/headerMenuItem'}
           />
           <SideNavMenuItem
             text="HeaderName"
-            href="/ui-js/shell/headerName"
+            href={`/${locale()}/ui-js/shell/headerName`}
             isActive={pathname() === '/ui-js/shell/headerName'}
           />
           <SideNavMenuItem
             text="HeaderNavigation"
-            href="/ui-js/shell/headerNavigation"
+            href={`/${locale()}/ui-js/shell/headerNavigation`}
             isActive={pathname() === '/ui-js/shell/headerNavigation'}
           />
           <SideNavMenuItem
             text="SubMenu"
-            href="/ui-js/shell/subMenu"
+            href={`/${locale()}/ui-js/shell/subMenu`}
             isActive={pathname() === '/ui-js/shell/subMenu'}
           />
           <SideNavMenuItem
             text="SubMenuItem"
-            href="/ui-js/shell/subMenuItem"
+            href={`/${locale()}/ui-js/shell/subMenuItem`}
             isActive={pathname() === '/ui-js/shell/subMenuItem'}
           />
           <SideNavMenuItem
             text="SideNav"
-            href="/ui-js/shell/sideNav"
+            href={`/${locale()}/ui-js/shell/sideNav`}
             isActive={pathname() === '/ui-js/shell/sideNav'}
           />
           <SideNavMenuItem
             text="SideNavItems"
-            href="/ui-js/shell/sideNavItems"
+            href={`/${locale()}/ui-js/shell/sideNavItems`}
             isActive={pathname() === '/ui-js/shell/sideNavItems'}
           />
           <SideNavMenuItem
             text="SideNavLink"
-            href="/ui-js/shell/sideNavLink"
+            href={`/${locale()}/ui-js/shell/sideNavLink`}
             isActive={pathname() === '/ui-js/shell/sideNavLink'}
           />
           <SideNavMenuItem
             text="SideNavMenu"
-            href="/ui-js/shell/sideNavMenu"
+            href={`/${locale()}/ui-js/shell/sideNavMenu`}
             isActive={pathname() === '/ui-js/shell/sideNavMenu'}
           />
           <SideNavMenuItem
             text="SideNavMenuItem"
-            href="/ui-js/shell/sideNavMenuItem"
+            href={`/${locale()}/ui-js/shell/sideNavMenuItem`}
             isActive={pathname() === '/ui-js/shell/sideNavMenuItem'}
           />
         </SideNavMenu>
-        <SideNavMenu menuName="Overlay" defaultShow={true}>
+        <SideNavMenu
+          menuName={t('sideNav.uiJS.overlay.menuName')}
+          defaultShow={true}
+        >
           <SideNavMenuItem
             text="Tooltip"
-            href="/ui-js/overlay/tooltip"
+            href={`/${locale()}/ui-js/overlay/tooltip`}
             isActive={pathname() === '/ui-js/overlay/tooltip'}
           />
         </SideNavMenu>
-        <SideNavMenu menuName="Util" defaultShow={true}>
+        <SideNavMenu
+          menuName={t('sideNav.uiJS.util.menuName')}
+          defaultShow={true}
+        >
           <SideNavMenuItem
             text="renderComponentFromJSON"
-            href="/ui-js/util/renderComponentFromJSON"
+            href={`/${locale()}/ui-js/util/renderComponentFromJSON`}
             isActive={pathname() === '/ui-js/util/renderComponentFromJSON'}
           />
         </SideNavMenu>
