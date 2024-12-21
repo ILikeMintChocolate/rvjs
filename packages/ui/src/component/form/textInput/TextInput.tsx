@@ -14,9 +14,8 @@ import {
   useTextInputValue,
 } from '@form/textInput/TextInput.hook.ts'
 import { TextInputProps } from '@form/textInput/TextInput.props.ts'
-import { Case, Switch } from '@rvjs/core'
+import { Case, Defined, Switch } from '@rvjs/core'
 import vars from '@theme/variable/vars.css.ts'
-import { isDefined } from '@type/guard.ts'
 import Text from '@typography/text/Text.tsx'
 
 const TextInput = (_props: TextInputProps) => {
@@ -35,11 +34,11 @@ const TextInput = (_props: TextInputProps) => {
             {props.labelText}
           </Text>
         )}
-        {isDefined(props.maxCount) && (
+        <Defined value={props.maxCount}>
           <Text kind="label-01" color="textSecondary">
             {props.value.length}/{props.maxCount}
           </Text>
-        )}
+        </Defined>
       </div>
       <div
         className={textInput_inputWrapper_recipe({
