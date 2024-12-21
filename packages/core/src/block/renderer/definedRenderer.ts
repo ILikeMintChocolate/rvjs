@@ -1,47 +1,56 @@
 import { BlockComponent } from '@block/component/block.ts'
 import { Component } from '@block/component/component.ts'
-import { RefreshComponent } from '@block/component/refresh.ts'
+import { DefinedComponent } from '@block/component/defined.ts'
 import { Constructor, Empty } from '@block/util/mixin.ts'
 import { componentContext } from '@context/component.ts'
 import { stateContext } from '@context/state.ts'
-import { GetState } from '@hook/useState.ts'
+import { isDefined } from '@type/guard.ts'
 import { Children } from '@type/jsx.ts'
 import { convertToNodes } from '@util/block.ts'
 
-export const RefreshRenderer = <TBase extends Constructor<Empty>>(
+export const DefinedRenderer = <TBase extends Constructor<Empty>>(
   Base: TBase,
 ) => {
   return class extends Base {
-    self: RefreshComponent
-    by: GetState<unknown>
+    self: DefinedComponent
+    value: any
     startNode: Comment
     endNode: Comment
+    isMounted: boolean
 
     constructor(...args: any[]) {
       super(...args)
-      this.self = this as unknown as RefreshComponent
-      this.self.startNode = document.createComment('REFRESH-COMPONENT-START')
-      this.self.endNode = document.createComment('REFRESH-COMPONENT-END')
+      this.self = this as unknown as DefinedComponent
+      this.self.startNode = document.createComment('DEFINED-COMPONENT-START')
+      this.self.endNode = document.createComment('DEFINED-COMPONENT-END')
+      this.self.isMounted = false
     }
 
     render(isInitial: boolean) {
       if (isInitial) {
         this.self.subscribeDependency()
       }
-      this.self.deleteItem()
-      const child = (this.self.renderFn() as Component[])[0]
-      if (!child) {
+      if (!isDefined(this.self.value)) {
+        this.self.deleteItem()
+        this.self.isMounted = false
         return
       }
-      this.self.updateDom(
-        this.self.parentNode ?? this.self.startNode.parentNode,
-        this.self.startNode,
-        this.self.endNode,
-        convertToNodes([child]),
-        this.self.startNode.nextSibling === this.self.endNode,
-      )
-      if (!isInitial) {
-        this.self.commitItem()
+      if (!this.self.isMounted) {
+        const child = (this.self.renderFn() as Component[])[0]
+        if (!child) {
+          return
+        }
+        this.self.updateDom(
+          this.self.parentNode ?? this.self.startNode.parentNode,
+          this.self.startNode,
+          this.self.endNode,
+          convertToNodes([child]),
+          this.self.startNode.nextSibling === this.self.endNode,
+        )
+        if (!isInitial) {
+          this.self.commitItem()
+        }
+        this.self.isMounted = true
       }
     }
 
@@ -79,7 +88,7 @@ export const RefreshRenderer = <TBase extends Constructor<Empty>>(
           componentContext.set(prevComponent)
         },
       })
-      this.self.by
+      this.self.value
       stateContext.clear()
     }
   }
