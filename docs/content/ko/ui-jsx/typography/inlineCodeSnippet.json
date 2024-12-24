@@ -5,7 +5,7 @@
       "name": "Text",
       "props": {
         "as": "h1",
-        "text": "Shell",
+        "text": "InlineCodeSnippet",
         "kind": "heading-06"
       }
     },
@@ -23,10 +23,45 @@
                   "type": "text",
                   "name": "text",
                   "props": {
-                    "text": "스타일이 적용된 기본 레이아웃을 제공하는 컴포넌트입니다."
+                    "text": "InlineCodeSnippet 컴포넌트는 짧은 코드를 인라인으로 표시하는 컴포넌트입니다."
                   }
                 }
               ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "component",
+      "name": "Section",
+      "props": {
+        "children": [
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "text": "예시",
+              "kind": "heading-03",
+              "as": "h4"
+            }
+          },
+          {
+            "type": "component",
+            "name": "Iframe",
+            "props": {
+              "src": "https://rvjs.xyz/example/ui-js/typography/inlineCodeSnippet/ex1/"
+            }
+          },
+          {
+            "type": "component",
+            "name": "CodeSnippet",
+            "props": {
+              "codeText": "import { CodeSnippet } from '@rvjs/ui'\n\nconst InlineCodeSnippetExample = () => {\n  return (\n    <p>\n      반응성을 사용하려면\n      <CodeSnippet type=\"inline\" language=\"javascript\" codeText=\"useState\" />\n      함수를 사용해보세요.\n    </p>\n  )\n}\n\nexport default InlineCodeSnippetExample",
+              "language": "jsx",
+              "type": "multi",
+              "width": "100%",
+              "defaultShow": true
             }
           }
         ]
@@ -70,7 +105,7 @@
                         "type": "component",
                         "name": "CodeSnippet",
                         "props": {
-                          "codeText": "header",
+                          "codeText": "codeText",
                           "language": "javascript",
                           "type": "inline",
                           "size": "lg"
@@ -102,19 +137,10 @@
                               "props": {
                                 "children": [
                                   {
-                                    "type": "component",
-                                    "name": "CodeSnippet",
-                                    "props": {
-                                      "codeText": "header",
-                                      "language": "javascript",
-                                      "type": "inline"
-                                    }
-                                  },
-                                  {
                                     "type": "text",
                                     "name": "text",
                                     "props": {
-                                      "text": " 위치에 적용할 컴포넌트입니다."
+                                      "text": "표시할 코드를 지정합니다."
                                     }
                                   }
                                 ],
@@ -140,7 +166,7 @@
                                     "type": "component",
                                     "name": "CodeSnippet",
                                     "props": {
-                                      "codeText": "Children",
+                                      "codeText": "string",
                                       "language": "typescript",
                                       "type": "inline"
                                     }
@@ -167,7 +193,7 @@
                         "type": "component",
                         "name": "CodeSnippet",
                         "props": {
-                          "codeText": "body",
+                          "codeText": "language",
                           "language": "javascript",
                           "type": "inline",
                           "size": "lg"
@@ -199,19 +225,10 @@
                               "props": {
                                 "children": [
                                   {
-                                    "type": "component",
-                                    "name": "CodeSnippet",
-                                    "props": {
-                                      "codeText": "body",
-                                      "language": "javascript",
-                                      "type": "inline"
-                                    }
-                                  },
-                                  {
                                     "type": "text",
                                     "name": "text",
                                     "props": {
-                                      "text": " 위치에 적용할 컴포넌트입니다."
+                                      "text": " 코드의 언어를 지정합니다."
                                     }
                                   }
                                 ],
@@ -237,7 +254,7 @@
                                     "type": "component",
                                     "name": "CodeSnippet",
                                     "props": {
-                                      "codeText": "Children",
+                                      "codeText": "'javascript' | 'typescript' | 'html' | 'css' | 'bash' | 'json' | 'jsx' | 'tsx'",
                                       "language": "typescript",
                                       "type": "inline"
                                     }
@@ -264,7 +281,7 @@
                         "type": "component",
                         "name": "CodeSnippet",
                         "props": {
-                          "codeText": "panel?",
+                          "codeText": "ariaLabel?",
                           "language": "javascript",
                           "type": "inline",
                           "size": "lg"
@@ -299,7 +316,7 @@
                                     "type": "text",
                                     "name": "text",
                                     "props": {
-                                      "text": "왼쪽에 적용할 사이드 패널입니다."
+                                      "text": "접근성을 위한 설명 텍스트입니다."
                                     }
                                   }
                                 ],
@@ -325,8 +342,211 @@
                                     "type": "component",
                                     "name": "CodeSnippet",
                                     "props": {
-                                      "codeText": "Children",
+                                      "codeText": "string",
                                       "language": "typescript",
+                                      "type": "inline"
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "li",
+                  "props": {
+                    "style": {
+                      "display": "flex",
+                      "flexDirection": "column"
+                    },
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "onClick?",
+                          "language": "javascript",
+                          "type": "inline",
+                          "size": "lg"
+                        }
+                      },
+                      {
+                        "type": "element",
+                        "name": "div",
+                        "props": {
+                          "style": {
+                            "display": "grid",
+                            "gridTemplateColumns": "15% 85%",
+                            "padding": "1rem",
+                            "gap": "1rem"
+                          },
+                          "children": [
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "kind": "heading-compact-01",
+                                "text": "설명"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "name": "text",
+                                    "props": {
+                                      "text": "컴포넌트 클릭 시 실행할 함수를 지정합니다."
+                                    }
+                                  }
+                                ],
+                                "as": "span"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "kind": "heading-compact-01",
+                                "text": "타입"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "children": [
+                                  {
+                                    "type": "component",
+                                    "name": "CodeSnippet",
+                                    "props": {
+                                      "codeText": "(event: MouseEvent) => void",
+                                      "language": "typescript",
+                                      "type": "inline"
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "li",
+                  "props": {
+                    "style": {
+                      "display": "flex",
+                      "flexDirection": "column"
+                    },
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "size?",
+                          "language": "javascript",
+                          "type": "inline",
+                          "size": "lg"
+                        }
+                      },
+                      {
+                        "type": "element",
+                        "name": "div",
+                        "props": {
+                          "style": {
+                            "display": "grid",
+                            "gridTemplateColumns": "15% 85%",
+                            "padding": "1rem",
+                            "gap": "1rem"
+                          },
+                          "children": [
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "kind": "heading-compact-01",
+                                "text": "설명"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "name": "text",
+                                    "props": {
+                                      "text": "코드 스니펫의 크기를 지정합니다."
+                                    }
+                                  }
+                                ],
+                                "as": "span"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "kind": "heading-compact-01",
+                                "text": "타입"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "children": [
+                                  {
+                                    "type": "component",
+                                    "name": "CodeSnippet",
+                                    "props": {
+                                      "codeText": "'md' | 'lg'",
+                                      "language": "typescript",
+                                      "type": "inline"
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "kind": "heading-compact-01",
+                                "text": "기본 값"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "children": [
+                                  {
+                                    "type": "component",
+                                    "name": "CodeSnippet",
+                                    "props": {
+                                      "codeText": "'md'",
+                                      "language": "javascript",
                                       "type": "inline"
                                     }
                                   }
@@ -358,7 +578,7 @@
       "type": "component",
       "name": "Link",
       "props": {
-        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/ui-js/shell/shell.json",
+        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/ui-jsx/typography/inlineCodeSnippet.json",
         "children": [
           {
             "type": "component",

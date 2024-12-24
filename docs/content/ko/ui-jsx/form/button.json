@@ -57,8 +57,8 @@
             "type": "component",
             "name": "CodeSnippet",
             "props": {
-              "codeText": "import { div, prop } from '@rvjs/core'\nimport { Button } from '@rvjs/ui'\n\nconst ButtonKindExample = () => {\n  return div({\n    children: [\n      Button({\n        text: prop(() => 'primary'),\n        kind: prop(() => 'primary'),\n      }),\n      Button({\n        text: prop(() => 'secondary'),\n        kind: prop(() => 'secondary'),\n      }),\n      Button({\n        text: prop(() => 'tertiary'),\n        kind: prop(() => 'tertiary'),\n      }),\n      Button({\n        text: prop(() => 'ghost'),\n        kind: prop(() => 'ghost'),\n      }),\n      Button({\n        text: prop(() => 'dangerPrimary'),\n        kind: prop(() => 'dangerPrimary'),\n      }),\n      Button({\n        text: prop(() => 'dangerGhost'),\n        kind: prop(() => 'dangerGhost'),\n      }),\n      Button({\n        text: prop(() => 'dangerTertiary'),\n        kind: prop(() => 'dangerTertiary'),\n      }),\n    ],\n  })\n}\n\nexport default ButtonKindExample",
-              "language": "javascript",
+              "codeText": "import { Button } from '@rvjs/ui'\n\nconst ButtonKindExample = () => {\n  return (\n    <div>\n      <Button kind=\"primary\">primary</Button>\n      <Button kind=\"secondary\">secondary</Button>\n      <Button kind=\"tertiary\">tertiary</Button>\n      <Button kind=\"ghost\">ghost</Button>\n      <Button kind=\"dangerPrimary\">dangerPrimary</Button>\n      <Button kind=\"dangerGhost\">dangerGhost</Button>\n      <Button kind=\"dangerTertiary\">dangerTertiary</Button>\n    </div>\n  )\n}\n\nexport default ButtonKindExample",
+              "language": "jsx",
               "type": "multi",
               "width": "100%",
               "defaultShow": true
@@ -75,8 +75,8 @@
             "type": "component",
             "name": "CodeSnippet",
             "props": {
-              "codeText": "import { div, prop } from '@rvjs/core'\nimport { Button, Icon } from '@rvjs/ui'\n\nconst ButtonSizeExample = () => {\n  return div({\n    children: [\n      Button({\n        text: prop(() => 'sm'),\n        kind: prop(() => 'primary'),\n        size: prop(() => 'sm'),\n        renderIcon: Icon({ type: 'arrow-right' }),\n      }),\n      Button({\n        text: prop(() => 'md'),\n        kind: prop(() => 'primary'),\n        size: prop(() => 'md'),\n        renderIcon: Icon({ type: 'arrow-right' }),\n      }),\n      Button({\n        text: prop(() => 'lg'),\n        kind: prop(() => 'primary'),\n        size: prop(() => 'lg'),\n        renderIcon: Icon({ type: 'arrow-right' }),\n      }),\n      Button({\n        text: prop(() => 'xl'),\n        kind: prop(() => 'primary'),\n        size: prop(() => 'xl'),\n        renderIcon: Icon({ type: 'arrow-right' }),\n      }),\n      Button({\n        text: prop(() => '2xl'),\n        kind: prop(() => 'primary'),\n        size: prop(() => '2xl'),\n        renderIcon: Icon({ type: 'arrow-right' }),\n      }),\n    ],\n  })\n}\n\nexport default ButtonSizeExample",
-              "language": "javascript",
+              "codeText": "import { Button } from '@rvjs/ui'\n\nconst ButtonSizeExample = () => {\n  return (\n    <div>\n      <Button size=\"sm\">sm</Button>\n      <Button size=\"md\">md</Button>\n      <Button size=\"lg\">lg</Button>\n      <Button size=\"xl\">xl</Button>\n      <Button size=\"2xl\">2xl</Button>\n    </div>\n  )\n}\n\nexport default ButtonSizeExample",
+              "language": "jsx",
               "type": "multi",
               "width": "100%",
               "defaultShow": true
@@ -123,7 +123,7 @@
                         "type": "component",
                         "name": "CodeSnippet",
                         "props": {
-                          "codeText": "classes?",
+                          "codeText": "className?",
                           "language": "javascript",
                           "type": "inline",
                           "size": "lg"
@@ -184,35 +184,8 @@
                                     "type": "component",
                                     "name": "CodeSnippet",
                                     "props": {
-                                      "codeText": "Prop<string>[]",
+                                      "codeText": "string",
                                       "language": "typescript",
-                                      "type": "inline"
-                                    }
-                                  }
-                                ]
-                              }
-                            },
-                            {
-                              "type": "component",
-                              "name": "Text",
-                              "props": {
-                                "as": "span",
-                                "kind": "heading-compact-01",
-                                "text": "기본 값"
-                              }
-                            },
-                            {
-                              "type": "component",
-                              "name": "Text",
-                              "props": {
-                                "as": "span",
-                                "children": [
-                                  {
-                                    "type": "component",
-                                    "name": "CodeSnippet",
-                                    "props": {
-                                      "codeText": "[]",
-                                      "language": "javascript",
                                       "type": "inline"
                                     }
                                   }
@@ -299,7 +272,7 @@
                                     "type": "component",
                                     "name": "CodeSnippet",
                                     "props": {
-                                      "codeText": "Prop<boolean>",
+                                      "codeText": "boolean",
                                       "language": "typescript",
                                       "type": "inline"
                                     }
@@ -326,7 +299,7 @@
                                     "type": "component",
                                     "name": "CodeSnippet",
                                     "props": {
-                                      "codeText": "prop(() ⇒ false)",
+                                      "codeText": "false",
                                       "language": "javascript",
                                       "type": "inline"
                                     }
@@ -414,7 +387,7 @@
                                     "type": "component",
                                     "name": "CodeSnippet",
                                     "props": {
-                                      "codeText": "Prop<boolean>",
+                                      "codeText": "boolean",
                                       "language": "typescript",
                                       "type": "inline"
                                     }
@@ -441,7 +414,7 @@
                                     "type": "component",
                                     "name": "CodeSnippet",
                                     "props": {
-                                      "codeText": "prop(() => false)",
+                                      "codeText": "false",
                                       "language": "javascript",
                                       "type": "inline"
                                     }
@@ -529,7 +502,7 @@
                                     "type": "component",
                                     "name": "CodeSnippet",
                                     "props": {
-                                      "codeText": "Prop<'primary' | 'secondary' | 'tertiary' | 'ghost' | 'dangerPrimary' | 'dangerGhost' | 'dangerTertiary'>",
+                                      "codeText": "'primary' | 'secondary' | 'tertiary' | 'ghost' | 'dangerPrimary' | 'dangerGhost' | 'dangerTertiary'",
                                       "language": "typescript",
                                       "type": "inline"
                                     }
@@ -556,7 +529,7 @@
                                     "type": "component",
                                     "name": "CodeSnippet",
                                     "props": {
-                                      "codeText": "prop(() => 'primary')",
+                                      "codeText": "'primary'",
                                       "language": "javascript",
                                       "type": "inline"
                                     }
@@ -1172,7 +1145,7 @@
                                     "type": "component",
                                     "name": "CodeSnippet",
                                     "props": {
-                                      "codeText": "Prop<'sm' | 'md' | 'lg' | 'xl' | '2xl'>",
+                                      "codeText": "'sm' | 'md' | 'lg' | 'xl' | '2xl'",
                                       "language": "typescript",
                                       "type": "inline"
                                     }
@@ -1199,7 +1172,7 @@
                                     "type": "component",
                                     "name": "CodeSnippet",
                                     "props": {
-                                      "codeText": "prop(() => 'md')",
+                                      "codeText": "'md'",
                                       "language": "javascript",
                                       "type": "inline"
                                     }
@@ -1287,7 +1260,7 @@
                                     "type": "component",
                                     "name": "CodeSnippet",
                                     "props": {
-                                      "codeText": "Prop<number>",
+                                      "codeText": "number",
                                       "language": "typescript",
                                       "type": "inline"
                                     }
@@ -1314,7 +1287,7 @@
                                     "type": "component",
                                     "name": "CodeSnippet",
                                     "props": {
-                                      "codeText": "prop(() => 0)",
+                                      "codeText": "0",
                                       "language": "javascript",
                                       "type": "inline"
                                     }
@@ -1402,7 +1375,7 @@
                                     "type": "component",
                                     "name": "CodeSnippet",
                                     "props": {
-                                      "codeText": "Prop<string>",
+                                      "codeText": "string",
                                       "language": "typescript",
                                       "type": "inline"
                                     }
@@ -1429,7 +1402,7 @@
                                     "type": "component",
                                     "name": "CodeSnippet",
                                     "props": {
-                                      "codeText": "prop(() => '')",
+                                      "codeText": "''",
                                       "language": "javascript",
                                       "type": "inline"
                                     }
@@ -1517,7 +1490,7 @@
                                     "type": "component",
                                     "name": "CodeSnippet",
                                     "props": {
-                                      "codeText": "Prop<'button' | 'reset' | 'submit'>",
+                                      "codeText": "'button' | 'reset' | 'submit'",
                                       "language": "typescript",
                                       "type": "inline"
                                     }
@@ -1544,7 +1517,7 @@
                                     "type": "component",
                                     "name": "CodeSnippet",
                                     "props": {
-                                      "codeText": "prop(() => 'button')",
+                                      "codeText": "'button'",
                                       "language": "javascript",
                                       "type": "inline"
                                     }
@@ -1577,7 +1550,7 @@
       "type": "component",
       "name": "Link",
       "props": {
-        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/ui-js/form/button.json",
+        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/ui-jsx/form/button.json",
         "children": [
           {
             "type": "component",

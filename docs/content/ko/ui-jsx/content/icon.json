@@ -57,8 +57,8 @@
             "type": "component",
             "name": "CodeSnippet",
             "props": {
-              "codeText": "import { div } from '@rvjs/core'\nimport {\n  ArrowRightIcon,\n  ChevronDownIcon,\n  CloseIcon,\n  CopyIcon,\n  DocumentIcon,\n  LogoGithubIcon,\n  LogoNpmIcon,\n  MenuIcon,\n  SearchIcon,\n  TooltipArrowIcon,\n  WarningAltFilledIcon,\n  WarningFilledIcon,\n} from '@rvjs/ui'\n\nconst IconsExample = () => {\n  return div({\n    children: [\n      ArrowRightIcon(),\n      ChevronDownIcon(),\n      CloseIcon(),\n      CopyIcon(),\n      DocumentIcon(),\n      LogoGithubIcon(),\n      LogoNpmIcon(),\n      MenuIcon(),\n      SearchIcon(),\n      TooltipArrowIcon(),\n      WarningAltFilledIcon(),\n      WarningFilledIcon(),\n    ],\n  })\n}\n\nexport default IconsExample",
-              "language": "javascript",
+              "codeText": "import {\n  ArrowRightIcon,\n  ChevronDownIcon,\n  CloseIcon,\n  CopyIcon,\n  DocumentIcon,\n  LogoGithubIcon,\n  LogoNpmIcon,\n  MenuIcon,\n  SearchIcon,\n  TooltipArrowIcon,\n  WarningAltFilledIcon,\n  WarningFilledIcon,\n} from '@rvjs/ui'\n\nconst IconsExample = () => {\n  return (\n    <div>\n      <ArrowRightIcon />\n      <ChevronDownIcon />\n      <CloseIcon />\n      <CopyIcon />\n      <DocumentIcon />\n      <LogoGithubIcon />\n      <LogoNpmIcon />\n      <MenuIcon />\n      <SearchIcon />\n      <TooltipArrowIcon />\n      <WarningAltFilledIcon />\n      <WarningFilledIcon />\n    </div>\n  )\n}\n\nexport default IconsExample",
+              "language": "jsx",
               "type": "multi",
               "width": "100%",
               "defaultShow": true
@@ -85,7 +85,7 @@
             "type": "component",
             "name": "CodeSnippet",
             "props": {
-              "codeText": "function Icon(props?: Partial<SVGElement>): ElementBlock",
+              "codeText": "function Icon(props?: Partial<SVGElement>): SVGElement",
               "language": "typescript",
               "type": "single",
               "width": "100%",
@@ -146,7 +146,7 @@
                                     "type": "component",
                                     "name": "CodeSnippet",
                                     "props": {
-                                      "codeText": "SVGElement ",
+                                      "codeText": "SVGElement",
                                       "language": "javascript",
                                       "type": "inline"
                                     }
@@ -155,7 +155,7 @@
                                     "type": "text",
                                     "name": "text",
                                     "props": {
-                                      "text": "속성을 사용할 수 있습니다."
+                                      "text": " 속성을 사용할 수 있습니다."
                                     }
                                   }
                                 ],
@@ -207,7 +207,7 @@
                                     "type": "component",
                                     "name": "CodeSnippet",
                                     "props": {
-                                      "codeText": "ElementBlock",
+                                      "codeText": "SVGElement",
                                       "language": "javascript",
                                       "type": "inline"
                                     }
@@ -222,27 +222,19 @@
                               "props": {
                                 "children": [
                                   {
-                                    "type": "text",
-                                    "name": "text",
-                                    "props": {
-                                      "text": "DOM 트리에 대응하는 "
-                                    }
-                                  },
-                                  {
                                     "type": "component",
                                     "name": "CodeSnippet",
                                     "props": {
-                                      "codeText": "@rvjs/core",
+                                      "codeText": "SVGElement",
                                       "language": "javascript",
-                                      "type": "link",
-                                      "href": "/core-js/overview/gettingStarted"
+                                      "type": "inline"
                                     }
                                   },
                                   {
                                     "type": "text",
                                     "name": "text",
                                     "props": {
-                                      "text": "의 블록 트리 노드입니다."
+                                      "text": "를 반환합니다."
                                     }
                                   }
                                 ],
@@ -274,7 +266,7 @@
       "type": "component",
       "name": "Link",
       "props": {
-        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/ui-js/content/icon.json",
+        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/ui-jsx/content/icon.json",
         "children": [
           {
             "type": "component",

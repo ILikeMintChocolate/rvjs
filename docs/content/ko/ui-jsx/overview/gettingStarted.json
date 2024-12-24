@@ -67,7 +67,7 @@
             "type": "component",
             "name": "CodeSnippet",
             "props": {
-              "codeText": "npm install @rvjs/ui@0.1.32",
+              "codeText": "npm install @rvjs/ui",
               "language": "bash",
               "type": "single",
               "width": "100%",
@@ -93,6 +93,17 @@
           },
           {
             "type": "component",
+            "name": "CodeSnippet",
+            "props": {
+              "codeText": "import { root } from '@rvjs/core'\nimport { RvjsUIProvider } from '@rvjs/ui'\nimport '/node_modules/@rvjs/ui/dist/style.css'\n\nconst App = () => {\n  return <RvjsUIProvider>...</RvjsUIProvider>\n}\n\nroot(document.getElementById('app'), App())",
+              "language": "typescript",
+              "type": "multi",
+              "width": "100%",
+              "defaultShow": true
+            }
+          },
+          {
+            "type": "component",
             "name": "Text",
             "props": {
               "children": [
@@ -111,88 +122,6 @@
             "name": "UnorderedList",
             "props": {
               "children": [
-                {
-                  "type": "component",
-                  "name": "ListItem",
-                  "props": {
-                    "children": [
-                      {
-                        "type": "component",
-                        "name": "Text",
-                        "props": {
-                          "children": [
-                            {
-                              "type": "component",
-                              "name": "CodeSnippet",
-                              "props": {
-                                "codeText": "startRvjsUI",
-                                "language": "javascript",
-                                "type": "inline"
-                              }
-                            },
-                            {
-                              "type": "text",
-                              "name": "text",
-                              "props": {
-                                "text": " 함수는 내부적으로 "
-                              }
-                            },
-                            {
-                              "type": "component",
-                              "name": "CodeSnippet",
-                              "props": {
-                                "codeText": "@rvjs/is",
-                                "language": "javascript",
-                                "type": "link",
-                                "href": "/is-js/overview/gettingStarted"
-                              }
-                            },
-                            {
-                              "type": "text",
-                              "name": "text",
-                              "props": {
-                                "text": "를 사용해 "
-                              }
-                            },
-                            {
-                              "type": "component",
-                              "name": "CodeSnippet",
-                              "props": {
-                                "codeText": "props",
-                                "language": "javascript",
-                                "type": "inline"
-                              }
-                            },
-                            {
-                              "type": "text",
-                              "name": "text",
-                              "props": {
-                                "text": "의 유효성을 검사를 수행하는 동작을 설정합니다. 이는 "
-                              }
-                            },
-                            {
-                              "type": "component",
-                              "name": "CodeSnippet",
-                              "props": {
-                                "codeText": "development",
-                                "language": "javascript",
-                                "type": "inline"
-                              }
-                            },
-                            {
-                              "type": "text",
-                              "name": "text",
-                              "props": {
-                                "text": " 환경에서만 실행됩니다."
-                              }
-                            }
-                          ],
-                          "as": "span"
-                        }
-                      }
-                    ]
-                  }
-                },
                 {
                   "type": "component",
                   "name": "ListItem",
@@ -277,17 +206,6 @@
                 }
               ]
             }
-          },
-          {
-            "type": "component",
-            "name": "CodeSnippet",
-            "props": {
-              "codeText": "import { root } from '@rvjs/core'\nimport { RvjsUIProvider, startRvjsUI } from '@rvjs/ui'\nimport '/node_modules/@rvjs/ui/dist/style.css'\n\nstartRvjsUI({\n  environment: import.meta.env.MODE as 'development' | 'production',\n})\n\nconst App = () => {\n  return RvjsUIProvider({\n    child: ...,\n  })\n}\n\nroot(document.getElementById('app')!, App())",
-              "language": "typescript",
-              "type": "multi",
-              "width": "100%",
-              "defaultShow": true
-            }
           }
         ]
       }
@@ -310,7 +228,7 @@
             "type": "component",
             "name": "Link",
             "props": {
-              "href": "https://github.com/ILikeMintChocolate/rvjs/tree/ui/js/dev/packages/ui",
+              "href": "https://github.com/ILikeMintChocolate/rvjs/tree/ui/jsx/dev/packages/ui",
               "children": "GitHub"
             }
           },
@@ -338,7 +256,7 @@
       "type": "component",
       "name": "Link",
       "props": {
-        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/ui-js/overview/gettingStarted.json",
+        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/ui-jsx/overview/gettingStarted.json",
         "children": [
           {
             "type": "component",

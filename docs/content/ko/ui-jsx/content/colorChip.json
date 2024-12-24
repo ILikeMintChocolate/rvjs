@@ -5,7 +5,7 @@
       "name": "Text",
       "props": {
         "as": "h1",
-        "text": "Shell",
+        "text": "ColorChip",
         "kind": "heading-06"
       }
     },
@@ -23,10 +23,45 @@
                   "type": "text",
                   "name": "text",
                   "props": {
-                    "text": "스타일이 적용된 기본 레이아웃을 제공하는 컴포넌트입니다."
+                    "text": "ColorChip 컴포넌트는 지정된 색상을 시각적으로 보여주는 컴포넌트입니다."
                   }
                 }
               ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "component",
+      "name": "Section",
+      "props": {
+        "children": [
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "text": "예시",
+              "kind": "heading-03",
+              "as": "h4"
+            }
+          },
+          {
+            "type": "component",
+            "name": "Iframe",
+            "props": {
+              "src": "https://rvjs.xyz/example/ui-js/content/colorChip/ex1/"
+            }
+          },
+          {
+            "type": "component",
+            "name": "CodeSnippet",
+            "props": {
+              "codeText": "import { ColorChip } from '@rvjs/ui'\n\nconst ColorChipExample = () => {\n  return (\n    <div>\n      <ColorChip color=\"buttonPrimary\" size=\"sm\" />\n      <ColorChip color=\"buttonPrimary\" size=\"md\" />\n      <ColorChip color=\"buttonPrimary\" size=\"lg\" />\n    </div>\n  )\n}\n\nexport default ColorChipExample",
+              "language": "jsx",
+              "type": "multi",
+              "width": "100%",
+              "defaultShow": true
             }
           }
         ]
@@ -70,7 +105,7 @@
                         "type": "component",
                         "name": "CodeSnippet",
                         "props": {
-                          "codeText": "header",
+                          "codeText": "color",
                           "language": "javascript",
                           "type": "inline",
                           "size": "lg"
@@ -102,19 +137,10 @@
                               "props": {
                                 "children": [
                                   {
-                                    "type": "component",
-                                    "name": "CodeSnippet",
-                                    "props": {
-                                      "codeText": "header",
-                                      "language": "javascript",
-                                      "type": "inline"
-                                    }
-                                  },
-                                  {
                                     "type": "text",
                                     "name": "text",
                                     "props": {
-                                      "text": " 위치에 적용할 컴포넌트입니다."
+                                      "text": "색상을 지정합니다."
                                     }
                                   }
                                 ],
@@ -140,7 +166,7 @@
                                     "type": "component",
                                     "name": "CodeSnippet",
                                     "props": {
-                                      "codeText": "Children",
+                                      "codeText": "keyof typeof vars.color",
                                       "language": "typescript",
                                       "type": "inline"
                                     }
@@ -167,7 +193,7 @@
                         "type": "component",
                         "name": "CodeSnippet",
                         "props": {
-                          "codeText": "body",
+                          "codeText": "size?",
                           "language": "javascript",
                           "type": "inline",
                           "size": "lg"
@@ -199,19 +225,10 @@
                               "props": {
                                 "children": [
                                   {
-                                    "type": "component",
-                                    "name": "CodeSnippet",
-                                    "props": {
-                                      "codeText": "body",
-                                      "language": "javascript",
-                                      "type": "inline"
-                                    }
-                                  },
-                                  {
                                     "type": "text",
                                     "name": "text",
                                     "props": {
-                                      "text": " 위치에 적용할 컴포넌트입니다."
+                                      "text": "크기를 지정합니다."
                                     }
                                   }
                                 ],
@@ -237,74 +254,13 @@
                                     "type": "component",
                                     "name": "CodeSnippet",
                                     "props": {
-                                      "codeText": "Children",
+                                      "codeText": "'sm' | 'md' | 'lg'",
                                       "language": "typescript",
                                       "type": "inline"
                                     }
                                   }
                                 ]
                               }
-                            }
-                          ]
-                        }
-                      }
-                    ]
-                  }
-                },
-                {
-                  "type": "element",
-                  "name": "li",
-                  "props": {
-                    "style": {
-                      "display": "flex",
-                      "flexDirection": "column"
-                    },
-                    "children": [
-                      {
-                        "type": "component",
-                        "name": "CodeSnippet",
-                        "props": {
-                          "codeText": "panel?",
-                          "language": "javascript",
-                          "type": "inline",
-                          "size": "lg"
-                        }
-                      },
-                      {
-                        "type": "element",
-                        "name": "div",
-                        "props": {
-                          "style": {
-                            "display": "grid",
-                            "gridTemplateColumns": "15% 85%",
-                            "padding": "1rem",
-                            "gap": "1rem"
-                          },
-                          "children": [
-                            {
-                              "type": "component",
-                              "name": "Text",
-                              "props": {
-                                "as": "span",
-                                "kind": "heading-compact-01",
-                                "text": "설명"
-                              }
-                            },
-                            {
-                              "type": "component",
-                              "name": "Text",
-                              "props": {
-                                "children": [
-                                  {
-                                    "type": "text",
-                                    "name": "text",
-                                    "props": {
-                                      "text": "왼쪽에 적용할 사이드 패널입니다."
-                                    }
-                                  }
-                                ],
-                                "as": "span"
-                              }
                             },
                             {
                               "type": "component",
@@ -312,7 +268,7 @@
                               "props": {
                                 "as": "span",
                                 "kind": "heading-compact-01",
-                                "text": "타입"
+                                "text": "기본 값"
                               }
                             },
                             {
@@ -325,8 +281,8 @@
                                     "type": "component",
                                     "name": "CodeSnippet",
                                     "props": {
-                                      "codeText": "Children",
-                                      "language": "typescript",
+                                      "codeText": "'md'",
+                                      "language": "javascript",
                                       "type": "inline"
                                     }
                                   }
@@ -358,7 +314,7 @@
       "type": "component",
       "name": "Link",
       "props": {
-        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/ui-js/shell/shell.json",
+        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/ui-jsx/content/colorChip.json",
         "children": [
           {
             "type": "component",

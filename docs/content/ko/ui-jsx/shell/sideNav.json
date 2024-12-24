@@ -5,7 +5,7 @@
       "name": "Text",
       "props": {
         "as": "h1",
-        "text": "ListItem",
+        "text": "SideNav",
         "kind": "heading-06"
       }
     },
@@ -23,61 +23,10 @@
                   "type": "text",
                   "name": "text",
                   "props": {
-                    "text": "ListItem 컴포넌트는 리스트 항목을 표시하기 위해 "
-                  }
-                },
-                {
-                  "type": "component",
-                  "name": "CodeSnippet",
-                  "props": {
-                    "codeText": "li",
-                    "language": "javascript",
-                    "type": "inline"
-                  }
-                },
-                {
-                  "type": "text",
-                  "name": "text",
-                  "props": {
-                    "text": " 태그를 사용하는 컴포넌트입니다."
+                    "text": "사이드 패널을 만드는 컴포넌트입니다."
                   }
                 }
               ]
-            }
-          }
-        ]
-      }
-    },
-    {
-      "type": "component",
-      "name": "Section",
-      "props": {
-        "children": [
-          {
-            "type": "component",
-            "name": "Text",
-            "props": {
-              "text": "예시",
-              "kind": "heading-03",
-              "as": "h4"
-            }
-          },
-          {
-            "type": "component",
-            "name": "Iframe",
-            "props": {
-              "src": "https://rvjs.xyz/example/ui-js/content/listItem/ex1/"
-            }
-          },
-          {
-            "type": "component",
-            "name": "CodeSnippet",
-            "props": {
-              "codeText": "import { prop } from '@rvjs/core'\nimport { ListItem, UnorderedList } from '@rvjs/ui'\n\nconst ListItemExample = () => {\n  return UnorderedList({\n    children: [\n      ListItem({ text: prop(() => '배포 파이프라인 설정') }),\n      ListItem({ text: prop(() => '타입스크립트 빌드 에러 해결') }),\n      ListItem({ text: prop(() => '테스트 코드 작성') }),\n      ListItem({ text: prop(() => 'UI 컴포넌트 최적화') }),\n    ],\n  })\n}\n\nexport default ListItemExample",
-              "language": "javascript",
-              "type": "multi",
-              "width": "100%",
-              "defaultShow": true
             }
           }
         ]
@@ -121,7 +70,7 @@
                         "type": "component",
                         "name": "CodeSnippet",
                         "props": {
-                          "codeText": "children?",
+                          "codeText": "children",
                           "language": "javascript",
                           "type": "inline",
                           "size": "lg"
@@ -156,7 +105,7 @@
                                     "type": "text",
                                     "name": "text",
                                     "props": {
-                                      "text": "리스트 항목으로 표시할 요소들입니다."
+                                      "text": "컴포넌트 내부에 표시할 요소들입니다."
                                     }
                                   }
                                 ],
@@ -215,7 +164,7 @@
       "type": "component",
       "name": "Link",
       "props": {
-        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/ui-js/content/listItem.json",
+        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/ui-jsx/shell/sideNav.json",
         "children": [
           {
             "type": "component",

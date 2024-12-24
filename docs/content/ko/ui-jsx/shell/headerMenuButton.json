@@ -5,7 +5,7 @@
       "name": "Text",
       "props": {
         "as": "h1",
-        "text": "Shell",
+        "text": "HeaderMenuButton",
         "kind": "heading-06"
       }
     },
@@ -20,10 +20,78 @@
             "props": {
               "children": [
                 {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "Header",
+                    "language": "javascript",
+                    "type": "link",
+                    "href": "/ko/ui-jsx/shell/header"
+                  }
+                },
+                {
                   "type": "text",
                   "name": "text",
                   "props": {
-                    "text": "스타일이 적용된 기본 레이아웃을 제공하는 컴포넌트입니다."
+                    "text": " 컴포넌트에서 사용하는 사이드 패널을 열거나 닫을 수 있는 버튼 컴포넌트입니다."
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "component",
+      "name": "Section",
+      "props": {
+        "children": [
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "text": "유의 사항",
+              "kind": "heading-03",
+              "as": "h4"
+            }
+          },
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "children": [
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "Shell",
+                    "language": "javascript",
+                    "type": "link",
+                    "href": "/ko/ui-jsx/shell/shell"
+                  }
+                },
+                {
+                  "type": "text",
+                  "name": "text",
+                  "props": {
+                    "text": " 컴포넌트의 "
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "panel",
+                    "language": "javascript",
+                    "type": "inline"
+                  }
+                },
+                {
+                  "type": "text",
+                  "name": "text",
+                  "props": {
+                    "text": " 속성에 사이드 패널을 전달해야 합니다. 브라우저 가로 길이가 특정 길이보다 작아진 경우에만 나타납니다."
                   }
                 }
               ]
@@ -70,7 +138,7 @@
                         "type": "component",
                         "name": "CodeSnippet",
                         "props": {
-                          "codeText": "header",
+                          "codeText": "closeIcon?",
                           "language": "javascript",
                           "type": "inline",
                           "size": "lg"
@@ -102,19 +170,10 @@
                               "props": {
                                 "children": [
                                   {
-                                    "type": "component",
-                                    "name": "CodeSnippet",
-                                    "props": {
-                                      "codeText": "header",
-                                      "language": "javascript",
-                                      "type": "inline"
-                                    }
-                                  },
-                                  {
                                     "type": "text",
                                     "name": "text",
                                     "props": {
-                                      "text": " 위치에 적용할 컴포넌트입니다."
+                                      "text": "닫기 아이콘을 바꿀 수 있습니다."
                                     }
                                   }
                                 ],
@@ -140,8 +199,35 @@
                                     "type": "component",
                                     "name": "CodeSnippet",
                                     "props": {
-                                      "codeText": "Children",
+                                      "codeText": "SVGElement",
                                       "language": "typescript",
+                                      "type": "inline"
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "kind": "heading-compact-01",
+                                "text": "기본 값"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "children": [
+                                  {
+                                    "type": "component",
+                                    "name": "CodeSnippet",
+                                    "props": {
+                                      "codeText": "close.svg",
+                                      "language": "javascript",
                                       "type": "inline"
                                     }
                                   }
@@ -167,7 +253,7 @@
                         "type": "component",
                         "name": "CodeSnippet",
                         "props": {
-                          "codeText": "body",
+                          "codeText": "menuIcon?",
                           "language": "javascript",
                           "type": "inline",
                           "size": "lg"
@@ -199,19 +285,10 @@
                               "props": {
                                 "children": [
                                   {
-                                    "type": "component",
-                                    "name": "CodeSnippet",
-                                    "props": {
-                                      "codeText": "body",
-                                      "language": "javascript",
-                                      "type": "inline"
-                                    }
-                                  },
-                                  {
                                     "type": "text",
                                     "name": "text",
                                     "props": {
-                                      "text": " 위치에 적용할 컴포넌트입니다."
+                                      "text": "메뉴 아이콘을 바꿀 수 있습니다."
                                     }
                                   }
                                 ],
@@ -237,8 +314,35 @@
                                     "type": "component",
                                     "name": "CodeSnippet",
                                     "props": {
-                                      "codeText": "Children",
+                                      "codeText": "SVGElement",
                                       "language": "typescript",
+                                      "type": "inline"
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "kind": "heading-compact-01",
+                                "text": "기본 값"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "children": [
+                                  {
+                                    "type": "component",
+                                    "name": "CodeSnippet",
+                                    "props": {
+                                      "codeText": "menu.svg",
+                                      "language": "javascript",
                                       "type": "inline"
                                     }
                                   }
@@ -264,7 +368,7 @@
                         "type": "component",
                         "name": "CodeSnippet",
                         "props": {
-                          "codeText": "panel?",
+                          "codeText": "onClick?",
                           "language": "javascript",
                           "type": "inline",
                           "size": "lg"
@@ -299,7 +403,7 @@
                                     "type": "text",
                                     "name": "text",
                                     "props": {
-                                      "text": "왼쪽에 적용할 사이드 패널입니다."
+                                      "text": "클릭 시 실행할 함수를 설정합니다."
                                     }
                                   }
                                 ],
@@ -325,7 +429,7 @@
                                     "type": "component",
                                     "name": "CodeSnippet",
                                     "props": {
-                                      "codeText": "Children",
+                                      "codeText": "(event: MouseEvent) => void",
                                       "language": "typescript",
                                       "type": "inline"
                                     }
@@ -358,7 +462,7 @@
       "type": "component",
       "name": "Link",
       "props": {
-        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/ui-js/shell/shell.json",
+        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/ui-jsx/shell/headerMenuButton.json",
         "children": [
           {
             "type": "component",
