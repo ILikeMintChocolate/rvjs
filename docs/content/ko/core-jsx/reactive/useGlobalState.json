@@ -432,7 +432,8 @@
             "props": {
               "style": {
                 "width": "1rem",
-                "filter": "brightness(0) saturate(100%) invert(25%) sepia(69%) saturate(3617%) hue-rotate(218deg) brightness(100%) contrast(104%)"
+                "filter": "brightness(0) saturate(100%) invert(25%) sepia(69%) saturate(3617%) hue-rotate(218deg) brightness(100%) contrast(104%)",
+                "z-index": "-1"
               }
             }
           },
