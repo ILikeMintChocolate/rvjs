@@ -1,0 +1,16 @@
+{
+  "common": {
+    "greeting": "Hello UK",
+    "farewell": "Goodbye"
+  },
+  "page": {
+    "home": {
+      "title": "Welcome to Home UK",
+      "description": "This is the homepage"
+    },
+    "about": {
+      "title": "About Us",
+      "description": "Learn more about us"
+    }
+  }
+}

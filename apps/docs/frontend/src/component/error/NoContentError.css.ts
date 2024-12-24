@@ -1,6 +1,11 @@
 import { style } from '@vanilla-extract/css'
 
 export const noContentError_style = style({
+  flex: '1',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
   height: '50vh',
 })
 

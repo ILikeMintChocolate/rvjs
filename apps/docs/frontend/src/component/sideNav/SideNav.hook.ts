@@ -1,26 +1,29 @@
 import { onMount, useEffect, usePathname, useState } from '@rvjs/core'
 import {
-  isInCoreV02xPage,
-  isInCoreV03xPage,
-  isInIsPage,
-  isInUIPage,
+  isInCoreJSPage,
+  isInCoreJSXPage,
+  isInIsJSPage,
+  isInUIJSPage,
+  isInUIJSXPage,
 } from '@util/path.ts'
 
 export const usePageCategory = () => {
   const pathname = usePathname()
   const [pageCategory, setPageCategory] = useState<
-    'CORE_V03X' | 'CORE_V02X' | 'UI' | 'IS' | null
+    'CORE_JSX' | 'CORE_JS' | 'UI_JSX' | 'UI_JS' | 'IS_JS' | null
   >(null)
 
   const setPageCategoryByPathname = (pathname: string) => {
-    if (isInCoreV03xPage(pathname)) {
-      setPageCategory('CORE_V03X')
-    } else if (isInCoreV02xPage(pathname)) {
-      setPageCategory('CORE_V02X')
-    } else if (isInUIPage(pathname)) {
-      setPageCategory('UI')
-    } else if (isInIsPage(pathname)) {
-      setPageCategory('IS')
+    if (isInCoreJSXPage(pathname)) {
+      setPageCategory('CORE_JSX')
+    } else if (isInCoreJSPage(pathname)) {
+      setPageCategory('CORE_JS')
+    } else if (isInUIJSXPage(pathname)) {
+      setPageCategory('UI_JSX')
+    } else if (isInUIJSPage(pathname)) {
+      setPageCategory('UI_JS')
+    } else if (isInIsJSPage(pathname)) {
+      setPageCategory('IS_JS')
     } else {
       setPageCategory(null)
     }

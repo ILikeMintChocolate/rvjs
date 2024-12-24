@@ -1,0 +1,16 @@
+{
+  "common": {
+    "greeting": "안녕하세요",
+    "farewell": "안녕히가세요"
+  },
+  "page": {
+    "home": {
+      "title": "환영합니다",
+      "description": "메인 화면입니다."
+    },
+    "about": {
+      "title": "소개",
+      "description": "소개 화면입니다."
+    }
+  }
+}
