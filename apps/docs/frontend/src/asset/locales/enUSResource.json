@@ -1,0 +1,130 @@
+{
+  "header": {
+    "title": "Documentation",
+    "prefix": "rvjs",
+    "items": {
+      "language": "English",
+      "legacy": "legacy"
+    }
+  },
+  "sideNav": {
+    "coreJSX": {
+      "overview": {
+        "menuName": "Overview",
+        "items": {
+          "gettingStarted": "Getting Started",
+          "benchmark": "Benchmark"
+        }
+      },
+      "render": {
+        "menuName": "Render"
+      },
+      "component": {
+        "menuName": "Component"
+      },
+      "reactive": {
+        "menuName": "Reactive"
+      }
+    },
+    "coreJS": {
+      "overview": {
+        "menuName": "Overview",
+        "items": {
+          "gettingStarted": "Getting Started",
+          "guide": "Guide",
+          "benchmark": "Benchmark"
+        }
+      },
+      "render": {
+        "menuName": "Render"
+      },
+      "reactive": {
+        "menuName": "Reactive"
+      },
+      "router": {
+        "menuName": "Router"
+      }
+    },
+    "uiJS": {
+      "overview": {
+        "menuName": "Overlay",
+        "items": {
+          "gettingStarted": "Getting Started"
+        }
+      },
+      "cssVars": {
+        "menuName": "CSS Variables"
+      },
+      "layout": {
+        "menuName": "Layout"
+      },
+      "form": {
+        "menuName": "Form"
+      },
+      "typography": {
+        "menuName": "Typography"
+      },
+      "content": {
+        "menuName": "Content"
+      },
+      "shell": {
+        "menuName": "Shell"
+      },
+      "overlay": {
+        "menuName": "Overlay"
+      },
+      "util": {
+        "menuName": "Util"
+      }
+    },
+    "uiJSX": {
+      "overview": {
+        "menuName": "개요",
+        "items": {
+          "gettingStarted": "시작하기"
+        }
+      },
+      "cssVars": {
+        "menuName": "CSS 변수"
+      },
+      "layout": {
+        "menuName": "레이아웃"
+      },
+      "form": {
+        "menuName": "폼"
+      },
+      "typography": {
+        "menuName": "텍스트"
+      },
+      "content": {
+        "menuName": "컨텐츠"
+      },
+      "shell": {
+        "menuName": "쉘"
+      },
+      "overlay": {
+        "menuName": "오버레이"
+      },
+      "util": {
+        "menuName": "유틸"
+      }
+    },
+    "isJS": {
+      "overview": {
+        "menuName": "Overlay",
+        "items": {
+          "gettingStarted": "Getting Started"
+        }
+      },
+      "type": {
+        "menuName": "Type",
+        "items": {
+          "primitive": "primitive",
+          "reference": "reference",
+          "composite": "composite",
+          "@rvjs/core": "@rvjs/core"
+        }
+      }
+    }
+  }
+}
