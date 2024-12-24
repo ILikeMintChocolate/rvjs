@@ -77,13 +77,15 @@ const Header = () => {
         </SubMenu>
         <HeaderGlobalAction
           tooltip="Github"
-          onClick={() => navigate('https://github.com/ILikeMintChocolate/rvjs')}
+          onClick={() =>
+            navigate('https://github.com/ILikeMintChocolate/rvjs', true)
+          }
         >
           <LogoGithubIcon className={header_icon_style} />
         </HeaderGlobalAction>
         <HeaderGlobalAction
           tooltip="npm"
-          onClick={() => navigate('https://npmjs.com/package/@rvjs/core')}
+          onClick={() => navigate('https://npmjs.com/package/@rvjs/core', true)}
         >
           <LogoNpmIcon className={header_icon_style} />
         </HeaderGlobalAction>
