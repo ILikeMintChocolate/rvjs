@@ -279,6 +279,7 @@
       "name": "Link",
       "props": {
         "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/is-js/type/primitive.json",
+        "isExternal": true,
         "children": [
           {
             "type": "component",

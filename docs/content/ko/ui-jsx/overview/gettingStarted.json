@@ -33,6 +33,7 @@
                     "as": "span",
                     "inline": true,
                     "href": "https://carbondesignsystem.com/",
+                    "isExternal": true,
                     "children": "IBM Carbon Design System"
                   }
                 },
@@ -229,6 +230,7 @@
             "name": "Link",
             "props": {
               "href": "https://github.com/ILikeMintChocolate/rvjs/tree/ui/jsx/dev/packages/ui",
+              "isExternal": true,
               "children": "GitHub"
             }
           },

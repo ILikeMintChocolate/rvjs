@@ -33,6 +33,7 @@
                     "as": "span",
                     "inline": true,
                     "href": "https://carbondesignsystem.com/",
+                    "isExternal": true,
                     "children": "IBM Carbon Design System"
                   }
                 },
@@ -311,6 +312,7 @@
             "name": "Link",
             "props": {
               "href": "https://github.com/ILikeMintChocolate/rvjs/tree/ui/js/dev/packages/ui",
+              "isExternal": true,
               "children": "GitHub"
             }
           },
@@ -319,6 +321,7 @@
             "name": "Link",
             "props": {
               "href": "https://www.npmjs.com/package/@rvjs/ui",
+              "isExternal": true,
               "children": "npm"
             }
           }
@@ -339,6 +342,7 @@
       "name": "Link",
       "props": {
         "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/ui-js/overview/gettingStarted.json",
+        "isExternal": true,
         "children": [
           {
             "type": "component",
