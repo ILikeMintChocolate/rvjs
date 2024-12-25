@@ -26,7 +26,7 @@
                     "codeText": "@rvjs/core",
                     "language": "javascript",
                     "type": "link",
-                    "href": "/core-jsx/overview/gettingStarted"
+                    "href": "/ko/core-jsx/overview/gettingStarted"
                   }
                 },
                 {
@@ -242,7 +242,7 @@
       "type": "component",
       "name": "Link",
       "props": {
-        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/core-v0.3.x/render/root.json",
+        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/core-jsx/render/root.json",
         "children": [
           {
             "type": "component",

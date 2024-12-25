@@ -49,7 +49,7 @@
                     "codeText": "component",
                     "language": "javascript",
                     "type": "link",
-                    "href": "/core-js/dom/component"
+                    "href": "/ko/core-js/dom/component"
                   }
                 },
                 {
@@ -360,7 +360,7 @@
                                 "codeText": "useGlobalState",
                                 "language": "javascript",
                                 "type": "link",
-                                "href": "/core-js/reactive/useGlobalState"
+                                "href": "/ko/core-js/reactive/useGlobalState"
                               }
                             },
                             {
@@ -377,7 +377,7 @@
                                 "codeText": "onMount",
                                 "language": "javascript",
                                 "type": "link",
-                                "href": "/core-js/reactive/onMount"
+                                "href": "/ko/core-js/reactive/onMount"
                               }
                             },
                             {
@@ -394,7 +394,7 @@
                                 "codeText": "onDestroy",
                                 "language": "javascript",
                                 "type": "link",
-                                "href": "/core-js/reactive/onDestroy"
+                                "href": "/ko/core-js/reactive/onDestroy"
                               }
                             },
                             {
@@ -411,7 +411,7 @@
                                 "codeText": "createContext",
                                 "language": "javascript",
                                 "type": "link",
-                                "href": "/core-js/reactive/createContext"
+                                "href": "/ko/core-js/reactive/createContext"
                               }
                             },
                             {
@@ -445,7 +445,7 @@
                                 "codeText": "Router",
                                 "language": "javascript",
                                 "type": "link",
-                                "href": "/core-js/router/router"
+                                "href": "/ko/core-js/router/router"
                               }
                             },
                             {
@@ -563,7 +563,7 @@
                     "codeText": "element",
                     "language": "javascript",
                     "type": "link",
-                    "href": "/core-js/dom/element"
+                    "href": "/ko/core-js/dom/element"
                   }
                 },
                 {

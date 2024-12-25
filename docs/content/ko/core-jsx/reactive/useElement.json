@@ -315,7 +315,7 @@
       "type": "component",
       "name": "Link",
       "props": {
-        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/core-v0.3.x/reactive/useRef.json",
+        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/core-jsx/reactive/useRef.json",
         "children": [
           {
             "type": "component",

@@ -26,7 +26,7 @@
                     "codeText": "@rvjs/core",
                     "language": "javascript",
                     "type": "link",
-                    "href": "/core-js/overview/gettingStarted"
+                    "href": "/ko/core-js/overview/gettingStarted"
                   }
                 },
                 {
@@ -106,7 +106,7 @@
                                       "codeText": "ElementBlock",
                                       "language": "javascript",
                                       "type": "link",
-                                      "href": "/core-js/dom/element"
+                                      "href": "/ko/core-js/dom/element"
                                     }
                                   },
                                   {
@@ -170,7 +170,7 @@
                                       "codeText": "ComponentBlock",
                                       "language": "javascript",
                                       "type": "link",
-                                      "href": "/core-js/dom/component"
+                                      "href": "/ko/core-js/dom/component"
                                     }
                                   },
                                   {
@@ -234,7 +234,7 @@
                                       "codeText": "ForBlock",
                                       "language": "javascript",
                                       "type": "link",
-                                      "href": "/core-js/dom/for"
+                                      "href": "/ko/core-js/dom/for"
                                     }
                                   },
                                   {
@@ -298,7 +298,7 @@
                                       "codeText": "SwitchBlock",
                                       "language": "javascript",
                                       "type": "link",
-                                      "href": "/core-js/dom/switch"
+                                      "href": "/ko/core-js/dom/switch"
                                     }
                                   },
                                   {
@@ -362,7 +362,7 @@
                                       "codeText": "ToggleBlock",
                                       "language": "javascript",
                                       "type": "link",
-                                      "href": "/core-js/dom/toggle"
+                                      "href": "/ko/core-js/dom/toggle"
                                     }
                                   },
                                   {
@@ -426,7 +426,7 @@
                                       "codeText": "TextNodeBlock",
                                       "language": "javascript",
                                       "type": "link",
-                                      "href": "/core-js/dom/textNode"
+                                      "href": "/ko/core-js/dom/textNode"
                                     }
                                   },
                                   {
@@ -776,7 +776,7 @@
                                       "codeText": "useState",
                                       "language": "javascript",
                                       "type": "link",
-                                      "href": "/core-js/reactive/useState"
+                                      "href": "/ko/core-js/reactive/useState"
                                     }
                                   },
                                   {
@@ -825,7 +825,7 @@
                                       "codeText": "isGetState",
                                       "language": "javascript",
                                       "type": "link",
-                                      "href": "/is-js/type/composite"
+                                      "href": "/ko/is-js/type/composite"
                                     }
                                   },
                                   {
@@ -968,7 +968,7 @@
                                       "codeText": "prop",
                                       "language": "javascript",
                                       "type": "link",
-                                      "href": "/core-js/reactive/prop"
+                                      "href": "/ko/core-js/reactive/prop"
                                     }
                                   },
                                   {

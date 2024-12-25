@@ -26,7 +26,7 @@
                     "codeText": "HeaderMenuItem",
                     "language": "javascript",
                     "type": "link",
-                    "href": "/ui-js/shell/headerMenuItem"
+                    "href": "/ko/ui-js/shell/headerMenuItem"
                   }
                 },
                 {
@@ -125,7 +125,7 @@
                                       "codeText": "HeaderMenuItem",
                                       "language": "javascript",
                                       "type": "link",
-                                      "href": "/ui-js/shell/headerMenuItem"
+                                      "href": "/ko/ui-js/shell/headerMenuItem"
                                     }
                                   },
                                   {

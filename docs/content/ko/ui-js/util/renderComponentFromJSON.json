@@ -290,7 +290,7 @@
                                                   "codeText": "@rvjs/ui",
                                                   "language": "javascript",
                                                   "type": "link",
-                                                  "href": "/ui-js/overview/gettingStarted"
+                                                  "href": "/ko/ui-js/overview/gettingStarted"
                                                 }
                                               },
                                               {
@@ -307,7 +307,7 @@
                                                   "codeText": "@rvjs/core",
                                                   "language": "javascript",
                                                   "type": "link",
-                                                  "href": "/core-js/overview/gettingStarted"
+                                                  "href": "/ko/core-js/overview/gettingStarted"
                                                 }
                                               },
                                               {
@@ -519,7 +519,7 @@
                                                   "codeText": "Text",
                                                   "language": "javascript",
                                                   "type": "link",
-                                                  "href": "/ui-js/typography/text"
+                                                  "href": "/ko/ui-js/typography/text"
                                                 }
                                               },
                                               {
@@ -779,7 +779,7 @@
                                                   "codeText": "Text",
                                                   "language": "javascript",
                                                   "type": "link",
-                                                  "href": "/ui-js/typography/text"
+                                                  "href": "/ko/ui-js/typography/text"
                                                 }
                                               },
                                               {
@@ -892,7 +892,7 @@
                     "codeText": "prop",
                     "language": "javascript",
                     "type": "link",
-                    "href": "/core-js/reactive/prop"
+                    "href": "/ko/core-js/reactive/prop"
                   }
                 },
                 {
@@ -940,7 +940,7 @@
                     "codeText": "Text",
                     "language": "javascript",
                     "type": "link",
-                    "href": "/ui-js/typography/text"
+                    "href": "/ko/ui-js/typography/text"
                   }
                 },
                 {

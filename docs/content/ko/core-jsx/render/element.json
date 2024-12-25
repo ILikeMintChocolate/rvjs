@@ -305,7 +305,7 @@
                                 "codeText": "useElement",
                                 "language": "javascript",
                                 "type": "link",
-                                "href": "/core-jsx/reactive/useElement"
+                                "href": "/ko/core-jsx/reactive/useElement"
                               }
                             },
                             {
@@ -400,7 +400,7 @@
       "type": "component",
       "name": "Link",
       "props": {
-        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/core-v0.3.x/render/element.json",
+        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/core-jsx/render/element.json",
         "children": [
           {
             "type": "component",
