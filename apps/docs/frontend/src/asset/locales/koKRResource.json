@@ -24,6 +24,12 @@
       },
       "reactive": {
         "menuName": "반응성"
+      },
+      "router": {
+        "menuName": "라우터"
+      },
+      "util": {
+        "menuName": "유틸"
       }
     },
     "coreJS": {

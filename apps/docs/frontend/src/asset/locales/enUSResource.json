@@ -24,6 +24,12 @@
       },
       "reactive": {
         "menuName": "Reactive"
+      },
+      "router": {
+        "menuName": "Router"
+      },
+      "util": {
+        "menuName": "Util"
       }
     },
     "coreJS": {
@@ -79,34 +85,34 @@
     },
     "uiJSX": {
       "overview": {
-        "menuName": "개요",
+        "menuName": "Overview",
         "items": {
-          "gettingStarted": "시작하기"
+          "gettingStarted": "Getting Started"
         }
       },
       "cssVars": {
-        "menuName": "CSS 변수"
+        "menuName": "CSS Vars"
       },
       "layout": {
-        "menuName": "레이아웃"
+        "menuName": "Layout"
       },
       "form": {
-        "menuName": "폼"
+        "menuName": "Form"
       },
       "typography": {
-        "menuName": "텍스트"
+        "menuName": "Typography"
       },
       "content": {
-        "menuName": "컨텐츠"
+        "menuName": "Content"
       },
       "shell": {
-        "menuName": "쉘"
+        "menuName": "Shell"
       },
       "overlay": {
-        "menuName": "오버레이"
+        "menuName": "Overlay"
       },
       "util": {
-        "menuName": "유틸"
+        "menuName": "Util"
       }
     },
     "isJS": {
