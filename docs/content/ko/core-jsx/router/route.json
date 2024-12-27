@@ -5,7 +5,7 @@
       "name": "Text",
       "props": {
         "as": "h1",
-        "text": "벤치마크",
+        "text": "Route",
         "kind": "heading-06"
       }
     },
@@ -23,17 +23,16 @@
                   "type": "component",
                   "name": "CodeSnippet",
                   "props": {
-                    "codeText": "js-framework-benchmark",
+                    "codeText": "Route",
                     "language": "javascript",
-                    "type": "link",
-                    "href": "https://github.com/krausest/js-framework-benchmark"
+                    "type": "inline"
                   }
                 },
                 {
                   "type": "text",
                   "name": "text",
                   "props": {
-                    "text": "를 사용하여 다양한 라이브러리의 성능을 비교한 결과입니다."
+                    "text": " 컴포넌트는 경로와 해당 경로에서 렌더링 할 요소를 정의하는 데 사용됩니다. 이를 통해 애플리케이션 내의 페이지를 구성하고, 경로 기반의 컴포넌트 전환을 구현할 수 있습니다."
                   }
                 }
               ]
@@ -51,25 +50,28 @@
             "type": "component",
             "name": "Text",
             "props": {
-              "text": "버전별 이슈 및 성능 개선 내역",
+              "text": "레퍼런스",
               "kind": "heading-03",
               "as": "h4"
             }
           },
           {
             "type": "component",
+            "name": "CodeSnippet",
+            "props": {
+              "codeText": "function Route(props: {\n  path: string,\n  element: Children,\n  children?: RouteComponent[]\n}): RouteComponent",
+              "language": "typescript",
+              "defaultShow": true,
+              "type": "multi",
+              "width": "100%"
+            }
+          },
+          {
+            "type": "component",
             "name": "Text",
             "props": {
-              "kind": "heading-compact-01",
-              "children": [
-                {
-                  "type": "text",
-                  "name": "text",
-                  "props": {
-                    "text": "v0.2.14"
-                  }
-                }
-              ]
+              "text": "매개변수",
+              "kind": "heading-compact-01"
             }
           },
           {
@@ -97,10 +99,12 @@
                               "props": {
                                 "children": [
                                   {
-                                    "type": "text",
-                                    "name": "text",
+                                    "type": "component",
+                                    "name": "CodeSnippet",
                                     "props": {
-                                      "text": "select row"
+                                      "codeText": "path",
+                                      "language": "javascript",
+                                      "type": "inline"
                                     }
                                   }
                                 ],
@@ -111,25 +115,8 @@
                               "type": "component",
                               "name": "Text",
                               "props": {
-                                "children": [
-                                  {
-                                    "type": "component",
-                                    "name": "CodeSnippet",
-                                    "props": {
-                                      "codeText": "classes",
-                                      "language": "javascript",
-                                      "type": "inline"
-                                    }
-                                  },
-                                  {
-                                    "type": "text",
-                                    "name": "text",
-                                    "props": {
-                                      "text": " 속성에 빈 문자열을 사용할 수 없어, 임시 값을 사용하며 벤치마크 결과에 영향을 미침"
-                                    }
-                                  }
-                                ],
-                                "as": "span"
+                                "as": "span",
+                                "children": "경로를 나타내는 문자열입니다."
                               }
                             }
                           ]
@@ -158,10 +145,12 @@
                               "props": {
                                 "children": [
                                   {
-                                    "type": "text",
-                                    "name": "text",
+                                    "type": "component",
+                                    "name": "CodeSnippet",
                                     "props": {
-                                      "text": "swap rows"
+                                      "codeText": "element",
+                                      "language": "javascript",
+                                      "type": "inline"
                                     }
                                   }
                                 ],
@@ -172,16 +161,54 @@
                               "type": "component",
                               "name": "Text",
                               "props": {
+                                "as": "span",
+                                "children": "해당 경로에서 렌더링 할 요소입니다."
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "ListItem",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "element",
+                        "name": "div",
+                        "props": {
+                          "style": {
+                            "display": "grid",
+                            "gridTemplateColumns": "20% 80%"
+                          },
+                          "children": [
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
                                 "children": [
                                   {
-                                    "type": "text",
-                                    "name": "text",
+                                    "type": "component",
+                                    "name": "CodeSnippet",
                                     "props": {
-                                      "text": "특정 상황에서 DOM 업데이트가 올바르게 동작하지 않는 문제 발생"
+                                      "codeText": "children?",
+                                      "language": "javascript",
+                                      "type": "inline"
                                     }
                                   }
                                 ],
                                 "as": "span"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "children": "중첩 라우트를 구성할 때 사용할 자식 라우트입니다."
                               }
                             }
                           ]
@@ -197,16 +224,8 @@
             "type": "component",
             "name": "Text",
             "props": {
-              "kind": "heading-compact-01",
-              "children": [
-                {
-                  "type": "text",
-                  "name": "text",
-                  "props": {
-                    "text": "v0.2.21"
-                  }
-                }
-              ]
+              "text": "반환 값",
+              "kind": "heading-compact-01"
             }
           },
           {
@@ -234,10 +253,12 @@
                               "props": {
                                 "children": [
                                   {
-                                    "type": "text",
-                                    "name": "text",
+                                    "type": "component",
+                                    "name": "CodeSnippet",
                                     "props": {
-                                      "text": "create rows"
+                                      "codeText": "RouteComponent",
+                                      "language": "javascript",
+                                      "type": "inline"
                                     }
                                   }
                                 ],
@@ -248,77 +269,26 @@
                               "type": "component",
                               "name": "Text",
                               "props": {
+                                "as": "span",
                                 "children": [
                                   {
                                     "type": "component",
                                     "name": "CodeSnippet",
                                     "props": {
-                                      "codeText": "useState",
+                                      "codeText": "@rvjs/core",
                                       "language": "javascript",
-                                      "type": "inline"
+                                      "type": "link",
+                                      "href": "/ko/core-jsx/overview/gettingStarted"
                                     }
                                   },
                                   {
                                     "type": "text",
                                     "name": "text",
                                     "props": {
-                                      "text": " 컨텍스트 업데이트 개선"
+                                      "text": "의 구성요소 중 하나입니다."
                                     }
                                   }
-                                ],
-                                "as": "span"
-                              }
-                            }
-                          ]
-                        }
-                      }
-                    ]
-                  }
-                },
-                {
-                  "type": "component",
-                  "name": "ListItem",
-                  "props": {
-                    "children": [
-                      {
-                        "type": "element",
-                        "name": "div",
-                        "props": {
-                          "style": {
-                            "display": "grid",
-                            "gridTemplateColumns": "20% 80%"
-                          },
-                          "children": [
-                            {
-                              "type": "component",
-                              "name": "Text",
-                              "props": {
-                                "children": [
-                                  {
-                                    "type": "text",
-                                    "name": "text",
-                                    "props": {
-                                      "text": "swap rows"
-                                    }
-                                  }
-                                ],
-                                "as": "span"
-                              }
-                            },
-                            {
-                              "type": "component",
-                              "name": "Text",
-                              "props": {
-                                "children": [
-                                  {
-                                    "type": "text",
-                                    "name": "text",
-                                    "props": {
-                                      "text": "DOM 비교 및 업데이트 알고리즘 최적화"
-                                    }
-                                  }
-                                ],
-                                "as": "span"
+                                ]
                               }
                             }
                           ]
@@ -342,21 +312,115 @@
             "type": "component",
             "name": "Text",
             "props": {
-              "text": "결과",
+              "text": "라우트 유형",
               "kind": "heading-03",
               "as": "h4"
             }
           },
           {
-            "type": "element",
-            "name": "img",
+            "type": "component",
+            "name": "UnorderedList",
             "props": {
-              "src": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/core-js/overview/benchmarkResult.png?raw=true",
-              "style": {
-                "width": "100%",
-                "padding-inline": "2rem",
-                "box-sizing": "border-box"
-              }
+              "children": [
+                {
+                  "type": "component",
+                  "name": "ListItem",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "Text",
+                        "props": {
+                          "children": [
+                            {
+                              "type": "text",
+                              "name": "text",
+                              "props": {
+                                "text": "정적 라우트"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "Text",
+                        "props": {
+                          "children": [
+                            {
+                              "type": "text",
+                              "name": "text",
+                              "props": {
+                                "text": "정적 라우트는 고정된 경로로, 사용자가 정확히 일치하는 URL에 접근할 때 해당 컴포넌트가 렌더링 됩니다."
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "<Router>\n  <Route path=\"/home\" element={<HomePage />} />\n  <Route path=\"/about\" element={<AboutPage />} />\n</Router>",
+                          "language": "jsx",
+                          "type": "multi",
+                          "width": "100%",
+                          "defaultShow": true
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "ListItem",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "Text",
+                        "props": {
+                          "children": [
+                            {
+                              "type": "text",
+                              "name": "text",
+                              "props": {
+                                "text": "동적 라우트"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "Text",
+                        "props": {
+                          "children": [
+                            {
+                              "type": "text",
+                              "name": "text",
+                              "props": {
+                                "text": "동적 경로는 변수 부분을 포함하여 렌더링 하므로, 다양한 값을 경로에서 사용할 수 있습니다."
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
+                          "codeText": "<Router>\n  <Route path=\"/product\" element={<ProductPage />}>\n    <Route path=\"/:pid\" element={<ProductDetailPage />} />\n  </Route>\n</Router>",
+                          "language": "jsx",
+                          "type": "multi",
+                          "width": "100%",
+                          "defaultShow": true
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
             }
           }
         ]
@@ -375,7 +439,7 @@
       "type": "component",
       "name": "Link",
       "props": {
-        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/core-js/overview/benchmark.json",
+        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/core-jsx/router/route.json",
         "children": [
           {
             "type": "component",

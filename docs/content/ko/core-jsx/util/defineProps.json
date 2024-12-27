@@ -59,7 +59,7 @@
             "type": "component",
             "name": "CodeSnippet",
             "props": {
-              "codeText": "function defineProps<T extends object, U extends object>(\n  props: T,\n  definitions: U,\n  options?: {\n\t  children?: string[]\n  }\n): T & U",
+              "codeText": "function defineProps<T extends object, U extends object>(\n  props: T,\n  definitions: U,\n  options?: {\n    children?: string[]\n  }\n): T & U",
               "language": "typescript",
               "defaultShow": true,
               "type": "multi",

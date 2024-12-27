@@ -5,7 +5,7 @@
       "name": "Text",
       "props": {
         "as": "h1",
-        "text": "Benchmark",
+        "text": "벤치마크",
         "kind": "heading-06"
       }
     },
