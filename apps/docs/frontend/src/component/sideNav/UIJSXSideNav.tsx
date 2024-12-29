@@ -1,10 +1,10 @@
 import { usePathname } from '@rvjs/core'
-import { getLocale, t } from '@rvjs/localizer'
+import { t, useLocale } from '@rvjs/localizer'
 import { SideNav, SideNavItems, SideNavMenu, SideNavMenuItem } from '@rvjs/ui'
 
 const UIJSXSideNav = () => {
   const pathname = usePathname()
-  const locale = getLocale()
+  const { language } = useLocale()
 
   return (
     <SideNav>
@@ -15,7 +15,7 @@ const UIJSXSideNav = () => {
         >
           <SideNavMenuItem
             text={t('sideNav.uiJSX.overview.items.gettingStarted')}
-            href={`/${locale()}/ui-jsx/overview/gettingStarted`}
+            href={`/${language()}/ui-jsx/overview/gettingStarted`}
             isActive={pathname() === '/ui-jsx/overview/gettingStarted'}
           />
         </SideNavMenu>
@@ -25,22 +25,22 @@ const UIJSXSideNav = () => {
         >
           <SideNavMenuItem
             text="color"
-            href={`/${locale()}/ui-jsx/vars/color`}
+            href={`/${language()}/ui-jsx/vars/color`}
             isActive={pathname() === '/ui-jsx/vars/color'}
           />
           <SideNavMenuItem
             text="font"
-            href={`/${locale()}/ui-jsx/vars/font`}
+            href={`/${language()}/ui-jsx/vars/font`}
             isActive={pathname() === '/ui-jsx/vars/font'}
           />
           <SideNavMenuItem
             text="opacity"
-            href={`/${locale()}/ui-jsx/vars/opacity`}
+            href={`/${language()}/ui-jsx/vars/opacity`}
             isActive={pathname() === '/ui-jsx/vars/opacity'}
           />
           <SideNavMenuItem
             text="spacing"
-            href={`/${locale()}/ui-jsx/vars/spacing`}
+            href={`/${language()}/ui-jsx/vars/spacing`}
             isActive={pathname() === '/ui-jsx/vars/spacing'}
           />
         </SideNavMenu>
@@ -50,7 +50,7 @@ const UIJSXSideNav = () => {
         >
           <SideNavMenuItem
             text="Section"
-            href={`/${locale()}/ui-jsx/layout/section`}
+            href={`/${language()}/ui-jsx/layout/section`}
             isActive={pathname() === '/ui-jsx/layout/section'}
           />
         </SideNavMenu>
@@ -60,12 +60,12 @@ const UIJSXSideNav = () => {
         >
           <SideNavMenuItem
             text="Button"
-            href={`/${locale()}/ui-jsx/form/button`}
+            href={`/${language()}/ui-jsx/form/button`}
             isActive={pathname() === '/ui-jsx/form/button'}
           />
           <SideNavMenuItem
             text="TextInput"
-            href={`/${locale()}/ui-jsx/form/textInput`}
+            href={`/${language()}/ui-jsx/form/textInput`}
             isActive={pathname() === '/ui-jsx/form/textInput'}
           />
         </SideNavMenu>
@@ -75,37 +75,37 @@ const UIJSXSideNav = () => {
         >
           <SideNavMenuItem
             text="Text"
-            href={`/${locale()}/ui-jsx/typography/text`}
+            href={`/${language()}/ui-jsx/typography/text`}
             isActive={pathname() === '/ui-jsx/typography/text'}
           />
           <SideNavMenuItem
             text="Highlight"
-            href={`/${locale()}/ui-jsx/typography/highlight`}
+            href={`/${language()}/ui-jsx/typography/highlight`}
             isActive={pathname() === '/ui-jsx/typography/highlight'}
           />
           <SideNavMenuItem
             text="Link"
-            href={`/${locale()}/ui-jsx/typography/link`}
+            href={`/${language()}/ui-jsx/typography/link`}
             isActive={pathname() === '/ui-jsx/typography/link'}
           />
           <SideNavMenuItem
             text="InlineCodeSnippet"
-            href={`/${locale()}/ui-jsx/typography/inlineCodeSnippet`}
+            href={`/${language()}/ui-jsx/typography/inlineCodeSnippet`}
             isActive={pathname() === '/ui-jsx/typography/inlineCodeSnippet'}
           />
           <SideNavMenuItem
             text="LinkCodeSnippet"
-            href={`/${locale()}/ui-jsx/typography/linkCodeSnippet`}
+            href={`/${language()}/ui-jsx/typography/linkCodeSnippet`}
             isActive={pathname() === '/ui-jsx/typography/linkCodeSnippet'}
           />
           <SideNavMenuItem
             text="SingleCodeSnippet"
-            href={`/${locale()}/ui-jsx/typography/singleCodeSnippet`}
+            href={`/${language()}/ui-jsx/typography/singleCodeSnippet`}
             isActive={pathname() === '/ui-jsx/typography/singleCodeSnippet'}
           />
           <SideNavMenuItem
             text="MultiCodeSnippet"
-            href={`/${locale()}/ui-jsx/typography/multiCodeSnippet`}
+            href={`/${language()}/ui-jsx/typography/multiCodeSnippet`}
             isActive={pathname() === '/ui-jsx/typography/multiCodeSnippet'}
           />
         </SideNavMenu>
@@ -115,32 +115,32 @@ const UIJSXSideNav = () => {
         >
           <SideNavMenuItem
             text="ColorChip"
-            href={`/${locale()}/ui-jsx/content/colorChip`}
+            href={`/${language()}/ui-jsx/content/colorChip`}
             isActive={pathname() === '/ui-jsx/content/colorChip'}
           />
           <SideNavMenuItem
             text="Icon"
-            href={`/${locale()}/ui-jsx/content/icon`}
+            href={`/${language()}/ui-jsx/content/icon`}
             isActive={pathname() === '/ui-jsx/content/icon'}
           />
           <SideNavMenuItem
             text="Iframe"
-            href={`/${locale()}/ui-jsx/content/iframe`}
+            href={`/${language()}/ui-jsx/content/iframe`}
             isActive={pathname() === '/ui-jsx/content/iframe'}
           />
           <SideNavMenuItem
             text="OrderedList"
-            href={`/${locale()}/ui-jsx/content/orderedList`}
+            href={`/${language()}/ui-jsx/content/orderedList`}
             isActive={pathname() === '/ui-jsx/content/orderedList'}
           />
           <SideNavMenuItem
             text="UnorderedList"
-            href={`/${locale()}/ui-jsx/content/unorderedList`}
+            href={`/${language()}/ui-jsx/content/unorderedList`}
             isActive={pathname() === '/ui-jsx/content/unorderedList'}
           />
           <SideNavMenuItem
             text="ListItem"
-            href={`/${locale()}/ui-jsx/content/listItem`}
+            href={`/${language()}/ui-jsx/content/listItem`}
             isActive={pathname() === '/ui-jsx/content/listItem'}
           />
         </SideNavMenu>
@@ -150,87 +150,87 @@ const UIJSXSideNav = () => {
         >
           <SideNavMenuItem
             text="Shell"
-            href={`/${locale()}/ui-jsx/shell/shell`}
+            href={`/${language()}/ui-jsx/shell/shell`}
             isActive={pathname() === '/ui-jsx/shell/shell'}
           />
           <SideNavMenuItem
             text="Body"
-            href={`/${locale()}/ui-jsx/shell/body`}
+            href={`/${language()}/ui-jsx/shell/body`}
             isActive={pathname() === '/ui-jsx/shell/body'}
           />
           <SideNavMenuItem
             text="Header"
-            href={`/${locale()}/ui-jsx/shell/header`}
+            href={`/${language()}/ui-jsx/shell/header`}
             isActive={pathname() === '/ui-jsx/shell/header'}
           />
           <SideNavMenuItem
             text="HeaderGlobalAction"
-            href={`/${locale()}/ui-jsx/shell/headerGlobalAction`}
+            href={`/${language()}/ui-jsx/shell/headerGlobalAction`}
             isActive={pathname() === '/ui-jsx/shell/headerGlobalAction'}
           />
           <SideNavMenuItem
             text="HeaderGlobalBar"
-            href={`/${locale()}/ui-jsx/shell/headerGlobalBar`}
+            href={`/${language()}/ui-jsx/shell/headerGlobalBar`}
             isActive={pathname() === '/ui-jsx/shell/headerGlobalBar'}
           />
           <SideNavMenuItem
             text="HeaderHr"
-            href={`/${locale()}/ui-jsx/shell/headerHr`}
+            href={`/${language()}/ui-jsx/shell/headerHr`}
             isActive={pathname() === '/ui-jsx/shell/headerHr'}
           />
           <SideNavMenuItem
             text="HeaderMenuButton"
-            href={`/${locale()}/ui-jsx/shell/headerMenuButton`}
+            href={`/${language()}/ui-jsx/shell/headerMenuButton`}
             isActive={pathname() === '/ui-jsx/shell/headerMenuButton'}
           />
           <SideNavMenuItem
             text="HeaderMenuItem"
-            href={`/${locale()}/ui-jsx/shell/headerMenuItem`}
+            href={`/${language()}/ui-jsx/shell/headerMenuItem`}
             isActive={pathname() === '/ui-jsx/shell/headerMenuItem'}
           />
           <SideNavMenuItem
             text="HeaderName"
-            href={`/${locale()}/ui-jsx/shell/headerName`}
+            href={`/${language()}/ui-jsx/shell/headerName`}
             isActive={pathname() === '/ui-jsx/shell/headerName'}
           />
           <SideNavMenuItem
             text="HeaderNavigation"
-            href={`/${locale()}/ui-jsx/shell/headerNavigation`}
+            href={`/${language()}/ui-jsx/shell/headerNavigation`}
             isActive={pathname() === '/ui-jsx/shell/headerNavigation'}
           />
           <SideNavMenuItem
             text="SubMenu"
-            href={`/${locale()}/ui-jsx/shell/subMenu`}
+            href={`/${language()}/ui-jsx/shell/subMenu`}
             isActive={pathname() === '/ui-jsx/shell/subMenu'}
           />
           <SideNavMenuItem
             text="SubMenuItem"
-            href={`/${locale()}/ui-jsx/shell/subMenuItem`}
+            href={`/${language()}/ui-jsx/shell/subMenuItem`}
             isActive={pathname() === '/ui-jsx/shell/subMenuItem'}
           />
           <SideNavMenuItem
             text="SideNav"
-            href={`/${locale()}/ui-jsx/shell/sideNav`}
+            href={`/${language()}/ui-jsx/shell/sideNav`}
             isActive={pathname() === '/ui-jsx/shell/sideNav'}
           />
           <SideNavMenuItem
             text="SideNavItems"
-            href={`/${locale()}/ui-jsx/shell/sideNavItems`}
+            href={`/${language()}/ui-jsx/shell/sideNavItems`}
             isActive={pathname() === '/ui-jsx/shell/sideNavItems'}
           />
           <SideNavMenuItem
             text="SideNavLink"
-            href={`/${locale()}/ui-jsx/shell/sideNavLink`}
+            href={`/${language()}/ui-jsx/shell/sideNavLink`}
             isActive={pathname() === '/ui-jsx/shell/sideNavLink'}
           />
           <SideNavMenuItem
             text="SideNavMenu"
-            href={`/${locale()}/ui-jsx/shell/sideNavMenu`}
+            href={`/${language()}/ui-jsx/shell/sideNavMenu`}
             isActive={pathname() === '/ui-jsx/shell/sideNavMenu'}
           />
           <SideNavMenuItem
             text="SideNavMenuItem"
-            href={`/${locale()}/ui-jsx/shell/sideNavMenuItem`}
+            href={`/${language()}/ui-jsx/shell/sideNavMenuItem`}
             isActive={pathname() === '/ui-jsx/shell/sideNavMenuItem'}
           />
         </SideNavMenu>
@@ -240,12 +240,12 @@ const UIJSXSideNav = () => {
         >
           <SideNavMenuItem
             text="Tooltip"
-            href={`/${locale()}/ui-jsx/overlay/tooltip`}
+            href={`/${language()}/ui-jsx/overlay/tooltip`}
             isActive={pathname() === '/ui-jsx/overlay/tooltip'}
           />
           <SideNavMenuItem
             text="Spinner"
-            href={`/${locale()}/ui-jsx/overlay/spinner`}
+            href={`/${language()}/ui-jsx/overlay/spinner`}
             isActive={pathname() === '/ui-jsx/overlay/spinner'}
           />
         </SideNavMenu>

@@ -1,10 +1,10 @@
 import { usePathname } from '@rvjs/core'
-import { getLocale, t } from '@rvjs/localizer'
+import { t, useLocale } from '@rvjs/localizer'
 import { SideNav, SideNavItems, SideNavMenu, SideNavMenuItem } from '@rvjs/ui'
 
 const CoreJSSideNav = () => {
   const pathname = usePathname()
-  const locale = getLocale()
+  const { language } = useLocale()
 
   return (
     <SideNav>
@@ -15,17 +15,17 @@ const CoreJSSideNav = () => {
         >
           <SideNavMenuItem
             text={t('sideNav.coreJS.overview.items.gettingStarted')}
-            href={`/${locale()}/core-js/overview/gettingStarted`}
+            href={`/${language()}/core-js/overview/gettingStarted`}
             isActive={pathname() === '/core-js/overview/gettingStarted'}
           />
           <SideNavMenuItem
             text={t('sideNav.coreJS.overview.items.guide')}
-            href={`/${locale()}/core-js/overview/guide`}
+            href={`/${language()}/core-js/overview/guide`}
             isActive={pathname() === '/core-js/overview/guide'}
           />
           <SideNavMenuItem
             text={t('sideNav.coreJS.overview.items.benchmark')}
-            href={`/${locale()}/core-js/overview/benchmark`}
+            href={`/${language()}/core-js/overview/benchmark`}
             isActive={pathname() === '/core-js/overview/benchmark'}
           />
         </SideNavMenu>
@@ -35,42 +35,42 @@ const CoreJSSideNav = () => {
         >
           <SideNavMenuItem
             text="element"
-            href={`/${locale()}/core-js/dom/element`}
+            href={`/${language()}/core-js/dom/element`}
             isActive={pathname() === '/core-js/dom/element'}
           />
           <SideNavMenuItem
             text="component"
-            href={`/${locale()}/core-js/dom/component`}
+            href={`/${language()}/core-js/dom/component`}
             isActive={pathname() === '/core-js/dom/component'}
           />
           <SideNavMenuItem
             text="root"
-            href={`/${locale()}/core-js/dom/root`}
+            href={`/${language()}/core-js/dom/root`}
             isActive={pathname() === '/core-js/dom/root'}
           />
           <SideNavMenuItem
             text="textNode"
-            href={`/${locale()}/core-js/dom/textNode`}
+            href={`/${language()}/core-js/dom/textNode`}
             isActive={pathname() === '/core-js/dom/textNode'}
           />
           <SideNavMenuItem
             text="For"
-            href={`/${locale()}/core-js/dom/for`}
+            href={`/${language()}/core-js/dom/for`}
             isActive={pathname() === '/core-js/dom/for'}
           />
           <SideNavMenuItem
             text="Switch"
-            href={`/${locale()}/core-js/dom/switch`}
+            href={`/${language()}/core-js/dom/switch`}
             isActive={pathname() === '/core-js/dom/switch'}
           />
           <SideNavMenuItem
             text="Toggle"
-            href={`/${locale()}/core-js/dom/toggle`}
+            href={`/${language()}/core-js/dom/toggle`}
             isActive={pathname() === '/core-js/dom/toggle'}
           />
           <SideNavMenuItem
             text="Suspense"
-            href={`/${locale()}/core-js/dom/suspense`}
+            href={`/${language()}/core-js/dom/suspense`}
             isActive={pathname() === '/core-js/dom/suspense'}
           />
         </SideNavMenu>
@@ -80,52 +80,52 @@ const CoreJSSideNav = () => {
         >
           <SideNavMenuItem
             text="useState"
-            href={`/${locale()}/core-js/reactive/useState`}
+            href={`/${language()}/core-js/reactive/useState`}
             isActive={pathname() === '/core-js/reactive/useState'}
           />
           <SideNavMenuItem
             text="useGlobalState"
-            href={`/${locale()}/core-js/reactive/useGlobalState`}
+            href={`/${language()}/core-js/reactive/useGlobalState`}
             isActive={pathname() === '/core-js/reactive/useGlobalState'}
           />
           <SideNavMenuItem
             text="useEffect"
-            href={`/${locale()}/core-js/reactive/useEffect`}
+            href={`/${language()}/core-js/reactive/useEffect`}
             isActive={pathname() === '/core-js/reactive/useEffect'}
           />
           <SideNavMenuItem
             text="useRef"
-            href={`/${locale()}/core-js/reactive/useRef`}
+            href={`/${language()}/core-js/reactive/useRef`}
             isActive={pathname() === '/core-js/reactive/useRef'}
           />
           <SideNavMenuItem
             text="useElement"
-            href={`/${locale()}/core-js/reactive/useElement`}
+            href={`/${language()}/core-js/reactive/useElement`}
             isActive={pathname() === '/core-js/reactive/useElement'}
           />
           <SideNavMenuItem
             text="dynamic"
-            href={`/${locale()}/core-js/reactive/dynamic`}
+            href={`/${language()}/core-js/reactive/dynamic`}
             isActive={pathname() === '/core-js/reactive/dynamic'}
           />
           <SideNavMenuItem
             text="prop"
-            href={`/${locale()}/core-js/reactive/prop`}
+            href={`/${language()}/core-js/reactive/prop`}
             isActive={pathname() === '/core-js/reactive/prop'}
           />
           <SideNavMenuItem
             text="createContext"
-            href={`/${locale()}/core-js/reactive/createContext`}
+            href={`/${language()}/core-js/reactive/createContext`}
             isActive={pathname() === '/core-js/reactive/createContext'}
           />
           <SideNavMenuItem
             text="onMount"
-            href={`/${locale()}/core-js/reactive/onMount`}
+            href={`/${language()}/core-js/reactive/onMount`}
             isActive={pathname() === '/core-js/reactive/onMount'}
           />
           <SideNavMenuItem
             text="onDestroy"
-            href={`/${locale()}/core-js/reactive/onDestroy`}
+            href={`/${language()}/core-js/reactive/onDestroy`}
             isActive={pathname() === '/core-js/reactive/onDestroy'}
           />
         </SideNavMenu>
@@ -135,37 +135,37 @@ const CoreJSSideNav = () => {
         >
           <SideNavMenuItem
             text="Router"
-            href={`/${locale()}/core-js/router/router`}
+            href={`/${language()}/core-js/router/router`}
             isActive={pathname() === '/core-js/router/router'}
           />
           <SideNavMenuItem
             text="useNavigate"
-            href={`/${locale()}/core-js/router/useNavigate`}
+            href={`/${language()}/core-js/router/useNavigate`}
             isActive={pathname() === '/core-js/router/useNavigate'}
           />
           <SideNavMenuItem
             text="useOutlet"
-            href={`/${locale()}/core-js/router/useOutlet`}
+            href={`/${language()}/core-js/router/useOutlet`}
             isActive={pathname() === '/core-js/router/useOutlet'}
           />
           <SideNavMenuItem
             text="usePathname"
-            href={`/${locale()}/core-js/router/usePathname`}
+            href={`/${language()}/core-js/router/usePathname`}
             isActive={pathname() === '/core-js/router/usePathname'}
           />
           <SideNavMenuItem
             text="usePathEffect"
-            href={`/${locale()}/core-js/router/usePathEffect`}
+            href={`/${language()}/core-js/router/usePathEffect`}
             isActive={pathname() === '/core-js/router/usePathEffect'}
           />
           <SideNavMenuItem
             text="usePathParams"
-            href={`/${locale()}/core-js/router/usePathParams`}
+            href={`/${language()}/core-js/router/usePathParams`}
             isActive={pathname() === '/core-js/router/usePathParams'}
           />
           <SideNavMenuItem
             text="useQueryParams"
-            href={`/${locale()}/core-js/router/useQueryParams`}
+            href={`/${language()}/core-js/router/useQueryParams`}
             isActive={pathname() === '/core-js/router/useQueryParams'}
           />
         </SideNavMenu>

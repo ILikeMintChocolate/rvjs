@@ -1,6 +1,6 @@
 import { header_icon_style } from '@component/header/Header.css.ts'
 import { useNavigate, usePathname } from '@rvjs/core'
-import { getLocale, t } from '@rvjs/localizer'
+import { t, useLocale } from '@rvjs/localizer'
 import {
   Header as ShellHeader,
   HeaderGlobalAction,
@@ -27,42 +27,42 @@ import {
 const Header = () => {
   const navigate = useNavigate()
   const pathname = usePathname()
-  const locale = getLocale()
+  const { language } = useLocale()
 
   return (
     <ShellHeader>
       <HeaderMenuButton menuIcon={(<MenuIcon />) as SVGElement} />
       <HeaderName
         title={t('header.title')}
-        href={`/${locale()}/core-jsx/overview/gettingStarted`}
+        href={`/${language()}/core-jsx/overview/gettingStarted`}
         prefix={t('header.prefix')}
       />
       <HeaderHr />
       <HeaderNavigation>
         <HeaderMenuItem
           text="core-jsx"
-          href={`/${locale()}/core-jsx/overview/gettingStarted`}
+          href={`/${language()}/core-jsx/overview/gettingStarted`}
           isActive={isInCoreJSXPage(pathname())}
         />
         <HeaderMenuItem
           text="ui-jsx"
-          href={`/${locale()}/ui-jsx/overview/gettingStarted`}
+          href={`/${language()}/ui-jsx/overview/gettingStarted`}
           isActive={isInUIJSXPage(pathname())}
         />
         <SubMenu menuName={t('header.items.legacy')}>
           <SubMenuItem
             text="core-js"
-            href={`/${locale()}/core-js/overview/gettingStarted`}
+            href={`/${language()}/core-js/overview/gettingStarted`}
             isActive={isInCoreJSPage(pathname())}
           />
           <SubMenuItem
             text="ui-js"
-            href={`/${locale()}/ui-js/overview/gettingStarted`}
+            href={`/${language()}/ui-js/overview/gettingStarted`}
             isActive={isInUIJSPage(pathname())}
           />
           <SubMenuItem
             text="is-js"
-            href={`/${locale()}/is-js/overview/gettingStarted`}
+            href={`/${language()}/is-js/overview/gettingStarted`}
             isActive={isInIsJSPage(pathname())}
           />
         </SubMenu>
@@ -72,7 +72,7 @@ const Header = () => {
           <SubMenuItem
             text="한국어"
             href={`/ko/${pathname().slice(4)}`}
-            isActive={locale() === 'ko'}
+            isActive={language() === 'ko'}
           />
         </SubMenu>
         <HeaderGlobalAction

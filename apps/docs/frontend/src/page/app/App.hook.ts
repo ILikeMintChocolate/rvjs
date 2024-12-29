@@ -2,19 +2,15 @@ import koKRResource from '@asset/locales/koKRResource.json'
 import { useEffect, usePathname } from '@rvjs/core'
 import { setLocale, useLocalizer as _useLocalizer } from '@rvjs/localizer'
 
-interface Resource {
-  title: string
-}
-
 export const useLocalizer = () => {
   const pathname = usePathname()
   let currentLanguage = pathname().slice(1, 3)
 
-  _useLocalizer<Resource>({
+  _useLocalizer({
     defaultLanguage: 'ko',
-    resources: {
+    languages: {
       ko: {
-        default: koKRResource,
+        defaultCountry: 'KR',
         countries: {
           KR: koKRResource,
         },
