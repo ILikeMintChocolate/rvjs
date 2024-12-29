@@ -1,10 +1,10 @@
 import { usePathname } from '@rvjs/core'
-import { getLocale, t } from '@rvjs/localizer'
+import { t, useLocale } from '@rvjs/localizer'
 import { SideNav, SideNavItems, SideNavMenu, SideNavMenuItem } from '@rvjs/ui'
 
 const IsJSSideNav = () => {
   const pathname = usePathname()
-  const locale = getLocale()
+  const { language } = useLocale()
 
   return (
     <SideNav>
@@ -15,7 +15,7 @@ const IsJSSideNav = () => {
         >
           <SideNavMenuItem
             text={t('sideNav.isJS.overview.items.gettingStarted')}
-            href={`/${locale()}/is-js/overview/gettingStarted`}
+            href={`/${language()}/is-js/overview/gettingStarted`}
             isActive={pathname() === '/is-js/overview/gettingStarted'}
           />
         </SideNavMenu>
@@ -25,22 +25,22 @@ const IsJSSideNav = () => {
         >
           <SideNavMenuItem
             text={t('sideNav.isJS.type.items.primitive')}
-            href={`/${locale()}/is-js/type/primitive`}
+            href={`/${language()}/is-js/type/primitive`}
             isActive={pathname() === '/is-js/type/primitive'}
           />
           <SideNavMenuItem
             text={t('sideNav.isJS.type.items.reference')}
-            href={`/${locale()}/is-js/type/reference`}
+            href={`/${language()}/is-js/type/reference`}
             isActive={pathname() === '/is-js/type/reference'}
           />
           <SideNavMenuItem
             text={t('sideNav.isJS.type.items.composite')}
-            href={`/${locale()}/is-js/type/composite`}
+            href={`/${language()}/is-js/type/composite`}
             isActive={pathname() === '/is-js/type/composite'}
           />
           <SideNavMenuItem
             text={t('sideNav.isJS.type.items.@rvjs/core')}
-            href={`/${locale()}/is-js/type/rvjs-core`}
+            href={`/${language()}/is-js/type/rvjs-core`}
             isActive={pathname() === '/is-js/type/rvjs-core'}
           />
         </SideNavMenu>
