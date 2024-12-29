@@ -1,29 +1,35 @@
 import { LocalizerOption } from './localizer.ts'
-import { hasCountry, splitLocale } from './util.ts'
+import { isStringLanguage, isStringLocale, splitLocale } from './util.ts'
 
-export const getUserLocales = () => {
-  const savedLocaleString = localStorage.getItem('USER-LOCALE')
-  if (savedLocaleString) {
-    return savedLocaleString.split(' ')
-  }
-  return navigator.languages ? [...navigator.languages] : [navigator.language]
+export const getUserLocales = (): string[] => {
+  return navigator.languages as string[]
 }
 
 export const detectUserLocale = <T>(
-  userLocales: string[],
+  userInfos: string[],
   option: LocalizerOption<T>,
-) => {
-  for (const locale of userLocales) {
-    if (hasCountry(locale)) {
-      const [language, country] = splitLocale(locale)
-      if (option.resources[language]?.countries[country]) {
-        return locale
+): string => {
+  if (userInfos.length === 0) {
+    return getDefaultLocale(option)
+  }
+  for (const userInfo of userInfos) {
+    if (isStringLanguage(userInfo)) {
+      const language = userInfo
+      if (option.languages[language]?.defaultCountry) {
+        return `${language}-${option.languages[language].defaultCountry}`
+      }
+    } else if (isStringLocale(userInfo)) {
+      const [language, country] = splitLocale(userInfo)
+      if (option.languages[language]) {
+        return `${language}-${country ?? option.languages[language].defaultCountry}`
       }
     } else {
-      if (option.resources[locale]?.default) {
-        return locale
-      }
+      return getDefaultLocale(option)
     }
   }
-  return option.defaultLanguage
+  return getDefaultLocale(option)
+}
+
+const getDefaultLocale = <T>(option: LocalizerOption<T>) => {
+  return `${option.defaultLanguage}-${option.languages[option.defaultLanguage].defaultCountry}`
 }

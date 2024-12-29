@@ -1,4 +1,4 @@
-import { useEffect, useState } from '@rvjs/core'
+import { GetState, SetState, useEffect, useState } from '@rvjs/core'
 import { detectUserLocale, getUserLocales } from './locale.ts'
 import {
   findContentByKey,
@@ -8,18 +8,22 @@ import {
 
 export interface LocalizerOption<T> {
   defaultLanguage: string
-  resources: Record<string, LanguageOption<T>>
+  languages: Record<string, LanguageOption<T>>
 }
 
 interface LanguageOption<T> {
-  default: T
+  defaultCountry: string
   countries: Record<string, T>
 }
 
 interface LocaleContext {
   option: LocalizerOption<unknown>
-  locale: () => string
-  setLocale: (locale: string) => void
+  locale: GetState<string>
+  language: GetState<string>
+  country: GetState<string>
+  setLocale: SetState<string>
+  setLanguage: SetState<string>
+  setCountry: SetState<string>
   localeSet: Set<string>
   resource: () => unknown
 }
@@ -31,11 +35,17 @@ export const useLocalizer = <T>(option: LocalizerOption<T>) => {
   const userLocale = detectUserLocale<T>(userLocales, option)
   const localeSet = new Set(_getAllLocales(option))
   const [locale, setLocale] = useState(userLocale)
+  const [language, setLanguage] = useState(userLocale.slice(0, 2))
+  const [country, setCountry] = useState(userLocale.slice(3, 5))
   const [resource, setResource] = useState(findResource(locale(), option))
   localeContext = {
     option,
     locale,
+    language,
+    country,
     setLocale,
+    setLanguage,
+    setCountry,
     localeSet,
     resource,
   } as LocaleContext
@@ -45,25 +55,27 @@ export const useLocalizer = <T>(option: LocalizerOption<T>) => {
   }, [locale])
 }
 
-export const t = (key: string) => {
+export const t = (key: string): string => {
   const { resource } = localeContext!
   return findContentByKey(resource(), key)
 }
 
-export const getAllLocales = () => {
-  const { option } = localeContext!
-  return _getAllLocales(option)
-}
-
-export const getLocale = () => {
-  const { locale } = localeContext!
-  return locale
+export const useLocale = () => {
+  const { locale, language, country, localeSet } = localeContext!
+  return { locale, language, country, localeSet }
 }
 
 export const setLocale = (locale: string) => {
-  const { setLocale: _setLocale, localeSet } = localeContext!
+  const {
+    setLocale: _setLocale,
+    localeSet,
+    setLanguage,
+    setCountry,
+  } = localeContext!
   if (!localeSet.has(locale)) {
     return
   }
   _setLocale(locale)
+  setLanguage(locale.slice(0, 2))
+  setCountry(locale.slice(3, 5))
 }
