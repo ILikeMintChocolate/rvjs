@@ -1,4 +1,3 @@
-import enUSResource from '@asset/locales/enUSResource.json'
 import koKRResource from '@asset/locales/koKRResource.json'
 import { useEffect, usePathname } from '@rvjs/core'
 import { setLocale, useLocalizer as _useLocalizer } from '@rvjs/localizer'
@@ -18,12 +17,6 @@ export const useLocalizer = () => {
         default: koKRResource,
         countries: {
           KR: koKRResource,
-        },
-      },
-      en: {
-        default: enUSResource,
-        countries: {
-          US: enUSResource,
         },
       },
     },
