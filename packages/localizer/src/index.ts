@@ -1,7 +1,1 @@
-export {
-  useLocalizer,
-  t,
-  getAllLocales,
-  getLocale,
-  setLocale,
-} from './localizer.ts'
+export { useLocalizer, t, useLocale, setLocale } from './localizer.ts'
