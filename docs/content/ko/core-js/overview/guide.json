@@ -618,6 +618,7 @@
             "name": "Link",
             "props": {
               "href": "https://github.com/ILikeMintChocolate/rvjs/tree/core/js/dev",
+              "isExternal": true,
               "children": "GitHub"
             }
           },
@@ -626,6 +627,7 @@
             "name": "Link",
             "props": {
               "href": "https://www.npmjs.com/package/@rvjs/core/v/0.2.21",
+              "isExternal": true,
               "children": "npm"
             }
           }
@@ -646,6 +648,7 @@
       "name": "Link",
       "props": {
         "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/core-js/overview/guide.json",
+        "isExternal": true,
         "children": [
           {
             "type": "component",

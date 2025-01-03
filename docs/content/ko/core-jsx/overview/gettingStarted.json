@@ -108,7 +108,8 @@
                     "codeText": "Vite",
                     "language": "javascript",
                     "type": "link",
-                    "href": "https://vite.dev/"
+                    "href": "https://vite.dev/",
+                    "isExternal": true
                   }
                 },
                 {
@@ -154,6 +155,7 @@
             "name": "Link",
             "props": {
               "href": "https://github.com/ILikeMintChocolate/rvjs/tree/core/jsx/dev",
+              "isExternal": true,
               "children": "GitHub"
             }
           },
@@ -162,6 +164,7 @@
             "name": "Link",
             "props": {
               "href": "https://www.npmjs.com/package/@rvjs/core",
+              "isExternal": true,
               "children": "npm"
             }
           }
@@ -182,6 +185,7 @@
       "name": "Link",
       "props": {
         "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/core-jsx/overview/gettingStarted.json",
+        "isExternal": true,
         "children": [
           {
             "type": "component",

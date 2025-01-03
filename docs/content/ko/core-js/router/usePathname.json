@@ -123,6 +123,7 @@
       "name": "Link",
       "props": {
         "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/core-js/router/usePathname.json",
+        "isExternal": true,
         "children": [
           {
             "type": "component",

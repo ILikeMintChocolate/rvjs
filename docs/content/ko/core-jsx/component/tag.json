@@ -269,6 +269,7 @@
       "name": "Link",
       "props": {
         "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/core-jsx/component/tag.json",
+        "isExternal": true,
         "children": [
           {
             "type": "component",

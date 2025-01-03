@@ -26,7 +26,8 @@
                     "codeText": "js-framework-benchmark",
                     "language": "javascript",
                     "type": "link",
-                    "href": "https://github.com/krausest/js-framework-benchmark"
+                    "href": "https://github.com/krausest/js-framework-benchmark",
+                    "isExternal": true
                   }
                 },
                 {
@@ -376,6 +377,7 @@
       "name": "Link",
       "props": {
         "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/core-js/overview/benchmark.json",
+        "isExternal": true,
         "children": [
           {
             "type": "component",
