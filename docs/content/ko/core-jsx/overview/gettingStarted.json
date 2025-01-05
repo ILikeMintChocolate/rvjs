@@ -114,13 +114,13 @@
                 },
                 {
                   "type": "component",
-                  "name": "CodeSnippet",
+                  "name": "Link",
                   "props": {
-                    "codeText": "Vite",
-                    "language": "javascript",
-                    "type": "link",
+                    "as": "span",
+                    "inline": true,
                     "href": "https://vite.dev/",
-                    "isExternal": true
+                    "isExternal": true,
+                    "children": "Vite"
                   }
                 },
                 {
