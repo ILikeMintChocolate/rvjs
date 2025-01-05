@@ -88,7 +88,7 @@
             "type": "component",
             "name": "CodeSnippet",
             "props": {
-              "codeText": "function For<T>(props: {\n  each: T[];\n  children: (item: T) => Component | HTMLElement;\n}): ForComponent",
+              "codeText": "function For<T>(props: {\n  each: T[];\n  children: (item: T, index: GetState<number>) => Component | HTMLElement;\n}): ForComponent",
               "language": "typescript",
               "type": "multi",
               "width": "100%",

@@ -57,7 +57,7 @@
             "type": "component",
             "name": "CodeSnippet",
             "props": {
-              "codeText": "import { onMount } from '@rvjs/core'\n\nconst Header = () => {\n  onMount(() => {\n    console.log('Header 컴포넌트 생성됨')\n  })\n\n  return <header>Header</header>\n}\n\nexport default Header",
+              "codeText": "import { onMount } from '@rvjs/core'\n\nconst Header = () => {\n  onMount(() => {\n    console.log('Content 컴포넌트 생성됨')\n  })\n\n  return <h4>Hello World!</h4>\n}\n\nexport default Header",
               "language": "jsx",
               "type": "multi",
               "width": "100%",
