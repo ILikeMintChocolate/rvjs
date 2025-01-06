@@ -1,17 +1,8 @@
-export { BlockComponent } from '@block/component/block.ts'
-export { CaseComponent } from '@block/component/case.ts'
-export { Component } from '@block/component/component.ts'
-export { ForComponent } from '@block/component/for.ts'
-export { RefreshComponent } from '@block/component/refresh.ts'
-export { SwitchComponent } from '@block/component/switch.ts'
-export { ToggleComponent } from '@block/component/toggle.ts'
-
 export { Case } from '@component/case.ts'
 export { createComponent } from '@component/component.ts'
 export { Defined } from '@component/defined.ts'
 export { For } from '@component/for.ts'
 export { Refresh } from '@component/refresh.ts'
-export { root } from '@component/root.ts'
 export { Switch } from '@component/switch.ts'
 export { Tag } from '@component/tag.ts'
 export { Toggle } from '@component/toggle.ts'
@@ -25,7 +16,6 @@ export { useElement } from '@hook/useElement.ts'
 export { useState } from '@hook/useState.ts'
 
 export { addEventListener } from '@jsx/addEventListener.ts'
-export { dynamic } from '@jsx/dynamic.ts'
 export { effect } from '@jsx/effect.ts'
 export { insert } from '@jsx/insert.ts'
 export { memo } from '@jsx/memo.ts'
@@ -35,6 +25,8 @@ export { spread } from '@jsx/spread.ts'
 export { style } from '@jsx/style.ts'
 export { template } from '@jsx/template.ts'
 export { use } from '@jsx/use.ts'
+
+export { root } from '@render/root.ts'
 
 export { Route } from '@router/component/route.ts'
 export { Router } from '@router/component/router.ts'
@@ -46,7 +38,6 @@ export { useQueryParams } from '@router/hook/useQueryParams.ts'
 
 export {
   isRvjsFunction,
-  isRvjsObject,
   isGetState,
   isSetState,
   isComponent,
@@ -68,6 +59,6 @@ export type {
 
 export type { ElementObject } from '@hook/useElement.ts'
 
-export type { StateAccessors, GetState, SetState } from '@hook/useState.ts'
+export type { GetState, SetState } from '@hook/useState.ts'
 
 export type { Children, SVG, DOMAttributes } from '@type/jsx.ts'

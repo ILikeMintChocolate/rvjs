@@ -1,4 +1,4 @@
-import { componentContext } from '@context/component.ts'
+import { currentComponent } from '@context/component.ts'
 import { stateContext } from '@context/state.ts'
 import { effect } from '@jsx/effect.ts'
 import { setAttribute } from '@jsx/setAttribute.ts'
@@ -25,15 +25,13 @@ export const spread = (element: HTMLElement, props: Object) => {
       // @ts-ignore
       style(element, props.style)
     }
-    stateContext.set({
-      component: componentContext.get(),
+    stateContext.value = {
+      component: currentComponent.value,
       type: 'USE_EFFECT',
-      effectFn: () => {
-        effectFn()
-      },
-    })
+      effectFn,
+    }
     effectFn()
-    stateContext.clear()
+    stateContext.value = null
   }
   for (const key in props) {
     if (customProps.hasOwnProperty(key)) {

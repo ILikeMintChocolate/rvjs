@@ -1,8 +1,10 @@
-import { onDestroy } from '@hook/onDestroy.ts'
-import { onMount } from '@hook/onMount.ts'
-import { useState } from '@hook/useState.ts'
-import { useNavigate } from '@router/hook/useNavigate.ts'
-import { useOutlet } from '@router/hook/useOutlet.ts'
+import {
+  onDestroy,
+  onMount,
+  useNavigate,
+  useOutlet,
+  useState,
+} from '@/index.ts'
 import { vi } from 'vitest'
 
 export const createComponent = (props) => {

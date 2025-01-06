@@ -1,4 +1,9 @@
-import { RvjsComponent } from '@type/rvjs.ts'
-import { Context } from '@util/context.ts'
+import { Component } from '@render/component.ts'
 
-export const componentContext = new Context<RvjsComponent>()
+interface CurrentComponent {
+  value: Component | null
+}
+
+export let currentComponent: CurrentComponent = {
+  value: null,
+}

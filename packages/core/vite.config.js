@@ -42,10 +42,6 @@ export default defineConfig(({ mode }) => {
           replacement: resolve(__dirname, 'src'),
         },
         {
-          find: '@block',
-          replacement: resolve(__dirname, 'src/block'),
-        },
-        {
           find: '@component',
           replacement: resolve(__dirname, 'src/component'),
         },
@@ -60,6 +56,10 @@ export default defineConfig(({ mode }) => {
         {
           find: '@jsx',
           replacement: resolve(__dirname, 'src/jsx'),
+        },
+        {
+          find: '@render',
+          replacement: resolve(__dirname, 'src/render'),
         },
         {
           find: '@router',

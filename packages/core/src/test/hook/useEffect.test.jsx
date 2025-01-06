@@ -1,6 +1,4 @@
-import { root } from '@component/root.ts'
-import { useEffect } from '@hook/useEffect.ts'
-import { useState } from '@hook/useState.ts'
+import { root, useEffect, useState } from '@/index.ts'
 import { useTest } from '@test/utilForTest.jsx'
 import { beforeEach, describe, expect, test } from 'vitest'
 

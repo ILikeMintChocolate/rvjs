@@ -1,4 +1,4 @@
-import { componentContext } from '@context/component.ts'
+import { currentComponent } from '@context/component.ts'
 
 export type ContextAccessors<Context> = {
   getContext: GetContext<Context>
@@ -13,22 +13,21 @@ export const createContext = <Context>(): ContextAccessors<Context> => {
   const contextRef = {}
 
   const getContext: GetContext<Context> = () => {
-    const component = componentContext.get()!
-    let context = null
-    component.traverseParent((parentComponent) => {
-      if (parentComponent.contextRef === contextRef) {
-        context = parentComponent.context
-        return false
+    const component = currentComponent.value
+    let parent = component.parentComponent
+
+    while (parent !== undefined) {
+      if (parent.contextRef === contextRef) {
+        return parent.context
       }
-      return true
-    })
-    return context!
+      parent = parent.parentComponent
+    }
   }
 
   const setContext: SetContext<Context> = (context) => {
-    const providerComponent = componentContext.get()!
-    providerComponent.setContextRef(contextRef)
-    providerComponent.setContext(context)
+    const providerComponent = currentComponent.value
+    providerComponent.contextRef = contextRef
+    providerComponent.context = context
   }
 
   return {

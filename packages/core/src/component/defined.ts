@@ -1,26 +1,54 @@
-import { DefinedComponent } from '@block/component/defined.ts'
-import { componentContext } from '@context/component.ts'
-import { Children } from '@type/jsx.ts'
-import { toArray } from '@util/data.ts'
-import { copyGetter } from '@util/function.ts'
-import { RVJS_COMPONENT_FN_IDENTIFIER } from '@util/identifier.ts'
+import { currentComponent } from '@context/component.ts'
+import { stateContext } from '@context/state.ts'
+import { createComponentContext } from '@render/component.ts'
+import { clearNodes, getNodes, insertNodes } from '@render/node.ts'
+import { destroyTree, renderChildren, renderTree } from '@render/render.ts'
+import { isDefined } from '@type/guard.ts'
+import {
+  RVJS_COMPONENT_FN_IDENTIFIER,
+  RVJS_DEFINED_COMPONENT_IDENTIFIER,
+} from '@util/identifier.ts'
 
 interface DefinedProps {
   value: any
-  children: Children
+  children: JSX.Element
 }
 
 export const Defined = (props: DefinedProps) => {
-  const component = new DefinedComponent(
-    () => {
-      const self = componentContext.get() as DefinedComponent
-      const child = self.renderItem(toArray(props.children))
-      return child
+  const component = createComponentContext(RVJS_DEFINED_COMPONENT_IDENTIFIER, {
+    startNode: document.createComment('DEFINED_COMPONENT_START_NODE'),
+    endNode: document.createComment('DEFINED_COMPONENT_END_NODE'),
+    render: () => {
+      currentComponent.value = component
+      const effectFn = (isInitial: Boolean = false) => {
+        if (!isDefined(props.value)) {
+          clearNodes(component.startNode, component.endNode)
+          destroyTree(component, false)
+          component.childComponents.length = 0
+        } else {
+          const children = renderChildren(component, () => props.children)
+          insertNodes(
+            component.parentNode,
+            component.endNode,
+            getNodes(children).flat(Infinity),
+          )
+          if (!isInitial) {
+            renderTree(component, false)
+          }
+        }
+      }
+      stateContext.value = {
+        component: currentComponent.value,
+        target: component.startNode,
+        type: 'DOM_EFFECT',
+        effectFn,
+      }
+      props.value
+      stateContext.value = null
+      effectFn(true)
     },
-    // @ts-ignore
-    props.key,
-  )
-  copyGetter(props, 'value', component, 'value')
+  })
+
   return component
 }
 Defined.$$typeof = RVJS_COMPONENT_FN_IDENTIFIER

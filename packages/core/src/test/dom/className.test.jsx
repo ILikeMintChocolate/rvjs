@@ -1,5 +1,4 @@
-import { root } from '@component/root.ts'
-import { useState } from '@hook/useState.ts'
+import { root, useState } from '@/index.ts'
 import { beforeEach, describe, expect, test } from 'vitest'
 import styles from './className.module.css'
 

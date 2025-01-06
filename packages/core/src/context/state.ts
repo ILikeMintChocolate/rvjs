@@ -1,14 +1,14 @@
-import { GetState } from '@hook/useState.ts'
-import { RvjsComponent } from '@type/rvjs.ts'
-import { Context } from '@util/context.ts'
+import { Component } from '@render/component.ts'
 
 export interface StateContext {
-  component: RvjsComponent
-  type: 'USE_EFFECT' | 'DOM_EFFECT' | 'FLOW_EFFECT'
-  effectFn: Function
-  target?: Node
+  value: {
+    component: Component
+    type: 'USE_EFFECT' | 'DOM_EFFECT' | 'FLOW_EFFECT'
+    effectFn: Function
+    target?: Node
+  } | null
 }
 
-export const stateContext = new Context<StateContext>()
-
-export let isUsingStateContext: GetState<unknown>[] = []
+export const stateContext: StateContext = {
+  value: null,
+}

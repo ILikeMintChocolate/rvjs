@@ -1,4 +1,27 @@
-export class Queue<Data> {
+export class SmallQueue<Data> {
+  items: Data[]
+  index: number
+
+  constructor() {
+    this.items = []
+    this.index = 0
+  }
+
+  enqueue(data: Data) {
+    this.items.push(data)
+  }
+
+  dequeue() {
+    return this.items[this.index++]
+  }
+
+  clear() {
+    this.items.length = 0
+    this.index = 0
+  }
+}
+
+export class BigQueue<Data> {
   first: Node<Data>
   last: Node<Data>
   size: number
@@ -55,7 +78,7 @@ class Node<Data> {
     this.next = null
   }
 
-  setNext(node) {
+  setNext(node: Node<Data>) {
     this.next = node
   }
 }

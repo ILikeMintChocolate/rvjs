@@ -1,5 +1,5 @@
-import { componentContext } from '@context/component.ts'
-import { GetState, SetState, StateAccessors, useState } from '@hook/useState.ts'
+import { currentComponent } from '@context/component.ts'
+import { GetState, SetState, useState } from '@hook/useState.ts'
 
 interface GlobalStateContext<T> {
   count: number
@@ -12,7 +12,7 @@ const globalStateMap = new Map<string, GlobalStateContext<unknown>>()
 export const useGlobalState = <State>(
   key: string,
   initialState?: State,
-): StateAccessors<State> => {
+): [GetState<State>, SetState<State>] => {
   addUnsubscribeHandler(key)
 
   if (!globalStateMap.has(key)) {
@@ -29,8 +29,8 @@ export const useGlobalState = <State>(
 }
 
 const addUnsubscribeHandler = (key: string) => {
-  const component = componentContext.get()!
-  component.addUnsubscribeEffectHandler(() => {
+  const component = currentComponent.value
+  component.unsubscribeEffectHandlers.push(() => {
     globalStateMap.get(key)!.count -= 1
     if (globalStateMap.get(key)!.count === 0) {
       globalStateMap.delete(key)

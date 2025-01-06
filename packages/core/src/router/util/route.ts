@@ -158,6 +158,7 @@ export const updateRoutes = (
     const rootRoute = routeToRetain.at(-1)
     if (rootRoute && isComponent(rootRoute.element)) {
       rootRoute.element.setOutlet(null)
+      rootRoute.element.outlet = null
     }
     return
   }

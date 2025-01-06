@@ -1,10 +1,10 @@
-import { createComponent } from '@component/component.ts'
 import { Refresh } from '@component/refresh.ts'
 import { onDestroy } from '@hook/onDestroy.ts'
 import { onMount } from '@hook/onMount.ts'
 import { useEffect } from '@hook/useEffect.ts'
 import { useGlobalState } from '@hook/useGlobalState.ts'
 import { GetState, SetState, useState } from '@hook/useState.ts'
+import { Component } from '@render/component.ts'
 import {
   compareRoutes,
   createMatchedRoutes,
@@ -26,8 +26,8 @@ export interface Route {
   path: string
   rawPath: string
   type: 'STATIC' | 'DYNAMIC' | 'ANY'
-  getElement: Children
-  element: Children
+  getElement: Component
+  element: Component
   dynamicKey?: string
   queries: {
     [key: string]: string
@@ -53,8 +53,7 @@ export const Router = (props: RouterProps) => {
 
   useEffect(renderRoutes, [paths])
 
-  // @ts-ignore
-  return createComponent(Refresh, {
+  return Refresh({
     get by() {
       return rootOutlet()
     },
