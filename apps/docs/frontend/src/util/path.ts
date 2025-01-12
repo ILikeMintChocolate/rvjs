@@ -19,5 +19,5 @@ export const isInIsJSPage = (pathname: string) => {
 }
 
 export const isPathIncluded = (segment: string, pathname: string) => {
-  return new RegExp(segment).test(pathname)
+  return new RegExp(segment + ' ').test(pathname + ' ')
 }
