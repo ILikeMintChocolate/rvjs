@@ -1,16 +1,16 @@
-import { BlockComponent } from '@block/component/block.ts'
-import { Component } from '@block/component/component.ts'
+import { Block } from '@component/block.ts'
+import { Component } from '@render/component.ts'
 import { isComponentFn } from '@type/guard.ts'
 
+export type ComponentFn = (props: ComponentProps) => any
+
+export type ComponentProps = Record<string, any>
+
 export const createComponent = (
-  componentFn: Component['componentFn'],
-  props: any = {},
-) => {
-  let component
-  if (isComponentFn(componentFn)) {
-    component = componentFn(props)
-  } else {
-    component = new BlockComponent(() => componentFn(props), props.key)
-  }
-  return component
+  componentFn: ComponentFn,
+  props: ComponentProps,
+): Component => {
+  return isComponentFn(componentFn)
+    ? componentFn(props)
+    : Block(componentFn, props)
 }

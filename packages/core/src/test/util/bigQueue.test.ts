@@ -1,11 +1,11 @@
-import { Queue } from '@util/queue.ts'
+import { BigQueue } from '@util/queue.ts'
 import { beforeEach, describe, expect, test } from 'vitest'
 
-describe('Queue', () => {
-  let queue: Queue<number>
+describe('BigQueue', () => {
+  let queue: BigQueue<number>
 
   beforeEach(() => {
-    queue = new Queue<number>()
+    queue = new BigQueue<number>()
   })
 
   test('initial', () => {

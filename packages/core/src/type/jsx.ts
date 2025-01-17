@@ -1,5 +1,5 @@
-import { Component } from '@block/component/component.ts'
 import { ElementObject } from '@hook/useElement'
+import { Component } from '@render/component.ts'
 import * as csstype from 'csstype'
 
 export type Children = JSX.Element
@@ -14,7 +14,6 @@ declare global {
     type Element = Component | Node | string | number | null | Element[]
 
     interface IntrinsicAttributes {
-      key?: string
       children?: Element | Function
     }
 

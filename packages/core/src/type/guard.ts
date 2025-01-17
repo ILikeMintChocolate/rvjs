@@ -1,11 +1,5 @@
-import { BlockComponent } from '@block/component/block.ts'
-import { CaseComponent } from '@block/component/case.ts'
-import { Component } from '@block/component/component.ts'
-import { ForComponent } from '@block/component/for.ts'
-import { RefreshComponent } from '@block/component/refresh.ts'
-import { SwitchComponent } from '@block/component/switch.ts'
-import { ToggleComponent } from '@block/component/toggle.ts'
 import { GetState, SetState } from '@hook/useState.ts'
+import { Component } from '@render/component.ts'
 import { RvjsObject } from '@type/rvjs.ts'
 import {
   RVJS_BLOCK_COMPONENT_IDENTIFIER,
@@ -50,10 +44,6 @@ export const isRvjsFunction = (
   return typeof value === 'function' && value.hasOwnProperty('$$typeof')
 }
 
-export const isRvjsObject = (value: unknown): value is RvjsObject<Object> => {
-  return typeof value === 'object' && value.hasOwnProperty('$$typeof')
-}
-
 export const isGetState = (value: unknown): value is GetState<unknown> => {
   return isRvjsFunction(value) && value.$$typeof === RVJS_GET_STATE_IDENTIFIER
 }
@@ -63,47 +53,50 @@ export const isSetState = (value: unknown): value is SetState<unknown> => {
 }
 
 export const isComponent = (value: unknown): value is Component => {
-  return isRvjsObject(value) && value.$$typeof === RVJS_COMPONENT_IDENTIFIER
+  return (
+    !!value &&
+    typeof value === 'object' &&
+    '$$typeof' in value &&
+    value['$$typeof'] === RVJS_COMPONENT_IDENTIFIER
+  )
 }
 
-export const isBlockComponent = (value: unknown): value is BlockComponent => {
+export const isBlockComponent = (value: unknown): value is Component => {
   return (
     isComponent(value) &&
     value.$$componentType === RVJS_BLOCK_COMPONENT_IDENTIFIER
   )
 }
 
-export const isSwitchComponent = (value: unknown): value is SwitchComponent => {
+export const isSwitchComponent = (value: unknown): value is Component => {
   return (
     isComponent(value) &&
     value.$$componentType === RVJS_SWITCH_COMPONENT_IDENTIFIER
   )
 }
 
-export const isCaseComponent = (value: unknown): value is CaseComponent => {
+export const isCaseComponent = (value: unknown): value is Component => {
   return (
     isComponent(value) &&
     value.$$componentType === RVJS_CASE_COMPONENT_IDENTIFIER
   )
 }
 
-export const isForComponent = (value: unknown): value is ForComponent => {
+export const isForComponent = (value: unknown): value is Component => {
   return (
     isComponent(value) &&
     value.$$componentType === RVJS_FOR_COMPONENT_IDENTIFIER
   )
 }
 
-export const isToggleComponent = (value: unknown): value is ToggleComponent => {
+export const isToggleComponent = (value: unknown): value is Component => {
   return (
     isComponent(value) &&
     value.$$componentType === RVJS_TOGGLE_COMPONENT_IDENTIFIER
   )
 }
 
-export const isRefreshComponent = (
-  value: unknown,
-): value is RefreshComponent => {
+export const isRefreshComponent = (value: unknown): value is Component => {
   return (
     isComponent(value) &&
     value.$$componentType === RVJS_REFRESH_COMPONENT_IDENTIFIER
@@ -111,7 +104,9 @@ export const isRefreshComponent = (
 }
 
 export const isComponentFn = (value: unknown) => {
-  return isRvjsFunction(value) && RVJS_COMPONENT_FN_IDENTIFIER
+  return (
+    isRvjsFunction(value) && value.$$typeof === RVJS_COMPONENT_FN_IDENTIFIER
+  )
 }
 
 export const isHTMLElement = (value: unknown): value is HTMLElement => {

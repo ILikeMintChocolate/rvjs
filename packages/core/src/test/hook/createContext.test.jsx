@@ -1,7 +1,4 @@
-import { root } from '@component/root.ts'
-import { createContext } from '@hook/createContext.ts'
-import { useEffect } from '@hook/useEffect.ts'
-import { useState } from '@hook/useState.ts'
+import { createContext, root, Toggle, useEffect, useState } from '@/index.ts'
 import { useTest } from '@test/utilForTest.jsx'
 import { beforeEach, describe, expect, test } from 'vitest'
 
@@ -29,7 +26,7 @@ describe('createContext', () => {
       return (
         <div>
           <h4 id="h4-1">C1-{count()}</h4>
-          <button onclick={() => setCount(count() + 1)}>+1</button>
+          <button onClick={() => setCount(count() + 1)}>+1</button>
           <Child1 />
           <Child2 />
         </div>
@@ -83,7 +80,7 @@ describe('createContext', () => {
       return (
         <div>
           <h4 id="h4-1">C1-{count()}</h4>
-          <button onclick={() => setCount(count() + 1)}>+1</button>
+          <button onClick={() => setCount(count() + 1)}>+1</button>
           <Toggle is={isShow1()}>
             <Child1 />
           </Toggle>

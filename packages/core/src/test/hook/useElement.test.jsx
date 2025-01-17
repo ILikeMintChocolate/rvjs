@@ -1,6 +1,4 @@
-import { root } from '@component/root.ts'
-import { onMount } from '@hook/onMount.ts'
-import { useElement } from '@hook/useElement.ts'
+import { onMount, root, useElement } from '@/index.ts'
 import { useTest } from '@test/utilForTest.jsx'
 import { beforeEach, describe, expect, test } from 'vitest'
 

@@ -1,8 +1,4 @@
-import { root } from '@component/root.ts'
-import { Toggle } from '@component/toggle.ts'
-import { useEffect } from '@hook/useEffect.ts'
-import { useGlobalState } from '@hook/useGlobalState.ts'
-import { useState } from '@hook/useState.ts'
+import { root, Toggle, useEffect, useGlobalState, useState } from '@/index.ts'
 import { useTest } from '@test/utilForTest.jsx'
 import { beforeEach, describe, expect, test } from 'vitest'
 

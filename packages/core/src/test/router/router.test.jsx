@@ -1,7 +1,4 @@
-import { root } from '@component/root.ts'
-import { Toggle } from '@component/toggle.ts'
-import { Route } from '@router/component/route.ts'
-import { Router } from '@router/component/router.ts'
+import { onMount, root, Route, Router, Toggle } from '@/index.ts'
 import {
   createComponents,
   findAllSpanTexts,
@@ -9,6 +6,7 @@ import {
   useNavigateMock,
   useTest,
 } from '@test/utilForTest.jsx'
+
 import { afterEach, beforeEach, describe, expect, test } from 'vitest'
 
 describe('Test Router', () => {
@@ -54,15 +52,15 @@ describe('Test Router', () => {
         </Router>
       </Toggle>,
     )
-    // expect(onMountOrder).toEqual(['A'])
-    // expect(onDestroyOrder).toEqual([])
-    // expect(findAllSpanTexts(rootElement)).toEqual(['A'])
-    // clearOnMountOrder()
-    // clearOnDestroyOrder()
-    // useNavigateMock('/a/b')
-    // expect(onMountOrder).toEqual(['B'])
-    // expect(onDestroyOrder).toEqual([])
-    // expect(findAllSpanTexts(rootElement)).toEqual(['A', 'B'])
+    expect(onMountOrder).toEqual(['A'])
+    expect(onDestroyOrder).toEqual([])
+    expect(findAllSpanTexts(rootElement)).toEqual(['A'])
+    clearOnMountOrder()
+    clearOnDestroyOrder()
+    useNavigateMock('/a/b')
+    expect(onMountOrder).toEqual(['B'])
+    expect(onDestroyOrder).toEqual([])
+    expect(findAllSpanTexts(rootElement)).toEqual(['A', 'B'])
   })
 
   test('/a/b => /a/b/c', () => {

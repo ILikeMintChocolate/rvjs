@@ -1,25 +1,27 @@
-import { CaseComponent } from '@block/component/case.ts'
-import { SwitchComponent } from '@block/component/switch.ts'
-import { componentContext } from '@context/component.ts'
-import { Children } from '@type/jsx.ts'
-import { toArray } from '@util/data.ts'
-import { RVJS_COMPONENT_FN_IDENTIFIER } from '@util/identifier.ts'
+import { currentComponent } from '@context/component.ts'
+import { Component, createComponentContext } from '@render/component.ts'
+import { getNodes } from '@render/node.ts'
+import { renderChildren } from '@render/render.ts'
+import {
+  RVJS_COMPONENT_FN_IDENTIFIER,
+  RVJS_SWITCH_COMPONENT_IDENTIFIER,
+} from '@util/identifier.ts'
 
 interface SwitchProps {
-  children: Children
+  children: Component[]
 }
 
 export const Switch = (props: SwitchProps) => {
-  const component = new SwitchComponent(
-    () => {
-      const { children } = props
-      const self = componentContext.get() as SwitchComponent
-      self.renderItems(toArray(children) as CaseComponent[])
-      return children
+  const component = createComponentContext(RVJS_SWITCH_COMPONENT_IDENTIFIER, {
+    tempNode: document.createComment('SWITCH_COMPONENT_TEMP_NODE'),
+    render: () => {
+      currentComponent.value = component
+      const children = renderChildren(component, () => props.children)
+      component.tempNode.replaceWith(...getNodes(children).flat(Infinity))
+      delete component.tempNode
     },
-    // @ts-ignore
-    props.key,
-  )
+  })
+
   return component
 }
 Switch.$$typeof = RVJS_COMPONENT_FN_IDENTIFIER

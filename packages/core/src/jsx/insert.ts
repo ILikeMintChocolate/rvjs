@@ -1,6 +1,8 @@
-import { Component } from '@block/component/component.ts'
-import { componentContext } from '@context/component.ts'
+import { currentComponent } from '@context/component.ts'
 import { stateContext } from '@context/state.ts'
+import { Component } from '@render/component.ts'
+import { getNodes } from '@render/node.ts'
+import { setComponentRelation } from '@render/relation.ts'
 import {
   isArray,
   isBoolean,
@@ -9,7 +11,7 @@ import {
   isNode,
 } from '@type/guard.ts'
 
-export const insert = (parent: HTMLElement, value: unknown, next: Node) => {
+export const insert = (parent: HTMLElement, value: unknown, next?: Node) => {
   if (value == null || isBoolean(value)) {
     return
   } else if (isArray(value)) {
@@ -21,39 +23,38 @@ export const insert = (parent: HTMLElement, value: unknown, next: Node) => {
   } else if (isNode(value)) {
     insertNode(parent, value, next)
   } else {
-    insertNode(parent, document.createTextNode(String(value)), next)
+    insertText(parent, String(value), next)
   }
 }
 
-const insertArray = (parent: HTMLElement, values: unknown[], next: Node) => {
-  values.forEach((value) => {
+const insertArray = (parent: HTMLElement, values: unknown[], next?: Node) => {
+  for (const value of values) {
     insert(parent, value, next)
-  })
+  }
 }
 
 const insertComponent = (
   parent: HTMLElement,
   component: Component,
-  next: Node,
+  next?: Node,
 ) => {
-  const parentComponent = componentContext.get()
+  const parentComponent = currentComponent.value
   if (parentComponent) {
-    parentComponent.setParentChildRelation(component)
+    setComponentRelation(parentComponent, component)
   }
-  componentContext.set(component)
+  currentComponent.value = component
   component.parentNode = parent
   if (next) {
     const fragment = document.createDocumentFragment()
-    fragment.append(...component.getNodes())
+    fragment.append(...getNodes([component]).flat(Infinity))
     parent.insertBefore(fragment, next)
   } else {
-    const nodes = component.getNodes()
-    parent.append(...nodes)
+    parent.append(...getNodes([component]).flat(Infinity))
   }
-  componentContext.set(parentComponent)
+  currentComponent.value = parentComponent
 }
 
-const insertNode = (parent: HTMLElement, node: Node, next: Node) => {
+const insertNode = (parent: HTMLElement, node: Node, next?: Node) => {
   if (next) {
     parent.insertBefore(node, next)
   } else {
@@ -66,27 +67,27 @@ const insertFunction = (parent: HTMLElement, value: Function, next: Node) => {
   const endNode = document.createComment('VALUE-END')
   insert(parent, startNode, next)
   insert(parent, endNode, next)
-  const component = componentContext.get()
+  const component = currentComponent.value
   const effectFn = () => {
     clearNodes(parent, startNode, endNode)
-    stateContext.set({
+    stateContext.value = {
       component,
-      type: 'DOM_EFFECT',
       target: parent,
+      type: 'DOM_EFFECT',
       effectFn: effectFn,
-    })
+    }
     const newValue = value()
-    stateContext.clear()
+    stateContext.value = null
     insert(parent, newValue, endNode)
   }
-  stateContext.set({
+  stateContext.value = {
     component,
-    type: 'DOM_EFFECT',
     target: parent,
+    type: 'DOM_EFFECT',
     effectFn: effectFn,
-  })
+  }
   const newValue = value()
-  stateContext.clear()
+  stateContext.value = null
   insert(parent, newValue, endNode)
 }
 
@@ -96,5 +97,13 @@ const clearNodes = (parent: HTMLElement, start: Node, end: Node) => {
     const next = currentNode.nextSibling
     parent.removeChild(currentNode)
     currentNode = next
+  }
+}
+
+const insertText = (parent: HTMLElement, value: string, next?: Node) => {
+  if (next) {
+    parent.insertBefore(document.createTextNode(value), next)
+  } else {
+    parent.appendChild(document.createTextNode(value))
   }
 }

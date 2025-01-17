@@ -1,4 +1,4 @@
-import { componentContext } from '@context/component.ts'
+import { currentComponent } from '@context/component.ts'
 import { stateContext } from '@context/state.ts'
 import { GetState } from '@hook/useState.ts'
 import { isGetState } from '@type/guard.ts'
@@ -7,15 +7,15 @@ export const useEffect = (
   callback: () => void,
   dependencies: (GetState<unknown> | unknown)[],
 ) => {
-  dependencies.forEach((dependency) => {
+  for (const dependency of dependencies) {
     if (isGetState(dependency)) {
-      stateContext.set({
-        component: componentContext.get(),
+      stateContext.value = {
+        component: currentComponent.value,
         type: 'USE_EFFECT',
         effectFn: callback,
-      })
+      }
       dependency()
-      stateContext.clear()
+      stateContext.value = null
     }
-  })
+  }
 }

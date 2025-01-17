@@ -1,42 +1,35 @@
-import {
-  isUsingStateContext,
-  stateContext,
-  StateContext,
-} from '@context/state.ts'
-import { isFunction } from '@type/guard.ts'
+import { stateContext, StateContext } from '@context/state.ts'
 import { RvjsObject } from '@type/rvjs.ts'
 import {
   RVJS_GET_STATE_IDENTIFIER,
   RVJS_SET_STATE_IDENTIFIER,
 } from '@util/identifier.ts'
-import { Queue } from '@util/queue.ts'
-
-export type StateAccessors<State> = [GetState<State>, SetState<State>]
+import { SmallQueue } from '@util/queue.ts'
 
 export type GetState<State> = RvjsObject<() => State>
 
-export type SetState<State> = RvjsObject<
-  (newState: State | ((state: State) => State)) => void
->
+export type SetState<State> = RvjsObject<(newState: State) => void>
 
 interface Effects {
-  DOM_EFFECT: Map<Node, StateContext['effectFn']>
-  USE_EFFECT: StateContext['effectFn'][]
-  FLOW_EFFECT: StateContext['effectFn'][]
+  DOM_EFFECT: Map<Node, StateContext['value']['effectFn']>
+  USE_EFFECT: Set<StateContext['value']['effectFn']>
+  FLOW_EFFECT: Set<StateContext['value']['effectFn']>
 }
 
-export const useState = <State>(initialState: State): StateAccessors<State> => {
+export const useState = <State>(
+  initialState: State,
+): [GetState<State>, SetState<State>] => {
   let state = initialState
   let isNotifying = false
   const effects: Effects = {
     DOM_EFFECT: new Map(),
-    USE_EFFECT: [],
-    FLOW_EFFECT: [],
+    USE_EFFECT: new Set(),
+    FLOW_EFFECT: new Set(),
   }
-  const lazySubscribeQueue = new Queue<StateContext>()
+  const lazySubscribeQueue = new SmallQueue<StateContext['value']>()
 
   const getState: GetState<State> = () => {
-    const context = stateContext.get()
+    const context = stateContext.value
     if (context) {
       if (isNotifying) {
         lazySubscribeQueue.enqueue(context)
@@ -44,7 +37,6 @@ export const useState = <State>(initialState: State): StateAccessors<State> => {
         subscribeEffect(effects, context)
       }
     }
-    isUsingStateContext.push(getState)
     return state
   }
   getState.$$typeof = RVJS_GET_STATE_IDENTIFIER
@@ -53,45 +45,46 @@ export const useState = <State>(initialState: State): StateAccessors<State> => {
     if (newState === state) {
       return
     }
-    state = isFunction(newState) ? newState(state) : newState
+    state = newState
     isNotifying = true
     notifyEffects(effects)
     isNotifying = false
-    lazySubscribeQueue.dequeueAll((context) => {
-      subscribeEffect(effects, context)
-    })
+    for (const subscriber of lazySubscribeQueue.items) {
+      subscribeEffect(effects, subscriber)
+    }
+    lazySubscribeQueue.clear()
   }
   setState.$$typeof = RVJS_SET_STATE_IDENTIFIER
 
   return [getState, setState]
 }
 
-const subscribeEffect = (effects: Effects, context: StateContext) => {
+const subscribeEffect = (effects: Effects, context: StateContext['value']) => {
   const { component, type, effectFn, target } = context
   if (type === 'DOM_EFFECT') {
     if (effects.DOM_EFFECT.has(target)) {
       return
     }
     effects[type].set(target, effectFn)
-    component.addUnsubscribeEffectHandler(() => {
+    component.unsubscribeEffectHandlers.push(() => {
       effects[type].delete(target)
     })
   } else {
-    effects[type].push(effectFn)
-    component.addUnsubscribeEffectHandler(() => {
-      effects[type] = effects[type].filter((effect) => effect !== effectFn)
+    effects[type].add(effectFn)
+    component.unsubscribeEffectHandlers.push(() => {
+      effects[type].delete(effectFn)
     })
   }
 }
 
 const notifyEffects = (effects: Effects) => {
-  effects['DOM_EFFECT'].forEach((effect) => {
+  for (const effect of effects['DOM_EFFECT']) {
+    effect[1]()
+  }
+  for (const effect of effects['USE_EFFECT']) {
     effect()
-  })
-  effects['USE_EFFECT'].forEach((effect) => {
+  }
+  for (const effect of effects['FLOW_EFFECT']) {
     effect()
-  })
-  effects['FLOW_EFFECT'].forEach((effect) => {
-    effect()
-  })
+  }
 }

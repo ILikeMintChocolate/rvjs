@@ -1,10 +1,12 @@
-import { Case } from '@component/case.ts'
-import { For } from '@component/for.ts'
-import { root } from '@component/root.ts'
-import { Switch } from '@component/switch.ts'
-import { Toggle } from '@component/toggle.ts'
-import { onDestroy } from '@hook/onDestroy.ts'
-import { useState } from '@hook/useState.ts'
+import {
+  Case,
+  For,
+  onDestroy,
+  root,
+  Switch,
+  Toggle,
+  useState,
+} from '@/index.ts'
 import {
   createComponents,
   mockWindowLocationHash,
