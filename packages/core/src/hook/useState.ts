@@ -1,10 +1,10 @@
 import { stateContext, StateContext } from '@context/state.ts'
+import { isHTMLElement } from '@type/guard.ts'
 import { RvjsObject } from '@type/rvjs.ts'
 import {
   RVJS_GET_STATE_IDENTIFIER,
   RVJS_SET_STATE_IDENTIFIER,
 } from '@util/identifier.ts'
-import { SmallQueue } from '@util/queue.ts'
 
 export type GetState<State> = RvjsObject<() => State>
 
@@ -26,13 +26,13 @@ export const useState = <State>(
     USE_EFFECT: new Set(),
     FLOW_EFFECT: new Set(),
   }
-  const lazySubscribeQueue = new SmallQueue<StateContext['value']>()
+  let lazySubscribeQueue: StateContext['value'][] = []
 
   const getState: GetState<State> = () => {
     const context = stateContext.value
     if (context) {
       if (isNotifying) {
-        lazySubscribeQueue.enqueue(context)
+        lazySubscribeQueue.push(context)
       } else {
         subscribeEffect(effects, context)
       }
@@ -49,10 +49,10 @@ export const useState = <State>(
     isNotifying = true
     notifyEffects(effects)
     isNotifying = false
-    for (const subscriber of lazySubscribeQueue.items) {
+    for (const subscriber of lazySubscribeQueue) {
       subscribeEffect(effects, subscriber)
     }
-    lazySubscribeQueue.clear()
+    lazySubscribeQueue = []
   }
   setState.$$typeof = RVJS_SET_STATE_IDENTIFIER
 
@@ -66,19 +66,26 @@ const subscribeEffect = (effects: Effects, context: StateContext['value']) => {
       return
     }
     effects[type].set(target, effectFn)
-    component.unsubscribeEffectHandlers.push(() => {
-      effects[type].delete(target)
-    })
+    if (component) {
+      component.unsubscribeEffectHandlers.push(() => {
+        effects[type].delete(target)
+      })
+    }
   } else {
     effects[type].add(effectFn)
-    component.unsubscribeEffectHandlers.push(() => {
-      effects[type].delete(effectFn)
-    })
+    if (component) {
+      component.unsubscribeEffectHandlers.push(() => {
+        effects[type].delete(effectFn)
+      })
+    }
   }
 }
 
 const notifyEffects = (effects: Effects) => {
   for (const effect of effects['DOM_EFFECT']) {
+    if (isHTMLElement(effect[0]) && !effect[0].isConnected) {
+      effects['DOM_EFFECT'].delete(effect[0])
+    }
     effect[1]()
   }
   for (const effect of effects['USE_EFFECT']) {
