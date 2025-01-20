@@ -11,6 +11,7 @@ export interface Component {
   onDestroyHandler: Function | null
   isRendered: boolean
   render: Function | null
+  contextMap: Map<Object, any>
 
   parentNode?: Node
   tempNode?: Comment
@@ -35,6 +36,7 @@ export const createComponentContext = (
     onDestroyHandler: null,
     isRendered: false,
     render: null,
+    contextMap: new Map(),
     ...additionalProps,
   }
 }
