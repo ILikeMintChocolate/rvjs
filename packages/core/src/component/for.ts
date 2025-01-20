@@ -19,7 +19,7 @@ interface ForProps<T> {
 
 export const For = <T>(props: ForProps<T>) => {
   let memoItems = new Map<
-    any,
+    T,
     {
       components: {
         component: Component
@@ -37,7 +37,7 @@ export const For = <T>(props: ForProps<T>) => {
       const effectFn = (isInitial: Boolean = false) => {
         const items = props.each
         const newMemoItems = new Map<
-          any,
+          T,
           {
             components: {
               component: Component

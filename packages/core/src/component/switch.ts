@@ -1,5 +1,5 @@
 import { currentComponent } from '@context/component.ts'
-import { Component, createComponentContext } from '@render/component.ts'
+import { createComponentContext } from '@render/component.ts'
 import { getNodes } from '@render/node.ts'
 import { renderChildren } from '@render/render.ts'
 import {
@@ -8,7 +8,7 @@ import {
 } from '@util/identifier.ts'
 
 interface SwitchProps {
-  children: Component[]
+  children: JSX.Element
 }
 
 export const Switch = (props: SwitchProps) => {

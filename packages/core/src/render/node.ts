@@ -1,3 +1,4 @@
+import { Component } from '@render/component.ts'
 import { isComponent } from '@type/guard.ts'
 import {
   RVJS_BLOCK_COMPONENT_IDENTIFIER,
@@ -10,7 +11,7 @@ import {
 } from '@util/identifier.ts'
 
 export const getNodes = (unknowns: JSX.Element) => {
-  const stack = [...unknowns.reverse()]
+  const stack = [...(unknowns as (Component | Node)[]).reverse()]
   const nodes = []
 
   while (stack.length) {
