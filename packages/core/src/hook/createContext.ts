@@ -14,11 +14,11 @@ export const createContext = <Context>(): ContextAccessors<Context> => {
 
   const getContext: GetContext<Context> = () => {
     const component = currentComponent.value
-    let parent = component.parentComponent
+    let parent = component
 
     while (parent !== undefined) {
-      if (parent.contextRef === contextRef) {
-        return parent.context
+      if (parent.contextMap.has(contextRef)) {
+        return parent.contextMap.get(contextRef)
       }
       parent = parent.parentComponent
     }
@@ -26,8 +26,7 @@ export const createContext = <Context>(): ContextAccessors<Context> => {
 
   const setContext: SetContext<Context> = (context) => {
     const providerComponent = currentComponent.value
-    providerComponent.contextRef = contextRef
-    providerComponent.context = context
+    providerComponent.contextMap.set(contextRef, context)
   }
 
   return {
