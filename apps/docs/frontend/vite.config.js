@@ -5,6 +5,9 @@ import importSvg from 'vite-plugin-import-svg'
 import vitePluginRvjs from 'vite-plugin-rvjs'
 
 export default defineConfig({
+  server: {
+    host: '0.0.0.0',
+  },
   plugins: [importSvg(), vanillaExtractPlugin(), vitePluginRvjs()],
   resolve: {
     alias: [

@@ -9,6 +9,7 @@
   },
   "sideNav": {
     "coreJSX": {
+      "menuName": "core-jsx",
       "overview": {
         "menuName": "Overview",
         "items": {
@@ -33,6 +34,7 @@
       }
     },
     "coreJS": {
+      "menuName": "core-js,
       "overview": {
         "menuName": "Overview",
         "items": {
@@ -52,6 +54,7 @@
       }
     },
     "uiJS": {
+      "menuName": "ui-js",
       "overview": {
         "menuName": "Overlay",
         "items": {
@@ -84,6 +87,7 @@
       }
     },
     "uiJSX": {
+      "menuName": "ui-jsx",
       "overview": {
         "menuName": "Overview",
         "items": {
@@ -116,6 +120,7 @@
       }
     },
     "isJS": {
+      "menuName": "is-js",
       "overview": {
         "menuName": "Overlay",
         "items": {
