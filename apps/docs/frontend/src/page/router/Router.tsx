@@ -1,4 +1,4 @@
-import ContentSuspense from '@page/contentSuspense/ContentSuspense.tsx
+import ContentSuspense from '@page/contentSuspense/ContentSuspense.tsx'
 import { useRouter } from '@page/router/Router.hook.ts'
 import { Route, Router as _Router, useOutlet } from '@rvjs/core'
 
