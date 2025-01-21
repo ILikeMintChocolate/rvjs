@@ -16,7 +16,6 @@ export const sideNavLink_anchor_recipe = recipe({
     textDecoration: 'none',
     width: '100%',
     height: vars.spacing['07'],
-    paddingLeft: vars.spacing['05'],
     paddingRight: vars.spacing['05'],
     backgroundColor: vars.color.background,
     cursor: 'pointer',

@@ -1,8 +1,11 @@
 import { defineProps, useState } from '@rvjs/core'
-import { SideNavMenuProps } from '@shell/sideNav/sideNavMenu/SideNavMenu.props.ts'
+import { SideNavMenuProps } from '@shell//sideNav/sideNavMenu/SideNavMenu.props.ts'
 
 export const useSideNavMenuProps = (props: SideNavMenuProps) => {
   const newProps = defineProps(props, {
+    get depth() {
+      return props.depth ?? 0
+    },
     get ariaLabel() {
       return props.ariaLabel ?? null
     },

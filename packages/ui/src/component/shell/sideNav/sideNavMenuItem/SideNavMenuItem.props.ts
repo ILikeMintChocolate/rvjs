@@ -4,6 +4,7 @@ export interface SideNavMenuItemProps {
   isActive?: boolean
   tabIndex?: number
   isExternal?: boolean
+  depth?: number
 }
 
 export const sideNavMenuItemRenderProps = {

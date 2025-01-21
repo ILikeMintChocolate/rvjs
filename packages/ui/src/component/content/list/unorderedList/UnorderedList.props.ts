@@ -1,7 +1,5 @@
-import { Children } from '@rvjs/core'
-
 export interface UnorderedListProps {
-  children: Children
+  children: JSX.Element
   type?: 'disc' | 'square'
 }
 

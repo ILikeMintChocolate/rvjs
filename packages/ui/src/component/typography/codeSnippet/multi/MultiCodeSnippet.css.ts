@@ -20,6 +20,7 @@ export const multiCodeSnippet_codeWrapper_style = style({
   paddingTop: vars.spacing['05'],
   paddingBottom: vars.spacing['05'],
   transition: `all ${vars.motion.productive}`,
+  overflowX: 'auto',
   ':focus': {
     boxShadow: `inset 0 0 0 0.125rem ${vars.color.focus}`,
   },

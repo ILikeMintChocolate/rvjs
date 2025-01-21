@@ -14,7 +14,6 @@ export const sideNavMenuItem_anchor_recipe = recipe({
     flexDirection: 'row',
     alignItems: 'center',
     textDecoration: 'none',
-    paddingLeft: vars.spacing['07'],
     paddingRight: vars.spacing['05'],
     width: '100%',
     height: vars.spacing['07'],

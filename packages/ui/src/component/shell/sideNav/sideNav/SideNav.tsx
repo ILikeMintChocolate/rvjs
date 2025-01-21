@@ -3,9 +3,9 @@ import {
   sideNav_backdrop_style,
   sideNav_nav_recipe,
   sideNav_wrapper_recipe,
-} from '@shell/sideNav/sideNav/SideNav.css.ts'
-import { useSideNavToggle } from '@shell/sideNav/sideNav/SideNav.hook.ts'
-import { SideNavProps } from '@shell/sideNav/sideNav/SideNav.props.ts'
+} from '@shell//sideNav/sideNav/SideNav.css.ts'
+import { useSideNavToggle } from '@shell//sideNav/sideNav/SideNav.hook.ts'
+import { SideNavProps } from '@shell//sideNav/sideNav/SideNav.props.ts'
 import { coolScrollBar_style } from '@theme/util/util.css.ts'
 
 const SideNav = (props: SideNavProps) => {

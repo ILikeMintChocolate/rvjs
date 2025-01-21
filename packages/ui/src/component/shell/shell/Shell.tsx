@@ -1,15 +1,22 @@
 import {
   shell_body_style,
-  shell_bodyWrapper_style,
   shell_wrapper_style,
-} from '@shell/shell/Shell.css.ts'
-import { ShellProps } from '@shell/shell/Shell.props.ts'
+  shellDesktop_bodyWrapper_recipe,
+} from '@shell//shell/Shell.css.ts'
+import { ShellProps } from '@shell//shell/Shell.props.ts'
+import { useShellProps } from '@shell/shell/Shell.hook.ts'
 
-const Shell = (props: ShellProps) => {
+const Shell = (_props: ShellProps) => {
+  const props = useShellProps(_props)
+
   return (
     <div className={shell_wrapper_style}>
       {props.header}
-      <main className={shell_bodyWrapper_style}>
+      <main
+        className={shellDesktop_bodyWrapper_recipe({
+          deviceType: props.deviceType,
+        })}
+      >
         {props.panel}
         <div className={shell_body_style}>{props.body}</div>
       </main>

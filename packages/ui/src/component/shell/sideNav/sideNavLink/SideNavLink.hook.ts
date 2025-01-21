@@ -1,5 +1,5 @@
 import { defineProps, useNavigate } from '@rvjs/core'
-import { SideNavLinkProps } from '@shell/sideNav/sideNavLink/SideNavLink.props.ts'
+import { SideNavLinkProps } from '@shell//sideNav/sideNavLink/SideNavLink.props.ts'
 
 export const useSideNavLinkProps = (
   props: SideNavLinkProps,
@@ -10,6 +10,9 @@ export const useSideNavLinkProps = (
     },
     get tabIndex() {
       return props.tabIndex ?? 0
+    },
+    get depth() {
+      return props.depth ?? 0
     },
   })
 

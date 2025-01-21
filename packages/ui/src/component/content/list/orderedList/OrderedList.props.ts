@@ -1,7 +1,5 @@
-import { Children } from '@rvjs/core'
-
 export interface OrderedListProps {
-  children: Children
+  children: JSX.Element
   type?: '1' | 'a' | 'A' | 'i' | 'I'
 }
 

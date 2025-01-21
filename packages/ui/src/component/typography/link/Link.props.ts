@@ -1,10 +1,9 @@
-import { Children } from '@rvjs/core'
 import { createSvg } from '@util/svg.ts'
 
 export interface LinkProps {
   href: string
   as?: keyof HTMLElementTagNameMap
-  children?: Children
+  children?: JSX.Element
   disabled?: boolean
   inline?: boolean
   renderIcon?: SVGElement

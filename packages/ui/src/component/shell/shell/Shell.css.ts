@@ -1,4 +1,5 @@
 import { style } from '@vanilla-extract/css'
+import { recipe } from '@vanilla-extract/recipes'
 
 export const shell_wrapper_style = style({
   display: 'flex',
@@ -8,11 +9,21 @@ export const shell_wrapper_style = style({
   padding: 0,
 })
 
-export const shell_bodyWrapper_style = style({
-  display: 'flex',
-  width: '100%',
-  maxWidth: '90rem',
-  marginInline: 'auto',
+export const shellDesktop_bodyWrapper_recipe = recipe({
+  base: {
+    display: 'flex',
+    width: '100%',
+    maxWidth: '90rem',
+    marginInline: 'auto',
+  },
+  variants: {
+    deviceType: {
+      desktop: {
+        maxWidth: '90rem',
+      },
+      mobile: {},
+    },
+  },
 })
 
 export const shell_body_style = style({

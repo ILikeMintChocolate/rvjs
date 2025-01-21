@@ -1,7 +1,5 @@
-import { Children } from '@rvjs/core'
-
 export interface SideNavProps {
-  children: Children
+  children: JSX.Element
 }
 
 export const sideNavProps = {

@@ -1,7 +1,6 @@
-import { Children } from '@rvjs/core'
-
 export interface HeaderProps {
-  children?: Children
+  deviceType?: 'desktop' | 'mobile'
+  children?: JSX.Element
 }
 
 export const headerRenderProps = {

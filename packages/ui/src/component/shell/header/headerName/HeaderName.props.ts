@@ -3,6 +3,7 @@ export interface HeaderNameProps {
   href: string
   prefix?: string
   isExternal?: boolean
+  deviceType?: 'desktop' | 'mobile'
 }
 
 export const headerNameRenderProps = {

@@ -2,6 +2,7 @@ import { CopyIcon } from '@content/icon/Icons.tsx'
 import Button from '@form/button/Button.tsx'
 import Tooltip from '@overlay/tooltip/Tooltip.tsx'
 import {
+  singleCodeSnippet_code_style,
   singleCodeSnippet_codeWrapper_style,
   singleCodeSnippet_copyIcon_style,
   singleCodeSnippet_wrapper_style,
@@ -26,8 +27,11 @@ const SingleCodeSnippet = (_props: SingleCodeSnippetProps) => {
       aria-label={props.ariaLabel}
     >
       <div className={singleCodeSnippet_codeWrapper_style} tabIndex={-1}>
-        <span
-          className={text_recipe({ kind: 'code-01' })}
+        <code
+          className={[
+            singleCodeSnippet_code_style,
+            text_recipe({ kind: 'code-01' }),
+          ].join(' ')}
           innerHTML={highlightedCodeHTML}
         />
       </div>
