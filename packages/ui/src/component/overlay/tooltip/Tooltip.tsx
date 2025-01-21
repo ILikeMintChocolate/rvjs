@@ -12,9 +12,24 @@ import {
   useTooltipToggle,
 } from '@overlay/tooltip/Tooltip.hook.ts'
 import { TooltipProps } from '@overlay/tooltip/Tooltip.props.ts'
+import { Case, Switch } from '@rvjs/core'
+import { useRvjsUIProvider } from '@system/provider.tsx'
 import Text from '@typography/text/Text.tsx'
 
-const Tooltip = (_props: TooltipProps) => {
+const Tooltip = (props: TooltipProps) => {
+  const { useTooltip } = useRvjsUIProvider()
+
+  return (
+    <Switch>
+      <Case is={useTooltip()}>
+        <RealTooltip {...props} />
+      </Case>
+      <Case is={!useTooltip()}>{props.children}</Case>
+    </Switch>
+  )
+}
+
+const RealTooltip = (_props: TooltipProps) => {
   const props = useTooltipProps(_props)
   const { showTooltip, onMouseOverHandler, onMouseOutHandler, onClickHandler } =
     useTooltipToggle(props)

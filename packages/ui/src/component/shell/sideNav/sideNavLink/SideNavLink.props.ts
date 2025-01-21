@@ -4,6 +4,7 @@ export interface SideNavLinkProps {
   isActive?: boolean
   tabIndex?: number
   isExternal?: boolean
+  depth?: number
 }
 
 export const sideNavLinkRenderProps = {
@@ -12,4 +13,5 @@ export const sideNavLinkRenderProps = {
   isActive: (p: SideNavLinkProps['isActive']) => p,
   tabIndex: (p: SideNavLinkProps['tabIndex']) => p,
   isExternal: (p: SideNavLinkProps['isExternal']) => p,
+  depth: (p: SideNavLinkProps['depth']) => p,
 }

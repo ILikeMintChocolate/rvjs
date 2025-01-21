@@ -5,17 +5,21 @@ export const useSideNavToggle = () => {
   const { showSideNav, setShowSideNav } = rvjsUIThemeContext.getContext()
   const sideNavBackdropElement = useElement<HTMLDivElement>()
 
-  onMount(() => {
+  const addResizeEvent = () => {
     window.addEventListener('resize', () => {
       if (window.innerWidth >= 768) {
         setShowSideNav(false)
       }
     })
-  })
+  }
 
   const onBackdropClickHandler = () => {
     setShowSideNav(false)
   }
+
+  onMount(() => {
+    addResizeEvent()
+  })
 
   return {
     sideNavBackdropElement,

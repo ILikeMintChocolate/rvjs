@@ -1,5 +1,4 @@
 import { ButtonStyleProps } from '@form/button/Button.css.ts'
-import { Children } from '@rvjs/core'
 import { EventHandlers } from '@type/event.ts'
 
 export interface ButtonProps extends ButtonStyleProps {
@@ -9,7 +8,7 @@ export interface ButtonProps extends ButtonStyleProps {
   tabIndex?: number
   type?: 'button' | 'reset' | 'submit'
   hasIconOnly?: boolean
-  renderIcon?: Children
+  renderIcon?: JSX.Element
   onBlur?: EventHandlers['onBlur']
   onClick?: EventHandlers['onClick']
   onFocus?: EventHandlers['onFocus']

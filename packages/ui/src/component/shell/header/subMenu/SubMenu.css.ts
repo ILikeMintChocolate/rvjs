@@ -98,7 +98,7 @@ export const subMenu_dropDown_recipe = recipe({
     padding: 0,
     margin: 0,
     inlineSize: '12.5rem',
-    zIndex: 250,
+    zIndex: 800,
     boxShadow: `0 0.25rem 0.5rem 0 rgba(0, 0, 0, 0.5)`,
     listStyleType: 'none',
   },

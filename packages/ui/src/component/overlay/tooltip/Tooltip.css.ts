@@ -36,7 +36,7 @@ export const tooltip_descriptionWrapper_recipe = recipe({
   base: {
     position: 'relative',
     backgroundColor: vars.color.backgroundInverse,
-    zIndex: 1001,
+    zIndex: 200,
   },
   variants: {
     kind: {

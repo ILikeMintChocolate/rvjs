@@ -1,7 +1,5 @@
-import { Children } from '@rvjs/core'
-
 export interface HighlightProps {
-  children: Children
+  children: JSX.Element
 }
 
 export const highlightRenderProps = {

@@ -9,6 +9,7 @@ export const sideNav_wrapper_recipe = recipe({
     backgroundColor: vars.color.background,
     overflowY: 'scroll',
     boxSizing: 'border-box',
+    zIndex: 900,
     '@media': {
       'screen and (max-width: 57.9375rem)': {
         display: 'none',
@@ -46,7 +47,8 @@ export const sideNav_nav_recipe = recipe({
   variants: {
     isOpen: {
       true: {
-        paddingBottom: vars.spacing['12'],
+        height: 'max-content',
+        marginBottom: '10rem',
       },
       false: {},
     },

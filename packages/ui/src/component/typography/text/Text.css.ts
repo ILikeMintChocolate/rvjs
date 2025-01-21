@@ -32,6 +32,7 @@ export interface TextStyleProps {
 export const text_recipe = recipe({
   base: {
     fontFamily: ibmPlexSans,
+    wordBreak: 'keep-all',
   },
   variants: {
     kind: {

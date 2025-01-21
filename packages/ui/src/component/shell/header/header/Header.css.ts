@@ -1,5 +1,6 @@
 import vars from '@theme/variable/vars.css.ts'
 import { style } from '@vanilla-extract/css'
+import { recipe } from '@vanilla-extract/recipes'
 
 export const header_wrapper_style = style({
   position: 'sticky',
@@ -10,14 +11,25 @@ export const header_wrapper_style = style({
   backgroundColor: vars.color.background,
   boxShadow: `inset 0 -0.0625rem 0 0 ${vars.color.borderSubtle00}`,
   justifyContent: 'center',
-  zIndex: 100,
+  zIndex: 1000,
 })
 
-export const header_content_style = style({
-  display: 'flex',
-  top: 0,
-  width: '90rem',
-  height: vars.component.header.height,
-  backgroundColor: vars.color.background,
-  boxShadow: `inset 0 -0.0625rem 0 0 ${vars.color.borderSubtle00}`,
+export const header_content_recipe = recipe({
+  base: {
+    display: 'flex',
+    top: 0,
+    height: vars.component.header.height,
+    backgroundColor: vars.color.background,
+    boxShadow: `inset 0 -0.0625rem 0 0 ${vars.color.borderSubtle00}`,
+  },
+  variants: {
+    deviceType: {
+      desktop: {
+        width: '90rem',
+      },
+      mobile: {
+        width: '100%',
+      },
+    },
+  },
 })

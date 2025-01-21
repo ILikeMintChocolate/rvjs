@@ -36,6 +36,6 @@ export { default as Highlight } from '@typography/highlight/Highlight.tsx'
 export { default as CodeSnippet } from '@typography/codeSnippet/CodeSnippet.tsx'
 export { default as Link } from '@typography/link/Link.tsx'
 
-export { default as RvjsUIProvider } from '@system/provider.tsx'
+export { RvjsUIProvider, useRvjsUIProvider } from '@system/provider.tsx'
 
 export { renderFromJSON } from '@util/render.ts'

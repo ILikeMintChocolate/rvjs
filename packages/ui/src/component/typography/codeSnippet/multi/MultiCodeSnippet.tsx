@@ -30,10 +30,11 @@ const MultiCodeSnippet = (_props: MultiCodeSnippetProps) => {
       style={{ width: props.width }}
       aria-label={props.ariaLabel}
     >
-      <div className={multiCodeSnippet_codeWrapper_style} tabIndex={0}>
+      <div className={multiCodeSnippet_codeWrapper_style} tabIndex={1}>
         {props.wrapText ? (
           <pre
             className={multiCodeSnippet_pre_style}
+            tabIndex={-1}
             style={{ height: height() }}
           >
             <code

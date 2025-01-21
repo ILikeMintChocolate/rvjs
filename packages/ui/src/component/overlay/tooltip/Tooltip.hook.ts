@@ -8,7 +8,6 @@ import {
   setTooltipAlignRight,
 } from '@overlay/tooltip/Tooltip.util.ts'
 import {
-  Children,
   defineProps,
   GetState,
   isComponent,
@@ -73,7 +72,7 @@ export const useTooltipToggle = (props: TooltipProps) => {
 
 export const useTooltipPosition = (
   showTooltip: GetState<boolean>,
-  trigger: Children,
+  trigger: JSX.Element,
 ) => {
   const tooltipElementObject = useElement<HTMLDivElement>()
   let previousZoom: number = -1
@@ -112,10 +111,10 @@ export const useTooltipPosition = (
   return tooltipElementObject
 }
 
-const getTriggerElement = (trigger: Children): HTMLElement => {
+const getTriggerElement = (trigger: JSX.Element): HTMLElement => {
   if (isHTMLElement(trigger)) {
     return trigger
   } else if (isComponent(trigger)) {
-    return trigger.getNodes()[0] as HTMLElement
+    return trigger.childNodes[0] as HTMLElement
   }
 }

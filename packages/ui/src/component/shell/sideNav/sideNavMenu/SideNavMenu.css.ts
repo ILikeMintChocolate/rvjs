@@ -14,7 +14,6 @@ export const sideNavMenu_button_style = style({
   flexDirection: 'row',
   alignItems: 'center',
   justifyContent: 'space-between',
-  paddingLeft: vars.spacing['05'],
   paddingRight: vars.spacing['05'],
   transition: `all ${vars.motion.productive}`,
   border: 'none',

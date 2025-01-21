@@ -2,12 +2,12 @@ import {
   sideNavLink_anchor_recipe,
   sideNavLink_style,
   sideNavLink_text_recipe,
-} from '@shell/sideNav/sideNavLink/SideNavLink.css.ts'
+} from '@shell//sideNav/sideNavLink/SideNavLink.css.ts'
 import {
   useSideNavLinkNavigation,
   useSideNavLinkProps,
-} from '@shell/sideNav/sideNavLink/SideNavLink.hook.ts'
-import { SideNavLinkProps } from '@shell/sideNav/sideNavLink/SideNavLink.props.ts'
+} from '@shell//sideNav/sideNavLink/SideNavLink.hook.ts'
+import { SideNavLinkProps } from '@shell//sideNav/sideNavLink/SideNavLink.props.ts'
 import Text from '@typography/text/Text.tsx'
 
 const SideNavLink = (_props: SideNavLinkProps) => {
@@ -19,7 +19,12 @@ const SideNavLink = (_props: SideNavLinkProps) => {
       <a
         href={props.href}
         tabIndex={props.tabIndex}
-        className={sideNavLink_anchor_recipe({ isActive: props.isActive })}
+        className={sideNavLink_anchor_recipe({
+          isActive: props.isActive,
+        })}
+        style={{
+          'padding-left': `${props.depth / 2 + 1}rem`,
+        }}
         onClick={onClickHandler}
       >
         <Text

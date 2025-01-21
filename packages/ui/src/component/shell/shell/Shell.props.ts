@@ -1,9 +1,8 @@
-import { Children } from '@rvjs/core'
-
 export interface ShellProps {
-  header: Children
-  body: Children
-  panel?: Children
+  header: JSX.Element
+  body: JSX.Element
+  panel?: JSX.Element
+  deviceType?: 'desktop' | 'mobile'
 }
 
 export const shellRenderProps = {
