@@ -2,7 +2,7 @@ import { currentComponent } from '@context/component.ts'
 import { stateContext } from '@context/state.ts'
 import { createComponentContext } from '@render/component.ts'
 import { clearNodes, getNodes, insertNodes } from '@render/node.ts'
-import { destroyTree, renderChildren, renderTree } from '@render/render.ts'
+import { destroyTree, renderTree, wrapRenderChildren } from '@render/render.ts'
 import {
   RVJS_COMPONENT_FN_IDENTIFIER,
   RVJS_REFRESH_COMPONENT_IDENTIFIER,
@@ -25,7 +25,7 @@ export const Refresh = (props: RefreshProps) => {
           destroyTree(component, false)
           component.childComponents.length = 0
         }
-        const children = renderChildren(component, () => props.children)
+        const children = wrapRenderChildren(component, () => props.children)
         insertNodes(
           component.parentNode,
           component.endNode,
@@ -37,7 +37,6 @@ export const Refresh = (props: RefreshProps) => {
       }
       stateContext.value = {
         component: currentComponent.value,
-        target: component.startNode,
         type: 'DOM_EFFECT',
         effectFn,
       }

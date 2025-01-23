@@ -106,7 +106,6 @@ export const For = <T>(props: ForProps<T>) => {
       }
       stateContext.value = {
         component: currentComponent.value,
-        target: component.startNode,
         type: 'DOM_EFFECT',
         effectFn,
       }

@@ -1,7 +1,7 @@
+import { Block } from '@component/block.ts'
+import { ComponentFn } from '@component/component.ts'
 import { Component } from '@render/component.ts'
 import { setComponentRelation } from '@render/relation.ts'
-import { isComponent } from '@type/guard.ts'
-import { toArray } from '@util/data.ts'
 
 export const renderTree = (component: Component, includeSelf: boolean) => {
   const stack = []
@@ -33,17 +33,10 @@ export const renderTree = (component: Component, includeSelf: boolean) => {
   }
 }
 
-export const renderChildren = (
-  component: Component,
-  fn: Function,
-): JSX.Element => {
-  const children = toArray(fn())
-  for (const child of children) {
-    if (isComponent(child)) {
-      setComponentRelation(component, child)
-    }
-  }
-  return children
+export const wrapRenderChildren = (component: Component, fn: ComponentFn) => {
+  const child = Block(fn, {})
+  setComponentRelation(component, child)
+  return [child]
 }
 
 export const destroyTree = (component: Component, includeSelf: boolean) => {

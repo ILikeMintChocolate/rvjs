@@ -1,7 +1,7 @@
 import { currentComponent } from '@context/component.ts'
 import { createComponentContext } from '@render/component.ts'
 import { getNodes } from '@render/node.ts'
-import { renderChildren } from '@render/render.ts'
+import { wrapRenderChildren } from '@render/render.ts'
 import {
   RVJS_COMPONENT_FN_IDENTIFIER,
   RVJS_SWITCH_COMPONENT_IDENTIFIER,
@@ -16,7 +16,7 @@ export const Switch = (props: SwitchProps) => {
     tempNode: document.createComment('SWITCH_COMPONENT_TEMP_NODE'),
     render: () => {
       currentComponent.value = component
-      const children = renderChildren(component, () => props.children)
+      const children = wrapRenderChildren(component, () => props.children)
       component.tempNode.replaceWith(...getNodes(children).flat(Infinity))
       delete component.tempNode
     },

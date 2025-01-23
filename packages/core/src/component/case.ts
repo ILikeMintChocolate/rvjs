@@ -2,7 +2,7 @@ import { currentComponent } from '@context/component.ts'
 import { stateContext } from '@context/state.ts'
 import { createComponentContext } from '@render/component.ts'
 import { clearNodes, getNodes, insertNodes } from '@render/node.ts'
-import { destroyTree, renderChildren, renderTree } from '@render/render.ts'
+import { destroyTree, renderTree, wrapRenderChildren } from '@render/render.ts'
 import {
   RVJS_CASE_COMPONENT_IDENTIFIER,
   RVJS_COMPONENT_FN_IDENTIFIER,
@@ -21,7 +21,7 @@ export const Case = (props: CaseProps) => {
       currentComponent.value = component
       const effectFn = (isInitial: Boolean = false) => {
         if (props.is) {
-          const children = renderChildren(component, () => props.children)
+          const children = wrapRenderChildren(component, () => props.children)
           insertNodes(
             component.parentComponent.parentNode,
             component.endNode,
@@ -38,7 +38,6 @@ export const Case = (props: CaseProps) => {
       }
       stateContext.value = {
         component: currentComponent.value,
-        target: component.startNode,
         type: 'DOM_EFFECT',
         effectFn,
       }
