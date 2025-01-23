@@ -1,5 +1,5 @@
 import { currentComponent } from '@context/component.ts'
-import { stateContext } from '@context/state.ts'
+import { effect } from '@jsx/effect.ts'
 import { Component } from '@render/component.ts'
 import { getNodes } from '@render/node.ts'
 import { setComponentRelation } from '@render/relation.ts'
@@ -11,9 +11,23 @@ import {
   isNode,
 } from '@type/guard.ts'
 
-export const insert = (parent: HTMLElement, value: unknown, next?: Node) => {
+interface EffectContext {
+  textNode?: Text
+}
+
+export const insert = (
+  parent: HTMLElement,
+  value: unknown,
+  next: Node | null,
+  effectContext: EffectContext = {},
+) => {
   if (value == null || isBoolean(value)) {
-    return
+    clearNode(effectContext)
+  } else if (isFunction(value)) {
+    // @ts-ignore
+    effect((effectContext: EffectContext) => {
+      return insert(parent, value(), next, effectContext)
+    })
   } else if (isArray(value)) {
     insertArray(parent, value, next)
   } else if (isFunction(value)) {
@@ -23,11 +37,16 @@ export const insert = (parent: HTMLElement, value: unknown, next?: Node) => {
   } else if (isNode(value)) {
     insertNode(parent, value, next)
   } else {
-    insertText(parent, String(value), next)
+    insertText(parent, String(value), next, effectContext)
   }
+  return effectContext
 }
 
-const insertArray = (parent: HTMLElement, values: unknown[], next?: Node) => {
+const insertArray = (
+  parent: HTMLElement,
+  values: unknown[],
+  next: Node | null,
+) => {
   for (const value of values) {
     insert(parent, value, next)
   }
@@ -36,7 +55,7 @@ const insertArray = (parent: HTMLElement, values: unknown[], next?: Node) => {
 const insertComponent = (
   parent: HTMLElement,
   component: Component,
-  next?: Node,
+  next: Node,
 ) => {
   const parentComponent = currentComponent.value
   if (parentComponent) {
@@ -54,7 +73,7 @@ const insertComponent = (
   currentComponent.value = parentComponent
 }
 
-const insertNode = (parent: HTMLElement, node: Node, next?: Node) => {
+const insertNode = (parent: HTMLElement, node: Node, next: Node) => {
   if (next) {
     parent.insertBefore(node, next)
   } else {
@@ -63,47 +82,32 @@ const insertNode = (parent: HTMLElement, node: Node, next?: Node) => {
 }
 
 const insertFunction = (parent: HTMLElement, value: Function, next: Node) => {
-  const startNode = document.createComment('VALUE-START')
-  const endNode = document.createComment('VALUE-END')
-  insert(parent, startNode, next)
-  insert(parent, endNode, next)
-  const component = currentComponent.value
-  const effectFn = () => {
-    clearNodes(parent, startNode, endNode)
-    stateContext.value = {
-      component,
-      target: parent,
-      type: 'DOM_EFFECT',
-      effectFn: effectFn,
-    }
-    const newValue = value()
-    stateContext.value = null
-    insert(parent, newValue, endNode)
-  }
-  stateContext.value = {
-    component,
-    target: parent,
-    type: 'DOM_EFFECT',
-    effectFn: effectFn,
-  }
   const newValue = value()
-  stateContext.value = null
-  insert(parent, newValue, endNode)
+  insert(parent, newValue, next)
 }
 
-const clearNodes = (parent: HTMLElement, start: Node, end: Node) => {
-  let currentNode = start.nextSibling
-  while (currentNode !== end) {
-    const next = currentNode.nextSibling
-    parent.removeChild(currentNode)
-    currentNode = next
+const clearNode = (effectContext: EffectContext) => {
+  if (effectContext.textNode) {
+    effectContext.textNode.nodeValue = ''
   }
 }
 
-const insertText = (parent: HTMLElement, value: string, next?: Node) => {
-  if (next) {
-    parent.insertBefore(document.createTextNode(value), next)
+const insertText = (
+  parent: HTMLElement | null,
+  value: string,
+  next: Node,
+  effectContext: EffectContext,
+) => {
+  if (effectContext.textNode) {
+    effectContext.textNode.nodeValue = value
   } else {
-    parent.appendChild(document.createTextNode(value))
+    const textNode = document.createTextNode(value)
+    if (next) {
+      parent.insertBefore(textNode, next)
+    } else {
+      parent.appendChild(textNode)
+    }
+    effectContext.textNode = textNode
   }
+  return effectContext
 }
