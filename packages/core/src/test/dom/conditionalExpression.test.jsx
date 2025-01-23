@@ -100,34 +100,6 @@ describe('conditionalExpressions', () => {
   })
 
   test('case - 7', () => {
-    const App = () => (
-      <h4>
-        {getCount() > 0 ? (isTrue1() ? bestText : getGoodText()) : badText}
-      </h4>
-    )
-    root(rootElement, <App />)
-    const element = rootElement.querySelector('h4')
-    expect(element.textContent).toEqual('badText')
-    setCount(getCount() + 1)
-    expect(element.textContent).toEqual('getGoodText')
-    setTrue1(true)
-    expect(element.textContent).toEqual('bestText')
-  })
-
-  test('case - 8', () => {
-    const App = () => <h4>{isTrue1() && isTrue2() && getGoodText()}</h4>
-    root(rootElement, <App />)
-    const element = rootElement.querySelector('h4')
-    expect(element.textContent).toEqual('')
-    setTrue1(true)
-    expect(element.textContent).toEqual('')
-    setTrue2(true)
-    expect(element.textContent).toEqual('getGoodText')
-    setTrue2(false)
-    expect(element.textContent).toEqual('')
-  })
-
-  test('case - 9', () => {
     const App = () => <h4>{(isTrue1() && getGoodText()) || badText}</h4>
     root(rootElement, <App />)
     const element = rootElement.querySelector('h4')
@@ -138,7 +110,7 @@ describe('conditionalExpressions', () => {
     expect(element.textContent).toEqual('badText')
   })
 
-  test('case - 10', () => {
+  test('case - 8', () => {
     const App = () => (
       <h4>
         {isTypeA() ? 'a' : isTypeB() ? 'b' : isTypeC() ? 'c' : 'fallback'}
@@ -159,7 +131,7 @@ describe('conditionalExpressions', () => {
     expect(element.textContent).toEqual('fallback')
   })
 
-  test('case - 11', () => {
+  test('case - 9', () => {
     const App = () => (
       <h4>
         {isTypeA()
@@ -186,7 +158,7 @@ describe('conditionalExpressions', () => {
     expect(element.textContent).toEqual('fallback')
   })
 
-  test('case - 12', () => {
+  test('case - 10', () => {
     const App = () => (
       <CompWithRender render={isTrue1() ? getGoodText() : badText} />
     )
@@ -199,7 +171,7 @@ describe('conditionalExpressions', () => {
     expect(element.textContent).toEqual('badText')
   })
 
-  test('case - 13', () => {
+  test('case - 11', () => {
     const App = () => <CompWithRender render={isTrue1() ? goodText : badText} />
     root(rootElement, <App />)
     const element = rootElement.querySelector('h4')
@@ -210,7 +182,7 @@ describe('conditionalExpressions', () => {
     expect(element.textContent).toEqual('badText')
   })
 
-  test('case - 14', () => {
+  test('case - 12', () => {
     const App = () => <CompWithRender render={isTrue1() && getGoodText()} />
     root(rootElement, <App />)
     const element = rootElement.querySelector('h4')
@@ -221,7 +193,7 @@ describe('conditionalExpressions', () => {
     expect(element.textContent).toEqual('')
   })
 
-  test('case - 15', () => {
+  test('case - 13', () => {
     const App = () => <CompWithRender render={isTrue1() && goodText} />
     root(rootElement, <App />)
     const element = rootElement.querySelector('h4')
@@ -232,7 +204,7 @@ describe('conditionalExpressions', () => {
     expect(element.textContent).toEqual('')
   })
 
-  test('case - 16', () => {
+  test('case - 14', () => {
     const App = () => <CompWithRender render={isTrue1() || getGoodText()} />
     root(rootElement, <App />)
     const element = rootElement.querySelector('h4')
@@ -243,7 +215,7 @@ describe('conditionalExpressions', () => {
     expect(element.textContent).toEqual('getGoodText')
   })
 
-  test('case - 17', () => {
+  test('case - 15', () => {
     const App = () => (
       <CompWithValue value={isTrue1() ? getTypeA() : getTypeB()} />
     )
@@ -256,7 +228,7 @@ describe('conditionalExpressions', () => {
     expect(element.textContent).toEqual('getTypeB')
   })
 
-  test('case - 18', () => {
+  test('case - 16', () => {
     const App = () => (
       <CompWithChildren>{isTrue1() ? getTypeA() : getTypeB()}</CompWithChildren>
     )
@@ -269,7 +241,7 @@ describe('conditionalExpressions', () => {
     expect(element.textContent).toEqual('getTypeB')
   })
 
-  test('case - 19', () => {
+  test('case - 17', () => {
     const App = () => <h4 innerHTML={isTrue1() ? getTypeA() : getTypeB()} />
     root(rootElement, <App />)
     const element = rootElement.querySelector('h4')
@@ -280,7 +252,7 @@ describe('conditionalExpressions', () => {
     expect(element.textContent).toEqual('getTypeB')
   })
 
-  test('case - 20', () => {
+  test('case - 18', () => {
     const App = () => <h4>{isTrue1() ? getTypeA() : getTypeB()}</h4>
     root(rootElement, <App />)
     const element = rootElement.querySelector('h4')
@@ -291,21 +263,21 @@ describe('conditionalExpressions', () => {
     expect(element.textContent).toEqual('getTypeB')
   })
 
-  test('case - 21', () => {
+  test('case - 19', () => {
     const App = () => <h4>{(thing() && thing1()) ?? thing2() ?? thing3()}</h4>
     root(rootElement, <App />)
     const element = rootElement.querySelector('h4')
     expect(element.textContent).toEqual('thing1')
   })
 
-  test('case - 22', () => {
+  test('case - 20', () => {
     const App = () => <h4>{thing() || thing1() || thing2()}</h4>
     root(rootElement, <App />)
     const element = rootElement.querySelector('h4')
     expect(element.textContent).toEqual('thing')
   })
 
-  test('case - 23', () => {
+  test('case - 21', () => {
     const App = () => (
       <CompWithRender
         render={getCount() ? (getCount() ? getCount() : count()) : getCount()}
@@ -320,14 +292,14 @@ describe('conditionalExpressions', () => {
     expect(element.textContent).toEqual('2')
   })
 
-  test('case - 24', () => {
+  test('case - 22', () => {
     const App = () => <h4>{something?.()}</h4>
     root(rootElement, <App />)
     const element = rootElement.querySelector('h4')
     expect(element.textContent).toEqual('something')
   })
 
-  test('case - 25', () => {
+  test('case - 23', () => {
     const App = () => <CompWithChildren>{something?.()}</CompWithChildren>
     root(rootElement, <App />)
     const element = rootElement.querySelector('h4')

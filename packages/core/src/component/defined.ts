@@ -2,7 +2,7 @@ import { currentComponent } from '@context/component.ts'
 import { stateContext } from '@context/state.ts'
 import { createComponentContext } from '@render/component.ts'
 import { clearNodes, getNodes, insertNodes } from '@render/node.ts'
-import { destroyTree, renderChildren, renderTree } from '@render/render.ts'
+import { destroyTree, renderTree, wrapRenderChildren } from '@render/render.ts'
 import { isDefined } from '@type/guard.ts'
 import {
   RVJS_COMPONENT_FN_IDENTIFIER,
@@ -26,7 +26,7 @@ export const Defined = (props: DefinedProps) => {
           destroyTree(component, false)
           component.childComponents.length = 0
         } else {
-          const children = renderChildren(component, () => props.children)
+          const children = wrapRenderChildren(component, () => props.children)
           insertNodes(
             component.parentNode,
             component.endNode,
@@ -39,7 +39,6 @@ export const Defined = (props: DefinedProps) => {
       }
       stateContext.value = {
         component: currentComponent.value,
-        target: component.startNode,
         type: 'DOM_EFFECT',
         effectFn,
       }

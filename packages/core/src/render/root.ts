@@ -13,6 +13,6 @@ export const root = (rootNode: HTMLElement, value: any) => {
     renderTree(value, true)
     currentComponent.value = null
   } else {
-    insert(rootNode, value)
+    insert(rootNode, value, null)
   }
 }
