@@ -31,23 +31,41 @@ export const useContentSuspense = () => {
   return { status, content }
 }
 
+export interface HeadingContext {
+  section: HTMLElement
+  heading: HTMLElement
+}
+
 export const useContentHeading = (status: GetState<Status>) => {
   const wrapperElement = useElement<HTMLElement>()
-  const [headings, setHeadings] = useState<HTMLHeadingElement[]>([])
+  const [headingContexts, setHeadingContexts] = useState<HeadingContext[]>([])
 
-  const findHeading = (element: Element) => {
-    return [
-      ...element.querySelectorAll('h1, h2, h3, h4, h5, h6'),
-    ] as HTMLHeadingElement[]
+  const findHeadingContext = (element: Element): HeadingContext[] => {
+    const sections = [
+      ...element.querySelectorAll('h1, section'),
+    ] as HTMLElement[]
+    const headingContext = sections
+      .map((section) => {
+        return {
+          section,
+          heading:
+            section.tagName === 'H1'
+              ? section
+              : (section.querySelector(
+                  'h2, h2, h3, h4, h5, h6',
+                ) as HTMLElement),
+        }
+      })
+      .filter((context) => context.heading)
+
+    return headingContext
   }
 
   useEffect(() => {
     if (status() === 'LOADED') {
-      setTimeout(() => {
-        setHeadings(findHeading(wrapperElement.current.children[0]))
-      }, 0)
+      setHeadingContexts(findHeadingContext(wrapperElement.current.children[0]))
     }
   }, [status])
 
-  return { wrapperElement, headings }
+  return { wrapperElement, headingContexts }
 }

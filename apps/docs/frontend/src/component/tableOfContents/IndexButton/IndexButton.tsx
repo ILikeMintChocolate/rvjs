@@ -7,7 +7,7 @@ import { SetState } from '@rvjs/core'
 import { Text } from '@rvjs/ui'
 
 export interface IndexButtonProps {
-  heading: HTMLHeadingElement
+  heading: HTMLElement
   currentIndex: number
   activeIndex: number
   setActiveIndex: SetState<number>
@@ -18,15 +18,7 @@ const IndexButton = (props: IndexButtonProps) => {
 
   return (
     <button className={indexButton_button_style} onClick={onClickHandler}>
-      <Text
-        as="span"
-        kind={
-          props.activeIndex === props.currentIndex
-            ? 'heading-compact-01'
-            : 'body-01'
-        }
-        className={indexButton_text_style}
-      >
+      <Text as="span" kind="body-01" className={indexButton_text_style}>
         {props.heading.textContent}
       </Text>
     </button>

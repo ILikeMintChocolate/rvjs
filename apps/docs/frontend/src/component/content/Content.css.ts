@@ -11,7 +11,7 @@ export const content_outer_recipe = recipe({
     deviceType: {
       desktop: {
         paddingBottom: '10rem',
-        paddingTop: '2rem',
+        paddingTop: '4rem',
       },
       mobile: {},
     },
