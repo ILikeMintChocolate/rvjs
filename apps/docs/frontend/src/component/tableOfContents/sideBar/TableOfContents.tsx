@@ -1,9 +1,10 @@
 import IndexButton from '@component/tableOfContents/IndexButton/IndexButton.tsx'
 import { tableOfContents_style } from '@component/tableOfContents/sideBar/TableOfContents.css.ts'
-import { For, useState } from '@rvjs/core'
+import { HeadingContext } from '@page/contentSuspense/ContentSuspense.hook.js'
+import { For, GetState, useState } from '@rvjs/core'
 
 interface TableOfContentsProps {
-  headings: HTMLHeadingElement[]
+  headingContexts: GetState<HeadingContext[]>
 }
 
 const TableOfContents = (props: TableOfContentsProps) => {
@@ -11,11 +12,11 @@ const TableOfContents = (props: TableOfContentsProps) => {
 
   return (
     <aside className={tableOfContents_style}>
-      <For each={props.headings}>
-        {(heading, index) => {
+      <For each={props.headingContexts()}>
+        {(headingContext, index) => {
           return (
             <IndexButton
-              heading={heading}
+              heading={headingContext.heading}
               currentIndex={index()}
               activeIndex={activeIndex()}
               setActiveIndex={setActiveIndex}

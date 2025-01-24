@@ -12,7 +12,7 @@ import { renderFromJSON } from '@rvjs/ui'
 
 const ContentSuspense = () => {
   const { status, content } = useContentSuspense()
-  const { wrapperElement, headings } = useContentHeading(status)
+  const { wrapperElement, headingContexts } = useContentHeading(status)
 
   return (
     <div className={contentSuspense_style} element={wrapperElement}>
@@ -27,7 +27,7 @@ const ContentSuspense = () => {
           <NoContentError />
         </Case>
       </Switch>
-      <TableOfContents headings={headings()} />
+      <TableOfContents headingContexts={headingContexts} />
     </div>
   )
 }
