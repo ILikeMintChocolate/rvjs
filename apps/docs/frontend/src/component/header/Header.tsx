@@ -55,7 +55,7 @@ const Header = () => {
           />
           <HeaderMenuItem
             text={t('header.items.blog')}
-            href={`/${language()}/blog`}
+            href={`/${language()}/blog/posts`}
             isActive={isInBlogPage(pathname())}
           />
           <SubMenu menuName={t('header.items.legacy')}>

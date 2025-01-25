@@ -26,7 +26,7 @@ const MobileSideNav = () => {
         </SideNavMenu>
         <SideNavLink
           text={t('header.items.blog')}
-          href={`/${language()}/blog`}
+          href={`/${language()}/blog/posts`}
           isActive={isInBlogPage(pathname())}
         />
         <SideNavMenu menuName={t('header.items.legacy')} defaultShow={false}>
