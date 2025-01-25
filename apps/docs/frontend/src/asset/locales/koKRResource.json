@@ -4,7 +4,8 @@
     "prefix": "rvjs",
     "items": {
       "language": "한국어",
-      "legacy": "구버전"
+      "legacy": "구버전",
+      "blog": "블로그"
     }
   },
   "sideNav": {

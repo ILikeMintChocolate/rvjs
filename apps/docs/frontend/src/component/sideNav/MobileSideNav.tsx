@@ -3,10 +3,15 @@ import CoreJSXSideNav from '@component/sideNav/CoreJSXSideNav.tsx'
 import IsJSSideNav from '@component/sideNav/IsJSSideNav.tsx'
 import UIJSSideNav from '@component/sideNav/UIJSSideNav.tsx'
 import UIJSXSideNav from '@component/sideNav/UIJSXSideNav.tsx'
-import { t } from '@rvjs/localizer'
-import { SideNav, SideNavItems, SideNavMenu } from '@rvjs/ui'
+import { usePathname } from '@rvjs/core'
+import { t, useLocale } from '@rvjs/localizer'
+import { SideNav, SideNavItems, SideNavLink, SideNavMenu } from '@rvjs/ui'
+import { isInBlogPage } from '@util/path.ts'
 
 const MobileSideNav = () => {
+  const { language } = useLocale()
+  const pathname = usePathname()
+
   return (
     <SideNav>
       <SideNavItems>
@@ -19,6 +24,11 @@ const MobileSideNav = () => {
         <SideNavMenu menuName={t('sideNav.uiJSX.menuName')} defaultShow={false}>
           <UIJSXSideNav depth={1} />
         </SideNavMenu>
+        <SideNavLink
+          text={t('header.items.blog')}
+          href={`/${language()}/blog`}
+          isActive={isInBlogPage(pathname())}
+        />
         <SideNavMenu menuName={t('header.items.legacy')} defaultShow={false}>
           <SideNavMenu
             menuName={t('sideNav.coreJS.menuName')}

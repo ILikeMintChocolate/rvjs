@@ -1,6 +1,6 @@
 import IndexButton from '@component/tableOfContents/IndexButton/IndexButton.tsx'
 import { tableOfContents_style } from '@component/tableOfContents/sideBar/TableOfContents.css.ts'
-import { HeadingContext } from '@page/contentSuspense/ContentSuspense.hook.js'
+import { HeadingContext } from '@page/contentSuspense/ContentSuspense.hook.ts'
 import { For, GetState, useState } from '@rvjs/core'
 
 interface TableOfContentsProps {

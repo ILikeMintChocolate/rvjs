@@ -32,6 +32,8 @@ const MainSideNav = () => {
                 return <UIJSSideNav depth={0} />
               case 'IS_JS':
                 return <IsJSSideNav depth={0} />
+              default:
+                return <></>
             }
           })()}
         </Refresh>
