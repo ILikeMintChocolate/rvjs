@@ -21,7 +21,7 @@
               "style": {
                 "display": "flex",
                 "flexDirection": "column",
-                "gap": "1rem"
+                "gap": "4rem"
               },
               "children": [
                 {
@@ -35,10 +35,7 @@
                         "name": "div",
                         "props": {
                           "style": {
-                            "padding": "1rem",
-                            "height": "7rem",
-                            "display": "flex",
-                            "gap": "1rem"
+                            "width": "100%"
                           },
                           "children": [
                             {
@@ -46,33 +43,45 @@
                               "name": "img",
                               "props": {
                                 "style": {
-                                  "width": "7rem",
-                                  "height": "7rem",
+                                  "width": "100%",
+                                  "height": "10rem",
                                   "object-fit": "cover"
                                 },
                                 "src": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/blog/1/1.png?raw=true"
                               }
                             },
                             {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "h1",
+                                "text": "@rvjs/core의 핵심 동작 아이디어",
+                                "kind": "heading-03"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "text": "@rvjs/core에 적용한 직관적으로 동작하는 상태 기반 업데이트 방식을 소개합니다.",
+                                "kind": "body-01"
+                              }
+                            },
+                            {
                               "type": "element",
                               "name": "div",
                               "props": {
+                                "style": {
+                                  "display": "flex",
+                                  "justify-content": "end"
+                                },
                                 "children": [
                                   {
                                     "type": "component",
                                     "name": "Text",
                                     "props": {
-                                      "as": "h1",
-                                      "text": "@rvjs/core의 핵심 동작 아이디어",
-                                      "kind": "heading-03"
-                                    }
-                                  },
-                                  {
-                                    "type": "component",
-                                    "name": "Text",
-                                    "props": {
-                                      "text": "@rvjs/core에 적용한 직관적으로 동작하는 상태 기반 업데이트 방식을 소개합니다.",
-                                      "kind": "body-01"
+                                      "text": "25.01.25",
+                                      "kind": "helper-text-02"
                                     }
                                   }
                                 ]
