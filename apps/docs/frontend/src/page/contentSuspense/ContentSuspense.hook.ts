@@ -1,6 +1,7 @@
-import { getContent } from '@page/contentSuspense/ContentSuspense.util.ts'
+import { getContentFromServer } from '@page/contentSuspense/ContentSuspense.util.ts'
 import {
   GetState,
+  onMount,
   useEffect,
   useElement,
   usePathname,
@@ -14,15 +15,24 @@ export const useContentSuspense = () => {
   const [content, setContent] = useState(null)
   const pathname = usePathname()
 
-  ;(async () => {
+  const getContent = async () => {
+    setStatus('LOADING')
     try {
-      const { content } = await getContent(`${pathname()}.json`)
+      const { content } = await getContentFromServer(`${pathname()}.json`)
       setContent(content)
       setStatus('LOADED')
     } catch {
       setStatus('ERROR')
     }
-  })()
+  }
+
+  onMount(() => {
+    getContent()
+  })
+
+  useEffect(() => {
+    getContent()
+  }, [pathname])
 
   window.scrollTo({
     top: 0,

@@ -18,6 +18,10 @@ export const isInIsJSPage = (pathname: string) => {
   return /\/is-js\//.test(pathname)
 }
 
+export const isInBlogPage = (pathname: string) => {
+  return /\/blog(\/|$)/.test(pathname)
+}
+
 export const isPathIncluded = (segment: string, pathname: string) => {
   return new RegExp(segment + ' ').test(pathname + ' ')
 }

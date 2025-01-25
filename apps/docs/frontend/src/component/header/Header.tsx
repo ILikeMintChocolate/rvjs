@@ -18,6 +18,7 @@ import {
 } from '@rvjs/ui'
 import { getDeviceType } from '@util/device.ts'
 import {
+  isInBlogPage,
   isInCoreJSPage,
   isInCoreJSXPage,
   isInIsJSPage,
@@ -51,6 +52,11 @@ const Header = () => {
             text="ui-jsx"
             href={`/${language()}/ui-jsx/overview/gettingStarted`}
             isActive={isInUIJSXPage(pathname())}
+          />
+          <HeaderMenuItem
+            text={t('header.items.blog')}
+            href={`/${language()}/blog`}
+            isActive={isInBlogPage(pathname())}
           />
           <SubMenu menuName={t('header.items.legacy')}>
             <SubMenuItem

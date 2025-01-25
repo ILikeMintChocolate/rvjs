@@ -4,7 +4,8 @@
     "prefix": "rvjs",
     "items": {
       "language": "English",
-      "legacy": "legacy"
+      "legacy": "legacy",
+      "blog": "blog"
     }
   },
   "sideNav": {

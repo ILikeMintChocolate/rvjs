@@ -5,7 +5,7 @@ import {
   storeItemToCache,
 } from '@util/cache.ts'
 
-export const getContent = async (path: string) => {
+export const getContentFromServer = async (path: string) => {
   const apiPath = getApiPath(path)
   if (hasItemCache(apiPath) && !isCacheExpired(apiPath)) {
     const content = getItemFromCache(apiPath)
