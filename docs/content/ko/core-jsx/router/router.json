@@ -75,7 +75,7 @@
             "name": "CodeSnippet",
             "props": {
               "codeText": "import { Route, Router, useNavigate, useOutlet } from '@rvjs/core'\n\nconst App = () => {\n  return (\n    <main>\n      <Header />\n      <Router>\n        <Route path=\"/home\" element={<Home />}>\n          <Route path=\"/main\" element={<Main />} />\n        </Route>\n        <Route path=\"/about\" element={<About />} />\n      </Router>\n    </main>\n  )\n}\n\nconst Header = () => {\n  const navigate = useNavigate()\n\n  return (\n    <header>\n      <button onClick={() => navigate('/home')}>/home</button>\n      <button onClick={() => navigate('/home/main')}>/home/main</button>\n      <button onClick={() => navigate('/about')}>/about</button>\n    </header>\n  )\n}\n\nconst Home = () => {\n  const outlet = useOutlet()\n\n  return (\n    <div>\n      <p>Home</p>\n      {outlet}\n    </div>\n  )\n}\n\nconst Main = () => {\n  return (\n    <div>\n      <p>Main</p>\n    </div>\n  )\n}\n\nconst About = () => {\n  return (\n    <div>\n      <p>About</p>\n    </div>\n  )\n}\n\nexport default App",
-              "language": "javascript",
+              "language": "jsx",
               "type": "multi",
               "width": "100%",
               "defaultShow": true

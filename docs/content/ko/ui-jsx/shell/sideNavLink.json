@@ -256,6 +256,121 @@
                         "type": "component",
                         "name": "CodeSnippet",
                         "props": {
+                          "codeText": "depth?",
+                          "language": "javascript",
+                          "type": "inline",
+                          "size": "lg"
+                        }
+                      },
+                      {
+                        "type": "element",
+                        "name": "div",
+                        "props": {
+                          "style": {
+                            "display": "grid",
+                            "gridTemplateColumns": "15% 85%",
+                            "padding": "1rem",
+                            "gap": "1rem"
+                          },
+                          "children": [
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "kind": "heading-compact-01",
+                                "text": "설명"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "children": [
+                                  {
+                                    "type": "text",
+                                    "name": "text",
+                                    "props": {
+                                      "text": "들여쓰기 간격을 지정합니다."
+                                    }
+                                  }
+                                ],
+                                "as": "span"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "kind": "heading-compact-01",
+                                "text": "타입"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "children": [
+                                  {
+                                    "type": "component",
+                                    "name": "CodeSnippet",
+                                    "props": {
+                                      "codeText": "number",
+                                      "language": "typescript",
+                                      "type": "inline"
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "kind": "heading-compact-01",
+                                "text": "기본 값"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "span",
+                                "children": [
+                                  {
+                                    "type": "component",
+                                    "name": "CodeSnippet",
+                                    "props": {
+                                      "codeText": "0",
+                                      "language": "javascript",
+                                      "type": "inline"
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "element",
+                  "name": "li",
+                  "props": {
+                    "style": {
+                      "display": "flex",
+                      "flexDirection": "column"
+                    },
+                    "children": [
+                      {
+                        "type": "component",
+                        "name": "CodeSnippet",
+                        "props": {
                           "codeText": "isActive?",
                           "language": "javascript",
                           "type": "inline",

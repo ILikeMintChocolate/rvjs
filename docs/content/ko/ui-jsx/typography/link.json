@@ -369,7 +369,7 @@
                                     "type": "component",
                                     "name": "CodeSnippet",
                                     "props": {
-                                      "codeText": "Children",
+                                      "codeText": "JSX.Element",
                                       "language": "typescript",
                                       "type": "inline"
                                     }
@@ -1001,22 +1001,6 @@
                               "type": "component",
                               "name": "Text",
                               "props": {
-                                "children": [
-                                  {
-                                    "type": "text",
-                                    "name": "text",
-                                    "props": {
-                                      "text": "표시할 문자열을 지정합니다."
-                                    }
-                                  }
-                                ],
-                                "as": "span"
-                              }
-                            },
-                            {
-                              "type": "component",
-                              "name": "Text",
-                              "props": {
                                 "as": "span",
                                 "kind": "heading-compact-01",
                                 "text": "타입"
@@ -1032,7 +1016,7 @@
                                     "type": "component",
                                     "name": "CodeSnippet",
                                     "props": {
-                                      "codeText": "Children",
+                                      "codeText": "JSX.Element",
                                       "language": "typescript",
                                       "type": "inline"
                                     }

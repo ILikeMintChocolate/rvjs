@@ -158,7 +158,7 @@
                                     "type": "component",
                                     "name": "CodeSnippet",
                                     "props": {
-                                      "codeText": "Children",
+                                      "codeText": "JSX.Element",
                                       "language": "typescript",
                                       "type": "inline"
                                     }

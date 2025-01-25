@@ -400,7 +400,7 @@
       "type": "component",
       "name": "Link",
       "props": {
-        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/core-jsx/render/element.json",
+        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/core-jsx/render/element.json",
         "isExternal": true,
         "children": [
           {

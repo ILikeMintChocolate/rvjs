@@ -353,7 +353,7 @@
                                     "type": "component",
                                     "name": "CodeSnippet",
                                     "props": {
-                                      "codeText": "Children",
+                                      "codeText": "JSX.Element",
                                       "language": "javascript",
                                       "type": "inline"
                                     }

@@ -140,7 +140,7 @@
                                     "type": "component",
                                     "name": "CodeSnippet",
                                     "props": {
-                                      "codeText": "Children",
+                                      "codeText": "JSX.Element",
                                       "language": "typescript",
                                       "type": "inline"
                                     }
@@ -237,7 +237,7 @@
                                     "type": "component",
                                     "name": "CodeSnippet",
                                     "props": {
-                                      "codeText": "Children",
+                                      "codeText": "JSX.Element",
                                       "language": "typescript",
                                       "type": "inline"
                                     }
@@ -325,7 +325,7 @@
                                     "type": "component",
                                     "name": "CodeSnippet",
                                     "props": {
-                                      "codeText": "Children",
+                                      "codeText": "JSX.Element",
                                       "language": "typescript",
                                       "type": "inline"
                                     }
