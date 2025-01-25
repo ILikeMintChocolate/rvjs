@@ -6,7 +6,8 @@ export const noContentError_style = style({
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-  height: '50vh',
+  height: '100vh',
+  marginTop: '-10vh',
 })
 
 export const noContentError_image_style = style({
