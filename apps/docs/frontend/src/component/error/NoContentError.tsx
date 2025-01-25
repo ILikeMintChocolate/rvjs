@@ -10,7 +10,7 @@ const NoContentError = () => {
   return (
     <div className={noContentError_style}>
       <img alt="" src={searchingCat} className={noContentError_image_style} />
-      <Text kind="heading-04" className={noContentError_text_style}>
+      <Text kind="heading-03" className={noContentError_text_style}>
         404 error...
       </Text>
     </div>
