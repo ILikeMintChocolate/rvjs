@@ -17,7 +17,9 @@ export const getNodes = (unknowns: JSX.Element) => {
   while (stack.length) {
     const unknown = stack.pop()
     if (!isComponent(unknown)) {
-      nodes.push(unknown)
+      if (unknown) {
+        nodes.push(unknown)
+      }
       continue
     }
 
@@ -25,6 +27,7 @@ export const getNodes = (unknowns: JSX.Element) => {
       case RVJS_BLOCK_COMPONENT_IDENTIFIER:
         // @ts-ignore
         stack.push(unknown.childNodes)
+
         break
       case RVJS_FOR_COMPONENT_IDENTIFIER:
         stack.push(unknown.endNode, unknown.startNode)
