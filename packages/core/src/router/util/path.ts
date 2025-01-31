@@ -8,6 +8,10 @@ export const findPathType = (path: string) => {
   }
 }
 
+export const isUsingHash = () => {
+  return location.hash.startsWith('#')
+}
+
 const isDynamicPath = (path: string) => {
   return path.startsWith('/:', 0)
 }
