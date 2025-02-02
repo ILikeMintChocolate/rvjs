@@ -38,4 +38,4 @@ export { default as Link } from '@typography/link/Link.tsx'
 
 export { RvjsUIProvider, useRvjsUIProvider } from '@system/provider.tsx'
 
-export { renderFromJSON } from '@util/render.ts'
+export { renderFromJSON, type Json } from '@util/render.ts'

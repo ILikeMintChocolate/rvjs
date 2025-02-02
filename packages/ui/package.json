@@ -1,7 +1,7 @@
 {
   "name": "@rvjs/ui",
   "description": "UI component library with rvjs",
-  "version": "0.2.2",
+  "version": "0.2.21",
   "repository": {
     "type": "git",
     "url": "https://github.com/ILikeMintChocolate/rvjs.git",
@@ -20,16 +20,16 @@
   "types": "./dist/type/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/type/index.d.ts",
       "import": "./dist/entry.es.js",
-      "require": "./dist/entry.cjs.js",
-      "types": "./dist/type/index.d.ts"
+      "require": "./dist/entry.cjs.js"
     }
   },
   "files": [
     "dist"
   ],
   "dependencies": {
-    "@rvjs/core": "^0.3.3",
+    "@rvjs/core": "^0.3.31",
     "@types/prismjs": "^1.26.4",
     "@vanilla-extract/css": "^1.15.2",
     "@vanilla-extract/dynamic": "^2.1.1",
@@ -45,7 +45,7 @@
     "jsdom": "^24.0.0",
     "less": "^4.2.0",
     "typescript": "^5.2.2",
-    "vite": "5.4.6",
+    "vite": "^6.0.11",
     "vite-plugin-rvjs": "^0.0.2",
     "vitest": "^1.3.1"
   }
