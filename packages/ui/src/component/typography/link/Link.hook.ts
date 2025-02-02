@@ -38,7 +38,7 @@ export const useLinkNavigate = (props: LinkProps) => {
   const [visited, setVisited] = useState(false)
   const navigate = useNavigate()
 
-  const onClickHandler = (event: MouseEvent) => {
+  const onAnchorClickHandler = (event: MouseEvent) => {
     event.preventDefault()
     navigate(props.href, props.isExternal)
     setVisited(true)
@@ -46,7 +46,7 @@ export const useLinkNavigate = (props: LinkProps) => {
 
   return {
     visited,
-    onClickHandler,
+    onAnchorClickHandler,
   }
 }
 

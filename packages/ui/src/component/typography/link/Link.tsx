@@ -13,14 +13,15 @@ import Text from '@typography/text/Text.tsx'
 
 const Link = (_props: LinkProps) => {
   const props = useLinkProps(_props)
-  const { visited, onClickHandler } = useLinkNavigate(props)
+  const { visited, onAnchorClickHandler } = useLinkNavigate(props)
   useLinkIconStyle(props, visited)
 
   return (
     <a
       className={link_anchor_recipe({ inline: props.inline })}
       tabIndex={0}
-      onClick={onClickHandler}
+      href={props.href}
+      onClick={onAnchorClickHandler}
     >
       {isString(props.children) ? (
         <Text

@@ -12,7 +12,7 @@ import Text from '@typography/text/Text.tsx'
 
 const SubMenuItem = (_props: SubMenuItemProps) => {
   const props = useSubMenuItemProps(_props)
-  const onClickHandler = useSubMenuNavigation(props)
+  const onAnchorClickHandler = useSubMenuNavigation(props)
 
   return (
     <li className={subMenuItem_li_style} tabIndex={-1}>
@@ -20,7 +20,7 @@ const SubMenuItem = (_props: SubMenuItemProps) => {
         className={subMenuItem_anchor_recipe({ isActive: props.isActive })}
         href={props.href}
         tabIndex={props.tabIndex}
-        onClick={onClickHandler}
+        onClick={onAnchorClickHandler}
       >
         <Text
           kind="body-compact-01"
