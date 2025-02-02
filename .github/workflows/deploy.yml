@@ -32,7 +32,7 @@ jobs:
           sed -i 's|/assets|assets|g' apps/docs/frontend/dist/index.html
 
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: docs-build
           path: apps/docs/frontend/dist/
@@ -54,7 +54,7 @@ jobs:
       - name: Pull latest changes from docs-fe/deploy branch
         run: |
           git pull origin docs-fe/deploy
-          
+
       - name: Delete existing files in docs folder
         run: |
           rm -f docs/index.html
@@ -67,7 +67,7 @@ jobs:
           fi
 
       - name: Download build artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: docs-build
           path: docs
