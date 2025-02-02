@@ -12,10 +12,10 @@ export const useHeaderNameProps = (props: HeaderNameProps) => {
 export const useHeaderNameNavigation = (props: HeaderNameProps) => {
   const navigate = useNavigate()
 
-  const onClickHandler = (event: Event) => {
+  const onAnchorClickHandler = (event: MouseEvent) => {
     event.preventDefault()
     navigate(props.href, props.isExternal)
   }
 
-  return onClickHandler
+  return onAnchorClickHandler
 }

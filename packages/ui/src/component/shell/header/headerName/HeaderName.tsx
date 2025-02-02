@@ -9,13 +9,13 @@ import Text from '@typography/text/Text.tsx'
 
 const HeaderName = (_props: HeaderNameProps) => {
   const props = useHeaderNameProps(_props)
-  const onClickHandler = useHeaderNameNavigation(props)
+  const onAnchorClickHandler = useHeaderNameNavigation(props)
 
   return (
     <a
       className={headerName_recipe({ deviceType: props.deviceType })}
       href={props.href}
-      onClick={onClickHandler}
+      onClick={onAnchorClickHandler}
     >
       <Defined value={props.prefix}>
         <Text kind="body-compact-01" color="textPrimary">

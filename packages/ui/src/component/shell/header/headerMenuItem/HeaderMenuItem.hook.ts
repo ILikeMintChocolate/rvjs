@@ -17,10 +17,10 @@ export const useHeaderMenuItemProps = (props: HeaderMenuItemProps) => {
 export const useHeaderMenuItemNavigation = (props: HeaderMenuItemProps) => {
   const navigate = useNavigate()
 
-  const onClickHandler = (event: Event) => {
+  const onAnchorClickHandler = (event: MouseEvent) => {
     event.preventDefault()
     navigate(props.href, props.isExternal)
   }
 
-  return onClickHandler
+  return onAnchorClickHandler
 }

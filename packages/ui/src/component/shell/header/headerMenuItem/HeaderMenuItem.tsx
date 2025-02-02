@@ -12,7 +12,7 @@ import Text from '@typography/text/Text.tsx'
 
 const HeaderMenuItem = (_props: HeaderMenuItemProps) => {
   const props = useHeaderMenuItemProps(_props)
-  const onClickHandler = useHeaderMenuItemNavigation(props)
+  const onAnchorClickHandler = useHeaderMenuItemNavigation(props)
 
   return (
     <li className={headerMenuItem_li_style} tabIndex={-1}>
@@ -20,7 +20,7 @@ const HeaderMenuItem = (_props: HeaderMenuItemProps) => {
         className={headerMenuItem_anchor_recipe({ isActive: props.isActive })}
         href={props.href}
         tabIndex={props.tabIndex}
-        onClick={onClickHandler}
+        onClick={onAnchorClickHandler}
       >
         <Text
           kind="body-compact-01"
