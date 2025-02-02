@@ -37,7 +37,7 @@ const Header = () => {
         <HeaderMenuButton menuIcon={(<MenuIcon />) as SVGElement} />
         <HeaderName
           title={t('header.title')}
-          href={`/${language()}/core-jsx/overview/gettingStarted`}
+          href={`#/${language()}/core-jsx/overview/gettingStarted`}
           prefix={t('header.prefix')}
           deviceType={getDeviceType()}
         />
@@ -45,33 +45,33 @@ const Header = () => {
         <HeaderNavigation>
           <HeaderMenuItem
             text="core-jsx"
-            href={`/${language()}/core-jsx/overview/gettingStarted`}
+            href={`#/${language()}/core-jsx/overview/gettingStarted`}
             isActive={isInCoreJSXPage(pathname())}
           />
           <HeaderMenuItem
             text="ui-jsx"
-            href={`/${language()}/ui-jsx/overview/gettingStarted`}
+            href={`#/${language()}/ui-jsx/overview/gettingStarted`}
             isActive={isInUIJSXPage(pathname())}
           />
           <HeaderMenuItem
             text={t('header.items.blog')}
-            href={`/${language()}/blog/posts`}
+            href={`#/${language()}/blog/posts`}
             isActive={isInBlogPage(pathname())}
           />
           <SubMenu menuName={t('header.items.legacy')}>
             <SubMenuItem
               text="core-js"
-              href={`/${language()}/core-js/overview/gettingStarted`}
+              href={`#/${language()}/core-js/overview/gettingStarted`}
               isActive={isInCoreJSPage(pathname())}
             />
             <SubMenuItem
               text="ui-js"
-              href={`/${language()}/ui-js/overview/gettingStarted`}
+              href={`#/${language()}/ui-js/overview/gettingStarted`}
               isActive={isInUIJSPage(pathname())}
             />
             <SubMenuItem
               text="is-js"
-              href={`/${language()}/is-js/overview/gettingStarted`}
+              href={`#/${language()}/is-js/overview/gettingStarted`}
               isActive={isInIsJSPage(pathname())}
             />
           </SubMenu>
@@ -80,7 +80,7 @@ const Header = () => {
           <SubMenu menuName={t('header.items.language')}>
             <SubMenuItem
               text="한국어"
-              href={`/ko/${pathname().slice(4)}`}
+              href={`#/ko/${pathname().slice(4)}`}
               isActive={language() === 'ko'}
             />
           </SubMenu>
@@ -109,7 +109,7 @@ const Header = () => {
         <HeaderMenuButton menuIcon={(<MenuIcon />) as SVGElement} />
         <HeaderName
           title={t('header.title')}
-          href={`/${language()}/core-jsx/overview/gettingStarted`}
+          href={`#/${language()}/core-jsx/overview/gettingStarted`}
           prefix={t('header.prefix')}
           deviceType={getDeviceType()}
         />
