@@ -6,6 +6,7 @@ export const link_anchor_recipe = recipe({
     flexDirection: 'row',
     alignItems: 'center',
     gap: vars.spacing['03'],
+    textDecoration: 'none',
     cursor: 'pointer',
     ':focus': {
       boxShadow: `inset 0 0 0 0.0625rem ${vars.color.focus}`,
