@@ -8,7 +8,6 @@ export const useIndexButtonScrollTo = (props: IndexButtonProps) => {
       top: scrollTopPosition - 48 - 200,
       behavior: 'smooth',
     })
-    props.setActiveIndex(props.currentIndex)
   }
 
   return onClickHandler

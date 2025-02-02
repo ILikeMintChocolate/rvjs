@@ -3,14 +3,10 @@ import {
   indexButton_text_style,
 } from '@component/tableOfContents/IndexButton/IndexButton.css.ts'
 import { useIndexButtonScrollTo } from '@component/tableOfContents/IndexButton/IndexButton.hook.ts'
-import { SetState } from '@rvjs/core'
 import { Text } from '@rvjs/ui'
 
 export interface IndexButtonProps {
   heading: HTMLElement
-  currentIndex: number
-  activeIndex: number
-  setActiveIndex: SetState<number>
 }
 
 const IndexButton = (props: IndexButtonProps) => {

@@ -74,6 +74,8 @@ export const useContentHeading = (status: GetState<Status>) => {
   useEffect(() => {
     if (status() === 'LOADED') {
       setHeadingContexts(findHeadingContext(wrapperElement.current.children[0]))
+    } else {
+      setHeadingContexts([])
     }
   }, [status])
 

@@ -14,7 +14,7 @@ const ContentSuspense = () => {
 
   return (
     <div className={contentSuspense_style} element={wrapperElement}>
-      <Content status={status}>
+      <Content>
         <Suspense status={status}>{renderFromJSON(content())}</Suspense>
       </Content>
       <TableOfContents headingContexts={headingContexts} />
