@@ -235,10 +235,12 @@
                         "props": {
                           "children": [
                             {
-                              "type": "text",
-                              "name": "text",
+                              "type": "component",
+                              "name": "CodeSnippet",
                               "props": {
-                                "text": "className"
+                                "codeText": "className",
+                                "language": "javascript",
+                                "type": "inline"
                               }
                             }
                           ]
@@ -284,10 +286,12 @@
                         "props": {
                           "children": [
                             {
-                              "type": "text",
-                              "name": "text",
+                              "type": "component",
+                              "name": "CodeSnippet",
                               "props": {
-                                "text": "element"
+                                "codeText": "element",
+                                "language": "javascript",
+                                "type": "inline"
                               }
                             }
                           ]
@@ -305,7 +309,7 @@
                                 "codeText": "useElement",
                                 "language": "javascript",
                                 "type": "link",
-                                "href": "/ko/core-jsx/reactive/useElement"
+                                "href": "#/ko/core-jsx/reactive/useElement"
                               }
                             },
                             {
@@ -343,10 +347,12 @@
                         "props": {
                           "children": [
                             {
-                              "type": "text",
-                              "name": "text",
+                              "type": "component",
+                              "name": "CodeSnippet",
                               "props": {
-                                "text": "children"
+                                "codeText": "children",
+                                "language": "javascript",
+                                "type": "inline"
                               }
                             }
                           ]

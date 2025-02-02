@@ -26,7 +26,7 @@
                     "codeText": "SubMenu",
                     "language": "javascript",
                     "type": "link",
-                    "href": "/ko/ui-jsx/shell/subMenu"
+                    "href": "#/ko/ui-jsx/shell/subMenu"
                   }
                 },
                 {

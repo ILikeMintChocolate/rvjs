@@ -28,7 +28,7 @@
                   "type": "component",
                   "name": "Link",
                   "props": {
-                    "href": "/ko/blog/1/1",
+                    "href": "#/ko/blog/1/1",
                     "children": [
                       {
                         "type": "element",

@@ -20,10 +20,20 @@
             "props": {
               "children": [
                 {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "codeText": "SideNav",
+                    "language": "javascript",
+                    "type": "link",
+                    "href": "#/ko/ui-jsx/shell/sideNav"
+                  }
+                },
+                {
                   "type": "text",
                   "name": "text",
                   "props": {
-                    "text": "SideNav 컴포넌트에서 사용하는 특정 페이지로 이동하는 링크 버튼입니다."
+                    "text": " 컴포넌트에서 사용하는 특정 페이지로 이동하는 링크 버튼입니다."
                   }
                 }
               ]

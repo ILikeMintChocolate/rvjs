@@ -345,7 +345,7 @@
                                       "codeText": "@rvjs/core",
                                       "language": "javascript",
                                       "type": "link",
-                                      "href": "/ko/core-js/overview/gettingStarted"
+                                      "href": "#/ko/core-js/overview/gettingStarted"
                                     }
                                   },
                                   {
@@ -494,7 +494,7 @@
                                 "codeText": "useRef",
                                 "language": "javascript",
                                 "type": "link",
-                                "href": "/ko/core-js/reactive/useRef"
+                                "href": "#/ko/core-js/reactive/useRef"
                               }
                             },
                             {
@@ -591,7 +591,7 @@
                                                   "codeText": "element",
                                                   "language": "javascript",
                                                   "type": "link",
-                                                  "href": "/ko/core-js/dom/element"
+                                                  "href": "#/ko/core-js/dom/element"
                                                 }
                                               },
                                               {
@@ -655,7 +655,7 @@
                                                   "codeText": "component",
                                                   "language": "javascript",
                                                   "type": "link",
-                                                  "href": "/ko/core-js/dom/component"
+                                                  "href": "#/ko/core-js/dom/component"
                                                 }
                                               },
                                               {
@@ -719,7 +719,7 @@
                                                   "codeText": "For",
                                                   "language": "javascript",
                                                   "type": "link",
-                                                  "href": "/ko/core-js/dom/for"
+                                                  "href": "#/ko/core-js/dom/for"
                                                 }
                                               },
                                               {
@@ -783,7 +783,7 @@
                                                   "codeText": "Switch",
                                                   "language": "javascript",
                                                   "type": "link",
-                                                  "href": "/ko/core-js/dom/switch"
+                                                  "href": "#/ko/core-js/dom/switch"
                                                 }
                                               },
                                               {
@@ -847,7 +847,7 @@
                                                   "codeText": "Toggle",
                                                   "language": "javascript",
                                                   "type": "link",
-                                                  "href": "/ko/core-js/dom/toggle"
+                                                  "href": "#/ko/core-js/dom/toggle"
                                                 }
                                               },
                                               {
@@ -911,7 +911,7 @@
                                                   "codeText": "textNode",
                                                   "language": "javascript",
                                                   "type": "link",
-                                                  "href": "/ko/core-js/reactive/textNode"
+                                                  "href": "#/ko/core-js/reactive/textNode"
                                                 }
                                               },
                                               {

@@ -26,7 +26,7 @@
                     "codeText": "Header",
                     "language": "javascript",
                     "type": "link",
-                    "href": "/ko/ui-jsx/shell/header"
+                    "href": "#/ko/ui-jsx/shell/header"
                   }
                 },
                 {
@@ -125,7 +125,7 @@
                                       "codeText": "SubMenuItem",
                                       "language": "javascript",
                                       "type": "link",
-                                      "href": "/ko/ui-jsx/shell/subMenuItem"
+                                      "href": "#/ko/ui-jsx/shell/subMenuItem"
                                     }
                                   },
                                   {
@@ -399,7 +399,7 @@
                                       "codeText": "element",
                                       "language": "javascript",
                                       "type": "link",
-                                      "href": "/ko/core-jsx/reactive/useElement"
+                                      "href": "#/ko/core-jsx/reactive/useElement"
                                     }
                                   },
                                   {

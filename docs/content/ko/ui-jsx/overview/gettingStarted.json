@@ -96,7 +96,7 @@
             "type": "component",
             "name": "CodeSnippet",
             "props": {
-              "codeText": "import { root } from '@rvjs/core'\nimport { RvjsUIProvider } from '@rvjs/ui'\nimport '/node_modules/@rvjs/ui/dist/style.css'\n\nconst App = () => {\n  return <RvjsUIProvider>...</RvjsUIProvider>\n}\n\nroot(document.getElementById('app'), App())",
+              "codeText": "import { root } from '@rvjs/core'\nimport { RvjsUIProvider } from '@rvjs/ui'\nimport '/node_modules/@rvjs/ui/dist/ui.css'\n\nconst App = () => {\n  return <RvjsUIProvider>...</RvjsUIProvider>\n}\n\nroot(document.getElementById('app'), App())",
               "language": "typescript",
               "type": "multi",
               "width": "100%",

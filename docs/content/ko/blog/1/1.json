@@ -387,7 +387,7 @@
                   "name": "CodeSnippet",
                   "props": {
                     "codeText": "useState",
-                    "href": "/ko/core-jsx/reactive/useState",
+                    "href": "#/ko/core-jsx/reactive/useState",
                     "language": "javascript",
                     "type": "link"
                   }
@@ -404,7 +404,7 @@
                   "name": "CodeSnippet",
                   "props": {
                     "codeText": "useState",
-                    "href": "/ko/core-jsx/reactive/useState",
+                    "href": "#/ko/core-jsx/reactive/useState",
                     "language": "javascript",
                     "type": "link"
                   }

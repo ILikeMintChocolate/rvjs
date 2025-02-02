@@ -26,7 +26,7 @@
                     "codeText": "Header",
                     "language": "javascript",
                     "type": "link",
-                    "href": "/ko/ui-jsx/shell/header"
+                    "href": "#/ko/ui-jsx/shell/header"
                   }
                 },
                 {
@@ -125,7 +125,7 @@
                                       "codeText": "HeaderGlobalAction",
                                       "language": "javascript",
                                       "type": "link",
-                                      "href": "/ko/ui-jsx/shell/headerGlobalAction"
+                                      "href": "#/ko/ui-jsx/shell/headerGlobalAction"
                                     }
                                   },
                                   {
