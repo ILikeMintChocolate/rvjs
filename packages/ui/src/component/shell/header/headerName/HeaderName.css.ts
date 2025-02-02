@@ -6,7 +6,6 @@ export const headerName_recipe = recipe({
     height: '100%',
     display: 'flex',
     gap: vars.spacing['02'],
-
     textDecoration: 'none',
     transition: `all ${vars.motion.productive}`,
     ':focus': {
