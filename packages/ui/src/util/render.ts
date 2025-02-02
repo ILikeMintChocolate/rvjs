@@ -2,7 +2,7 @@ import { insert } from '@rvjs/core'
 import { isArray, isHTMLElement, isObject } from '@type/guard.ts'
 import { componentFnMap, componentRenderPropsMap } from '@util/renderMap.ts'
 
-interface Json {
+export interface Json {
   type: 'element' | 'component' | 'text'
   name: keyof (HTMLElementTagNameMap | typeof componentFnMap)
   props: Record<string, any>
