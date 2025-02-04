@@ -80,7 +80,7 @@
                                     "type": "component",
                                     "name": "Text",
                                     "props": {
-                                      "text": "25.01.25",
+                                      "text": "25.02.05",
                                       "kind": "helper-text-02"
                                     }
                                   }
