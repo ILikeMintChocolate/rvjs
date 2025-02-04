@@ -63,7 +63,7 @@
                               "type": "component",
                               "name": "Text",
                               "props": {
-                                "text": "useState에서 실제 어떤식으로 구독을 관리하는지 소개합니다.",
+                                "text": "useState에서 실제 어떤 식으로 구독을 관리하는지 소개합니다.",
                                 "kind": "body-01"
                               }
                             },
