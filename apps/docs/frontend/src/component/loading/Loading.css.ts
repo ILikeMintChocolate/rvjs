@@ -5,6 +5,6 @@ export const loading_wrapper_style = style({
   justifyContent: 'center',
   alignItems: 'center',
   width: '100%',
-  height: '100%',
+  height: '80vh',
   marginTop: '-10%',
 })
