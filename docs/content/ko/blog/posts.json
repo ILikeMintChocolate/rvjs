@@ -28,7 +28,7 @@
                   "type": "component",
                   "name": "Link",
                   "props": {
-                    "href": "#/ko/blog/1/1",
+                    "href": "#/ko/blog/2",
                     "children": [
                       {
                         "type": "element",
@@ -47,7 +47,76 @@
                                   "height": "10rem",
                                   "object-fit": "cover"
                                 },
-                                "src": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/blog/1/1.png?raw=true"
+                                "src": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/blog/2.png?raw=true"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "h1",
+                                "text": "useState 구독 관리하기",
+                                "kind": "heading-03"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "text": "useState에서 실제 어떤식으로 구독을 관리하는지 소개합니다.",
+                                "kind": "body-01"
+                              }
+                            },
+                            {
+                              "type": "element",
+                              "name": "div",
+                              "props": {
+                                "style": {
+                                  "display": "flex",
+                                  "justify-content": "end"
+                                },
+                                "children": [
+                                  {
+                                    "type": "component",
+                                    "name": "Text",
+                                    "props": {
+                                      "text": "25.01.25",
+                                      "kind": "helper-text-02"
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "Link",
+                  "props": {
+                    "href": "#/ko/blog/1",
+                    "children": [
+                      {
+                        "type": "element",
+                        "name": "div",
+                        "props": {
+                          "style": {
+                            "width": "100%"
+                          },
+                          "children": [
+                            {
+                              "type": "element",
+                              "name": "img",
+                              "props": {
+                                "style": {
+                                  "width": "100%",
+                                  "height": "10rem",
+                                  "object-fit": "cover"
+                                },
+                                "src": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/blog/1.png?raw=true"
                               }
                             },
                             {

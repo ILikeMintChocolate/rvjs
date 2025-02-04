@@ -50,6 +50,34 @@
             "type": "component",
             "name": "Text",
             "props": {
+              "text": "예시",
+              "kind": "heading-03",
+              "as": "h4"
+            }
+          },
+          {
+            "type": "component",
+            "name": "CodeSnippet",
+            "props": {
+              "codeText": "const TextInput = (_props) => {\n  const props = defineProps(_props, {\n    get placeholder() {\n      return _props.placeholder ?? 'Hello World'\n    },\n    get maxLength() {\n      return _props.placeholder ?? 10\n    },\n  })\n\n  return <input type=\"text\" placeholder={props.placeholder} />\n}\n",
+              "language": "jsx",
+              "defaultShow": true,
+              "type": "multi",
+              "width": "100%"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "component",
+      "name": "Section",
+      "props": {
+        "children": [
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
               "text": "레퍼런스",
               "kind": "heading-03",
               "as": "h4"

@@ -57,7 +57,7 @@
             "type": "component",
             "name": "CodeSnippet",
             "props": {
-              "codeText": "import { onDestroy, Toggle, useState } from '@rvjs/core'\n\nconst App = () => {\n  const [show, setShow] = useState(false)\n\n  return (\n    <div>\n      <button onclick={() => setShow(!show())}>Toggle</button>\n      <Toggle is={show()}>\n        <Content />\n      </Toggle>\n    </div>\n  )\n}\n\nconst Content = () => {\n  onDestroy(() => {\n    console.log('Content 컴포넌트 삭제됨')\n  })\n\n  return <h4>Hello World!</h4>\n}\n\nexport default App",
+              "codeText": "import { onDestroy, Toggle, useState } from '@rvjs/core'\n\nconst App = () => {\n  const [show, setShow] = useState(false)\n\n  return (\n    <div>\n      <button onClick={() => setShow(!show())}>Toggle</button>\n      <Toggle is={show()}>\n        <Content />\n      </Toggle>\n    </div>\n  )\n}\n\nconst Content = () => {\n  onDestroy(() => {\n    console.log('Content 컴포넌트 삭제됨')\n  })\n\n  return <h4>Hello World!</h4>\n}\n\nexport default App",
               "language": "jsx",
               "type": "multi",
               "width": "100%",

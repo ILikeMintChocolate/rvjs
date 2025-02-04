@@ -69,7 +69,7 @@
             "type": "component",
             "name": "CodeSnippet",
             "props": {
-              "codeText": "import { useGlobalState } from '@rvjs/core'\n\nconst Counter = () => {\n  const [globalCount] = useGlobalState('COUNT', 0)\n\n  return (\n    <div>\n      <h1>Count: {globalCount()}</h1>\n      <A />\n      <B />\n    </div>\n  )\n}\n\nconst A = () => {\n  const [globalCount, setGlobalCount] = useGlobalState('COUNT')\n\n  return (\n    <button onclick={() => setGlobalCount(globalCount() + 1)}>\n      A Count: {globalCount()}\n    </button>\n  )\n}\n\nconst B = () => {\n  const [globalCount, setGlobalCount] = useGlobalState('COUNT')\n\n  return (\n    <button onclick={() => setGlobalCount(globalCount() + 1)}>\n      B Count: {globalCount()}\n    </button>\n  )\n}\n\nexport default Counter",
+              "codeText": "import { useGlobalState } from '@rvjs/core'\n\nconst Counter = () => {\n  const [globalCount] = useGlobalState('COUNT', 0)\n\n  return (\n    <div>\n      <h1>Count: {globalCount()}</h1>\n      <A />\n      <B />\n    </div>\n  )\n}\n\nconst A = () => {\n  const [globalCount, setGlobalCount] = useGlobalState('COUNT')\n\n  return (\n    <button onClick={() => setGlobalCount(globalCount() + 1)}>\n      A Count: {globalCount()}\n    </button>\n  )\n}\n\nconst B = () => {\n  const [globalCount, setGlobalCount] = useGlobalState('COUNT')\n\n  return (\n    <button onClick={() => setGlobalCount(globalCount() + 1)}>\n      B Count: {globalCount()}\n    </button>\n  )\n}\n\nexport default Counter",
               "language": "jsx",
               "type": "multi",
               "width": "100%",

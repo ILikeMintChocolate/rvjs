@@ -92,7 +92,7 @@
             "type": "component",
             "name": "CodeSnippet",
             "props": {
-              "codeText": "import { createContext, useState } from '@rvjs/core'\n\nconst CounterContext = createContext()\n\nconst Counter = () => {\n  const [count, setCount] = useState(0)\n  CounterContext.setContext({ count, setCount })\n\n  return (\n    <div>\n      <h1>Count: {count()}</h1>\n      <A />\n      <B />\n    </div>\n  )\n}\n\nconst A = () => {\n  const { count, setCount } = CounterContext.getContext()\n\n  return <p onclick={() => setCount(count() + 1)}>A Count: {count()}</p>\n}\n\nconst B = () => {\n  const { count, setCount } = CounterContext.getContext()\n\n  return <p onclick={() => setCount(count() + 1)}>B Count: {count()}</p>\n}\n\nexport default Counter",
+              "codeText": "import { createContext, useState } from '@rvjs/core'\n\nconst CounterContext = createContext()\n\nconst Counter = () => {\n  const [count, setCount] = useState(0)\n  CounterContext.setContext({ count, setCount })\n\n  return (\n    <div>\n      <h1>Count: {count()}</h1>\n      <A />\n      <B />\n    </div>\n  )\n}\n\nconst A = () => {\n  const { count, setCount } = CounterContext.getContext()\n\n  return <p onClick={() => setCount(count() + 1)}>A Count: {count()}</p>\n}\n\nconst B = () => {\n  const { count, setCount } = CounterContext.getContext()\n\n  return <p onClick={() => setCount(count() + 1)}>B Count: {count()}</p>\n}\n\nexport default Counter",
               "language": "jsx",
               "type": "multi",
               "width": "100%",

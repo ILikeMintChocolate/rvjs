@@ -73,7 +73,7 @@
             "type": "component",
             "name": "CodeSnippet",
             "props": {
-              "codeText": "import { Toggle, useState } from '@rvjs/core'\n\nconst App = () => {\n  const [show, setShow] = useState(false)\n\n  return (\n    <div>\n      <button onclick={() => setShow(!show())}> Toggle</button>\n      <Toggle is={show()}>\n        <Content />\n      </Toggle>\n    </div>\n  )\n}\n\nconst Content = () => {\n  return <p>Hello World!</p>\n}\n\nexport default App",
+              "codeText": "import { Toggle, useState } from '@rvjs/core'\n\nconst App = () => {\n  const [show, setShow] = useState(false)\n\n  return (\n    <div>\n      <button onClick={() => setShow(!show())}>Toggle</button>\n      <Toggle is={show()}>\n        <Content />\n      </Toggle>\n    </div>\n  )\n}\n\nconst Content = () => {\n  return <p>Hello World!</p>\n}\n\nexport default App",
               "language": "jsx",
               "type": "multi",
               "width": "100%",

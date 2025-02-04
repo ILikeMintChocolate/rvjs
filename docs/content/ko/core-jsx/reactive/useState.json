@@ -57,7 +57,7 @@
             "type": "component",
             "name": "CodeSnippet",
             "props": {
-              "codeText": "import { useState } from '@rvjs/core'\n\nconst Counter = () => {\n  const [getCount, setCount] = useState(0)\n\n  return (\n    <div>\n      <h1>Count: {getCount()}</h1>\n      <button onclick={() => setCount(getCount() - 1)}>-1</button>\n      <button onclick={() => setCount(getCount() + 1)}>+1</button>\n    </div>\n  )\n}\n\nexport default Counter",
+              "codeText": "import { useState } from '@rvjs/core'\n\nconst Counter = () => {\n  const [getCount, setCount] = useState(0)\n\n  return (\n    <div>\n      <h1>Count: {getCount()}</h1>\n      <button onClick={() => setCount(getCount() - 1)}>-1</button>\n      <button onClick={() => setCount(getCount() + 1)}>+1</button>\n    </div>\n  )\n}\n\nexport default Counter",
               "language": "jsx",
               "type": "multi",
               "width": "100%",
