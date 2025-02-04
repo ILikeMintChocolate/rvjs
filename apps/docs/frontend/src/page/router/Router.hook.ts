@@ -17,6 +17,10 @@ const legacyPaths = [
     legacyPath: '/core-v0.3.x/benchmark',
     newPath: '/ko/core-jsx/overview/benchmark',
   },
+  {
+    legacyPath: '/ko/blog/1/1',
+    newPath: '/ko/blog/1',
+  },
 ]
 
 export const useRouter = () => {
