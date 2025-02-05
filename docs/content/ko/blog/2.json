@@ -60,7 +60,25 @@
                   "type": "text",
                   "name": "text",
                   "props": {
-                    "text": "이전 글 “@rvjs/core의 핵심 동작 아이디어”에서 @rvjs/core가 어떻게 상태 기반 업데이트를 활용하는지 설명했었습니다. @rvjs/core는 가상 DOM 없이 상태를 참조하는 요소만 직접 업데이트하는 방식을 사용하며, 이를 통해 불필요한 컴포넌트 재호출을 방지하고 성능을 최적화합니다."
+                    "text": "이전 글 "
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "CodeSnippet",
+                  "props": {
+                    "inline": true,
+                    "href": "#/ko/blog/1",
+                    "codeText": "@rvjs/core의 핵심 동작 아이디어",
+                    "language": "plain",
+                    "type": "link"
+                  }
+                },
+                {
+                  "type": "text",
+                  "name": "text",
+                  "props": {
+                    "text": "에서 @rvjs/core가 어떻게 상태 기반 업데이트를 활용하는지 설명했었습니다. @rvjs/core는 가상 DOM 없이 상태를 참조하는 요소만 직접 업데이트하는 방식을 사용하며, 이를 통해 불필요한 컴포넌트 재호출을 방지하고 성능을 최적화합니다."
                   }
                 }
               ]

@@ -257,7 +257,7 @@
                                     "type": "component",
                                     "name": "CodeSnippet",
                                     "props": {
-                                      "codeText": "'javascript' | 'typescript' | 'html' | 'css' | 'bash' | 'json' | 'jsx' | 'tsx'",
+                                      "codeText": "'javascript' | 'typescript' | 'html' | 'css' | 'bash' | 'json' | 'plain' | 'jsx' | 'tsx'",
                                       "language": "typescript",
                                       "type": "inline"
                                     }

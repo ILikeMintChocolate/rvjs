@@ -281,7 +281,7 @@
                                     "type": "component",
                                     "name": "CodeSnippet",
                                     "props": {
-                                      "codeText": "'p'",
+                                      "codeText": "'a'",
                                       "language": "javascript",
                                       "type": "inline"
                                     }
