@@ -28,6 +28,75 @@
                   "type": "component",
                   "name": "Link",
                   "props": {
+                    "href": "#/ko/blog/3",
+                    "children": [
+                      {
+                        "type": "element",
+                        "name": "div",
+                        "props": {
+                          "style": {
+                            "width": "100%"
+                          },
+                          "children": [
+                            {
+                              "type": "element",
+                              "name": "img",
+                              "props": {
+                                "style": {
+                                  "width": "100%",
+                                  "height": "10rem",
+                                  "object-fit": "cover"
+                                },
+                                "src": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/blog/3.png?raw=true"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "h1",
+                                "text": "DX 고민하기 | 코드 평가 순서 제어",
+                                "kind": "heading-03"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "text": "코드 평가 순서를 조정한 방법과 이를 통해 DX를 개선한 경험을 소개합니다.",
+                                "kind": "body-01"
+                              }
+                            },
+                            {
+                              "type": "element",
+                              "name": "div",
+                              "props": {
+                                "style": {
+                                  "display": "flex",
+                                  "justify-content": "end"
+                                },
+                                "children": [
+                                  {
+                                    "type": "component",
+                                    "name": "Text",
+                                    "props": {
+                                      "text": "25.02.06",
+                                      "kind": "helper-text-02"
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "Link",
+                  "props": {
                     "href": "#/ko/blog/2",
                     "children": [
                       {
