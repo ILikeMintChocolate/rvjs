@@ -45,7 +45,8 @@
                                 "style": {
                                   "width": "100%",
                                   "height": "10rem",
-                                  "object-fit": "cover"
+                                  "object-fit": "cover",
+                                  "mix-blend-mode": "multiply"
                                 },
                                 "src": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/blog/3.png?raw=true"
                               }
@@ -114,7 +115,8 @@
                                 "style": {
                                   "width": "100%",
                                   "height": "10rem",
-                                  "object-fit": "cover"
+                                  "object-fit": "cover",
+                                  "mix-blend-mode": "multiply"
                                 },
                                 "src": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/blog/2.png?raw=true"
                               }
@@ -183,7 +185,8 @@
                                 "style": {
                                   "width": "100%",
                                   "height": "10rem",
-                                  "object-fit": "cover"
+                                  "object-fit": "cover",
+                                  "mix-blend-mode": "multiply"
                                 },
                                 "src": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/blog/1.png?raw=true"
                               }
