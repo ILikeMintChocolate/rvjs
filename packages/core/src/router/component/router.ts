@@ -5,7 +5,6 @@ import { useEffect } from '@hook/useEffect.ts'
 import { useGlobalState } from '@hook/useGlobalState.ts'
 import { GetState, SetState, useState } from '@hook/useState.ts'
 import { Component } from '@render/component.ts'
-import { isUsingHash } from '@router/util/path.ts'
 import {
   compareRoutes,
   createMatchedRoutes,
@@ -68,11 +67,6 @@ export const useRouter = (): [GetState<string[]>, SetState<string[]>] => {
   const [paths, setPaths] = useGlobalState<string[]>('RVJS_ROUTER_PATHS', [])
 
   const handleHashChange = () => {
-    if (!isUsingHash()) {
-      const newHash = `#${location.pathname}${location.search}`
-      history.replaceState(null, '', '/')
-      location.hash = newHash
-    }
     const hash = (window.location.hash || '#/').replace('#/', '/')
     const pathArray = hash
       .substring(1)
