@@ -1,20 +1,22 @@
 {
-  "name": "example",
-  "private": true,
+  "name": "@rvjs/docs-ex",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "vite build && node build/modifyPaths.js",
     "preview": "vite preview"
+  },
+  "dependencies": {
+    "@rvjs/core": "^0.2.21",
+    "@rvjs/is": "^0.1.32",
+    "@rvjs/ui": "^0.1.31",
+    "@vanilla-extract/css": "^1.15.3"
   },
   "devDependencies": {
     "@vanilla-extract/vite-plugin": "^4.0.12",
     "typescript": "^5.5.3",
-    "vite": "^5.3.1"
-  },
-  "dependencies": {
-    "@vanilla-extract/css": "^1.15.3",
-    "vite-plugin-import-svg": "^0.0.4"
+    "vite": "^5.3.1",
+    "vite-plugin-import-svg": "^0.1.1"
   }
 }

@@ -2,7 +2,6 @@ import { style } from '@vanilla-extract/css'
 
 export const iframe_wrapper_style = style({
   width: '48rem',
-  height: '16rem',
   backgroundColor: '#f4f4f4',
   padding: '1rem',
   boxSizing: 'border-box',

@@ -1,0 +1,3 @@
+{
+  "code": "import { button, div, dynamic, h1, useState } from '@rvjs/core'\n\nconst Counter = () => {\n  const [getCount, setCount] = useState(0)\n\n  return div({\n    children: [\n      h1({\n        textContent: dynamic(() => `Count: ${getCount()}`),\n      }),\n      button({\n        textContent: '-1',\n        onclick: () => setCount(getCount() - 1),\n      }),\n      button({\n        textContent: '+1',\n        onclick: () => setCount(getCount() + 1),\n      }),\n    ],\n  })\n}\n\nexport default Counter\n"
+}

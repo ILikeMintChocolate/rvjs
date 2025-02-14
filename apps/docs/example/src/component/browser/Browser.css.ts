@@ -4,5 +4,4 @@ export const browser_style = style({
   display: 'flex',
   flexDirection: 'row',
   width: '100%',
-  height: '100%',
 })

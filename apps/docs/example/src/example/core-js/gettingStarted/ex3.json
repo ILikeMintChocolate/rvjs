@@ -1,0 +1,3 @@
+{
+  "code": "import { div, dynamic, useState } from '@rvjs/core'\nimport styles from './redOrBlueBox.module.css'\n\nconst RedOrBlueBox = () => {\n  const [isRed, setIsRed] = useState(true)\n\n  return div({\n    children: [\n      div({\n        classes: [\n          styles.box,\n          dynamic(() => (isRed() ? styles.red : styles.blue)),\n        ],\n        onclick: () => {\n          setIsRed(!isRed())\n        },\n      }),\n    ],\n  })\n}\n\nexport default RedOrBlueBox\n"
+}

@@ -1,6 +1,5 @@
-import { content_style, web_style } from '@component/web/Web.css.ts'
-import { Block, Child, section } from '@rvjs/core/dom'
-import { useElement } from '@rvjs/core/reactive'
+import { web_style } from '@component/web/Web.css.ts'
+import { Child, section } from '@rvjs/core'
 
 interface WebProps {
   web: Child
@@ -8,8 +7,6 @@ interface WebProps {
 
 const Web = (props: WebProps) => {
   const { web } = props
-  const contentElement = useElement(web as Block)!
-  contentElement.classList.add(content_style)
 
   return section({
     classes: [web_style],

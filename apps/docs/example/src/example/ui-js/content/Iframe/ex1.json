@@ -1,0 +1,3 @@
+{
+  "code": "import { div, prop } from '@rvjs/core'\nimport { Iframe } from '@rvjs/ui'\n\nconst IframeExample = () => {\n  return div({\n    children: [\n      Iframe({\n        src: prop(() => 'https://rvjs.xyz'),\n        width: prop(() => '100%'),\n        height: prop(() => '100%'),\n      }),\n    ],\n  })\n}\n\nexport default IframeExample"
+}

@@ -1,0 +1,13 @@
+.box {
+    width: 100px;
+    height: 100px;
+    transition: background-color 0.2s;
+}
+
+.red {
+    background-color: red;
+}
+
+.blue {
+    background-color: blue;
+}

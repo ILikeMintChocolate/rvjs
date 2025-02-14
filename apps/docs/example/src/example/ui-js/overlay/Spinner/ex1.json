@@ -1,0 +1,3 @@
+{
+  "code": "import { div, prop } from '@rvjs/core'\nimport { Spinner } from '@rvjs/ui'\n\nconst SpinnerExample = () => {\n  return div({\n    children: [\n      Spinner({\n        size: prop(() => 'sm'),\n      }),\n      Spinner({\n        size: prop(() => 'md'),\n      }),\n      Spinner({\n        size: prop(() => 'lg'),\n      }),\n    ],\n  })\n}\n\nexport default SpinnerExample\n"
+}
