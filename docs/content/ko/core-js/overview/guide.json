@@ -647,7 +647,7 @@
       "type": "component",
       "name": "Link",
       "props": {
-        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/core-js/overview/guide.json",
+        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs/deploy/docs/content/ko/core-js/overview/guide.json",
         "isExternal": true,
         "children": [
           {

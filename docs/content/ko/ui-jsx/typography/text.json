@@ -747,7 +747,7 @@
       "type": "component",
       "name": "Link",
       "props": {
-        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/ui-jsx/typography/text.json",
+        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs/deploy/docs/content/ko/ui-jsx/typography/text.json",
         "isExternal": true,
         "children": [
           {

@@ -259,7 +259,7 @@
       "type": "component",
       "name": "Link",
       "props": {
-        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/ui-jsx/overview/gettingStarted.json",
+        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs/deploy/docs/content/ko/ui-jsx/overview/gettingStarted.json",
         "isExternal": true,
         "children": [
           {

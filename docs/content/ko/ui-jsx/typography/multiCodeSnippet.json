@@ -1298,7 +1298,7 @@
       "type": "component",
       "name": "Link",
       "props": {
-        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/ui-jsx/typography/multiCodeSnippet.json",
+        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs/deploy/docs/content/ko/ui-jsx/typography/multiCodeSnippet.json",
         "isExternal": true,
         "children": [
           {

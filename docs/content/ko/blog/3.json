@@ -21,7 +21,7 @@
               "style": {
                 "width": "100%"
               },
-              "src": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/blog/3.png?raw=true"
+              "src": "https://github.com/ILikeMintChocolate/rvjs/blob/docs/deploy/docs/content/ko/blog/3.png?raw=true"
             }
           },
           {
@@ -1120,7 +1120,7 @@
         "type": "component",
         "name": "Link",
         "props": {
-          "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/blog/3.json",
+          "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs/deploy/docs/content/ko/blog/3.json",
           "isExternal": true,
           "children": [
             {

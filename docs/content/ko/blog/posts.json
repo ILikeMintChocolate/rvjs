@@ -48,7 +48,7 @@
                                   "object-fit": "cover",
                                   "mix-blend-mode": "multiply"
                                 },
-                                "src": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/blog/3.png?raw=true"
+                                "src": "https://github.com/ILikeMintChocolate/rvjs/blob/docs/deploy/docs/content/ko/blog/3.png?raw=true"
                               }
                             },
                             {
@@ -118,7 +118,7 @@
                                   "object-fit": "cover",
                                   "mix-blend-mode": "multiply"
                                 },
-                                "src": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/blog/2.png?raw=true"
+                                "src": "https://github.com/ILikeMintChocolate/rvjs/blob/docs/deploy/docs/content/ko/blog/2.png?raw=true"
                               }
                             },
                             {
@@ -188,7 +188,7 @@
                                   "object-fit": "cover",
                                   "mix-blend-mode": "multiply"
                                 },
-                                "src": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/blog/1.png?raw=true"
+                                "src": "https://github.com/ILikeMintChocolate/rvjs/blob/docs/deploy/docs/content/ko/blog/1.png?raw=true"
                               }
                             },
                             {
@@ -254,7 +254,7 @@
         "type": "component",
         "name": "Link",
         "props": {
-          "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/blog/posts.json",
+          "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs/deploy/docs/content/ko/blog/posts.json",
           "isExternal": true,
           "children": [
             {

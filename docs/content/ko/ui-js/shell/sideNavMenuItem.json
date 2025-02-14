@@ -482,7 +482,7 @@
       "type": "component",
       "name": "Link",
       "props": {
-        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs-fe/deploy/docs/content/ko/ui-js/shell/sideNavMenuItem.json",
+        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs/deploy/docs/content/ko/ui-js/shell/sideNavMenuItem.json",
         "isExternal": true,
         "children": [
           {
