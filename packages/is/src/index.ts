@@ -1,6 +1,0 @@
-export * from './type/composite.ts'
-export * from './type/primitive.ts'
-export * from './type/reference.ts'
-export * from './type/rvjs.ts'
-export { startCheckProps, checkProps } from './checkProps/check.ts'
-export type { Validator } from './type/type.ts'
