@@ -1,0 +1,143 @@
+{
+  "header": {
+    "title": "Documentation",
+    "prefix": "rvjs",
+    "items": {
+      "language": "English",
+      "legacy": "legacy",
+      "blog": "blog"
+    }
+  },
+  "sideNav": {
+    "coreJSX": {
+      "menuName": "core-jsx",
+      "overview": {
+        "menuName": "Overview",
+        "items": {
+          "gettingStarted": "Getting Started",
+          "guide": "Guide",
+          "benchmark": "Benchmark"
+        }
+      },
+      "render": {
+        "menuName": "Render"
+      },
+      "component": {
+        "menuName": "Component"
+      },
+      "reactive": {
+        "menuName": "Reactive"
+      },
+      "router": {
+        "menuName": "Router"
+      },
+      "util": {
+        "menuName": "Util"
+      }
+    },
+    "coreJS": {
+      "menuName": "core-js",
+      "overview": {
+        "menuName": "Overview",
+        "items": {
+          "gettingStarted": "Getting Started",
+          "guide": "Guide",
+          "benchmark": "Benchmark"
+        }
+      },
+      "render": {
+        "menuName": "Render"
+      },
+      "reactive": {
+        "menuName": "Reactive"
+      },
+      "router": {
+        "menuName": "Router"
+      }
+    },
+    "uiJS": {
+      "menuName": "ui-js",
+      "overview": {
+        "menuName": "Overlay",
+        "items": {
+          "gettingStarted": "Getting Started"
+        }
+      },
+      "cssVars": {
+        "menuName": "CSS Variables"
+      },
+      "layout": {
+        "menuName": "Layout"
+      },
+      "form": {
+        "menuName": "Form"
+      },
+      "typography": {
+        "menuName": "Typography"
+      },
+      "content": {
+        "menuName": "Content"
+      },
+      "shell": {
+        "menuName": "Shell"
+      },
+      "overlay": {
+        "menuName": "Overlay"
+      },
+      "util": {
+        "menuName": "Util"
+      }
+    },
+    "uiJSX": {
+      "menuName": "ui-jsx",
+      "overview": {
+        "menuName": "Overview",
+        "items": {
+          "gettingStarted": "Getting Started"
+        }
+      },
+      "cssVars": {
+        "menuName": "CSS Vars"
+      },
+      "layout": {
+        "menuName": "Layout"
+      },
+      "form": {
+        "menuName": "Form"
+      },
+      "typography": {
+        "menuName": "Typography"
+      },
+      "content": {
+        "menuName": "Content"
+      },
+      "shell": {
+        "menuName": "Shell"
+      },
+      "overlay": {
+        "menuName": "Overlay"
+      },
+      "util": {
+        "menuName": "Util"
+      }
+    },
+    "isJS": {
+      "menuName": "is-js",
+      "overview": {
+        "menuName": "Overlay",
+        "items": {
+          "gettingStarted": "Getting Started"
+        }
+      },
+      "type": {
+        "menuName": "Type",
+        "items": {
+          "primitive": "primitive",
+          "reference": "reference",
+          "composite": "composite",
+          "@rvjs/core": "@rvjs/core"
+        }
+      }
+    }
+  }
+}
