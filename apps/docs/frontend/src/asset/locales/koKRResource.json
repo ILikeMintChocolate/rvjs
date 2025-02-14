@@ -15,6 +15,7 @@
         "menuName": "개요",
         "items": {
           "gettingStarted": "시작하기",
+          "guide": "가이드",
           "benchmark": "벤치마크"
         }
       },

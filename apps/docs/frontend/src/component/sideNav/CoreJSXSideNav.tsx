@@ -28,6 +28,12 @@ const CoreJSXSideNav = (props: CoreJSXSideNavProps) => {
           depth={props.depth + 1}
         />
         <SideNavMenuItem
+          text={t('sideNav.coreJSX.overview.items.guide')}
+          href={`#/${language()}/core-jsx/overview/guide`}
+          isActive={isPathIncluded('/core-jsx/overview/guide', pathname())}
+          depth={props.depth + 1}
+        />
+        <SideNavMenuItem
           text={t('sideNav.coreJSX.overview.items.benchmark')}
           href={`#/${language()}/core-jsx/overview/benchmark`}
           isActive={isPathIncluded('/core-jsx/overview/benchmark', pathname())}

@@ -15,6 +15,7 @@
         "menuName": "Overview",
         "items": {
           "gettingStarted": "Getting Started",
+          "guide": "Guide",
           "benchmark": "Benchmark"
         }
       },
@@ -35,7 +36,7 @@
       }
     },
     "coreJS": {
-      "menuName": "core-js,
+      "menuName": "core-js",
       "overview": {
         "menuName": "Overview",
         "items": {
