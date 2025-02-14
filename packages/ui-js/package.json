@@ -1,7 +1,8 @@
 {
-  "name": "@rvjs/ui",
+  "name": "@rvjs/ui-js",
   "description": "UI component library with rvjs",
   "version": "0.1.32",
+  "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/ILikeMintChocolate/rvjs.git",
