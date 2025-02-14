@@ -1,0 +1,41 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@icon/*": [
+        "src/asset/icon/*"
+      ],
+      "@content/*": [
+        "src/component/content/*"
+      ],
+      "@form/*": [
+        "src/component/form/*"
+      ],
+      "@layout/*": [
+        "src/component/layout/*"
+      ],
+      "@overlay/*": [
+        "src/component/overlay/*"
+      ],
+      "@shell/*": [
+        "src/component/shell/*"
+      ],
+      "@typography/*": [
+        "src/component/typography/*"
+      ],
+      "@system/*": [
+        "src/system/*"
+      ],
+      "@theme/*": [
+        "src/theme/*"
+      ],
+      "@type/*": [
+        "src/type/*"
+      ],
+      "@util/*": [
+        "src/util/*"
+      ]
+    }
+  }
+}
