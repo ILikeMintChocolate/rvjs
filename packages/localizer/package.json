@@ -1,0 +1,38 @@
+{
+  "name": "@rvjs/localizer",
+  "description": "A localization library for rvjs",
+  "version": "0.0.3",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ILikeMintChocolate/rvjs.git",
+    "directory": "packages/localizer"
+  },
+  "homepage": "https://rvjs.xyz",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "type": "module",
+  "types": "./dist/type/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/entry.es.js",
+      "require": "./dist/entry.cjs.js",
+      "types": "./dist/type/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "typescript": "~5.6.2",
+    "vite": "^6.0.1"
+  },
+  "peerDependencies": {
+    "@rvjs/core": "^0.3.22"
+  }
+}
