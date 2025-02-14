@@ -2,11 +2,19 @@ import vars from '@theme/variable/vars.css.ts'
 import { style } from '@vanilla-extract/css'
 import { recipe } from '@vanilla-extract/recipes'
 
-export const textInput_style = style({
+export const textInput_wrapper_style = style({
+  display: 'flex',
+  flexDirection: 'column',
   backgroundColor: vars.color.transparent,
 })
 
-export const textInput_label_style = recipe({
+export const textInput_labelWrapper_style = style({
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+})
+
+export const textInput_label_recipe = recipe({
   base: {
     marginBottom: `${vars.spacing['03']} !important`,
   },
@@ -22,11 +30,14 @@ export const textInput_label_style = recipe({
   },
 })
 
-export const textInput_inputWrapper_style = recipe({
+export const textInput_inputWrapper_recipe = recipe({
   base: {
-    backgroundColor: vars.color.field01,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     border: 'none',
-
+    backgroundColor: vars.color.field01,
     ':focus-within': {
       boxShadow: `inset 0 0 0 0.125rem ${vars.color.focus}`,
     },

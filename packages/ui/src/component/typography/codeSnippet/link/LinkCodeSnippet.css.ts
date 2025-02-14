@@ -7,6 +7,7 @@ export const linkCodeSnippet_anchor_style = style({
   height: vars.spacing['05'],
   cursor: 'pointer',
   border: 'none',
+  textDecoration: 'none',
   borderRadius: vars.spacing['01'],
   backgroundColor: vars.color.layer01,
   ':hover': {
@@ -24,6 +25,6 @@ export const linkCodeSnippet_anchor_style = style({
 })
 
 export const linkCodeSnippet_code_style = style({
-  paddingRight: vars.spacing['03'],
-  paddingLeft: vars.spacing['03'],
+  paddingRight: vars.spacing['02'],
+  paddingLeft: vars.spacing['02'],
 })

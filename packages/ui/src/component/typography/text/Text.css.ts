@@ -1,10 +1,10 @@
-import { Prop } from '@rvjs/core/reactive'
+import { ibmPlexSans, jetBrainsMono } from '@theme/font/fontFace.css.ts'
 import vars from '@theme/variable/vars.css.ts'
 import { recipe } from '@vanilla-extract/recipes'
 import { createSprinkles, defineProperties } from '@vanilla-extract/sprinkles'
 
 export interface TextStyleProps {
-  kind?: Prop<
+  kind?:
     | 'body-compact-01'
     | 'body-compact-02'
     | 'body-01'
@@ -26,18 +26,18 @@ export interface TextStyleProps {
     | 'heading-05'
     | 'heading-06'
     | 'heading-07'
-  >
-  color?: Prop<keyof typeof vars.color>
+  color?: keyof typeof vars.color
 }
 
 export const text_recipe = recipe({
   base: {
-    fontFamily: vars.font.family,
+    fontFamily: ibmPlexSans,
+    wordBreak: 'keep-all',
   },
   variants: {
     kind: {
       'body-compact-01': {
-        fontFamily: 'IBM Plex Sans, sans-serif',
+        fontFamily: ibmPlexSans,
         fontStyle: 'normal',
         fontVariant: 'normal',
         fontWeight: vars.font.weight.regular,
@@ -46,7 +46,7 @@ export const text_recipe = recipe({
         letterSpacing: vars.font.letterSpacing['01'],
       },
       'body-compact-02': {
-        fontFamily: 'IBM Plex Sans, sans-serif',
+        fontFamily: ibmPlexSans,
         fontStyle: 'normal',
         fontVariant: 'normal',
         fontWeight: vars.font.weight.regular,
@@ -55,7 +55,7 @@ export const text_recipe = recipe({
         letterSpacing: vars.font.letterSpacing['00'],
       },
       'body-01': {
-        fontFamily: 'IBM Plex Sans, sans-serif',
+        fontFamily: ibmPlexSans,
         fontStyle: 'normal',
         fontVariant: 'normal',
         fontWeight: vars.font.weight.regular,
@@ -64,7 +64,7 @@ export const text_recipe = recipe({
         letterSpacing: vars.font.letterSpacing['01'],
       },
       'body-02': {
-        fontFamily: 'IBM Plex Sans, sans-serif',
+        fontFamily: ibmPlexSans,
         fontStyle: 'normal',
         fontVariant: 'normal',
         fontWeight: vars.font.weight.regular,
@@ -73,7 +73,7 @@ export const text_recipe = recipe({
         letterSpacing: vars.font.letterSpacing['00'],
       },
       'code-01': {
-        fontFamily: 'JetBrains Mono, monospace',
+        fontFamily: jetBrainsMono,
         fontOpticalSizing: 'auto',
         fontStyle: 'normal',
         fontVariant: 'normal',
@@ -83,7 +83,7 @@ export const text_recipe = recipe({
         letterSpacing: vars.font.letterSpacing['02'],
       },
       'code-02': {
-        fontFamily: 'JetBrains Mono, monospace',
+        fontFamily: jetBrainsMono,
         fontOpticalSizing: 'auto',
         fontStyle: 'normal',
         fontVariant: 'normal',
@@ -93,7 +93,7 @@ export const text_recipe = recipe({
         letterSpacing: vars.font.letterSpacing['02'],
       },
       'label-01': {
-        fontFamily: 'IBM Plex Sans, sans-serif',
+        fontFamily: ibmPlexSans,
         fontStyle: 'normal',
         fontVariant: 'normal',
         fontWeight: vars.font.weight.regular,
@@ -102,7 +102,7 @@ export const text_recipe = recipe({
         letterSpacing: vars.font.letterSpacing['02'],
       },
       'label-02': {
-        fontFamily: 'IBM Plex Sans, sans-serif',
+        fontFamily: ibmPlexSans,
         fontStyle: 'normal',
         fontVariant: 'normal',
         fontWeight: vars.font.weight.regular,
@@ -111,7 +111,7 @@ export const text_recipe = recipe({
         letterSpacing: vars.font.letterSpacing['01'],
       },
       'helper-text-01': {
-        fontFamily: 'IBM Plex Sans, sans-serif',
+        fontFamily: ibmPlexSans,
         fontStyle: 'normal',
         fontVariant: 'normal',
         fontWeight: vars.font.weight.regular,
@@ -120,7 +120,7 @@ export const text_recipe = recipe({
         letterSpacing: vars.font.letterSpacing['02'],
       },
       'helper-text-02': {
-        fontFamily: 'IBM Plex Sans, sans-serif',
+        fontFamily: ibmPlexSans,
         fontStyle: 'normal',
         fontVariant: 'normal',
         fontWeight: vars.font.weight.regular,
@@ -129,7 +129,7 @@ export const text_recipe = recipe({
         letterSpacing: vars.font.letterSpacing['01'],
       },
       'legal-01': {
-        fontFamily: 'IBM Plex Sans, sans-serif',
+        fontFamily: ibmPlexSans,
         fontStyle: 'normal',
         fontVariant: 'normal',
         fontWeight: vars.font.weight.regular,
@@ -138,7 +138,7 @@ export const text_recipe = recipe({
         letterSpacing: vars.font.letterSpacing['02'],
       },
       'legal-02': {
-        fontFamily: 'IBM Plex Sans, sans-serif',
+        fontFamily: ibmPlexSans,
         fontStyle: 'normal',
         fontVariant: 'normal',
         fontWeight: vars.font.weight.regular,
@@ -147,7 +147,7 @@ export const text_recipe = recipe({
         letterSpacing: vars.font.letterSpacing['01'],
       },
       'heading-compact-01': {
-        fontFamily: 'IBM Plex Sans, sans-serif',
+        fontFamily: ibmPlexSans,
         fontStyle: 'normal',
         fontVariant: 'normal',
         fontWeight: vars.font.weight.semiBold,
@@ -156,7 +156,7 @@ export const text_recipe = recipe({
         letterSpacing: vars.font.letterSpacing['01'],
       },
       'heading-compact-02': {
-        fontFamily: 'IBM Plex Sans, sans-serif',
+        fontFamily: ibmPlexSans,
         fontStyle: 'normal',
         fontVariant: 'normal',
         fontWeight: vars.font.weight.semiBold,
@@ -165,7 +165,7 @@ export const text_recipe = recipe({
         letterSpacing: vars.font.letterSpacing['00'],
       },
       'heading-01': {
-        fontFamily: 'IBM Plex Sans, sans-serif',
+        fontFamily: ibmPlexSans,
         fontStyle: 'normal',
         fontVariant: 'normal',
         fontWeight: vars.font.weight.semiBold,
@@ -174,7 +174,7 @@ export const text_recipe = recipe({
         letterSpacing: vars.font.letterSpacing['01'],
       },
       'heading-02': {
-        fontFamily: 'IBM Plex Sans, sans-serif',
+        fontFamily: ibmPlexSans,
         fontStyle: 'normal',
         fontVariant: 'normal',
         fontWeight: vars.font.weight.semiBold,
@@ -183,7 +183,7 @@ export const text_recipe = recipe({
         letterSpacing: vars.font.letterSpacing['00'],
       },
       'heading-03': {
-        fontFamily: 'IBM Plex Sans, sans-serif',
+        fontFamily: ibmPlexSans,
         fontStyle: 'normal',
         fontVariant: 'normal',
         fontWeight: vars.font.weight.regular,
@@ -192,7 +192,7 @@ export const text_recipe = recipe({
         letterSpacing: vars.font.letterSpacing['00'],
       },
       'heading-04': {
-        fontFamily: 'IBM Plex Sans, sans-serif',
+        fontFamily: ibmPlexSans,
         fontStyle: 'normal',
         fontVariant: 'normal',
         fontWeight: vars.font.weight.regular,
@@ -201,7 +201,7 @@ export const text_recipe = recipe({
         letterSpacing: vars.font.letterSpacing['00'],
       },
       'heading-05': {
-        fontFamily: 'IBM Plex Sans, sans-serif',
+        fontFamily: ibmPlexSans,
         fontStyle: 'normal',
         fontVariant: 'normal',
         fontWeight: vars.font.weight.light,
@@ -210,7 +210,7 @@ export const text_recipe = recipe({
         letterSpacing: vars.font.letterSpacing['00'],
       },
       'heading-06': {
-        fontFamily: 'IBM Plex Sans, sans-serif',
+        fontFamily: ibmPlexSans,
         fontStyle: 'normal',
         fontVariant: 'normal',
         fontWeight: vars.font.weight.light,
@@ -219,7 +219,7 @@ export const text_recipe = recipe({
         letterSpacing: vars.font.letterSpacing['00'],
       },
       'heading-07': {
-        fontFamily: 'IBM Plex Sans, sans-serif',
+        fontFamily: ibmPlexSans,
         fontStyle: 'normal',
         fontVariant: 'normal',
         fontWeight: vars.font.weight.light,

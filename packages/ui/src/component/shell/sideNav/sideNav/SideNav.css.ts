@@ -1,67 +1,65 @@
 import vars from '@theme/variable/vars.css.ts'
+import { style } from '@vanilla-extract/css'
 import { recipe } from '@vanilla-extract/recipes'
 
-export const sideNav_nav_recipe = recipe({
+export const sideNav_wrapper_recipe = recipe({
   base: {
-    width: '16rem',
-    height: '100%',
+    display: 'flex',
+    width: vars.component.sideNav.width,
     backgroundColor: vars.color.background,
-    borderRight: `0.0625rem solid ${vars.color.borderSubtle00}`,
-    paddingTop: vars.spacing['05'],
-    paddingBottom: vars.spacing['05'],
-    gap: vars.spacing['05'],
+    overflowY: 'scroll',
     boxSizing: 'border-box',
-    zIndex: 300,
+    zIndex: 900,
     '@media': {
-      'screen and (max-width: 67.9375rem)': {
+      'screen and (max-width: 57.9375rem)': {
         display: 'none',
       },
-      'screen and (min-width: 68rem)': {
-        display: 'block',
+      'screen and (min-width: 58rem)': {
+        display: 'flex',
       },
     },
   },
   variants: {
     isOpen: {
       true: {
-        display: 'block !important',
-        position: 'absolute',
-        top: vars.spacing['09'],
-        left: 0,
+        display: 'flex !important',
+        position: 'fixed',
+        height: `calc(100vh - ${vars.component.header.height})`,
+        top: vars.component.header.height,
       },
       false: {
-        position: 'relative',
+        position: 'sticky',
+        height: `calc(100vh - ${vars.component.header.height} - ${vars.spacing['05']} - ${vars.spacing['12']})`,
+        top: `calc(${vars.component.header.height} + ${vars.spacing['05']})`,
+        marginTop: vars.spacing['05'],
+        marginBottom: vars.spacing['12'],
       },
     },
   },
 })
 
-export const sideNav_backdrop_recipe = recipe({
+export const sideNav_nav_recipe = recipe({
   base: {
-    position: 'absolute',
-    top: vars.spacing['09'],
-    left: 0,
+    display: 'flex',
+    flexDirection: 'column',
     width: '100%',
-    height: '100%',
-    zIndex: 200,
-    transition: `background-color 0.15s`,
-    '@media': {
-      'screen and (max-width: 67.9375rem)': {
-        display: 'block',
-      },
-      'screen and (min-width: 68rem)': {
-        display: 'none',
-      },
-    },
   },
   variants: {
     isOpen: {
       true: {
-        backgroundColor: vars.color.overlay,
+        height: 'max-content',
+        marginBottom: '10rem',
       },
-      false: {
-        backgroundColor: vars.color.transparent,
-      },
+      false: {},
     },
   },
+})
+
+export const sideNav_backdrop_style = style({
+  position: 'fixed',
+  width: '100%',
+  height: '100%',
+  left: vars.component.sideNav.width,
+  backgroundColor: 'black',
+  opacity: '0.5',
 })

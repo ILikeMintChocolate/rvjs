@@ -1,18 +1,9 @@
-import { Children } from '@rvjs/core/dom'
-import { Prop, prop } from '@rvjs/core/reactive'
-import { isChildren, isOptional, isString } from '@rvjs/is'
-
 export interface OrderedListProps {
-  children: Children
-  type?: Prop<'1' | 'a' | 'A' | 'i' | 'I'>
-}
-
-export const orderedListPropsType = {
-  children: isChildren,
-  type: isOptional(isString),
+  children: JSX.Element
+  type?: '1' | 'a' | 'A' | 'i' | 'I'
 }
 
 export const orderedListRenderProps = {
-  children: (p: Children) => p,
-  type: (p: string) => prop(() => p),
+  children: (p: OrderedListProps['children']) => p,
+  type: (p: OrderedListProps['type']) => p,
 }

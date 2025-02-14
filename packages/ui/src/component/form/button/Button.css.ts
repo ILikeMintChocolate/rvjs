@@ -1,10 +1,9 @@
-import { Prop } from '@rvjs/core/reactive'
 import vars from '@theme/variable/vars.css.ts'
 import { recipe } from '@vanilla-extract/recipes'
 
 export interface ButtonStyleProps {
-  size?: Prop<'sm' | 'md' | 'lg' | 'xl' | '2xl'>
-  kind?: Prop<
+  size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl'
+  kind?:
     | 'primary'
     | 'secondary'
     | 'tertiary'
@@ -12,7 +11,6 @@ export interface ButtonStyleProps {
     | 'dangerPrimary'
     | 'dangerGhost'
     | 'dangerTertiary'
-  >
 }
 
 export const button_kind_recipe = recipe({
@@ -35,32 +33,32 @@ export const button_kind_recipe = recipe({
     kind: {
       primary: {
         backgroundColor: vars.color.buttonPrimary,
-        '&:hover': {
+        ':hover': {
           backgroundColor: vars.color.buttonPrimaryHover,
         },
-        '&:active': {
+        ':active': {
           backgroundColor: vars.color.buttonPrimaryActive,
         },
-        '&:focus': {
+        ':focus': {
           boxShadow: `inset 0 0 0 0.0625rem ${vars.color.focus},inset 0 0 0 0.125rem ${vars.color.focusInset}`,
         },
-        '&:disabled': {
+        ':disabled': {
           backgroundColor: vars.color.buttonDisabled,
           cursor: 'not-allowed',
         },
       },
       secondary: {
         backgroundColor: vars.color.buttonSecondary,
-        '&:hover': {
+        ':hover': {
           backgroundColor: vars.color.buttonSecondaryHover,
         },
-        '&:active': {
+        ':active': {
           backgroundColor: vars.color.buttonSecondaryActive,
         },
-        '&:focus': {
+        ':focus': {
           boxShadow: `inset 0 0 0 0.0625rem ${vars.color.focus},inset 0 0 0 0.125rem ${vars.color.focusInset}`,
         },
-        '&:disabled': {
+        ':disabled': {
           backgroundColor: vars.color.buttonDisabled,
           cursor: 'not-allowed',
         },
@@ -68,17 +66,26 @@ export const button_kind_recipe = recipe({
       tertiary: {
         backgroundColor: vars.color.transparent,
         boxShadow: `inset 0 0 0 0.0625rem ${vars.color.buttonTertiary}`,
-        '&:hover': {
+        ':hover': {
           backgroundColor: vars.color.buttonTertiaryHover,
+          '& span': {
+            color: `${vars.color.textInverse} !important`,
+          },
         },
-        '&:active': {
+        ':active': {
           backgroundColor: vars.color.buttonTertiaryActive,
+          '& span': {
+            color: `${vars.color.textInverse} !important`,
+          },
         },
-        '&:focus': {
+        ':focus': {
           backgroundColor: vars.color.buttonTertiaryHover,
           boxShadow: `inset 0 0 0 0.0625rem ${vars.color.focus},inset 0 0 0 0.125rem ${vars.color.focusInset}`,
+          '& span': {
+            color: `${vars.color.textInverse} !important`,
+          },
         },
-        '&:disabled': {
+        ':disabled': {
           backgroundColor: vars.color.transparent,
           boxShadow: `inset 0 0 0 0.0625rem ${vars.color.buttonDisabled}`,
           cursor: 'not-allowed',
@@ -86,16 +93,19 @@ export const button_kind_recipe = recipe({
       },
       ghost: {
         backgroundColor: vars.color.transparent,
-        '&:hover': {
+        ':hover': {
           backgroundColor: vars.color.backgroundHover,
+          '& span': {
+            color: `${vars.color.linkPrimaryHover} !important`,
+          },
         },
-        '&:active': {
+        ':active': {
           backgroundColor: vars.color.backgroundActive,
         },
-        '&:focus': {
+        ':focus': {
           boxShadow: `inset 0 0 0 0.125rem ${vars.color.focus}`,
         },
-        '&:disabled': {
+        ':disabled': {
           cursor: 'not-allowed',
         },
       },
@@ -104,43 +114,49 @@ export const button_kind_recipe = recipe({
         ':hover': {
           backgroundColor: vars.color.backgroundHover,
         },
-        '&:active': {
+        ':active': {
           backgroundColor: vars.color.backgroundActive,
         },
-        '&:focus': {
+        ':focus': {
           boxShadow: `inset 0 0 0 0.125rem ${vars.color.focus}`,
         },
-        '&:disabled': {
+        ':disabled': {
           cursor: 'not-allowed',
         },
       },
       dangerPrimary: {
         backgroundColor: vars.color.buttonDangerPrimary,
-        '&:hover': {
+        ':hover': {
           backgroundColor: vars.color.buttonDangerHover,
         },
-        '&:active': {
+        ':active': {
           backgroundColor: vars.color.buttonDangerActive,
         },
-        '&:focus': {
+        ':focus': {
           boxShadow: `inset 0 0 0 0.0625rem ${vars.color.focus},inset 0 0 0 0.125rem ${vars.color.focusInset}`,
         },
-        '&:disabled': {
+        ':disabled': {
           backgroundColor: vars.color.buttonDisabled,
         },
       },
       dangerGhost: {
         boxShadow: `inset 0 0 0 0.0625rem ${vars.color.buttonDangerSecondary}`,
-        '&:hover': {
+        ':hover': {
           backgroundColor: vars.color.buttonDangerHover,
+          '& span': {
+            color: `${vars.color.textOnColor} !important`,
+          },
         },
-        '&:active': {
+        ':active': {
           backgroundColor: vars.color.buttonDangerActive,
+          '& span': {
+            color: `${vars.color.textOnColor} !important`,
+          },
         },
-        '&:focus': {
+        ':focus': {
           boxShadow: `inset 0 0 0 0.0625rem ${vars.color.focus},inset 0 0 0 0.125rem ${vars.color.focusInset}`,
         },
-        '&:disabled': {
+        ':disabled': {
           backgroundColor: vars.color.buttonDisabled,
           cursor: 'not-allowed',
         },
@@ -148,14 +164,20 @@ export const button_kind_recipe = recipe({
       dangerTertiary: {
         ':hover': {
           backgroundColor: vars.color.buttonDangerHover,
+          '& span': {
+            color: `${vars.color.textOnColor} !important`,
+          },
         },
-        '&:active': {
+        ':active': {
           backgroundColor: vars.color.buttonDangerActive,
+          '& span': {
+            color: `${vars.color.textOnColor} !important`,
+          },
         },
-        '&:focus': {
+        ':focus': {
           boxShadow: `inset 0 0 0 0.0625rem ${vars.color.focus},inset 0 0 0 0.125rem ${vars.color.focusInset}`,
         },
-        '&:disabled': {
+        ':disabled': {
           backgroundColor: vars.color.buttonDisabled,
           cursor: 'not-allowed',
         },
@@ -224,67 +246,67 @@ export const button_text_recipe = recipe({
     kind: {
       primary: {
         color: `${vars.color.textOnColor} !important`,
-        '&:disabled': {
+        ':disabled': {
           color: `${vars.color.textOnColorDisabled} !important`,
         },
       },
       secondary: {
         color: `${vars.color.textOnColor} !important`,
-        '&:disabled': {
+        ':disabled': {
           color: `${vars.color.textOnColorDisabled} !important`,
         },
       },
       tertiary: {
         color: `${vars.color.buttonTertiary} !important`,
-        '&:hover': {
+        ':hover': {
           color: `${vars.color.textInverse} !important`,
         },
-        '&:active': {
+        ':active': {
           color: `${vars.color.textInverse} !important`,
         },
-        '&:focus': {
+        ':focus': {
           color: `${vars.color.textInverse} !important`,
         },
-        '&:disabled': {
+        ':disabled': {
           color: `${vars.color.textDisabled} !important`,
         },
       },
       ghost: {
         color: `${vars.color.linkPrimary} !important`,
-        '&:hover': {
+        ':hover': {
           color: `${vars.color.linkPrimaryHover} !important`,
         },
-        '&:disabled': {
+        ':disabled': {
           color: `${vars.color.textDisabled} !important`,
         },
       },
       dangerPrimary: {
         color: `${vars.color.textOnColor} !important`,
-        '&:disabled': {
+        ':disabled': {
           color: `${vars.color.textOnColorDisabled} !important`,
         },
       },
       dangerGhost: {
         color: `${vars.color.buttonDangerSecondary} !important`,
-        '&:hover': {
+        ':hover': {
           color: `${vars.color.textOnColor} !important`,
         },
-        '&:active': {
+        ':active': {
           color: `${vars.color.textOnColor} !important`,
         },
-        '&:disabled': {
+        ':disabled': {
           color: `${vars.color.textDisabled} !important`,
         },
       },
       dangerTertiary: {
         color: `${vars.color.buttonDangerSecondary} !important`,
-        '&:hover': {
+        ':hover': {
           color: `${vars.color.textOnColor} !important`,
         },
-        '&:active': {
+        ':active': {
           color: `${vars.color.textOnColor} !important`,
         },
-        '&:disabled': {
+        ':disabled': {
           color: `${vars.color.textDisabled} !important`,
         },
       },
@@ -319,9 +341,13 @@ export const button_icon_recipe = recipe({
         fill: vars.color.buttonTertiary,
         selectors: {
           [`${button_kind_recipe.classNames.base}:hover &`]: {
+            backgroundColor: 'red',
             fill: vars.color.iconInverse,
           },
           [`${button_kind_recipe.classNames.base}:active &`]: {
+            fill: vars.color.iconInverse,
+          },
+          [`${button_kind_recipe.classNames.base}:focus &`]: {
             fill: vars.color.iconInverse,
           },
           [`${button_kind_recipe.classNames.base}:disabled &`]: {

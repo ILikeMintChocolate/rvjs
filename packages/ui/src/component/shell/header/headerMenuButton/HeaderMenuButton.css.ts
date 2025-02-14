@@ -2,8 +2,8 @@ import vars from '@theme/variable/vars.css.ts'
 import { style } from '@vanilla-extract/css'
 
 export const headerMenuButton_button_style = style({
-  width: vars.spacing['09'],
-  height: vars.spacing['09'],
+  height: vars.component.header.height,
+  aspectRatio: '1/1',
   backgroundColor: vars.color.transparent,
   border: 'none',
   transition: `all ${vars.motion.productive}`,
@@ -18,15 +18,17 @@ export const headerMenuButton_button_style = style({
     backgroundColor: vars.color.backgroundActive,
   },
   '@media': {
-    'screen and (max-width: 67.9375rem)': {
+    'screen and (max-width: 57.9375rem)': {
       display: 'block',
     },
-    'screen and (min-width: 68rem)': {
+    'screen and (min-width: 58rem)': {
       display: 'none',
     },
   },
 })
 
 export const headerMenuButton_icon_style = style({
+  width: '1.25rem',
+  height: '1.25rem',
   fill: vars.color.iconPrimary,
 })

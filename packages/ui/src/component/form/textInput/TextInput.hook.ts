@@ -1,36 +1,41 @@
-import {
-  isGetState,
-  onMount,
-  Prop,
-  useEffect,
-  useRef,
-} from '@rvjs/core/reactive'
+import { TextInputProps } from '@form/textInput/TextInput.props.ts'
+import { defineProps } from '@rvjs/core'
+import { isDefined } from '@type/guard.ts'
 
-const useTextInput = (disabled: Prop<boolean>) => {
-  const inputRef = useRef<HTMLInputElement>()
-
-  const setInputDisabled = () => {
-    if (inputRef.current) {
-      if (
-        (isGetState(disabled) && disabled() === true) ||
-        disabled() === true
-      ) {
-        inputRef.current.setAttribute('disabled', '')
-      } else {
-        inputRef.current.removeAttribute('disabled')
-      }
-    }
-  }
-
-  onMount(() => {
-    setInputDisabled()
+export const useTextInputProps = (props: TextInputProps): TextInputProps => {
+  const newProps = defineProps(props, {
+    get size() {
+      return props.size ?? 'md'
+    },
+    get disabled() {
+      return props.disabled ?? false
+    },
+    get placeholder() {
+      return props.placeholder ?? ''
+    },
+    get readOnly() {
+      return props.readOnly ?? false
+    },
+    get type() {
+      return props.type ?? 'text'
+    },
   })
 
-  useEffect(() => {
-    setInputDisabled()
-  }, [disabled])
-
-  return { inputRef }
+  return newProps
 }
 
-export default useTextInput
+export const useTextInputValue = (props: TextInputProps) => {
+  const onInputHandler = (event: Event) => {
+    const target = event.target as HTMLInputElement
+    if (isDefined(props.maxCount) && target.value.length > props.maxCount) {
+      target.value = target.value.slice(0, props.maxCount)
+    } else {
+      props.setValue(target.value)
+    }
+    if (props.onChange) {
+      props.onChange(event)
+    }
+  }
+  
+  return onInputHandler
+}

@@ -3,8 +3,12 @@ import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 import importSvg from 'vite-plugin-import-svg'
+import rvjsPlugin from 'vite-plugin-rvjs'
 
 export default defineConfig({
+  server: {
+    host: '0.0.0.0',
+  },
   plugins: [
     vanillaExtractPlugin(),
     importSvg(),
@@ -12,37 +16,25 @@ export default defineConfig({
       outDir: 'dist/type',
       exclude: ['src/main.ts', 'src/example'],
     }),
+    rvjsPlugin(),
   ],
   build: {
     lib: {
-      entry: {
-        content: resolve(__dirname, 'src/component/content/index.ts'),
-        form: resolve(__dirname, 'src/component/form/index.ts'),
-        layout: resolve(__dirname, 'src/component/layout/index.ts'),
-        overlay: resolve(__dirname, 'src/component/overlay/index.ts'),
-        shell: resolve(__dirname, 'src/component/shell/index.ts'),
-        typography: resolve(__dirname, 'src/component/typography/index.ts'),
-        system: resolve(__dirname, 'src/system/index.ts'),
-        util: resolve(__dirname, 'src/util/index.ts'),
-      },
+      entry: resolve(__dirname, 'src/index.ts'),
       name: '@rvjs/ui',
       formats: ['es', 'cjs'],
-      fileName: (format, entryName) => `${entryName}.${format}.js`,
+      fileName: (format) => `rvjs-ui.${format}.js`,
     },
     rollupOptions: {
-      external: (id) =>
-        id === '@rvjs/core' ||
-        id.includes('@rvjs/core/') ||
-        id === '@rvjs/is' ||
-        id.includes('@rvjs/is'),
+      external: (id) => id === '@rvjs/core',
       output: {
-        entryFileNames: 'entry/[name].[format].js',
+        entryFileNames: 'entry.[format].js',
         chunkFileNames: 'chunk/[name].[format].js',
       },
     },
   },
   optimizeDeps: {
-    exclude: ['@rvjs/core', '@rvjs/is'],
+    exclude: ['@rvjs/core'],
   },
   resolve: {
     alias: [

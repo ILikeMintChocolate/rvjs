@@ -1,43 +1,23 @@
-import { Children, Element, ElementType, svg } from '@rvjs/core/dom'
-import { prop, Prop } from '@rvjs/core/reactive'
-import {
-  isBoolean,
-  isChild,
-  isChildren,
-  isOptional,
-  isProp,
-  isString,
-} from '@rvjs/is'
+import { createSvg } from '@util/svg.ts'
 
 export interface LinkProps {
-  href: Prop<string>
-  as?: ElementType
-  text?: Prop<string>
-  children?: Children
-  disabled?: Prop<boolean>
-  inline?: Prop<boolean>
-  renderIcon?: Element
-  size?: Prop<'sm' | 'md' | 'lg'>
-}
-
-export const linkPropsType = {
-  href: isProp(isString),
-  as: isOptional(isString),
-  text: isProp(isString),
-  children: isOptional(isChildren),
-  disabled: isOptional(isProp(isBoolean)),
-  inline: isOptional(isProp(isBoolean)),
-  renderIcon: isOptional(isChild),
-  size: isOptional(isProp(isString)),
+  href: string
+  as?: keyof HTMLElementTagNameMap
+  children?: JSX.Element
+  disabled?: boolean
+  inline?: boolean
+  renderIcon?: SVGElement
+  size?: 'sm' | 'md' | 'lg'
+  isExternal?: boolean
 }
 
 export const linkRenderProps = {
-  href: (p: string) => prop(() => p),
-  as: (p: ElementType) => p,
-  text: (p: string) => prop(() => p),
-  children: (p: Children) => p,
-  disabled: (p: boolean) => prop(() => p),
-  inline: (p: boolean) => prop(() => p),
-  renderIcon: (p: SVGElement) => svg(p),
-  size: (p: string) => prop(() => p),
+  href: (p: LinkProps['href']) => p,
+  as: (p: LinkProps['as']) => p,
+  children: (p: LinkProps['children']) => p,
+  disabled: (p: LinkProps['disabled']) => p,
+  inline: (p: LinkProps['inline']) => p,
+  renderIcon: (p: string) => createSvg(p),
+  size: (p: LinkProps['size']) => p,
+  isExternal: (p: LinkProps['isExternal']) => p,
 }

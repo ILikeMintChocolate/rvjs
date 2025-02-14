@@ -1,69 +1,35 @@
 {
   "name": "@rvjs/ui",
   "description": "UI component library with rvjs",
-  "version": "0.1.0",
+  "version": "0.2.22",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ILikMintChocolate/rvjs.git",
+    "url": "https://github.com/ILikeMintChocolate/rvjs.git",
     "directory": "packages/ui"
   },
+  "homepage": "https://rvjs.xyz",
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "postbuild": "node build/postBuild.js",
     "preview": "vite preview"
   },
   "type": "module",
-  "types": "./dist/index.d.ts",
+  "types": "./dist/type/index.d.ts",
   "exports": {
-    "./content": {
-      "import": "./dist/entry/content.es.js",
-      "require": "./dist/entry/content.cjs.js",
-      "types": "./dist/type/component/content/index.d.ts"
-    },
-    "./form": {
-      "import": "./dist/entry/form.es.js",
-      "require": "./dist/entry/form.cjs.js",
-      "types": "./dist/type/component/form/index.d.ts"
-    },
-    "./layout": {
-      "import": "./dist/entry/layout.es.js",
-      "require": "./dist/entry/layout.cjs.js",
-      "types": "./dist/type/component/layout/index.d.ts"
-    },
-    "./overlay": {
-      "import": "./dist/entry/overlay.es.js",
-      "require": "./dist/entry/overlay.cjs.js",
-      "types": "./dist/type/component/overlay/index.d.ts"
-    },
-    "./shell": {
-      "import": "./dist/entry/shell.es.js",
-      "require": "./dist/entry/shell.cjs.js",
-      "types": "./dist/type/component/shell/index.d.ts"
-    },
-    "./typography": {
-      "import": "./dist/entry/typography.es.js",
-      "require": "./dist/entry/typography.cjs.js",
-      "types": "./dist/type/component/typography/index.d.ts"
-    },
-    "./system": {
-      "import": "./dist/entry/system.es.js",
-      "require": "./dist/entry/system.cjs.js",
-      "types": "./dist/type/system/index.d.ts"
-    },
-    "./util": {
-      "import": "./dist/entry/util.es.js",
-      "require": "./dist/entry/util.cjs.js",
-      "types": "./dist/type/util/index.d.ts"
+    ".": {
+      "types": "./dist/type/index.d.ts",
+      "import": "./dist/entry.es.js",
+      "require": "./dist/entry.cjs.js"
     }
   },
   "files": [
     "dist"
   ],
   "dependencies": {
+    "@rvjs/core": "^0.3.31",
     "@types/prismjs": "^1.26.4",
     "@vanilla-extract/css": "^1.15.2",
     "@vanilla-extract/dynamic": "^2.1.1",
@@ -71,7 +37,7 @@
     "@vanilla-extract/sprinkles": "^1.6.2",
     "highlight.js": "^11.9.0",
     "prismjs": "^1.29.0",
-    "vite-plugin-import-svg": "^0.0.4"
+    "vite-plugin-import-svg": "^0.1.0"
   },
   "devDependencies": {
     "@vanilla-extract/vite-plugin": "^4.0.10",
@@ -79,7 +45,8 @@
     "jsdom": "^24.0.0",
     "less": "^4.2.0",
     "typescript": "^5.2.2",
-    "vite": "^5.1.4",
+    "vite": "^6.0.11",
+    "vite-plugin-rvjs": "^0.0.2",
     "vitest": "^1.3.1"
   }
 }

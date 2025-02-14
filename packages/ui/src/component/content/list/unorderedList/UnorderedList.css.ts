@@ -1,8 +1,7 @@
-import { createVar, style } from '@vanilla-extract/css'
-
-export const unorderedList_listStyleType_var = createVar()
+import { style } from '@vanilla-extract/css'
 
 export const unorderedList_style = style({
+  display: 'flex',
+  flexDirection: 'column',
   margin: 0,
-  listStyleType: unorderedList_listStyleType_var,
 })

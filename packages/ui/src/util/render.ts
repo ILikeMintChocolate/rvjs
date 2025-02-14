@@ -1,85 +1,83 @@
-import { Children } from '@rvjs/core/dom'
-import {
-  componentFnMap,
-  componentRenderPropsMap,
-  elementRenderProps,
-  textNodeFn,
-} from '@util/renderMap.ts'
-import { Required } from '@util/type.ts'
+import { insert } from '@rvjs/core'
+import { isArray, isHTMLElement, isObject } from '@type/guard.ts'
+import { componentFnMap, componentRenderPropsMap } from '@util/renderMap.ts'
 
-export interface RenderJSON {
-  type: 'component' | 'element'
-  name: ComponentFnMapKey | ElementFnMapKey
-  props?: Partial<
-    Record<string, string> & {
-      children: RenderJSON[] | Children
+export interface Json {
+  type: 'element' | 'component' | 'text'
+  name: keyof (HTMLElementTagNameMap | typeof componentFnMap)
+  props: Record<string, any>
+}
+
+export const renderFromJSON = (json: Json) => {
+  return render(json)
+}
+
+export const render = (json: Json | Json[]) => {
+  if (isArray(json)) {
+    return json.map(render)
+  } else if (isObject(json)) {
+    if (!json.type) {
+      return json
+    } else if (json.type === 'element') {
+      return renderElement(json)
+    } else if (json.type === 'component') {
+      return renderComponent(json)
+    } else if (json.type === 'text') {
+      return renderTextNode(json)
     }
-  >
-}
-
-type ComponentFnMapKey = keyof typeof componentFnMap
-type ElementFnMapKey = keyof HTMLElementTagNameMap
-
-export const renderComponentFromJSON = (jsons: RenderJSON[]): Children => {
-  return jsons.map(renderByType).filter(Boolean) as Children
-}
-
-const renderByType = (json: RenderJSON) => {
-  const { type } = json!
-  if (type === 'component') {
-    return renderComponent(json)
-  } else if (type === 'element') {
-    return renderElement(json)
-  } else if (type === 'text') {
-    return renderTextNode(json)
   }
 }
 
-const renderComponent = (json: RenderJSON) => {
-  const { name, props = {} } = json!
-  const renderFn = componentFnMap[name as ComponentFnMapKey]
-  const componentProps = configProps(
-    props,
-    componentRenderPropsMap[name as ComponentFnMapKey],
+export const renderElement = (json: Json) => {
+  const element = document.createElement(
+    json.name as keyof HTMLElementTagNameMap,
   )
-  const { children = [] } = componentProps
-  if (children.length !== 0) {
-    componentProps.children = renderComponentFromJSON(children as RenderJSON[])
+  for (const key in json.props) {
+    if (key === 'children') {
+      for (const child of render(json.props.children)) {
+        if (isHTMLElement(child)) {
+          element.appendChild(child)
+        } else {
+          // @ts-ignore
+          insert(element, child)
+        }
+      }
+    } else if (key === 'style') {
+      for (const styleKey in json.props.style) {
+        element.style[styleKey] = json.props.style[styleKey]
+      }
+    } else if (key in element) {
+      element[key] = json.props[key]
+    } else {
+      element.setAttribute(key, json.props[key])
+    }
   }
-
-  // @ts-ignore
-  return renderFn(componentProps)
+  return element
 }
 
-const renderElement = (json: RenderJSON) => {
-  const { name, props = {} } = json!
-  const elementProps = configProps(props, elementRenderProps)
-  const { children = [] } = elementProps
-  if (children.length !== 0) {
-    elementProps.children = renderComponentFromJSON(children as RenderJSON[])
+export const renderComponent = (json: Json) => {
+  const props = configProps(json)
+  const componentFn = componentFnMap[json.name]
+  return componentFn(props)
+}
+
+export const renderTextNode = (json: Json) => {
+  const textNode = document.createTextNode(json.props.text)
+  return textNode
+}
+
+export const configProps = (json: Json) => {
+  const newProps = {}
+  for (const key in json.props) {
+    if (!componentRenderPropsMap[json.name][key]) {
+      newProps[key] = json.props[key]
+    } else if (isObject(json.props[key])) {
+      newProps[key] = componentRenderPropsMap[json.name][key](
+        render(json.props[key]),
+      )
+    } else {
+      newProps[key] = componentRenderPropsMap[json.name][key](json.props[key])
+    }
   }
-
-  // @ts-ignore
-  return element(name, elementProps)
-}
-
-const renderTextNode = (json: RenderJSON) => {
-  const { props } = json!
-  const { text = '' } = props ?? {}
-  const renderFn = textNodeFn
-  return renderFn(text)
-}
-
-const configProps = <T extends RenderJSON['props']>(
-  props: Required<T>,
-  propsMap: Partial<Record<keyof T, Function>>,
-): T => {
-  return (Object.keys(props) as Array<keyof T>).reduce(
-    (propsObject, propKey) => {
-      const propValue = props[propKey]
-      const prop = propsMap[propKey]?.(propValue) ?? propValue
-      return { ...propsObject, [propKey]: prop }
-    },
-    {} as T,
-  )
+  return newProps
 }

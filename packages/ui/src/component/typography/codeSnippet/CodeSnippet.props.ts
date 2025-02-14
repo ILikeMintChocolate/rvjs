@@ -1,55 +1,43 @@
-import { StyleProps } from '@rvjs/core/dom'
-import { Prop, prop } from '@rvjs/core/reactive'
-import {
-  isBoolean,
-  isFunctionType,
-  isNumber,
-  isOptional,
-  isProp,
-  isString,
-} from '@rvjs/is'
 import { EventHandlers } from '@type/event.ts'
+import { Properties } from 'csstype'
 
 export interface CodeSnippetProps {
-  codeText: Prop<string>
-  language: 'javascript' | 'typescript' | 'html' | 'css' | 'bash' | 'json'
+  codeText: string
+  language:
+    | 'javascript'
+    | 'typescript'
+    | 'html'
+    | 'css'
+    | 'bash'
+    | 'json'
+    | 'plain'
+    | 'jsx'
+    | 'tsx'
   type?: 'single' | 'inline' | 'multi' | 'link'
-  collapsedNumberOfRows?: Prop<number>
-  copyButtonDescription?: Prop<string>
-  hideCopyButton?: Prop<boolean>
+  collapsedNumberOfRows?: number
+  copyButtonDescription?: string
+  hideCopyButton?: boolean
   onClick?: EventHandlers['onClick']
-  width?: Prop<StyleProps['width']>
-  wrapText?: Prop<boolean>
-  ariaLabel?: Prop<string>
-  defaultShow?: Prop<boolean>
-  href?: Prop<string>
-}
-
-export const codeSnippetPropsType = {
-  codeText: isProp(isString),
-  // language: isString,
-  type: isOptional(isString),
-  collapsedNumberOfRows: isOptional(isProp(isNumber)),
-  copyButtonDescription: isOptional(isProp(isString)),
-  hideCopyButton: isOptional(isProp(isBoolean)),
-  onClick: isOptional(isFunctionType),
-  width: isOptional(isProp(isString)),
-  wrapText: isOptional(isProp(isBoolean)),
-  ariaLabel: isOptional(isProp(isString)),
-  defaultShow: isOptional(isProp(isBoolean)),
+  width?: Properties['width']
+  wrapText?: boolean
+  ariaLabel?: string
+  defaultShow?: boolean
+  href?: string
+  isExternal?: boolean
 }
 
 export const codeSnippetRenderProps = {
-  codeText: (p: string) => prop(() => p),
-  language: (p: string) => p,
-  type: (p: string) => p,
-  collapsedNumberOfRows: (p: number) => prop(() => p),
-  copyButtonDescription: (p: string) => prop(() => p),
-  hideCopyButton: (p: boolean) => prop(() => p),
-  onClick: (h: any) => h,
-  width: (p: string) => prop(() => p),
-  wrapText: (p: boolean) => prop(() => p),
-  ariaLabel: (p: string) => prop(() => p),
-  defaultShow: (p: boolean) => prop(() => p),
-  href: (p: string) => prop(() => p),
+  codeText: (p: CodeSnippetProps['codeText']) => p,
+  language: (p: CodeSnippetProps['language']) => p,
+  type: (p: CodeSnippetProps['type']) => p,
+  collapsedNumberOfRows: (p: CodeSnippetProps['collapsedNumberOfRows']) => p,
+  copyButtonDescription: (p: CodeSnippetProps['copyButtonDescription']) => p,
+  hideCopyButton: (p: CodeSnippetProps['hideCopyButton']) => p,
+  onClick: (p: CodeSnippetProps['onClick']) => p,
+  width: (p: CodeSnippetProps['width']) => p,
+  wrapText: (p: CodeSnippetProps['wrapText']) => p,
+  ariaLabel: (p: CodeSnippetProps['ariaLabel']) => p,
+  defaultShow: (p: CodeSnippetProps['defaultShow']) => p,
+  href: (p: CodeSnippetProps['href']) => p,
+  isExternal: (p: CodeSnippetProps['isExternal']) => p,
 }
