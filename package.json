@@ -6,8 +6,11 @@
   "type": "module",
   "license": "MIT",
   "author": "Beomseok Gwak",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "dependencies": {
-    "prettier": "^3.2.5",
-    "vite-plugin-dts": "^3.7.3"
+    "prettier": "^3.2.5"
   }
 }
