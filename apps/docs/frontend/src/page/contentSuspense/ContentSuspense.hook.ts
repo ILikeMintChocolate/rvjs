@@ -47,7 +47,7 @@ export interface HeadingContext {
 }
 
 export const useContentHeading = (status: GetState<Status>) => {
-  const wrapperElement = useElement<HTMLElement>()
+  const wrapperElement = useElement<HTMLDivElement>()
   const [headingContexts, setHeadingContexts] = useState<HeadingContext[]>([])
 
   const findHeadingContext = (element: Element): HeadingContext[] => {
