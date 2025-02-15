@@ -4,6 +4,7 @@ import {
   isInCoreJSPage,
   isInCoreJSXPage,
   isInIsJSPage,
+  isInLocalizerPage,
   isInUIJSPage,
   isInUIJSXPage,
 } from '@util/path.ts'
@@ -11,7 +12,14 @@ import {
 export const usePageCategory = () => {
   const pathname = usePathname()
   const [pageCategory, setPageCategory] = useState<
-    'CORE_JSX' | 'CORE_JS' | 'UI_JSX' | 'UI_JS' | 'IS_JS' | 'BLOG' | null
+    | 'CORE_JSX'
+    | 'CORE_JS'
+    | 'UI_JSX'
+    | 'UI_JS'
+    | 'IS_JS'
+    | 'LOCALIZER'
+    | 'BLOG'
+    | null
   >(null)
 
   const setPageCategoryByPathname = (pathname: string) => {
@@ -25,6 +33,8 @@ export const usePageCategory = () => {
       setPageCategory('UI_JS')
     } else if (isInIsJSPage(pathname)) {
       setPageCategory('IS_JS')
+    } else if (isInLocalizerPage(pathname)) {
+      setPageCategory('LOCALIZER')
     } else if (isInBlogPage(pathname)) {
       setPageCategory('BLOG')
     } else {
