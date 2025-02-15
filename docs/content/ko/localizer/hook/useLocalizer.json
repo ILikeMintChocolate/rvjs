@@ -43,403 +43,399 @@
         ]
       }
     },
-    [
-      {
-        "type": "component",
-        "name": "Section",
-        "props": {
-          "children": [
-            {
-              "type": "component",
-              "name": "Text",
-              "props": {
-                "text": "레퍼런스",
-                "kind": "heading-03",
-                "as": "h4"
-              }
-            },
-            {
-              "type": "component",
-              "name": "CodeSnippet",
-              "props": {
-                "codeText": "function useLocalizer<T>(options: {\n  defaultLanguage: string;\n  languages: Record<string, {\n    defaultCountry: string;\n    countries: Record<string, T>;\n  }>;\n}): void",
-                "language": "typescript",
-                "type": "multi",
-                "width": "100%",
-                "defaultShow": true
-              }
+    {
+      "type": "component",
+      "name": "Section",
+      "props": {
+        "children": [
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "text": "레퍼런스",
+              "kind": "heading-03",
+              "as": "h4"
             }
-          ]
-        }
-      },
-      {
-        "type": "component",
-        "name": "Text",
-        "props": {
-          "as": "p",
-          "kind": "heading-compact-01",
-          "children": [
-            {
-              "type": "text",
-              "name": "text",
-              "props": {
-                "text": "매개변수"
-              }
+          },
+          {
+            "type": "component",
+            "name": "CodeSnippet",
+            "props": {
+              "codeText": "function useLocalizer<T>(options: {\n  defaultLanguage: string;\n  languages: Record<string, {\n    defaultCountry: string;\n    countries: Record<string, T>;\n  }>;\n}): void",
+              "language": "typescript",
+              "type": "multi",
+              "width": "100%",
+              "defaultShow": true
             }
-          ]
-        }
-      },
-      {
-        "type": "component",
-        "name": "UnorderedList",
-        "props": {
-          "children": [
-            {
-              "type": "component",
-              "name": "ListItem",
-              "props": {
-                "children": [
-                  {
-                    "type": "element",
-                    "name": "div",
-                    "props": {
-                      "style": {
-                        "display": "grid",
-                        "gridTemplateColumns": "25% 75%"
-                      },
-                      "children": [
-                        [
-                          {
-                            "type": "component",
-                            "name": "Text",
-                            "props": {
-                              "as": "span",
-                              "kind": "body-01",
-                              "children": [
-                                {
-                                  "type": "component",
-                                  "name": "CodeSnippet",
-                                  "props": {
-                                    "codeText": "defaultLanguage",
-                                    "language": "javascript",
-                                    "type": "inline"
-                                  }
-                                }
-                              ]
-                            }
-                          }
-                        ],
-                        [
-                          {
-                            "type": "component",
-                            "name": "Text",
-                            "props": {
-                              "as": "span",
-                              "kind": "body-01",
-                              "children": [
-                                {
-                                  "type": "text",
-                                  "name": "text",
-                                  "props": {
-                                    "text": "기본적으로 사용할 언어 코드입니다. (예: "
-                                  }
-                                },
-                                {
-                                  "type": "component",
-                                  "name": "CodeSnippet",
-                                  "props": {
-                                    "codeText": "'ko'",
-                                    "language": "javascript",
-                                    "type": "inline"
-                                  }
-                                },
-                                {
-                                  "type": "text",
-                                  "name": "text",
-                                  "props": {
-                                    "text": ", "
-                                  }
-                                },
-                                {
-                                  "type": "component",
-                                  "name": "CodeSnippet",
-                                  "props": {
-                                    "codeText": "'en'",
-                                    "language": "javascript",
-                                    "type": "inline"
-                                  }
-                                },
-                                {
-                                  "type": "text",
-                                  "name": "text",
-                                  "props": {
-                                    "text": ")"
-                                  }
-                                }
-                              ]
-                            }
-                          }
-                        ]
-                      ]
-                    }
+          },
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "as": "p",
+              "kind": "heading-compact-01",
+              "children": [
+                {
+                  "type": "text",
+                  "name": "text",
+                  "props": {
+                    "text": "매개변수"
                   }
-                ]
-              }
-            },
-            {
-              "type": "component",
-              "name": "ListItem",
-              "props": {
-                "children": [
-                  {
-                    "type": "element",
-                    "name": "div",
-                    "props": {
-                      "style": {
-                        "display": "grid",
-                        "gridTemplateColumns": "25% 75%"
-                      },
-                      "children": [
-                        [
-                          {
-                            "type": "component",
-                            "name": "Text",
-                            "props": {
-                              "as": "span",
-                              "kind": "body-01",
-                              "children": [
-                                {
-                                  "type": "component",
-                                  "name": "CodeSnippet",
-                                  "props": {
-                                    "codeText": "languages",
-                                    "language": "javascript",
-                                    "type": "inline"
-                                  }
-                                }
-                              ]
-                            }
-                          }
-                        ],
-                        [
-                          {
-                            "type": "component",
-                            "name": "Text",
-                            "props": {
-                              "as": "span",
-                              "kind": "body-01",
-                              "children": [
-                                {
-                                  "type": "text",
-                                  "name": "text",
-                                  "props": {
-                                    "text": "지원하는 언어와 해당 국가별 리소스를 정의하는 객체입니다."
-                                  }
-                                }
-                              ]
-                            }
-                          }
-                        ]
-                      ]
-                    }
-                  }
-                ]
-              }
-            },
-            {
-              "type": "component",
-              "name": "ListItem",
-              "props": {
-                "children": [
-                  {
-                    "type": "element",
-                    "name": "div",
-                    "props": {
-                      "style": {
-                        "display": "grid",
-                        "gridTemplateColumns": "25% 75%"
-                      },
-                      "children": [
-                        [
-                          {
-                            "type": "component",
-                            "name": "Text",
-                            "props": {
-                              "as": "span",
-                              "kind": "body-01",
-                              "children": [
-                                {
-                                  "type": "component",
-                                  "name": "CodeSnippet",
-                                  "props": {
-                                    "codeText": "defaultCountry",
-                                    "language": "javascript",
-                                    "type": "inline"
-                                  }
-                                }
-                              ]
-                            }
-                          }
-                        ],
-                        [
-                          {
-                            "type": "component",
-                            "name": "Text",
-                            "props": {
-                              "as": "span",
-                              "kind": "body-01",
-                              "children": [
-                                {
-                                  "type": "text",
-                                  "name": "text",
-                                  "props": {
-                                    "text": "해당 언어에서 기본적으로 사용할 국가 코드입니다. (예: "
-                                  }
-                                },
-                                {
-                                  "type": "component",
-                                  "name": "CodeSnippet",
-                                  "props": {
-                                    "codeText": "'KR'",
-                                    "language": "javascript",
-                                    "type": "inline"
-                                  }
-                                },
-                                {
-                                  "type": "text",
-                                  "name": "text",
-                                  "props": {
-                                    "text": ", "
-                                  }
-                                },
-                                {
-                                  "type": "component",
-                                  "name": "CodeSnippet",
-                                  "props": {
-                                    "codeText": "'US'",
-                                    "language": "javascript",
-                                    "type": "inline"
-                                  }
-                                },
-                                {
-                                  "type": "text",
-                                  "name": "text",
-                                  "props": {
-                                    "text": ")"
-                                  }
-                                }
-                              ]
-                            }
-                          }
-                        ]
-                      ]
-                    }
-                  }
-                ]
-              }
-            },
-            {
-              "type": "component",
-              "name": "ListItem",
-              "props": {
-                "children": [
-                  {
-                    "type": "element",
-                    "name": "div",
-                    "props": {
-                      "style": {
-                        "display": "grid",
-                        "gridTemplateColumns": "25% 75%"
-                      },
-                      "children": [
-                        [
-                          {
-                            "type": "component",
-                            "name": "Text",
-                            "props": {
-                              "as": "span",
-                              "kind": "body-01",
-                              "children": [
-                                {
-                                  "type": "component",
-                                  "name": "CodeSnippet",
-                                  "props": {
-                                    "codeText": "countries",
-                                    "language": "javascript",
-                                    "type": "inline"
-                                  }
-                                }
-                              ]
-                            }
-                          }
-                        ],
-                        [
-                          {
-                            "type": "component",
-                            "name": "Text",
-                            "props": {
-                              "as": "span",
-                              "kind": "body-01",
-                              "children": [
-                                {
-                                  "type": "text",
-                                  "name": "text",
-                                  "props": {
-                                    "text": "해당 국가별 번역 리소스를 포함하는 객체입니다."
-                                  }
-                                }
-                              ]
-                            }
-                          }
-                        ]
-                      ]
-                    }
-                  }
-                ]
-              }
-            }
-          ]
-        }
-      }
-    ],
-    [
-      {
-        "type": "element",
-        "name": "div",
-        "props": {
-          "style": {
-            "height": "60vh"
-          }
-        }
-      },
-      {
-        "type": "component",
-        "name": "Link",
-        "props": {
-          "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs/deploy/docs/content/ko/localizer/hook/useLocalizer.json",
-          "isExternal": true,
-          "children": [
-            {
-              "type": "component",
-              "name": "DocumentIcon",
-              "props": {
-                "style": {
-                  "width": "1rem",
-                  "filter": "brightness(0) saturate(100%) invert(25%) sepia(69%) saturate(3617%) hue-rotate(218deg) brightness(100%) contrast(104%)"
                 }
-              }
-            },
-            {
-              "type": "component",
-              "name": "Text",
-              "props": {
-                "text": "Raw Data From Github",
-                "color": "linkPrimary"
-              }
+              ]
             }
-          ]
+          },
+          {
+            "type": "component",
+            "name": "UnorderedList",
+            "props": {
+              "children": [
+                {
+                  "type": "component",
+                  "name": "ListItem",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "element",
+                        "name": "div",
+                        "props": {
+                          "style": {
+                            "display": "grid",
+                            "gridTemplateColumns": "25% 75%"
+                          },
+                          "children": [
+                            [
+                              {
+                                "type": "component",
+                                "name": "Text",
+                                "props": {
+                                  "as": "span",
+                                  "kind": "body-01",
+                                  "children": [
+                                    {
+                                      "type": "component",
+                                      "name": "CodeSnippet",
+                                      "props": {
+                                        "codeText": "defaultLanguage",
+                                        "language": "javascript",
+                                        "type": "inline"
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ],
+                            [
+                              {
+                                "type": "component",
+                                "name": "Text",
+                                "props": {
+                                  "as": "span",
+                                  "kind": "body-01",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "name": "text",
+                                      "props": {
+                                        "text": "기본적으로 사용할 언어 코드입니다. (예: "
+                                      }
+                                    },
+                                    {
+                                      "type": "component",
+                                      "name": "CodeSnippet",
+                                      "props": {
+                                        "codeText": "'ko'",
+                                        "language": "javascript",
+                                        "type": "inline"
+                                      }
+                                    },
+                                    {
+                                      "type": "text",
+                                      "name": "text",
+                                      "props": {
+                                        "text": ", "
+                                      }
+                                    },
+                                    {
+                                      "type": "component",
+                                      "name": "CodeSnippet",
+                                      "props": {
+                                        "codeText": "'en'",
+                                        "language": "javascript",
+                                        "type": "inline"
+                                      }
+                                    },
+                                    {
+                                      "type": "text",
+                                      "name": "text",
+                                      "props": {
+                                        "text": ")"
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "ListItem",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "element",
+                        "name": "div",
+                        "props": {
+                          "style": {
+                            "display": "grid",
+                            "gridTemplateColumns": "25% 75%"
+                          },
+                          "children": [
+                            [
+                              {
+                                "type": "component",
+                                "name": "Text",
+                                "props": {
+                                  "as": "span",
+                                  "kind": "body-01",
+                                  "children": [
+                                    {
+                                      "type": "component",
+                                      "name": "CodeSnippet",
+                                      "props": {
+                                        "codeText": "languages",
+                                        "language": "javascript",
+                                        "type": "inline"
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ],
+                            [
+                              {
+                                "type": "component",
+                                "name": "Text",
+                                "props": {
+                                  "as": "span",
+                                  "kind": "body-01",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "name": "text",
+                                      "props": {
+                                        "text": "지원하는 언어와 해당 국가별 리소스를 정의하는 객체입니다."
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "ListItem",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "element",
+                        "name": "div",
+                        "props": {
+                          "style": {
+                            "display": "grid",
+                            "gridTemplateColumns": "25% 75%"
+                          },
+                          "children": [
+                            [
+                              {
+                                "type": "component",
+                                "name": "Text",
+                                "props": {
+                                  "as": "span",
+                                  "kind": "body-01",
+                                  "children": [
+                                    {
+                                      "type": "component",
+                                      "name": "CodeSnippet",
+                                      "props": {
+                                        "codeText": "defaultCountry",
+                                        "language": "javascript",
+                                        "type": "inline"
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ],
+                            [
+                              {
+                                "type": "component",
+                                "name": "Text",
+                                "props": {
+                                  "as": "span",
+                                  "kind": "body-01",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "name": "text",
+                                      "props": {
+                                        "text": "해당 언어에서 기본적으로 사용할 국가 코드입니다. (예: "
+                                      }
+                                    },
+                                    {
+                                      "type": "component",
+                                      "name": "CodeSnippet",
+                                      "props": {
+                                        "codeText": "'KR'",
+                                        "language": "javascript",
+                                        "type": "inline"
+                                      }
+                                    },
+                                    {
+                                      "type": "text",
+                                      "name": "text",
+                                      "props": {
+                                        "text": ", "
+                                      }
+                                    },
+                                    {
+                                      "type": "component",
+                                      "name": "CodeSnippet",
+                                      "props": {
+                                        "codeText": "'US'",
+                                        "language": "javascript",
+                                        "type": "inline"
+                                      }
+                                    },
+                                    {
+                                      "type": "text",
+                                      "name": "text",
+                                      "props": {
+                                        "text": ")"
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "ListItem",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "element",
+                        "name": "div",
+                        "props": {
+                          "style": {
+                            "display": "grid",
+                            "gridTemplateColumns": "25% 75%"
+                          },
+                          "children": [
+                            [
+                              {
+                                "type": "component",
+                                "name": "Text",
+                                "props": {
+                                  "as": "span",
+                                  "kind": "body-01",
+                                  "children": [
+                                    {
+                                      "type": "component",
+                                      "name": "CodeSnippet",
+                                      "props": {
+                                        "codeText": "countries",
+                                        "language": "javascript",
+                                        "type": "inline"
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ],
+                            [
+                              {
+                                "type": "component",
+                                "name": "Text",
+                                "props": {
+                                  "as": "span",
+                                  "kind": "body-01",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "name": "text",
+                                      "props": {
+                                        "text": "해당 국가별 번역 리소스를 포함하는 객체입니다."
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "element",
+      "name": "div",
+      "props": {
+        "style": {
+          "height": "60vh"
         }
       }
-    ]
+    },
+    {
+      "type": "component",
+      "name": "Link",
+      "props": {
+        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs/deploy/docs/content/ko/localizer/hook/useLocalizer.json",
+        "isExternal": true,
+        "children": [
+          {
+            "type": "component",
+            "name": "DocumentIcon",
+            "props": {
+              "style": {
+                "width": "1rem",
+                "filter": "brightness(0) saturate(100%) invert(25%) sepia(69%) saturate(3617%) hue-rotate(218deg) brightness(100%) contrast(104%)"
+              }
+            }
+          },
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "text": "Raw Data From Github",
+              "color": "linkPrimary"
+            }
+          }
+        ]
+      }
+    }
   ]
 }

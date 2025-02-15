@@ -43,444 +43,440 @@
         ]
       }
     },
-    [
-      {
-        "type": "component",
-        "name": "Section",
-        "props": {
-          "children": [
-            {
-              "type": "component",
-              "name": "Text",
-              "props": {
-                "text": "레퍼런스",
-                "kind": "heading-03",
-                "as": "h4"
-              }
-            },
-            {
-              "type": "component",
-              "name": "CodeSnippet",
-              "props": {
-                "codeText": "function useLocale(): {\n  locale: GetState<string>;\n  language: GetState<string>;\n  country: GetState<string>;\n  localeSet: Set<string>;\n}",
-                "language": "typescript",
-                "type": "multi",
-                "width": "100%",
-                "defaultShow": true
-              }
+    {
+      "type": "component",
+      "name": "Section",
+      "props": {
+        "children": [
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "text": "레퍼런스",
+              "kind": "heading-03",
+              "as": "h4"
             }
-          ]
-        }
-      },
-      {
-        "type": "component",
-        "name": "Text",
-        "props": {
-          "as": "p",
-          "kind": "heading-compact-01",
-          "children": [
-            {
-              "type": "text",
-              "name": "text",
-              "props": {
-                "text": "반환 값"
-              }
+          },
+          {
+            "type": "component",
+            "name": "CodeSnippet",
+            "props": {
+              "codeText": "function useLocale(): {\n  locale: GetState<string>;\n  language: GetState<string>;\n  country: GetState<string>;\n  localeSet: Set<string>;\n}",
+              "language": "typescript",
+              "type": "multi",
+              "width": "100%",
+              "defaultShow": true
             }
-          ]
-        }
-      },
-      {
-        "type": "component",
-        "name": "UnorderedList",
-        "props": {
-          "children": [
-            {
-              "type": "component",
-              "name": "ListItem",
-              "props": {
-                "children": [
-                  {
-                    "type": "element",
-                    "name": "div",
-                    "props": {
-                      "style": {
-                        "display": "grid",
-                        "gridTemplateColumns": "20% 80%"
-                      },
-                      "children": [
-                        [
-                          {
-                            "type": "component",
-                            "name": "Text",
-                            "props": {
-                              "as": "span",
-                              "kind": "body-01",
-                              "children": [
-                                {
-                                  "type": "component",
-                                  "name": "CodeSnippet",
-                                  "props": {
-                                    "codeText": "locale",
-                                    "language": "javascript",
-                                    "type": "inline"
-                                  }
-                                }
-                              ]
-                            }
-                          }
-                        ],
-                        [
-                          {
-                            "type": "component",
-                            "name": "Text",
-                            "props": {
-                              "as": "span",
-                              "kind": "body-01",
-                              "children": [
-                                {
-                                  "type": "text",
-                                  "name": "text",
-                                  "props": {
-                                    "text": "현재 설정된 로케일(예: "
-                                  }
-                                },
-                                {
-                                  "type": "component",
-                                  "name": "CodeSnippet",
-                                  "props": {
-                                    "codeText": "'ko-KR'",
-                                    "language": "javascript",
-                                    "type": "inline"
-                                  }
-                                },
-                                {
-                                  "type": "text",
-                                  "name": "text",
-                                  "props": {
-                                    "text": ", "
-                                  }
-                                },
-                                {
-                                  "type": "component",
-                                  "name": "CodeSnippet",
-                                  "props": {
-                                    "codeText": "'en-US'",
-                                    "language": "javascript",
-                                    "type": "inline"
-                                  }
-                                },
-                                {
-                                  "type": "text",
-                                  "name": "text",
-                                  "props": {
-                                    "text": ")"
-                                  }
-                                }
-                              ]
-                            }
-                          }
-                        ]
-                      ]
-                    }
+          },
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "as": "p",
+              "kind": "heading-compact-01",
+              "children": [
+                {
+                  "type": "text",
+                  "name": "text",
+                  "props": {
+                    "text": "반환 값"
                   }
-                ]
-              }
-            },
-            {
-              "type": "component",
-              "name": "ListItem",
-              "props": {
-                "children": [
-                  {
-                    "type": "element",
-                    "name": "div",
-                    "props": {
-                      "style": {
-                        "display": "grid",
-                        "gridTemplateColumns": "20% 80%"
-                      },
-                      "children": [
-                        [
-                          {
-                            "type": "component",
-                            "name": "Text",
-                            "props": {
-                              "as": "span",
-                              "kind": "body-01",
-                              "children": [
-                                {
-                                  "type": "component",
-                                  "name": "CodeSnippet",
-                                  "props": {
-                                    "codeText": "language",
-                                    "language": "javascript",
-                                    "type": "inline"
-                                  }
-                                }
-                              ]
-                            }
-                          }
-                        ],
-                        [
-                          {
-                            "type": "component",
-                            "name": "Text",
-                            "props": {
-                              "as": "span",
-                              "kind": "body-01",
-                              "children": [
-                                {
-                                  "type": "text",
-                                  "name": "text",
-                                  "props": {
-                                    "text": "현재 설정된 언어 코드(예: "
-                                  }
-                                },
-                                {
-                                  "type": "component",
-                                  "name": "CodeSnippet",
-                                  "props": {
-                                    "codeText": "'ko'",
-                                    "language": "javascript",
-                                    "type": "inline"
-                                  }
-                                },
-                                {
-                                  "type": "text",
-                                  "name": "text",
-                                  "props": {
-                                    "text": ", "
-                                  }
-                                },
-                                {
-                                  "type": "component",
-                                  "name": "CodeSnippet",
-                                  "props": {
-                                    "codeText": "'en'",
-                                    "language": "javascript",
-                                    "type": "inline"
-                                  }
-                                },
-                                {
-                                  "type": "text",
-                                  "name": "text",
-                                  "props": {
-                                    "text": ")"
-                                  }
-                                }
-                              ]
-                            }
-                          }
-                        ]
-                      ]
-                    }
-                  }
-                ]
-              }
-            },
-            {
-              "type": "component",
-              "name": "ListItem",
-              "props": {
-                "children": [
-                  {
-                    "type": "element",
-                    "name": "div",
-                    "props": {
-                      "style": {
-                        "display": "grid",
-                        "gridTemplateColumns": "20% 80%"
-                      },
-                      "children": [
-                        [
-                          {
-                            "type": "component",
-                            "name": "Text",
-                            "props": {
-                              "as": "span",
-                              "kind": "body-01",
-                              "children": [
-                                {
-                                  "type": "component",
-                                  "name": "CodeSnippet",
-                                  "props": {
-                                    "codeText": "country",
-                                    "language": "javascript",
-                                    "type": "inline"
-                                  }
-                                }
-                              ]
-                            }
-                          }
-                        ],
-                        [
-                          {
-                            "type": "component",
-                            "name": "Text",
-                            "props": {
-                              "as": "span",
-                              "kind": "body-01",
-                              "children": [
-                                {
-                                  "type": "text",
-                                  "name": "text",
-                                  "props": {
-                                    "text": "현재 설정된 국가 코드(예: "
-                                  }
-                                },
-                                {
-                                  "type": "component",
-                                  "name": "CodeSnippet",
-                                  "props": {
-                                    "codeText": "'KR'",
-                                    "language": "javascript",
-                                    "type": "inline"
-                                  }
-                                },
-                                {
-                                  "type": "text",
-                                  "name": "text",
-                                  "props": {
-                                    "text": ", "
-                                  }
-                                },
-                                {
-                                  "type": "component",
-                                  "name": "CodeSnippet",
-                                  "props": {
-                                    "codeText": "'US'",
-                                    "language": "javascript",
-                                    "type": "inline"
-                                  }
-                                },
-                                {
-                                  "type": "text",
-                                  "name": "text",
-                                  "props": {
-                                    "text": ")"
-                                  }
-                                }
-                              ]
-                            }
-                          }
-                        ]
-                      ]
-                    }
-                  }
-                ]
-              }
-            },
-            {
-              "type": "component",
-              "name": "ListItem",
-              "props": {
-                "children": [
-                  {
-                    "type": "element",
-                    "name": "div",
-                    "props": {
-                      "style": {
-                        "display": "grid",
-                        "gridTemplateColumns": "20% 80%"
-                      },
-                      "children": [
-                        [
-                          {
-                            "type": "component",
-                            "name": "Text",
-                            "props": {
-                              "as": "span",
-                              "kind": "body-01",
-                              "children": [
-                                {
-                                  "type": "component",
-                                  "name": "CodeSnippet",
-                                  "props": {
-                                    "codeText": "localeSet",
-                                    "language": "javascript",
-                                    "type": "inline"
-                                  }
-                                }
-                              ]
-                            }
-                          }
-                        ],
-                        [
-                          {
-                            "type": "component",
-                            "name": "Text",
-                            "props": {
-                              "as": "span",
-                              "kind": "body-01",
-                              "children": [
-                                {
-                                  "type": "text",
-                                  "name": "text",
-                                  "props": {
-                                    "text": "지원되는 모든 로케일 목록을 포함하는 "
-                                  }
-                                },
-                                {
-                                  "type": "component",
-                                  "name": "CodeSnippet",
-                                  "props": {
-                                    "codeText": "Set<string>",
-                                    "language": "javascript",
-                                    "type": "inline"
-                                  }
-                                }
-                              ]
-                            }
-                          }
-                        ]
-                      ]
-                    }
-                  }
-                ]
-              }
-            }
-          ]
-        }
-      }
-    ],
-    [
-      {
-        "type": "element",
-        "name": "div",
-        "props": {
-          "style": {
-            "height": "60vh"
-          }
-        }
-      },
-      {
-        "type": "component",
-        "name": "Link",
-        "props": {
-          "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs/deploy/docs/content/ko/localizer/hook/useLocale.json",
-          "isExternal": true,
-          "children": [
-            {
-              "type": "component",
-              "name": "DocumentIcon",
-              "props": {
-                "style": {
-                  "width": "1rem",
-                  "filter": "brightness(0) saturate(100%) invert(25%) sepia(69%) saturate(3617%) hue-rotate(218deg) brightness(100%) contrast(104%)"
                 }
-              }
-            },
-            {
-              "type": "component",
-              "name": "Text",
-              "props": {
-                "text": "Raw Data From Github",
-                "color": "linkPrimary"
-              }
+              ]
             }
-          ]
+          },
+          {
+            "type": "component",
+            "name": "UnorderedList",
+            "props": {
+              "children": [
+                {
+                  "type": "component",
+                  "name": "ListItem",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "element",
+                        "name": "div",
+                        "props": {
+                          "style": {
+                            "display": "grid",
+                            "gridTemplateColumns": "20% 80%"
+                          },
+                          "children": [
+                            [
+                              {
+                                "type": "component",
+                                "name": "Text",
+                                "props": {
+                                  "as": "span",
+                                  "kind": "body-01",
+                                  "children": [
+                                    {
+                                      "type": "component",
+                                      "name": "CodeSnippet",
+                                      "props": {
+                                        "codeText": "locale",
+                                        "language": "javascript",
+                                        "type": "inline"
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ],
+                            [
+                              {
+                                "type": "component",
+                                "name": "Text",
+                                "props": {
+                                  "as": "span",
+                                  "kind": "body-01",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "name": "text",
+                                      "props": {
+                                        "text": "현재 설정된 로케일(예: "
+                                      }
+                                    },
+                                    {
+                                      "type": "component",
+                                      "name": "CodeSnippet",
+                                      "props": {
+                                        "codeText": "'ko-KR'",
+                                        "language": "javascript",
+                                        "type": "inline"
+                                      }
+                                    },
+                                    {
+                                      "type": "text",
+                                      "name": "text",
+                                      "props": {
+                                        "text": ", "
+                                      }
+                                    },
+                                    {
+                                      "type": "component",
+                                      "name": "CodeSnippet",
+                                      "props": {
+                                        "codeText": "'en-US'",
+                                        "language": "javascript",
+                                        "type": "inline"
+                                      }
+                                    },
+                                    {
+                                      "type": "text",
+                                      "name": "text",
+                                      "props": {
+                                        "text": ")"
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "ListItem",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "element",
+                        "name": "div",
+                        "props": {
+                          "style": {
+                            "display": "grid",
+                            "gridTemplateColumns": "20% 80%"
+                          },
+                          "children": [
+                            [
+                              {
+                                "type": "component",
+                                "name": "Text",
+                                "props": {
+                                  "as": "span",
+                                  "kind": "body-01",
+                                  "children": [
+                                    {
+                                      "type": "component",
+                                      "name": "CodeSnippet",
+                                      "props": {
+                                        "codeText": "language",
+                                        "language": "javascript",
+                                        "type": "inline"
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ],
+                            [
+                              {
+                                "type": "component",
+                                "name": "Text",
+                                "props": {
+                                  "as": "span",
+                                  "kind": "body-01",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "name": "text",
+                                      "props": {
+                                        "text": "현재 설정된 언어 코드(예: "
+                                      }
+                                    },
+                                    {
+                                      "type": "component",
+                                      "name": "CodeSnippet",
+                                      "props": {
+                                        "codeText": "'ko'",
+                                        "language": "javascript",
+                                        "type": "inline"
+                                      }
+                                    },
+                                    {
+                                      "type": "text",
+                                      "name": "text",
+                                      "props": {
+                                        "text": ", "
+                                      }
+                                    },
+                                    {
+                                      "type": "component",
+                                      "name": "CodeSnippet",
+                                      "props": {
+                                        "codeText": "'en'",
+                                        "language": "javascript",
+                                        "type": "inline"
+                                      }
+                                    },
+                                    {
+                                      "type": "text",
+                                      "name": "text",
+                                      "props": {
+                                        "text": ")"
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "ListItem",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "element",
+                        "name": "div",
+                        "props": {
+                          "style": {
+                            "display": "grid",
+                            "gridTemplateColumns": "20% 80%"
+                          },
+                          "children": [
+                            [
+                              {
+                                "type": "component",
+                                "name": "Text",
+                                "props": {
+                                  "as": "span",
+                                  "kind": "body-01",
+                                  "children": [
+                                    {
+                                      "type": "component",
+                                      "name": "CodeSnippet",
+                                      "props": {
+                                        "codeText": "country",
+                                        "language": "javascript",
+                                        "type": "inline"
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ],
+                            [
+                              {
+                                "type": "component",
+                                "name": "Text",
+                                "props": {
+                                  "as": "span",
+                                  "kind": "body-01",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "name": "text",
+                                      "props": {
+                                        "text": "현재 설정된 국가 코드(예: "
+                                      }
+                                    },
+                                    {
+                                      "type": "component",
+                                      "name": "CodeSnippet",
+                                      "props": {
+                                        "codeText": "'KR'",
+                                        "language": "javascript",
+                                        "type": "inline"
+                                      }
+                                    },
+                                    {
+                                      "type": "text",
+                                      "name": "text",
+                                      "props": {
+                                        "text": ", "
+                                      }
+                                    },
+                                    {
+                                      "type": "component",
+                                      "name": "CodeSnippet",
+                                      "props": {
+                                        "codeText": "'US'",
+                                        "language": "javascript",
+                                        "type": "inline"
+                                      }
+                                    },
+                                    {
+                                      "type": "text",
+                                      "name": "text",
+                                      "props": {
+                                        "text": ")"
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "ListItem",
+                  "props": {
+                    "children": [
+                      {
+                        "type": "element",
+                        "name": "div",
+                        "props": {
+                          "style": {
+                            "display": "grid",
+                            "gridTemplateColumns": "20% 80%"
+                          },
+                          "children": [
+                            [
+                              {
+                                "type": "component",
+                                "name": "Text",
+                                "props": {
+                                  "as": "span",
+                                  "kind": "body-01",
+                                  "children": [
+                                    {
+                                      "type": "component",
+                                      "name": "CodeSnippet",
+                                      "props": {
+                                        "codeText": "localeSet",
+                                        "language": "javascript",
+                                        "type": "inline"
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ],
+                            [
+                              {
+                                "type": "component",
+                                "name": "Text",
+                                "props": {
+                                  "as": "span",
+                                  "kind": "body-01",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "name": "text",
+                                      "props": {
+                                        "text": "지원되는 모든 로케일 목록을 포함하는 "
+                                      }
+                                    },
+                                    {
+                                      "type": "component",
+                                      "name": "CodeSnippet",
+                                      "props": {
+                                        "codeText": "Set<string>",
+                                        "language": "javascript",
+                                        "type": "inline"
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "element",
+      "name": "div",
+      "props": {
+        "style": {
+          "height": "60vh"
         }
       }
-    ]
+    },
+    {
+      "type": "component",
+      "name": "Link",
+      "props": {
+        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs/deploy/docs/content/ko/localizer/hook/useLocale.json",
+        "isExternal": true,
+        "children": [
+          {
+            "type": "component",
+            "name": "DocumentIcon",
+            "props": {
+              "style": {
+                "width": "1rem",
+                "filter": "brightness(0) saturate(100%) invert(25%) sepia(69%) saturate(3617%) hue-rotate(218deg) brightness(100%) contrast(104%)"
+              }
+            }
+          },
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "text": "Raw Data From Github",
+              "color": "linkPrimary"
+            }
+          }
+        ]
+      }
+    }
   ]
 }

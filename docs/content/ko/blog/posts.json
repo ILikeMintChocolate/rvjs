@@ -240,44 +240,42 @@
         ]
       }
     },
-    [
-      {
-        "type": "element",
-        "name": "div",
-        "props": {
-          "style": {
-            "height": "60vh"
-          }
-        }
-      },
-      {
-        "type": "component",
-        "name": "Link",
-        "props": {
-          "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs/deploy/docs/content/ko/blog/posts.json",
-          "isExternal": true,
-          "children": [
-            {
-              "type": "component",
-              "name": "DocumentIcon",
-              "props": {
-                "style": {
-                  "width": "1rem",
-                  "filter": "brightness(0) saturate(100%) invert(25%) sepia(69%) saturate(3617%) hue-rotate(218deg) brightness(100%) contrast(104%)"
-                }
-              }
-            },
-            {
-              "type": "component",
-              "name": "Text",
-              "props": {
-                "text": "Raw Data From Github",
-                "color": "linkPrimary"
-              }
-            }
-          ]
+    {
+      "type": "element",
+      "name": "div",
+      "props": {
+        "style": {
+          "height": "60vh"
         }
       }
-    ]
+    },
+    {
+      "type": "component",
+      "name": "Link",
+      "props": {
+        "href": "https://github.com/ILikeMintChocolate/rvjs/blob/docs/deploy/docs/content/ko/blog/posts.json",
+        "isExternal": true,
+        "children": [
+          {
+            "type": "component",
+            "name": "DocumentIcon",
+            "props": {
+              "style": {
+                "width": "1rem",
+                "filter": "brightness(0) saturate(100%) invert(25%) sepia(69%) saturate(3617%) hue-rotate(218deg) brightness(100%) contrast(104%)"
+              }
+            }
+          },
+          {
+            "type": "component",
+            "name": "Text",
+            "props": {
+              "text": "Raw Data From Github",
+              "color": "linkPrimary"
+            }
+          }
+        ]
+      }
+    }
   ]
 }
