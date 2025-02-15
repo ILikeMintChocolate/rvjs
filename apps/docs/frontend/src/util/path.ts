@@ -18,6 +18,10 @@ export const isInIsJSPage = (pathname: string) => {
   return /\/is-js\//.test(pathname)
 }
 
+export const isInLocalizerPage = (pathname: string) => {
+  return /\/localizer\//.test(pathname)
+}
+
 export const isInBlogPage = (pathname: string) => {
   return /\/blog(\/|$)/.test(pathname)
 }

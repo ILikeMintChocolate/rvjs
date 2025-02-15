@@ -1,6 +1,7 @@
 import CoreJSSideNav from '@component/sideNav/CoreJSSideNav.tsx'
 import CoreJSXSideNav from '@component/sideNav/CoreJSXSideNav.tsx'
 import IsJSSideNav from '@component/sideNav/IsJSSideNav.tsx'
+import LocalizerSideNav from '@component/sideNav/LocalizerSizeNav.tsx'
 import MobileSideNav from '@component/sideNav/MobileSideNav.tsx'
 import { usePageCategory } from '@component/sideNav/SideNav.hook.ts'
 import UIJSSideNav from '@component/sideNav/UIJSSideNav.tsx'
@@ -32,6 +33,8 @@ const MainSideNav = () => {
                 return <UIJSSideNav depth={0} />
               case 'IS_JS':
                 return <IsJSSideNav depth={0} />
+              case 'LOCALIZER':
+                return <LocalizerSideNav depth={0} />
               default:
                 return <></>
             }

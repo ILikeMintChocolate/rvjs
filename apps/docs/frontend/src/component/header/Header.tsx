@@ -22,6 +22,7 @@ import {
   isInCoreJSPage,
   isInCoreJSXPage,
   isInIsJSPage,
+  isInLocalizerPage,
   isInUIJSPage,
   isInUIJSXPage,
 } from '@util/path.ts'
@@ -52,6 +53,11 @@ const Header = () => {
             text="ui-jsx"
             href={`#/${language()}/ui-jsx/overview/gettingStarted`}
             isActive={isInUIJSXPage(pathname())}
+          />
+          <HeaderMenuItem
+            text="localizer"
+            href={`#/${language()}/localizer/overview/gettingStarted`}
+            isActive={isInLocalizerPage(pathname())}
           />
           <HeaderMenuItem
             text={t('header.items.blog')}

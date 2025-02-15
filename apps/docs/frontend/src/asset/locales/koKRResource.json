@@ -138,6 +138,24 @@
           "@rvjs/core": "@rvjs/core"
         }
       }
+    },
+    "localizer": {
+      "menuName": "localizer",
+      "overview": {
+        "menuName": "개요",
+        "items": {
+          "gettingStarted": "시작하기"
+        }
+      },
+      "hook": {
+        "menuName": "훅",
+        "items": {
+          "useLocalizer": "useLocalizer",
+          "t": "t",
+          "useLocale": "useLocale",
+          "setLocale": "setLocale"
+        }
+      }
     }
   }
 }

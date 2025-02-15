@@ -58,7 +58,7 @@
     "uiJS": {
       "menuName": "ui-js",
       "overview": {
-        "menuName": "Overlay",
+        "menuName": "Overview",
         "items": {
           "gettingStarted": "Getting Started"
         }
@@ -124,7 +124,7 @@
     "isJS": {
       "menuName": "is-js",
       "overview": {
-        "menuName": "Overlay",
+        "menuName": "Overview",
         "items": {
           "gettingStarted": "Getting Started"
         }
@@ -136,6 +136,24 @@
           "reference": "reference",
           "composite": "composite",
           "@rvjs/core": "@rvjs/core"
+        }
+      }
+    },
+    "localizer": {
+      "menuName": "localizer",
+      "overview": {
+        "menuName": "Overview",
+        "items": {
+          "gettingStarted": "Getting Started"
+        }
+      },
+      "hook": {
+        "menuName": "Hook",
+        "items": {
+          "useLocalizer": "useLocalizer",
+          "t": "t",
+          "useLocale": "useLocale",
+          "setLocale": "setLocale"
         }
       }
     }
