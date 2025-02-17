@@ -16,6 +16,44 @@
         "children": [
           {
             "type": "element",
+            "name": "div",
+            "props": {
+              "style": {
+                "display": "flex",
+                "gap": "1rem"
+              },
+              "children": [
+                {
+                  "type": "element",
+                  "name": "div",
+                  "props": {
+                    "style": {
+                      "width": "0.25rem",
+                      "backgroundColor": "#0f62fe"
+                    }
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "Text",
+                  "props": {
+                    "text": "이 게시물은 0.2.2 이하 버전인 바닐라 JS에서 동작하는 라이브러리를 만든 경험을 다룹니다.",
+                    "kind": "helper-text-02"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "component",
+      "name": "Section",
+      "props": {
+        "children": [
+          {
+            "type": "element",
             "name": "img",
             "props": {
               "style": {
@@ -49,37 +87,6 @@
       "name": "Section",
       "props": {
         "children": [
-          {
-            "type": "element",
-            "name": "div",
-            "props": {
-              "style": {
-                "display": "flex",
-                "gap": "1rem"
-              },
-              "children": [
-                {
-                  "type": "element",
-                  "name": "div",
-                  "props": {
-                    "style": {
-                      "width": "0.25rem",
-                      "backgroundColor": "#0f62fe"
-                    }
-                  }
-                },
-                {
-                  "type": "component",
-                  "name": "Text",
-                  "props": {
-                    "text": "이 게시물은 0.2.2 이하 버전인 바닐라 JS에서 동작하는 라이브러리를 만든 경험을 다룹니다.",
-                    "kind": "helper-text-02",
-                    "as": "h4"
-                  }
-                }
-              ]
-            }
-          },
           {
             "type": "component",
             "name": "Text",
