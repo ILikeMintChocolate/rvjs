@@ -28,6 +28,76 @@
                   "type": "component",
                   "name": "Link",
                   "props": {
+                    "href": "#/ko/blog/4",
+                    "children": [
+                      {
+                        "type": "element",
+                        "name": "div",
+                        "props": {
+                          "style": {
+                            "width": "100%"
+                          },
+                          "children": [
+                            {
+                              "type": "element",
+                              "name": "img",
+                              "props": {
+                                "style": {
+                                  "width": "100%",
+                                  "height": "10rem",
+                                  "object-fit": "cover",
+                                  "mix-blend-mode": "multiply"
+                                },
+                                "src": "https://github.com/ILikeMintChocolate/rvjs/blob/docs/deploy/docs/content/ko/blog/4.png?raw=true"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "as": "h1",
+                                "text": "DX 고민하기 | 명확한 규칙 정의",
+                                "kind": "heading-03"
+                              }
+                            },
+                            {
+                              "type": "component",
+                              "name": "Text",
+                              "props": {
+                                "text": "명확한 규칙을 위해 만들어진 prop 함수를 소개합니다.",
+                                "kind": "body-01"
+                              }
+                            },
+                            {
+                              "type": "element",
+                              "name": "div",
+                              "props": {
+                                "style": {
+                                  "display": "flex",
+                                  "justify-content": "end"
+                                },
+                                "children": [
+                                  {
+                                    "type": "component",
+                                    "name": "Text",
+                                    "props": {
+                                      "text": "25.02.18",
+                                      "kind": "helper-text-02"
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "component",
+                  "name": "Link",
+                  "props": {
                     "href": "#/ko/blog/3",
                     "children": [
                       {
