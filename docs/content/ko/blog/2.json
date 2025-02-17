@@ -103,7 +103,7 @@
                   "name": "CodeSnippet",
                   "props": {
                     "codeText": "useState",
-                    "href": "#/ko/core-js/reactive/useState",
+                    "href": "#/ko/core-jsx/reactive/useState",
                     "language": "javascript",
                     "type": "link"
                   }
