@@ -1,6 +1,7 @@
 import CoreJSSideNav from '@component/sideNav/CoreJSSideNav.tsx'
 import CoreJSXSideNav from '@component/sideNav/CoreJSXSideNav.tsx'
 import IsJSSideNav from '@component/sideNav/IsJSSideNav.tsx'
+import LocalizerSideNav from '@component/sideNav/LocalizerSideNav.tsx'
 import UIJSSideNav from '@component/sideNav/UIJSSideNav.tsx'
 import UIJSXSideNav from '@component/sideNav/UIJSXSideNav.tsx'
 import { usePathname } from '@rvjs/core'
@@ -23,6 +24,12 @@ const MobileSideNav = () => {
         </SideNavMenu>
         <SideNavMenu menuName={t('sideNav.uiJSX.menuName')} defaultShow={false}>
           <UIJSXSideNav depth={1} />
+        </SideNavMenu>
+        <SideNavMenu
+          menuName={t('sideNav.localizer.menuName')}
+          defaultShow={false}
+        >
+          <LocalizerSideNav depth={1} />
         </SideNavMenu>
         <SideNavLink
           text={t('header.items.blog')}
