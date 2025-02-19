@@ -1,7 +1,7 @@
 import CoreJSSideNav from '@component/sideNav/CoreJSSideNav.tsx'
 import CoreJSXSideNav from '@component/sideNav/CoreJSXSideNav.tsx'
 import IsJSSideNav from '@component/sideNav/IsJSSideNav.tsx'
-import LocalizerSideNav from '@component/sideNav/LocalizerSizeNav.tsx'
+import LocalizerSideNav from '@component/sideNav/LocalizerSideNav.tsx'
 import MobileSideNav from '@component/sideNav/MobileSideNav.tsx'
 import { usePageCategory } from '@component/sideNav/SideNav.hook.ts'
 import UIJSSideNav from '@component/sideNav/UIJSSideNav.tsx'
