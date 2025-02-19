@@ -5,12 +5,14 @@ import { contentSuspense_style } from '@page/contentSuspense/ContentSuspense.css
 import {
   useContentHeading,
   useContentSuspense,
+  useContentSuspenseScroll,
 } from '@page/contentSuspense/ContentSuspense.hook.ts'
 import { renderFromJSON } from '@rvjs/ui'
 
 const ContentSuspense = () => {
   const { status, content } = useContentSuspense()
   const { wrapperElement, headingContexts } = useContentHeading(status)
+  useContentSuspenseScroll(status)
 
   return (
     <div className={contentSuspense_style} element={wrapperElement}>

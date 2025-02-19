@@ -81,3 +81,13 @@ export const useContentHeading = (status: GetState<Status>) => {
 
   return { wrapperElement, headingContexts }
 }
+
+export const useContentSuspenseScroll = (status: GetState<Status>) => {
+  useEffect(() => {
+    if (status() === 'LOADED') {
+      window.scrollTo({
+        top: 0,
+      })
+    }
+  }, [status])
+}
