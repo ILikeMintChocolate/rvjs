@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /content/
+Sitemap: https://rvjs.xyz/sitemap.xml
