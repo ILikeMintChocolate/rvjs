@@ -21,13 +21,13 @@
               "children": [
                 {
                   "type": "component",
-                  "name": "CodeSnippet",
+                  "name": "Link",
                   "props": {
-                    "codeText": "js-framework-benchmark",
-                    "language": "javascript",
-                    "type": "link",
+                    "as": "span",
+                    "inline": true,
                     "href": "https://github.com/krausest/js-framework-benchmark",
-                    "isExternal": true
+                    "isExternal": true,
+                    "children": "js-framework-benchmark"
                   }
                 },
                 {
@@ -38,6 +38,17 @@
                   }
                 }
               ]
+            }
+          },
+          {
+            "type": "component",
+            "name": "Link",
+            "props": {
+              "as": "span",
+              "inline": true,
+              "href": "https://krausest.github.io/js-framework-benchmark/2025/table_chrome_134.0.6998.45.html",
+              "isExternal": true,
+              "children": "공식 벤치마크 결과"
             }
           }
         ]
