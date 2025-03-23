@@ -49,8 +49,8 @@ importers:
         specifier: ^0.0.3
         version: 0.0.3(@rvjs/core@0.3.33)
       '@rvjs/ui':
-        specifier: ^0.2.22
-        version: 0.2.22(rollup@4.34.7)(vite@5.4.14(@types/node@20.11.26)(less@4.2.0)(terser@5.29.2))
+        specifier: ^0.2.23
+        version: 0.2.23(rollup@4.34.7)(vite@5.4.14(@types/node@20.11.26)(less@4.2.0)(terser@5.29.2))
       '@vanilla-extract/css':
         specifier: ^1.15.3
         version: 1.17.1
@@ -1111,8 +1111,8 @@ packages:
   '@rvjs/ui@0.1.32':
     resolution: {integrity: sha512-QQFaaQbvHM/1BF9wBqEypzWP+tHIgLHGEMYYye1TJU9iPF1UjiS9qBXtpW74svUC/x4I44OOjb81y6cIvqomyg==}
 
-  '@rvjs/ui@0.2.22':
-    resolution: {integrity: sha512-OexYNPkyBm7ce2mU+7EbcvguD+EYLj7JpF4cSXKXpKT25s4EwffjKBSL1sWflcr/doQ+nqfF1KyN0J3laoo3hQ==}
+  '@rvjs/ui@0.2.23':
+    resolution: {integrity: sha512-sTxnGNDJLR038z2IpT8OKxdo0r0cJWDeOm7d9HGNA36Q8BWx8fpKKmTxaCUjQp7kpp8MFWh1Z3vNVC90E2B0Ng==}
 
   '@sinclair/typebox@0.27.8':
     resolution: {integrity: sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==}
@@ -2962,7 +2962,7 @@ snapshots:
       - utf-8-validate
       - vite
 
-  '@rvjs/ui@0.2.22(rollup@4.34.7)(vite@5.4.14(@types/node@20.11.26)(less@4.2.0)(terser@5.29.2))':
+  '@rvjs/ui@0.2.23(rollup@4.34.7)(vite@5.4.14(@types/node@20.11.26)(less@4.2.0)(terser@5.29.2))':
     dependencies:
       '@rvjs/core': 0.3.33
       '@types/prismjs': 1.26.5
