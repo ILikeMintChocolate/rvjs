@@ -1,0 +1,55 @@
+name: Minify Changed JSON Files on deploy branch
+
+on:
+  push:
+    branches: [ deploy ]
+    paths:
+      - '**/*.json'
+
+jobs:
+  minify-json:
+    if: "!contains(github.event.head_commit.message, 'docs-deploy: minify')"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Get list of changed JSON files
+        id: changed
+        run: |
+          git fetch origin
+          git diff --name-only ${{ github.event.before }} ${{ github.sha }} > changed_files.txt
+          echo "Changed files:"
+          cat changed_files.txt
+          JSON_FILES=$(grep '\.json$' changed_files.txt | tr '\n' ' ')
+          echo "json_files=${JSON_FILES}" >> $GITHUB_OUTPUT
+
+      - name: Minify changed JSON files
+        if: steps.changed.outputs.json_files != ''
+        run: |
+          for file in ${{ steps.changed.outputs.json_files }}; do
+            echo "Minifying $file"
+            cat "$file" | jq -c . > "$file.min"
+            mv "$file.min" "$file"
+          done
+
+      - name: Commit and push minified files
+        if: steps.changed.outputs.json_files != ''
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add ${{ steps.changed.outputs.json_files }}
+          if ! git diff --cached --quiet; then
+            git commit -m "docs-deploy: minify changed JSON files"
+            git push
+          else
+            echo "No changes to commit."
+          fi
