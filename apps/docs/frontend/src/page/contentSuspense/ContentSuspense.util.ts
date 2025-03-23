@@ -1,20 +1,16 @@
-import {
-  getItemFromCache,
-  hasItemCache,
-  isCacheExpired,
-  storeItemToCache,
-} from '@util/cache.ts'
+import { Storage } from '@util/storage.ts'
+
+const storage = new Storage()
 
 export const getContentFromServer = async (path: string) => {
   const apiPath = getApiPath(path)
-  if (hasItemCache(apiPath) && !isCacheExpired(apiPath)) {
-    const content = getItemFromCache(apiPath)
-    return content
-  } else {
-    const content = await fetchContent(apiPath)
-    storeItemToCache(apiPath, content, 3600)
-    return content
+  const item = storage.getItem(apiPath)
+  if (item) {
+    return item
   }
+  const content = await fetchContent(apiPath)
+  storage.setItem(apiPath, content, 600)
+  return content
 }
 
 const getApiPath = (path: string) => {
