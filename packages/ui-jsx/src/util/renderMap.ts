@@ -16,6 +16,8 @@ import {
 } from '@content/icon/Icons.tsx'
 import { iframeRenderProps } from '@content/iframe/Iframe.props.ts'
 import Iframe from '@content/iframe/Iframe.tsx'
+import { imageRenderProps } from '@content/image/Image.props.ts'
+import Image from '@content/image/Image.tsx'
 import { listItemRenderProps } from '@content/list/listItem/ListItem.props.ts'
 import ListItem from '@content/list/listItem/ListItem.tsx'
 import { orderedListRenderProps } from '@content/list/orderedList/OrderedList.props.ts'
@@ -77,6 +79,7 @@ import Text from '@typography/text/Text.tsx'
 export const componentFnMap = {
   ColorChip: ColorChip,
   Iframe: Iframe,
+  Image: Image,
   OrderedList: OrderedList,
   UnorderedList: UnorderedList,
   ListItem: ListItem,
@@ -123,6 +126,7 @@ export const componentFnMap = {
 export const componentRenderPropsMap = {
   ColorChip: colorChipRenderProps,
   Iframe: iframeRenderProps,
+  Image: imageRenderProps,
   OrderedList: orderedListRenderProps,
   UnorderedList: unorderedListRenderProps,
   ListItem: listItemRenderProps,
