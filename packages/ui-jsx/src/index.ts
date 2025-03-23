@@ -1,6 +1,7 @@
 export { default as ColorChip } from '@content/colorChip/ColorChip.tsx'
 export * from '@content/icon/Icons.tsx'
 export { default as Iframe } from '@content/iframe/Iframe.tsx'
+export { default as Image } from '@content/image/Image.tsx'
 export { default as OrderedList } from '@content/list/orderedList/OrderedList.tsx'
 export { default as UnorderedList } from '@content/list/unorderedList/UnorderedList.tsx'
 export { default as ListItem } from '@content/list/listItem/ListItem.tsx'
