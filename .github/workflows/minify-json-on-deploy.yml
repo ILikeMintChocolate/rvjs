@@ -2,7 +2,8 @@ name: Minify Changed JSON Files on deploy branch
 
 on:
   push:
-    branches: [ deploy ]
+    branches:
+      - docs/deploy
     paths:
       - '**/*.json'
 
