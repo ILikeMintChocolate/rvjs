@@ -1,4 +1,4 @@
-name: Minify
+name: Minify JSON on deploy
 
 on:
   push:
