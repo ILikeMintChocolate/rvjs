@@ -14,7 +14,7 @@ export const getContentFromServer = async (path: string) => {
 }
 
 const getApiPath = (path: string) => {
-  return `https://rvjs.xyz/content${path}`
+  return `https://rvjs.dev/content${path}`
 }
 
 const fetchContent = async (path: string) => {
